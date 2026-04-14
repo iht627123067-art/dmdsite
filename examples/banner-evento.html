@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banner de Eventos DMD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --md-navy: #153065;
+      --md-purple: #7F4CA9;
+      --md-accent: #FF9E00;
+      --md-white: #FFFFFF;
+      --md-black: #0F0F1A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .banner-container {
+      width: 700px;
+      height: 1000px; /* Formato vertical clássico de Roll-up */
+      background: var(--md-white);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Variações de Fundo */
+    .bg-navy { background: var(--md-navy); color: var(--md-white); }
+    .bg-purple { background: var(--md-purple); color: var(--md-white); }
+    .bg-accent { background: var(--md-accent); color: var(--md-black); }
+    .bg-white { background: var(--md-white); color: var(--md-navy); border: 20px solid var(--md-navy); }
+
+    .header-stripe {
+      height: 12px;
+      width: 100%;
+      background: var(--md-accent);
+    }
+
+    .content {
+      padding: 60px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 2;
+    }
+
+    .tag {
+      font-size: 18px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    .headline {
+      font-family: 'Anton', sans-serif;
+      font-size: 80px;
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      word-wrap: break-word;
+    }
+
+    .description {
+      font-size: 24px;
+      line-height: 1.4;
+      font-weight: 400;
+      max-width: 90%;
+      margin-bottom: 40px;
+    }
+
+    .event-info {
+      margin-top: auto;
+      border-top: 2px solid currentColor;
+      padding-top: 30px;
+    }
+
+    .info-item {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .footer {
+      padding: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      height: 80px;
+    }
+
+    /* Grafismos de Fundo */
+    .graphic-element {
+      position: absolute;
+      bottom: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: currentColor;
+      opacity: 0.05;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Estilo para Leitura a Distância */
+    .high-visibility .headline { font-size: 100px; }
+    .high-visibility .info-item { font-size: 40px; }
+
+  </style>
+</head>
+<body>
+
+  <div id="banner" class="banner-container bg-navy">
+    <div class="header-stripe"></div>
+    <div class="content">
+      <div>
+        <div class="tag" id="vTag">Ação Institucional</div>
+        <h1 class="headline" id="vHeadline">JUSTIÇA E<br>CIDADANIA</h1>
+        <p class="description" id="vDescription">Transformando comunidades através do apoio jurídico e social gratuito.</p>
+      </div>
+
+      <div class="event-info">
+        <div class="info-item" id="vDate">📅 15 DE MAIO</div>
+        <div class="info-item" id="vLocation">📍 PRAÇA DA SÉ</div>
+        <div class="info-item" id="vTime">🕒 09H ÀS 17H</div>
+      </div>
+    </div>
+    
+    <div class="footer">
+       <img src="logo-dmd.svg" class="logo" id="vLogo">
+       <div style="text-align: right; font-weight: 700; opacity: 0.6;">
+         INSTITUTO<br>DE MÃOS DADAS
+       </div>
+    </div>
+
+    <div class="graphic-element"></div>
+  </div>
+
+  <script>
+    // Função simples para atualizar via URL params para ser usado em frames
+    function updateFromParams() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('tag')) document.getElementById('vTag').innerText = params.get('tag');
+      if (params.has('headline')) document.getElementById('vHeadline').innerHTML = params.get('headline').replace(/\\n/g, '<br>');
+      if (params.has('desc')) document.getElementById('vDescription').innerText = params.get('desc');
+      if (params.has('date')) document.getElementById('vDate').innerText = '📅 ' + params.get('date');
+      if (params.has('loc')) document.getElementById('vLocation').innerText = '📍 ' + params.get('loc');
+      if (params.has('time')) document.getElementById('vTime').innerText = '🕒 ' + params.get('time');
+      
+      if (params.has('theme')) {
+        const theme = params.get('theme');
+        const container = document.getElementById('banner');
+        container.className = 'banner-container ' + theme;
+        
+        if (theme === 'bg-accent') {
+          document.getElementById('vLogo').src = 'logo-dmd-new.png'; 
+        } else {
+          document.getElementById('vLogo').src = 'logo-dmd.svg';
+        }
+      }
+    }
+
+    window.onload = updateFromParams;
+  </script>
+</body>
+</html>

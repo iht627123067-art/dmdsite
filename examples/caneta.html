@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canetas — De Mãos Dadas 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --md-purple:  #7F4CA9;
+            --md-navy:    #153065;
+            --md-amber:   #FF9E00;
+            --md-white:   #FAFAFA;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1a2e;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 48px 24px; gap: 32px;
+        }
+
+        /* ── TOPO ── */
+        .page-header {
+            width: 210mm; display: flex; align-items: center; justify-content: space-between;
+            padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,.1);
+        }
+        .page-header img { height: 28px; filter: brightness(10); }
+        .page-header-meta { text-align: right; }
+        .page-header-meta .doc-title { font-family: 'Anton', sans-serif; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,.8); }
+        .page-header-meta .doc-sub { font-size: 10px; color: rgba(255,255,255,.35); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+        /* ── SECTION ── */
+        .section { width: 210mm; display: flex; flex-direction: column; gap: 16px; }
+        .section-title { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--md-amber); }
+
+        /* ── PEN CARD ── */
+        .pen-card {
+            background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+            border-radius: 14px; padding: 20px 24px;
+            display: grid; grid-template-columns: 120px 1fr auto;
+            align-items: center; gap: 24px;
+        }
+        .pen-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.4); }
+        .pen-num { font-family: 'Anton', sans-serif; font-size: 20px; color: rgba(255,255,255,.15); line-height: 1; margin-bottom: 4px; }
+
+        /* ── PEN 3D ── */
+        .pen-3d { position: relative; width: 100%; height: 44px; filter: drop-shadow(0 6px 18px rgba(0,0,0,.5)); }
+        .pen-3d-wrap { display: flex; width: 100%; height: 44px; border-radius: 22px 3px 3px 22px; overflow: hidden; }
+
+        .pen-cap {
+            width: 62px; height: 44px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            border-right: 1px solid rgba(255,255,255,.08); position: relative;
+        }
+        .pen-cap::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 40%;
+            background: linear-gradient(to bottom, rgba(255,255,255,.2), transparent);
+            pointer-events: none;
+        }
+        .pen-cap img { height: 28px; object-fit: contain; position: relative; z-index: 1; }
+
+        .pen-band { width: 9px; flex-shrink: 0; border-right: 1px solid rgba(255,255,255,.06); }
+
+        .pen-body { flex: 1; height: 44px; display: flex; align-items: center; padding: 0 18px; position: relative; }
+        .pen-body::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 38%;
+            background: linear-gradient(to bottom, rgba(255,255,255,.10), transparent);
+            pointer-events: none;
+        }
+        .pen-body-text { position: relative; z-index: 1; display: flex; align-items: center; gap: 14px; }
+        .pen-body-text .primary-text { font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 2px; text-transform: lowercase; }
+        .pen-body-text .divider { width: 1px; height: 14px; background: rgba(255,255,255,.15); }
+        .pen-body-text .secondary-text { font-size: 9px; color: rgba(255,255,255,.35); font-style: italic; }
+
+        .pen-tip { width: 22px; height: 44px; flex-shrink: 0; background: linear-gradient(to right, #888, #bbb); clip-path: polygon(0 18%, 100% 44%, 100% 56%, 0 82%); }
+
+        /* sheen strip */
+        .pen-3d-wrap::before {
+            content: ''; position: absolute; top: 5px; left: 62px; right: 22px; height: 6px;
+            background: rgba(255,255,255,.07); border-radius: 3px; pointer-events: none; z-index: 10;
+        }
+
+        /* clip */
+        .pen-clip-outer { position: absolute; top: -3px; left: 68px; width: 14px; height: 56px; z-index: 20; }
+        .pen-clip-inner { width: 9px; height: 50px; background: linear-gradient(to right, #c0c0c0 0%, #e8e8e8 45%, #b0b0b0 100%); border-radius: 2px 2px 6px 6px; box-shadow: 1px 2px 5px rgba(0,0,0,.3); }
+        .pen-clip-inner::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 13px; height: 13px; background: #b8b8b8; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,.25); }
+
+        .pen-spec { font-size: 10px; color: rgba(255,255,255,.35); line-height: 1.6; min-width: 140px; }
+        .pen-spec strong { color: rgba(255,255,255,.6); display: block; font-size: 11px; margin-bottom: 2px; }
+
+        /* ── NOTA ── */
+        .nota {
+            width: 210mm; padding: 14px 18px; background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.07); border-radius: 10px;
+            display: flex; gap: 10px; align-items: flex-start;
+        }
+        .nota p { font-size: 11px; color: rgba(255,255,255,.35); line-height: 1.6; }
+        .nota p strong { color: rgba(255,255,255,.65); }
+
+        /* ── PRINT ── */
+        .btn-print {
+            position: fixed; top: 20px; right: 20px;
+            background: var(--md-navy); color: white; border: none;
+            padding: 10px 22px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 13px;
+        }
+        @media print {
+            body { background: white; padding: 10mm; gap: 6mm; }
+            .btn-print { display: none; }
+            .page-header, .section, .nota { width: 190mm; }
+            .pen-card { background: #fafafa; border-color: #ddd; }
+            .pen-label { color: #888; }
+            .pen-spec { color: #666; }
+            .pen-spec strong { color: #333; }
+            .nota { background: #f5f5f5; border-color: #ddd; }
+            .nota p { color: #666; }
+            .nota p strong { color: #333; }
+            .pen-3d { filter: drop-shadow(0 4px 10px rgba(0,0,0,.25)); }
+            .page-header-meta .doc-title { color: #333; }
+            .page-header-meta .doc-sub   { color: #999; }
+            .page-header img { filter: none; }
+        }
+    </style>
+</head>
+<body>
+    <button class="btn-print" onclick="window.print()">Exportar PDF</button>
+
+    <div class="page-header">
+        <img src="./logo-dmd-new.png" alt="De Mãos Dadas">
+        <div class="page-header-meta">
+            <div class="doc-title">Canetas — Sistema de Marca</div>
+            <div class="doc-sub">Impressão Barrel · 3 Variantes · 2026</div>
+        </div>
+    </div>
+
+    <!-- REGRA DE USO -->
+    <div class="nota">
+        <span style="font-size:15px; flex-shrink:0;">💡</span>
+        <p>
+            <strong>Sistema cap + barrel:</strong> O cap (extremidade superior) recebe o <strong>símbolo isolado</strong>.
+            O barrel (corpo) recebe o site ou tagline — nunca o nome novamente, pois ele já está incorporado na logo do cap.
+        </p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Variantes de Impressão</div>
+
+        <!-- 01 INSTITUCIONAL -->
+        <div class="pen-card">
+            <div>
+                <div class="pen-num">01</div>
+                <div class="pen-label">Institucional<br>Roxo + Navy</div>
+            </div>
+            <div class="pen-3d">
+                <div class="pen-3d-wrap">
+                    <div class="pen-cap" style="background: linear-gradient(135deg, #9B5FCC, #6A3A90);">
+                        <img src="./logo-dmd.svg" alt="símbolo">
+                    </div>
+                    <div class="pen-band" style="background: rgba(255,255,255,.06);"></div>
+                    <div class="pen-body" style="background: linear-gradient(to bottom, #1d3d6b, #153065, #0e2248);">
+                        <div class="pen-body-text">
+                            <span class="primary-text" style="color: rgba(255,255,255,.5);">institutodemaosdadas.com.br</span>
+                        </div>
+                    </div>
+                    <div class="pen-tip"></div>
+                </div>
+                <div class="pen-clip-outer"><div class="pen-clip-inner"></div></div>
+            </div>
+            <div class="pen-spec">
+                <strong>Cap: #7F4CA9 · Barrel: #153065</strong>
+                Logo SVG branca no cap<br>
+                Site no barrel · cor rgba(255,255,255,.5)
+            </div>
+        </div>
+
+        <!-- 02 LARANJA -->
+        <div class="pen-card">
+            <div>
+                <div class="pen-num">02</div>
+                <div class="pen-label">Mobilização<br>Âmbar + Escuro</div>
+            </div>
+            <div class="pen-3d">
+                <div class="pen-3d-wrap">
+                    <div class="pen-cap" style="background: linear-gradient(135deg, #FFB830, #E07800);">
+                        <img src="./logo-dmd-new.png" alt="símbolo" style="height: 24px;">
+                    </div>
+                    <div class="pen-band" style="background: rgba(0,0,0,.08);"></div>
+                    <div class="pen-body" style="background: linear-gradient(to bottom, #1e1e1e, #111111, #0a0a0a);">
+                        <div class="pen-body-text">
+                            <span class="primary-text" style="color: var(--md-amber);">Comunidade Viva</span>
+                            <div class="divider"></div>
+                            <span class="secondary-text">Goiânia · GO</span>
+                        </div>
+                    </div>
+                    <div class="pen-tip"></div>
+                </div>
+                <div class="pen-clip-outer"><div class="pen-clip-inner" style="background: linear-gradient(to right, #d4a017, #f0c040, #c08010);"></div></div>
+            </div>
+            <div class="pen-spec">
+                <strong>Cap: #FF9E00 · Barrel: #111</strong>
+                Logo PNG escura no cap<br>
+                Tagline âmbar · detalhe goiânia
+            </div>
+        </div>
+
+        <!-- 03 MINIMALISTA -->
+        <div class="pen-card">
+            <div>
+                <div class="pen-num">03</div>
+                <div class="pen-label">Minimalista<br>Escuro + Branco</div>
+            </div>
+            <div class="pen-3d">
+                <div class="pen-3d-wrap">
+                    <div class="pen-cap" style="background: linear-gradient(135deg, #222, #111); border-right-color: rgba(127,76,169,.3);">
+                        <img src="./logo-dmd.svg" alt="símbolo" style="opacity: .9;">
+                    </div>
+                    <div class="pen-band" style="background: rgba(127,76,169,.15); border-right-color: rgba(127,76,169,.2);"></div>
+                    <div class="pen-body" style="background: linear-gradient(to bottom, #F7F7F7, #EFEFEF);">
+                        <div class="pen-body-text">
+                            <span class="primary-text" style="color: var(--md-navy); opacity: .9;">institutodemaosdadas.com.br</span>
+                        </div>
+                    </div>
+                    <div class="pen-tip" style="background: linear-gradient(to right, #999, #ccc);"></div>
+                </div>
+                <div class="pen-clip-outer"><div class="pen-clip-inner" style="background: linear-gradient(to right, #aaa, #ddd, #aaa);"></div></div>
+            </div>
+            <div class="pen-spec">
+                <strong>Cap: #111 · Barrel: #F7F7F7</strong>
+                Logo SVG no cap escuro<br>
+                Site em navy no barrel branco
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

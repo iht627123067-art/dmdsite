@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canecas — De Mãos Dadas 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --md-purple:  #7F4CA9;
+            --md-navy:    #153065;
+            --md-amber:   #FF9E00;
+            --md-white:   #FAFAFA;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1a2e;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 48px 24px; gap: 40px;
+        }
+
+        /* ── TOPO ── */
+        .page-header {
+            width: 210mm; display: flex; align-items: center; justify-content: space-between;
+            padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,.1);
+        }
+        .page-header img { height: 32px; }
+        .page-header-meta { text-align: right; }
+        .page-header-meta .doc-title { font-family: 'Anton', sans-serif; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,.8); }
+        .page-header-meta .doc-sub { font-size: 10px; color: rgba(255,255,255,.35); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+        /* ── GRID ── */
+        .mug-grid {
+            width: 210mm;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+        }
+
+        /* ── CARD ── */
+        .mug-card {
+            display: flex; flex-direction: column; align-items: center;
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 16px; padding: 28px 16px 20px;
+            gap: 16px;
+        }
+        .mug-card-label {
+            font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+            color: var(--md-amber); align-self: flex-start; margin-left: 4px;
+        }
+
+        /* ── MUG SHAPE ── */
+        .mug-wrap {
+            position: relative; width: 100px; height: 110px;
+            filter: drop-shadow(0 12px 28px rgba(0,0,0,.6));
+        }
+        .mug-body {
+            position: absolute; left: 0; top: 0;
+            width: 88px; height: 108px;
+            border-radius: 5px 5px 18px 18px;
+            overflow: hidden;
+        }
+        /* cylindrical sheen */
+        .mug-body::before {
+            content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+            background: linear-gradient(100deg,
+                rgba(0,0,0,.22) 0%,
+                transparent 22%,
+                rgba(255,255,255,.10) 48%,
+                transparent 72%,
+                rgba(0,0,0,.18) 100%);
+        }
+        /* top rim highlight */
+        .mug-body::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 9px;
+            background: linear-gradient(to bottom, rgba(255,255,255,.22), transparent);
+            z-index: 4; pointer-events: none;
+        }
+        .mug-face {
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 8px; padding: 12px;
+            position: relative; z-index: 2;
+        }
+        .mug-face img { max-width: 80%; max-height: 44px; object-fit: contain; }
+        .mug-face .mug-tagline {
+            font-family: 'Roboto', sans-serif; font-size: 8px; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase; text-align: center;
+            line-height: 1.3;
+        }
+        /* handle */
+        .mug-handle {
+            position: absolute; right: -18px; top: 20px;
+            width: 20px; height: 52px;
+            border-width: 6px; border-style: solid;
+            border-left: none; border-radius: 0 16px 16px 0;
+            box-shadow: inset -2px 0 4px rgba(0,0,0,.15), 2px 4px 8px rgba(0,0,0,.3);
+        }
+
+        /* ── SPECS ── */
+        .mug-specs { width: 100%; }
+        .spec-row { display: flex; gap: 8px; align-items: flex-start; padding: 6px 0; border-top: 1px solid rgba(255,255,255,.06); }
+        .spec-key { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.3); min-width: 52px; padding-top: 1px; }
+        .spec-val { font-size: 10px; color: rgba(255,255,255,.65); line-height: 1.4; }
+
+        /* ── REGRA ── */
+        .rule-bar {
+            width: 210mm; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+            border-radius: 12px; padding: 16px 20px;
+            display: flex; gap: 12px; align-items: flex-start;
+        }
+        .rule-bar-icon { font-size: 16px; flex-shrink: 0; }
+        .rule-bar p { font-size: 11px; color: rgba(255,255,255,.4); line-height: 1.6; }
+        .rule-bar p strong { color: rgba(255,255,255,.75); }
+
+        /* ── PRINT ── */
+        .btn-print {
+            position: fixed; top: 20px; right: 20px;
+            background: var(--md-navy); color: white; border: none;
+            padding: 10px 22px; border-radius: 8px; font-weight: 700; cursor: pointer;
+            font-size: 13px; box-shadow: 0 4px 16px rgba(0,0,0,.4);
+        }
+        @media print {
+            body { background: white; padding: 10mm; gap: 8mm; }
+            .btn-print { display: none; }
+            .page-header, .mug-grid, .rule-bar { width: 190mm; }
+            .mug-grid { grid-template-columns: repeat(3, 1fr); gap: 8mm; }
+            .mug-card { background: #f9f9f9; border-color: #ddd; color: #333; }
+            .mug-card-label { color: var(--md-amber); }
+            .spec-row { border-top-color: #eee; }
+            .spec-key { color: #999; }
+            .spec-val { color: #444; }
+            .rule-bar { background: #f5f5f5; border-color: #ddd; }
+            .rule-bar p { color: #666; }
+            .rule-bar p strong { color: #333; }
+            .page-header-meta .doc-title { color: #333; }
+            .page-header-meta .doc-sub { color: #999; }
+        }
+    </style>
+</head>
+<body>
+    <button class="btn-print" onclick="window.print()">Exportar PDF</button>
+
+    <div class="page-header">
+        <img src="./logo-dmd.svg" alt="De Mãos Dadas" style="filter: brightness(10);">
+        <div class="page-header-meta">
+            <div class="doc-title">Canecas — Sistema de Marca</div>
+            <div class="doc-sub">Sublimação 325ml · 2026</div>
+        </div>
+    </div>
+
+    <div class="mug-grid">
+
+        <!-- 01 BRANCA -->
+        <div class="mug-card">
+            <div class="mug-card-label">01 · Branca Clássica</div>
+            <div class="mug-wrap">
+                <div class="mug-body" style="background: #F7F7F7; box-shadow: 0 4px 16px rgba(0,0,0,.2);">
+                    <div class="mug-face">
+                        <img src="./logo-dmd-new.png" alt="logo">
+                        <span class="mug-tagline" style="color: var(--md-navy);">Goiânia · GO</span>
+                    </div>
+                </div>
+                <div class="mug-handle" style="border-color: #CCCCCC;"></div>
+            </div>
+            <div class="mug-specs">
+                <div class="spec-row">
+                    <span class="spec-key">Logo</span>
+                    <span class="spec-val">logo-dmd-new.png · versão escura</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-key">Fundo</span>
+                    <span class="spec-val">Branco sublimado — #F7F7F7</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-key">Uso</span>
+                    <span class="spec-val">Eventos, kits básicos, parceiros</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02 ROXA -->
+        <div class="mug-card">
+            <div class="mug-card-label">02 · Roxo Institucional</div>
+            <div class="mug-wrap">
+                <div class="mug-body" style="background: var(--md-purple);">
+                    <div class="mug-face">
+                        <img src="./logo-dmd.svg" alt="logo">
+                        <span class="mug-tagline" style="color: rgba(255,255,255,.7);">institutodemaosdadas.com.br</span>
+                    </div>
+                </div>
+                <div class="mug-handle" style="border-color: #5E3580;"></div>
+            </div>
+            <div class="mug-specs">
+                <div class="spec-row">
+                    <span class="spec-key">Logo</span>
+                    <span class="spec-val">logo-dmd.svg · versão clara</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-key">Fundo</span>
+                    <span class="spec-val">Roxo sublimado — #7F4CA9</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-key">Uso</span>
+                    <span class="spec-val">Equipe, presentear parceiros institucionais</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03 NAVY -->
+        <div class="mug-card">
+            <div class="mug-card-label">03 · Navy + Âmbar</div>
+            <div class="mug-wrap">
+                <div class="mug-body" style="background: var(--md-navy);">
+                    <div class="mug-face">
+                        <img src="./logo-dmd.svg" alt="logo" style="filter: sepia(1) saturate(8) hue-rotate(5deg) brightness(1.1);">
+                        <span class="mug-tagline" style="color: var(--md-amber);">Comunidade Viva</span>
+                    </div>
+                </div>
+                <div class="mug-handle" style="border-color: #0e2248;"></div>
+            </div>
+            <div class="mug-specs">
+                <div class="spec-row">
+                    <span class="spec-key">Logo</span>
+                    <span class="spec-val">logo-dmd.svg · filtro âmbar</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-key">Fundo</span>
+                    <span class="spec-val">Navy sublimado — #153065</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-key">Uso</span>
+                    <span class="spec-val">Campanhas, mutirões, mobilização</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 04 GRADIENTE -->
+        <div class="mug-card">
+            <div class="mug-card-label">04 · Gradiente Narrativo</div>
+            <div class="mug-wrap">
+                <div class="mug-body" style="background: linear-gradient(135deg, var(--md-navy) 0%, var(--md-purple) 100%);">
+                    <div class="mug-face">
+                        <img src="./logo-dmd.svg" alt="logo">
+                        <span class="mug-tagline" style="color: var(--md-amber);">Transformando Realidades</span>
+                    </div>
+                </div>
+                <div class="mug-handle" style="border-color: #3b2a60;"></div>
+            </div>
+            <div class="mug-specs">
+                <div class="spec-row"><span class="spec-key">Logo</span><span class="spec-val">logo-dmd.svg · versão clara</span></div>
+                <div class="spec-row"><span class="spec-key">Fundo</span><span class="spec-val">Gradiente Institucional 135deg</span></div>
+                <div class="spec-row"><span class="spec-key">Uso</span><span class="spec-val">Patrocinadores, Conselheiros</span></div>
+            </div>
+        </div>
+
+        <!-- 05 LILAS -->
+        <div class="mug-card">
+            <div class="mug-card-label">05 · Lilás Acolhedor</div>
+            <div class="mug-wrap">
+                <div class="mug-body" style="background: var(--md-lilac, #BD90DA);">
+                    <div class="mug-face">
+                        <img src="./logo-dmd-new.png" alt="logo">
+                        <span class="mug-tagline" style="color: var(--md-navy);">Apoio Comunitário</span>
+                    </div>
+                </div>
+                <div class="mug-handle" style="border-color: #ab7bc6;"></div>
+            </div>
+            <div class="mug-specs">
+                <div class="spec-row"><span class="spec-key">Logo</span><span class="spec-val">logo-dmd-new.png · versão escura</span></div>
+                <div class="spec-row"><span class="spec-key">Fundo</span><span class="spec-val">Lilás Sublimado — #BD90DA</span></div>
+                <div class="spec-row"><span class="spec-key">Uso</span><span class="spec-val">Projetos infantis, creches</span></div>
+            </div>
+        </div>
+
+        <!-- 06 AMBAR -->
+        <div class="mug-card">
+            <div class="mug-card-label">06 · Âmbar Energia</div>
+            <div class="mug-wrap">
+                <div class="mug-body" style="background: var(--md-amber);">
+                    <div class="mug-face">
+                        <img src="./logo-dmd.svg" alt="logo">
+                        <span class="mug-tagline" style="color: var(--md-navy);">Ação Solidária</span>
+                    </div>
+                </div>
+                <div class="mug-handle" style="border-color: #E68A00;"></div>
+            </div>
+            <div class="mug-specs">
+                <div class="spec-row"><span class="spec-key">Logo</span><span class="spec-val">logo-dmd.svg · versão clara</span></div>
+                <div class="spec-row"><span class="spec-key">Fundo</span><span class="spec-val">Âmbar Sublimado — #FF9E00</span></div>
+                <div class="spec-row"><span class="spec-key">Uso</span><span class="spec-val">Mutirões, Campanhas Solidárias</span></div>
+            </div>
+        </div>
+
+        <!-- 07 MINIMALISTA BRANCA -->
+        <div class="mug-card">
+            <div class="mug-card-label">07 · Minimalista Navy</div>
+            <div class="mug-wrap">
+                <div class="mug-body" style="background: #FFFFFF;">
+                    <div class="mug-face">
+                        <img src="./logo-dmd-new.png" alt="logo" style="margin-bottom: 20px; scale: 1.1;">
+                        <span class="mug-tagline" style="color: var(--md-navy); letter-spacing: 3px;">ESSÊNCIA</span>
+                    </div>
+                </div>
+                <div class="mug-handle" style="border-color: #E0E0E0;"></div>
+            </div>
+            <div class="mug-specs">
+                <div class="spec-row"><span class="spec-key">Logo</span><span class="spec-val">logo-dmd-new.png · isolada</span></div>
+                <div class="spec-row"><span class="spec-key">Fundo</span><span class="spec-val">Branco Absoluto — #FFFFFF</span></div>
+                <div class="spec-row"><span class="spec-key">Uso</span><span class="spec-val">Kit Executivo, Minimalismo Direto</span></div>
+            </div>
+        </div>
+
+        <!-- 08 PREMIUM BLACK -->
+        <div class="mug-card">
+            <div class="mug-card-label">08 · Premium Black</div>
+            <div class="mug-wrap">
+                <div class="mug-body" style="background: #18181A;">
+                    <div class="mug-face">
+                        <img src="./logo-dmd.svg" alt="logo" style="filter: sepia(1) saturate(8) hue-rotate(5deg) brightness(1.2);">
+                        <span class="mug-tagline" style="color: rgba(255,160,0,0.8);">Membro Mantenedor</span>
+                    </div>
+                </div>
+                <div class="mug-handle" style="border-color: #111111;"></div>
+            </div>
+            <div class="mug-specs">
+                <div class="spec-row"><span class="spec-key">Logo</span><span class="spec-val">Dourada (SVG com filtros)</span></div>
+                <div class="spec-row"><span class="spec-key">Fundo</span><span class="spec-val">Preto Fosco — #18181A</span></div>
+                <div class="spec-row"><span class="spec-key">Uso</span><span class="spec-val">Investidores Sociais</span></div>
+            </div>
+        </div>
+
+        <!-- 09 KRAFT ECOLOGICA -->
+        <div class="mug-card">
+            <div class="mug-card-label">09 · Sustentabilidade</div>
+            <div class="mug-wrap">
+                <div class="mug-body" style="background: #d4c0a5;">
+                    <div class="mug-face">
+                        <img src="./logo-dmd-new.png" alt="logo" style="opacity: 0.7; mix-blend-mode: multiply;">
+                        <span class="mug-tagline" style="color: #4a3e30;">Eco-Friendly</span>
+                    </div>
+                </div>
+                <div class="mug-handle" style="border-color: #bdab92;"></div>
+            </div>
+            <div class="mug-specs">
+                <div class="spec-row"><span class="spec-key">Logo</span><span class="spec-val">Gravação a Laser (Mix Blend Multiply)</span></div>
+                <div class="spec-row"><span class="spec-key">Fundo</span><span class="spec-val">Fibra de Bambu / Ecológica</span></div>
+                <div class="spec-row"><span class="spec-key">Uso</span><span class="spec-val">Iniciativas Ambientais</span></div>
+            </div>
+        </div>
+
+        <!-- 10 NEGATIVA REVERSA -->
+        <div class="mug-card">
+            <div class="mug-card-label">10 · Navy Reversa</div>
+            <div class="mug-wrap">
+                <div class="mug-body" style="background: var(--md-navy);">
+                    <div class="mug-face">
+                        <img src="./logo-dmd.svg" alt="logo">
+                        <span class="mug-tagline" style="color: rgba(255,255,255,.5);">institutodemaosdadas.com.br</span>
+                    </div>
+                </div>
+                <div class="mug-handle" style="border-color: #0c1c3c;"></div>
+            </div>
+            <div class="mug-specs">
+                <div class="spec-row"><span class="spec-key">Logo</span><span class="spec-val">logo-dmd.svg · 100% branca</span></div>
+                <div class="spec-row"><span class="spec-key">Fundo</span><span class="spec-val">Navy Sublimado — #153065</span></div>
+                <div class="spec-row"><span class="spec-key">Uso</span><span class="spec-val">Uniformização visual sóbria</span></div>
+            </div>
+        </div>
+
+        <!-- 11 EDICAO COMEMORATIVA -->
+        <div class="mug-card">
+            <div class="mug-card-label">11 · Edição 10 Anos</div>
+            <div class="mug-wrap">
+                <div class="mug-body" style="background: linear-gradient(100deg, #A18AB8, #7F4CA9, #4B276B);">
+                    <div class="mug-face">
+                        <img src="./logo-dmd.svg" alt="logo">
+                        <span class="mug-tagline" style="color: var(--md-white);">Edição 2026</span>
+                    </div>
+                </div>
+                <div class="mug-handle" style="border-color: #6a3e8e;"></div>
+            </div>
+            <div class="mug-specs">
+                <div class="spec-row"><span class="spec-key">Logo</span><span class="spec-val">Branca Completa</span></div>
+                <div class="spec-row"><span class="spec-key">Fundo</span><span class="spec-val">Metálico Roxo (Gradiente)</span></div>
+                <div class="spec-row"><span class="spec-key">Uso</span><span class="spec-val">Festas de fim de ano</span></div>
+            </div>
+        </div>
+
+        <!-- 12 VIDRO FOSCO -->
+        <div class="mug-card">
+            <div class="mug-card-label">12 · Vidro Jateado</div>
+            <div class="mug-wrap">
+                <div class="mug-body" style="background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255,255,255,.8);">
+                    <div class="mug-face">
+                        <img src="./logo-dmd-new.png" alt="logo" style="opacity: 0.85;">
+                    </div>
+                </div>
+                <div class="mug-handle" style="border-color: rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.3);"></div>
+            </div>
+            <div class="mug-specs">
+                <div class="spec-row"><span class="spec-key">Logo</span><span class="spec-val">Escura c/ Transluscência</span></div>
+                <div class="spec-row"><span class="spec-key">Fundo</span><span class="spec-val">Vidro Fosco</span></div>
+                <div class="spec-row"><span class="spec-key">Uso</span><span class="spec-val">Coleções Especiais, Modernidade</span></div>
+            </div>
+        </div>
+
+        <!-- 13 JOVEM VIBRANTE -->
+        <div class="mug-card">
+            <div class="mug-card-label">13 · Jovem & Vibrante</div>
+            <div class="mug-wrap">
+                <div class="mug-body" style="background: #FAFAFA;">
+                    <div class="mug-face">
+                        <img src="./logo-dmd-new.png" alt="logo" style="filter: hue-rotate(270deg) saturate(3);">
+                        <span class="mug-tagline" style="color: #4B0082;">#DeMãosDadasJovem</span>
+                    </div>
+                </div>
+                <div class="mug-handle" style="border-color: #E2E2E2;"></div>
+            </div>
+            <div class="mug-specs">
+                <div class="spec-row"><span class="spec-key">Logo</span><span class="spec-val">Filtro Magenta/Jovem</span></div>
+                <div class="spec-row"><span class="spec-key">Fundo</span><span class="spec-val">Branco — #FAFAFA</span></div>
+                <div class="spec-row"><span class="spec-key">Uso</span><span class="spec-val">Núcleo jovem da instituição</span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="rule-bar">
+        <div class="rule-bar-icon">📐</div>
+        <p>
+            <strong>Regra de posicionamento:</strong> A marca ocupa a face principal centralizada — mínimo 35mm de altura impressa. O texto de apoio (site ou tagline) aparece abaixo da logo.
+            <strong>Nunca repita o nome</strong> "De Mãos Dadas" ou "Mãos Dadas" em texto separado — ele já está na própria logo.
+            A face oposta pode receber endereço ou chamada de campanha.
+        </p>
+    </div>
+
+</body>
+</html>

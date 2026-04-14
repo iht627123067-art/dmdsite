@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caneca — Produção · De Mãos Dadas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&family=Roboto+Mono:wght@500&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --md-purple:  #7F4CA9;
+            --md-navy:    #153065;
+            --md-amber:   #FF9E00;
+            --md-white:   #FAFAFA;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1a2e;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 48px 24px; gap: 24px;
+        }
+
+        /* ── PAGE ── */
+        .page {
+            width: 210mm; background: white;
+            border-radius: 4px; overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,.5);
+        }
+
+        /* ── DOC HEADER ── */
+        .doc-header {
+            background: var(--md-navy); padding: 14px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .doc-header img { height: 28px; }
+        .doc-header-meta { text-align: right; }
+        .doc-header-meta .doc-title { font-family: 'Anton', sans-serif; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,.9); }
+        .doc-header-meta .doc-ref { font-family: 'Roboto Mono', monospace; font-size: 9px; color: rgba(255,255,255,.4); margin-top: 2px; }
+
+        /* ── BODY ── */
+        .doc-body { padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+
+        /* ── SECTION HEADER ── */
+        .section-h { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--md-purple); border-bottom: 1px solid #eee; padding-bottom: 6px; margin-bottom: 14px; }
+
+        /* ── ARTE FINAL ── */
+        .arte-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+        .arte-card { border: 1px solid #eee; border-radius: 10px; overflow: hidden; }
+        .arte-preview {
+            height: 120px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 8px; padding: 12px;
+            position: relative;
+        }
+        /* cylindrical hint */
+        .arte-preview::before {
+            content: ''; position: absolute; left: 0; right: 0; top: 0; height: 8px;
+            background: linear-gradient(to bottom, rgba(255,255,255,.15), transparent);
+            pointer-events: none;
+        }
+        .arte-preview::after {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 12px;
+            background: linear-gradient(to right, rgba(0,0,0,.15), transparent);
+            pointer-events: none;
+        }
+        .arte-preview img { max-height: 48px; max-width: 75%; object-fit: contain; position: relative; z-index: 1; }
+        .arte-preview .support-text {
+            font-family: 'Roboto', sans-serif; font-size: 8px; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase; text-align: center;
+            position: relative; z-index: 1;
+        }
+        .arte-meta { padding: 10px 12px; background: #fafafa; border-top: 1px solid #eee; }
+        .arte-meta .arte-name { font-family: 'Anton', sans-serif; font-size: 13px; text-transform: uppercase; color: #333; }
+        .arte-meta .arte-file { font-family: 'Roboto Mono', monospace; font-size: 9px; color: #999; margin-top: 2px; }
+
+        /* ── SPECS TABLE ── */
+        .specs-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+        .specs-table th { text-align: left; padding: 6px 10px; font-size: 8px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #999; background: #f7f7f7; border-bottom: 1px solid #eee; }
+        .specs-table td { padding: 8px 10px; border-bottom: 1px solid #f0f0f0; color: #444; vertical-align: top; line-height: 1.4; }
+        .specs-table td:first-child { font-weight: 700; color: #222; white-space: nowrap; }
+        .specs-table td .mono { font-family: 'Roboto Mono', monospace; font-size: 9px; color: #888; }
+        .specs-table tr:last-child td { border-bottom: none; }
+
+        /* swatch */
+        .color-chip { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: middle; margin-right: 5px; box-shadow: 0 0 0 1px rgba(0,0,0,.1); }
+
+        /* ── CHECKLIST ── */
+        .checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+        .check-item { display: flex; gap: 8px; align-items: flex-start; font-size: 10px; color: #555; line-height: 1.4; }
+        .check-item .check { width: 14px; height: 14px; border: 1.5px solid #ddd; border-radius: 3px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--md-purple); }
+
+        /* ── DOC FOOTER ── */
+        .doc-footer {
+            background: #f5f5f5; border-top: 1px solid #eee;
+            padding: 10px 20px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .doc-footer span { font-size: 8px; color: #bbb; font-family: 'Roboto', sans-serif; letter-spacing: 1px; }
+
+        /* ── PRINT ── */
+        .btn-print {
+            position: fixed; top: 20px; right: 20px;
+            background: var(--md-navy); color: white; border: none;
+            padding: 10px 22px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 13px;
+        }
+        @media print {
+            body { background: white; padding: 0; gap: 0; }
+            .btn-print { display: none; }
+            .page { box-shadow: none; width: 210mm; }
+        }
+    </style>
+</head>
+<body>
+    <button class="btn-print" onclick="window.print()">Exportar PDF Produção</button>
+
+    <div class="page">
+        <div class="doc-header">
+            <img src="./logo-dmd.svg" alt="logo">
+            <div class="doc-header-meta">
+                <div class="doc-title">Caneca — Arte Final para Produção</div>
+                <div class="doc-ref">REF: DMD-CAN-2026 · institutodemaosdadas.com.br</div>
+            </div>
+        </div>
+
+        <div class="doc-body">
+
+            <!-- ARTES FINAIS -->
+            <div>
+                <div class="section-h">Artes Finais — 3 Variantes</div>
+                <div class="arte-grid">
+
+                    <div class="arte-card">
+                        <div class="arte-preview" style="background: #F7F7F7;">
+                            <img src="./logo-dmd-new.png" alt="logo">
+                            <span class="arte-preview support-text" style="color: var(--md-navy);">Goiânia · GO</span>
+                        </div>
+                        <div class="arte-meta">
+                            <div class="arte-name">01 · Branca Clássica</div>
+                            <div class="arte-file">logo-dmd-new.png</div>
+                        </div>
+                    </div>
+
+                    <div class="arte-card">
+                        <div class="arte-preview" style="background: var(--md-purple);">
+                            <img src="./logo-dmd.svg" alt="logo">
+                            <span class="arte-preview support-text" style="color: rgba(255,255,255,.65);">institutodemaosdadas.com.br</span>
+                        </div>
+                        <div class="arte-meta">
+                            <div class="arte-name">02 · Roxo Institucional</div>
+                            <div class="arte-file">logo-dmd.svg</div>
+                        </div>
+                    </div>
+
+                    <div class="arte-card">
+                        <div class="arte-preview" style="background: var(--md-navy);">
+                            <img src="./logo-dmd.svg" alt="logo" style="filter: sepia(1) saturate(8) hue-rotate(5deg) brightness(1.1);">
+                            <span class="arte-preview support-text" style="color: var(--md-amber);">Comunidade Viva</span>
+                        </div>
+                        <div class="arte-meta">
+                            <div class="arte-name">03 · Navy + Âmbar</div>
+                            <div class="arte-file">logo-dmd.svg + filtro âmbar</div>
+                        </div>
+                    </div>
+
+                    <!-- placeholder 4 -->
+                    <div class="arte-card" style="border-style: dashed; opacity: .4;">
+                        <div class="arte-preview" style="background: #f9f9f9;">
+                            <span style="font-size: 24px;">+</span>
+                            <span style="font-size: 10px; color: #bbb;">Nova variante</span>
+                        </div>
+                        <div class="arte-meta">
+                            <div class="arte-name" style="color: #bbb;">Personalizada</div>
+                            <div class="arte-file">—</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ESPECIFICAÇÕES -->
+            <div>
+                <div class="section-h">Especificações Técnicas</div>
+                <table class="specs-table">
+                    <thead>
+                        <tr><th>Item</th><th>Especificação</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Produto</td>
+                            <td>Caneca cerâmica branca 325ml<br><span class="mono">altura 95mm · diâmetro 82mm</span></td>
+                        </tr>
+                        <tr>
+                            <td>Técnica</td>
+                            <td>Sublimação total ou área central<br><span class="mono">área impressa: 95mm × 80mm</span></td>
+                        </tr>
+                        <tr>
+                            <td>Cores</td>
+                            <td>
+                                <span class="color-chip" style="background:#7F4CA9;"></span>Roxo <span class="mono">#7F4CA9 · C:40 M:70 Y:0 K:0</span><br>
+                                <span class="color-chip" style="background:#153065;"></span>Navy <span class="mono">#153065 · C:90 M:70 Y:20 K:30</span><br>
+                                <span class="color-chip" style="background:#FF9E00;"></span>Âmbar <span class="mono">#FF9E00 · C:0 M:40 Y:100 K:0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Logo mínima</td>
+                            <td>35mm de altura na face impressa</td>
+                        </tr>
+                        <tr>
+                            <td>Tipografia</td>
+                            <td>Anton (headline) · Inter (corpo) · Roboto (labels)</td>
+                        </tr>
+                        <tr>
+                            <td>Resolução</td>
+                            <td>Mínimo 300 DPI para impressão offset<br>SVG vetorial preferencial para sublimação</td>
+                        </tr>
+                        <tr>
+                            <td>Regra crítica</td>
+                            <td><strong>Não incluir "De Mãos Dadas" ou "Mãos Dadas" em texto</strong> — o nome já está incorporado na logo. Usar apenas site ou tagline como texto de apoio.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- CHECKLIST -->
+            <div>
+                <div class="section-h">Checklist de Aprovação</div>
+                <div class="checklist">
+                    <div class="check-item"><div class="check">✓</div> Logo na versão correta para o fundo</div>
+                    <div class="check-item"><div class="check">✓</div> Nome não duplicado na peça</div>
+                    <div class="check-item"><div class="check">✓</div> Altura mínima da logo: 35mm</div>
+                    <div class="check-item"><div class="check">✓</div> Site: institutodemaosdadas.com.br</div>
+                    <div class="check-item"><div class="check"></div> Prova física aprovada</div>
+                    <div class="check-item"><div class="check"></div> Quantidade confirmada com fornecedor</div>
+                    <div class="check-item"><div class="check"></div> Arte em vetor enviada (.svg / .pdf)</div>
+                    <div class="check-item"><div class="check"></div> Prazo de entrega confirmado</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="doc-footer">
+            <span>Instituto De Mãos Dadas · Goiânia, GO · institutodemaosdadas.com.br</span>
+            <span>DMD-CAN-2026 · v1.0</span>
+        </div>
+    </div>
+
+</body>
+</html>

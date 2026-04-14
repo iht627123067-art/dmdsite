@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crachá — De Mãos Dadas 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --md-purple:  #7F4CA9;
+            --md-navy:    #153065;
+            --md-amber:   #FF9E00;
+            --md-white:   #FAFAFA;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1a2e;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 48px 24px; gap: 24px;
+        }
+
+        /* ── TOPO ── */
+        .page-header {
+            width: 210mm; display: flex; align-items: center; justify-content: space-between;
+            padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,.1);
+        }
+        .page-header img { height: 28px; filter: brightness(10); }
+        .page-header-meta { text-align: right; }
+        .page-header-meta .doc-title { font-family: 'Anton', sans-serif; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,.8); }
+        .page-header-meta .doc-sub { font-size: 10px; color: rgba(255,255,255,.35); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+        /* ── GRID ── */
+        .badge-grid {
+            width: 210mm;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+        }
+
+        /* ── CARD WRAPPER ── */
+        .badge-variant { display: flex; flex-direction: column; gap: 12px; }
+        .badge-variant-label { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--md-amber); }
+
+        /* ── BADGE ── */
+        .badge {
+            background: white;
+            border-radius: 12px; overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.08);
+            display: flex; flex-direction: column;
+        }
+
+        /* hole */
+        .badge-hole-bar { height: 20px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; }
+        .badge-hole { width: 16px; height: 10px; background: white; border-radius: 50%; border: 1px solid #ddd; }
+
+        /* header */
+        .badge-header {
+            padding: 20px 16px 18px; display: flex; align-items: center; justify-content: center;
+        }
+        .badge-header img { height: 48px; }
+
+        /* body */
+        .badge-body { padding: 12px 16px 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .badge-event { font-size: 7px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #999; }
+        .badge-name-card {
+            width: 100%; border: 2px solid var(--md-navy); border-radius: 8px;
+            padding: 12px 14px;
+        }
+        .badge-name { font-family: 'Anton', sans-serif; font-size: 20px; text-transform: uppercase; color: var(--md-navy); line-height: 1.05; }
+        .badge-role { font-size: 9px; color: #777; margin-top: 4px; font-family: 'Roboto', sans-serif; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        .badge-footer { font-size: 7px; color: #bbb; font-family: 'Roboto', sans-serif; letter-spacing: 1px; text-align: center; padding-top: 4px; }
+
+        /* convidado variant */
+        .badge-header.amber { background: var(--md-amber); }
+        .badge-header.navy  { background: var(--md-navy); }
+
+        /* ── NOTA ── */
+        .nota {
+            width: 210mm; padding: 14px 18px; background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.07); border-radius: 10px;
+            display: flex; gap: 10px; align-items: flex-start;
+        }
+        .nota p { font-size: 11px; color: rgba(255,255,255,.35); line-height: 1.6; }
+        .nota p strong { color: rgba(255,255,255,.65); }
+
+        /* ── PRINT ── */
+        .btn-print {
+            position: fixed; top: 20px; right: 20px;
+            background: var(--md-navy); color: white; border: none;
+            padding: 10px 22px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 13px;
+        }
+        @media print {
+            body { background: white; padding: 10mm; gap: 6mm; }
+            .btn-print { display: none; }
+            .page-header, .badge-grid, .nota { width: 190mm; }
+            .badge { box-shadow: 0 0 0 1px #ddd; }
+            .nota { background: #f9f9f9; border-color: #ddd; }
+            .nota p { color: #666; }
+            .nota p strong { color: #333; }
+            .badge-variant-label { color: #666; }
+            .page-header-meta .doc-title { color: #333; }
+            .page-header-meta .doc-sub   { color: #999; }
+            .page-header img { filter: none; }
+        }
+    </style>
+</head>
+<body>
+    <button class="btn-print" onclick="window.print()">Imprimir Crachás</button>
+
+    <div class="page-header">
+        <img src="./logo-dmd-new.png" alt="De Mãos Dadas">
+        <div class="page-header-meta">
+            <div class="doc-title">Crachás — Sistema de Marca</div>
+            <div class="doc-sub">105mm × 148mm · 3 Variantes · 2026</div>
+        </div>
+    </div>
+
+    <div class="nota">
+        <span style="font-size:15px; flex-shrink:0;">🎨</span>
+        <p>
+            <strong>Cor do header = função:</strong> Roxo = equipe interna · Âmbar = convidado externo · Navy = parceiro/imprensa.
+            O nome da pessoa deve ser o elemento visualmente dominante. <strong>Clique nos campos de nome/cargo para editar antes de imprimir.</strong>
+        </p>
+    </div>
+
+    <div class="badge-grid">
+
+        <!-- EQUIPE INTERNA -->
+        <div class="badge-variant">
+            <div class="badge-variant-label">01 · Equipe Interna</div>
+            <div class="badge">
+                <div class="badge-hole-bar"><div class="badge-hole"></div></div>
+                <div class="badge-header" style="background: var(--md-purple);">
+                    <img src="./logo-dmd.svg" alt="logo">
+                </div>
+                <div class="badge-body">
+                    <div class="badge-event">Instituto De Mãos Dadas · Goiânia · 2026</div>
+                    <div class="badge-name-card">
+                        <div class="badge-name" contenteditable="true">NOME<br>COMPLETO</div>
+                        <div class="badge-role" contenteditable="true">Cargo / Função</div>
+                    </div>
+                    <div class="badge-footer">institutodemaosdadas.com.br</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONVIDADO -->
+        <div class="badge-variant">
+            <div class="badge-variant-label">02 · Convidado Externo</div>
+            <div class="badge">
+                <div class="badge-hole-bar"><div class="badge-hole"></div></div>
+                <div class="badge-header amber">
+                    <img src="./logo-dmd-new.png" alt="logo" style="height: 48px;">
+                </div>
+                <div class="badge-body">
+                    <div class="badge-event">Convidado · Goiânia · 2026</div>
+                    <div class="badge-name-card" style="border-color: var(--md-amber);">
+                        <div class="badge-name" style="color: var(--md-navy);" contenteditable="true">NOME<br>COMPLETO</div>
+                        <div class="badge-role" contenteditable="true">Organização / Entidade</div>
+                    </div>
+                    <div class="badge-footer">institutodemaosdadas.com.br</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PARCEIRO / IMPRENSA -->
+        <div class="badge-variant">
+            <div class="badge-variant-label">03 · Parceiro / Imprensa</div>
+            <div class="badge">
+                <div class="badge-hole-bar"><div class="badge-hole"></div></div>
+                <div class="badge-header navy">
+                    <img src="./logo-dmd.svg" alt="logo">
+                </div>
+                <div class="badge-body">
+                    <div class="badge-event">Parceiro · Goiânia · 2026</div>
+                    <div class="badge-name-card" style="border-color: var(--md-navy);">
+                        <div class="badge-name" contenteditable="true">NOME<br>COMPLETO</div>
+                        <div class="badge-role" contenteditable="true">Cargo / Organização</div>
+                    </div>
+                    <div class="badge-footer">institutodemaosdadas.com.br</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VOLUNTÁRIO -->
+        <div class="badge-variant">
+            <div class="badge-variant-label">04 · Voluntário</div>
+            <div class="badge">
+                <div class="badge-hole-bar"><div class="badge-hole"></div></div>
+                <div class="badge-header" style="background: var(--md-purple); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 8px; right: 10px; font-size: 7px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--md-amber); font-family: 'Roboto', sans-serif;">VOLUNTÁRIO</div>
+                    <img src="./logo-dmd.svg" alt="logo">
+                </div>
+                <div class="badge-body">
+                    <div class="badge-event">Goiânia · 2026</div>
+                    <div class="badge-name-card">
+                        <div class="badge-name" contenteditable="true">NOME<br>COMPLETO</div>
+                        <div class="badge-role" contenteditable="true">Área de Atuação</div>
+                    </div>
+                    <div class="badge-footer">institutodemaosdadas.com.br</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avatar & Favicon DMD</title>
+  <style>
+    :root {
+      --grad-institucional: linear-gradient(135deg, #7F4CA9 0%, #153065 100%);
+      --grad-vivo: linear-gradient(135deg, #FF9E00 0%, #7F4CA9 100%);
+      --grad-premium: linear-gradient(135deg, #0F0F1A 0%, #1E3A5F 100%);
+      --grad-digital: linear-gradient(135deg, #00B4D8 0%, #0077B6 100%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8f9fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+      gap: 60px;
+    }
+
+    .section {
+      text-align: center;
+      width: 100%;
+    }
+
+    .title {
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+      color: #666;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 40px;
+      justify-items: center;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    /* Container do Avatar */
+    .avatar-case {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .avatar-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .avatar-circle:hover {
+      transform: scale(1.05);
+    }
+
+    .avatar-circle.rect { border-radius: 20%; } /* Estilo ícone de APP iOS */
+
+    .symbol {
+      width: 60%;
+      height: 60%;
+      fill: white;
+    }
+
+    .label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #999;
+      text-transform: uppercase;
+    }
+
+    /* Favicon Preview */
+    .favicon-row {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      background: white;
+      padding: 20px 40px;
+      border-radius: 100px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .favicon-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .favicon-box {
+      width: 16px;
+      height: 16px;
+      border-radius: 2px;
+    }
+
+    .favicon-box.large { width: 32px; height: 32px; border-radius: 6px; }
+
+    /* Cores */
+    .bg-institucional { background: var(--grad-institucional); }
+    .bg-viva { background: var(--grad-vivo); }
+    .bg-premium { background: var(--grad-premium); }
+    .bg-digital { background: var(--grad-digital); }
+    .bg-white { background: white; border: 1px solid #eee; }
+    .bg-white .symbol { fill: #153065; }
+
+  </style>
+</head>
+<body>
+
+  <div class="section" id="sec-social">
+    <h2 class="title">Social Media Avatars (1:1 Ratio)</h2>
+    <div class="grid">
+      <div class="avatar-case" id="av-institucional">
+        <div class="avatar-circle bg-institucional">
+          <svg class="symbol" viewBox="200 200 635 570"><use href="#icon-dmd-symbol"/></svg>
+        </div>
+        <span class="label">Institucional</span>
+      </div>
+      <div class="avatar-case" id="av-viva">
+        <div class="avatar-circle bg-viva">
+          <svg class="symbol" viewBox="200 200 635 570"><use href="#icon-dmd-symbol"/></svg>
+        </div>
+        <span class="label">Favela Viva</span>
+      </div>
+      <div class="avatar-case" id="av-premium">
+        <div class="avatar-circle bg-premium">
+          <svg class="symbol" viewBox="200 200 635 570"><use href="#icon-dmd-symbol"/></svg>
+        </div>
+        <span class="label">Ultra Premium</span>
+      </div>
+      <div class="avatar-case" id="av-white">
+        <div class="avatar-circle bg-white">
+          <svg class="symbol" viewBox="200 200 635 570"><use href="#icon-dmd-symbol"/></svg>
+        </div>
+        <span class="label">Clean / Web</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="sec-app">
+    <h2 class="title">App Icon (iOS/Android Style)</h2>
+    <div class="grid" style="max-width: 400px;">
+      <div class="avatar-case" id="av-ios">
+        <div class="avatar-circle rect bg-institucional">
+          <svg class="symbol" viewBox="200 200 635 570"><use href="#icon-dmd-symbol"/></svg>
+        </div>
+        <span class="label">iOS App</span>
+      </div>
+      <div class="avatar-case" id="av-android">
+        <div class="avatar-circle rect bg-viva">
+          <svg class="symbol" viewBox="200 200 635 570"><use href="#icon-dmd-symbol"/></svg>
+        </div>
+        <span class="label">Android Adaptive</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="sec-favicon">
+    <h2 class="title">Favicon Scale (16px / 32px)</h2>
+    <div style="display: flex; justify-content: center;">
+      <div class="favicon-row" id="fav-box">
+        <div class="favicon-item">
+          <div class="favicon-box bg-institucional" id="f16"></div>
+          <span class="label">16x16</span>
+        </div>
+        <div class="favicon-item">
+          <div class="favicon-box large bg-institucional" id="f32">
+             <svg class="symbol" viewBox="200 200 635 570" style="width:100%; height:100%; padding:20%"><use href="#icon-dmd-symbol"/></svg>
+          </div>
+          <span class="label">32x32</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function update() {
+      const params = new URLSearchParams(window.location.search);
+      const varId = params.get('variation');
+      
+      if (varId) {
+        // Ocultar tudo primeiro
+        document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+        document.querySelectorAll('.avatar-case').forEach(a => a.style.display = 'none');
+
+        if (varId === 'institucional') {
+          document.getElementById('sec-social').style.display = 'block';
+          document.getElementById('av-institucional').style.display = 'flex';
+        } else if (varId === 'viva') {
+          document.getElementById('sec-social').style.display = 'block';
+          document.getElementById('av-viva').style.display = 'flex';
+        } else if (varId === 'premium') {
+          document.getElementById('sec-social').style.display = 'block';
+          document.getElementById('av-premium').style.display = 'flex';
+        } else if (varId === 'white') {
+          document.getElementById('sec-social').style.display = 'block';
+          document.getElementById('av-white').style.display = 'flex';
+        } else if (varId === 'app-icon') {
+          document.getElementById('sec-app').style.display = 'block';
+          document.getElementById('av-ios').style.display = 'flex';
+          document.getElementById('av-android').style.display = 'flex';
+        } else if (varId === 'favicon') {
+          document.getElementById('sec-favicon').style.display = 'block';
+        }
+      }
+    }
+    window.onload = update;
+  </script>
+
+  <!-- Svg Sprite Definition (Hidden) -->
+  <svg style="display: none;">
+    <symbol id="icon-dmd-symbol" viewBox="200 200 635 570">
+      <path d="M414.7,294.6c-17.7-18.1-41.5-28.1-66.9-28.1s-49.2,10-66.9,28.1c-16.7,17.1-25.9,39.6-25.9,63.5s9.2,46.3,25.9,63.4l66.9,68.4l66.9-68.4c16.7-17.1,25.9-39.6,25.9-63.4S431.4,311.6,414.7,294.6z M347.8,397.6c-11.2,0-20.3-9.3-20.3-20.7s9.1-20.7,20.3-20.7s20.3,9.3,20.3,20.7S359,397.6,347.8,397.6z"/>
+      <path d="M684.5,417.4l-66.9-68.4c-16.7-17.1-25.9-39.6-25.9-63.5s9.2-46.3,25.9-63.5c17.7-18.1,41.5-28.1,66.9-28.1s49.2,10,66.9,28.1c16.7,17.1,25.9,39.6,25.9,63.5s-9.2,46.3-25.9,63.5L684.5,417.4z M684.5,232.1c-11.2,0-20.3,9.3-20.3,20.7s9.1,20.7,20.3,20.7s20.3-9.3,20.3-20.7S695.7,232.1,684.5,232.1z"/>
+      <path d="M414.7,511.4l-66.9,68.4l-66.9-68.4c-16.7-17.1-25.9-39.6-25.9-63.4s9.2-46.3,25.9-63.5c17.7-18.1,41.5-28.1,66.9-28.1s49.2,10,66.9,28.1c16.7,17.1,25.9,39.6,25.9,63.5S431.4,494.3,414.7,511.4z M347.8,449.1c-11.2,0-20.3,9.3-20.3,20.7s9.1,20.7,20.3,20.7s20.3-9.3,20.3-20.7S359,449.1,347.8,449.1z"/>
+      <path d="M751.4,443.9c-17.7-18.1-41.5-28.1-66.9-28.1c-25.4,0-49.2,10.1-66.9,28.1c-16.7,17.1-25.9,39.6-25.9,63.5c0,23.9,9.2,46.3,25.9,63.4l66.9,68.4l66.9-68.4c16.7-17.1,25.9-39.6,25.9-63.4C777.3,483.5,768.1,461,751.4,443.9z M684.5,546.9c-11.2,0-20.3-9.3-20.3-20.7s9.1-20.7,20.3-20.7s20.3,9.3,20.3,20.7S695.7,546.9,684.5,546.9z"/>
+    </symbol>
+  </svg>
+
+</body>
+</html>
