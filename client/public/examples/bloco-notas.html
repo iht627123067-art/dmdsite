@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco de Notas — De Mãos Dadas 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --md-purple:  #7F4CA9;
+            --md-navy:    #153065;
+            --md-amber:   #FF9E00;
+            --md-white:   #FAFAFA;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1a2e;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 48px 24px; gap: 24px;
+        }
+
+        /* ── TOPO ── */
+        .page-header {
+            width: 210mm; display: flex; align-items: center; justify-content: space-between;
+            padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,.1);
+        }
+        .page-header img { height: 28px; filter: brightness(10); }
+        .page-header-meta { text-align: right; }
+        .page-header-meta .doc-title { font-family: 'Anton', sans-serif; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,.8); }
+        .page-header-meta .doc-sub { font-size: 10px; color: rgba(255,255,255,.35); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+        /* ── GRID ── */
+        .notepad-grid {
+            width: 210mm;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+        }
+
+        /* ── NOTEPAD ── */
+        .notepad-wrap { display: flex; flex-direction: column; gap: 10px; }
+        .notepad-label { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--md-amber); }
+
+        .notepad {
+            background: white; border-radius: 4px 4px 2px 2px;
+            box-shadow: 0 8px 32px rgba(0,0,0,.5), 2px 2px 0 #ddd;
+            display: flex; flex-direction: column; overflow: hidden;
+            position: relative;
+        }
+        /* Spiral binding simulation */
+        .notepad::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 14px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px, transparent 12px,
+                rgba(0,0,0,.06) 12px, rgba(0,0,0,.06) 14px,
+                #ddd 14px, #ddd 20px,
+                rgba(0,0,0,.06) 20px, rgba(0,0,0,.06) 22px,
+                transparent 22px, transparent 34px
+            );
+            z-index: 10;
+        }
+
+        /* header strip */
+        .notepad-header {
+            padding: 20px 16px 12px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 3px solid var(--md-navy);
+            margin-top: 14px; /* espaço para a espiral */
+        }
+
+        /* assinatura horizontal: logo + texto */
+        .sig-h { display: flex; align-items: center; gap: 10px; }
+        .sig-h img { height: 32px; object-fit: contain; }
+        .sig-h-text { display: flex; flex-direction: column; line-height: 1; }
+        .sig-h-text .top  { font-family: 'Roboto', sans-serif; font-size: 7px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #aaa; }
+        .sig-h-text .main { font-family: 'Anton', sans-serif; font-size: 15px; text-transform: uppercase; color: var(--md-navy); }
+        .sig-h-text .sub  { font-size: 7px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--md-amber); font-family: 'Roboto', sans-serif; margin-top: 1px; }
+
+        .notepad-year { font-family: 'Anton', sans-serif; font-size: 12px; color: #ddd; letter-spacing: 2px; }
+
+        /* ruled area */
+        .notepad-lines {
+            flex: 1; padding: 6px 16px 4px;
+            background-image:
+                linear-gradient(to bottom, transparent 23px, #e8e8e8 23px, #e8e8e8 24px, transparent 24px);
+            background-size: 100% 24px;
+            min-height: 200px;
+        }
+        /* red margin line */
+        .notepad-lines::before {
+            content: '';
+            position: absolute; left: 38px; top: 0; bottom: 0; width: 1px;
+            background: rgba(255, 100, 100, .25);
+            pointer-events: none;
+        }
+
+        /* footer strip */
+        .notepad-footer {
+            padding: 6px 16px 8px;
+            background: var(--md-navy);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .notepad-footer span { font-size: 7px; font-family: 'Roboto', sans-serif; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.5); }
+        .notepad-footer .accent { color: var(--md-amber); }
+
+        /* ── PRINT ── */
+        .btn-print {
+            position: fixed; top: 20px; right: 20px;
+            background: var(--md-navy); color: white; border: none;
+            padding: 10px 22px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 13px;
+        }
+        @media print {
+            body { background: white; padding: 10mm; gap: 6mm; }
+            .btn-print { display: none; }
+            .page-header, .notepad-grid { width: 190mm; }
+            .notepad { box-shadow: 1px 1px 0 #ddd; }
+            .notepad-label { color: #888; }
+            .page-header-meta .doc-title { color: #333; }
+            .page-header-meta .doc-sub   { color: #999; }
+            .page-header img { filter: none; }
+        }
+    </style>
+</head>
+<body>
+    <button class="btn-print" onclick="window.print()">Exportar PDF</button>
+
+    <div class="page-header">
+        <img src="./logo-dmd-new.png" alt="De Mãos Dadas">
+        <div class="page-header-meta">
+            <div class="doc-title">Bloco de Notas — Sistema de Marca</div>
+            <div class="doc-sub">A5 · 50 Folhas · 2 Variantes · 2026</div>
+        </div>
+    </div>
+
+    <div class="notepad-grid">
+
+        <!-- 01 STANDARD -->
+        <div class="notepad-wrap">
+            <div class="notepad-label">01 · Padrão Institucional</div>
+            <div class="notepad" style="min-height: 320px;">
+                <div class="notepad-header" style="border-bottom-color: var(--md-navy);">
+                    <div class="sig-h">
+                        <img src="./logo-dmd-new.png" alt="logo">
+                        <div class="sig-h-text">
+                            <span class="top">Instituto</span>
+                            <span class="main">De Mãos Dadas</span>
+                            <span class="sub">Goiânia · GO</span>
+                        </div>
+                    </div>
+                    <div class="notepad-year">2026</div>
+                </div>
+                <div class="notepad-lines" style="position: relative;"></div>
+                <div class="notepad-footer">
+                    <span>institutodemaosdadas.com.br</span>
+                    <span class="accent">Goiânia · GO</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02 COMUNIDADE CONSCIENTE -->
+        <div class="notepad-wrap">
+            <div class="notepad-label">02 · Projeto Comunidade Consciente</div>
+            <div class="notepad" style="min-height: 320px;">
+                <div class="notepad-header" style="border-bottom-color: var(--md-purple);">
+                    <div class="sig-h">
+                        <img src="./logo-dmd-new.png" alt="logo">
+                        <div class="sig-h-text">
+                            <span class="top">Projeto</span>
+                            <span class="main" style="color: var(--md-purple);">Comunidade Consciente</span>
+                            <span class="sub" style="color: var(--md-purple);">Goiânia — Goiás</span>
+                        </div>
+                    </div>
+                    <div class="notepad-year" style="color: #e0d0f0;">2026</div>
+                </div>
+                <div class="notepad-lines" style="position: relative;"></div>
+                <div class="notepad-footer" style="background: var(--md-purple);">
+                    <span>institutodemaosdadas.com.br</span>
+                    <span class="accent">Comunidade Consciente · 2026</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

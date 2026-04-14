@@ -1,0 +1,102 @@
+# ============================================================
+# DESIGN TOKENS — Instituto de Mãos Dadas Visual Identity
+# Goiânia, Goiás — "Em defesa dos direitos sociais"
+# Version: 2.0.0 | Date: 2026-03-21
+# ============================================================
+
+# ─────────────────────────────────────────────
+# COLOR PALETTE — Archetype: ACTIVISM MODERN
+# ─────────────────────────────────────────────
+
+colors:
+  # Primary Palette (60-30-10)
+  neutral_light: "#FAFAFA"     # --md-neutral-light
+  neutral_dark: "#0F0F1A"      # --md-neutral-dark
+  neutral_gray: "#616161"      # --md-neutral-gray
+  
+  primary: "#7F4CA9"           # --md-primary
+  primary_dark: "#153065"      # --md-primary-dark
+  primary_light: "#BD90DA"     # --md-primary-light
+  
+  accent: "#FF9E00"            # --md-accent
+  accent_dark: "#E65100"       # --md-accent-dark
+
+  # Project Specific Accents
+  consciente: "#1E3A5F"         # --md-consciente
+  digital: "#00B4D8"            # --md-digital
+  energiafem: "#E91E8C"        # --md-energiafem
+  esporte: "#2ECC40"           # --md-esporte
+  rodas: "#D4A017"             # --md-rodas
+
+# Validated WCAG Pairs (min 4.5:1):
+# text #FAFAFA over background #7F4CA9 = ratio 5.77:1 ✅ AA
+# text #0F0F1A over background #FF9E00 = ratio 9.1:1  ✅ AAA
+# text #FAFAFA over background #0F0F1A = ratio 18.1:1 ✅ AAA
+# text #7F4CA9 over background #FAFAFA = ratio 5.77:1 ✅ AA
+
+# ─────────────────────────────────────────────
+# TYPOGRAPHY
+# ─────────────────────────────────────────────
+
+typography:
+  families:
+    display: "Anton, sans-serif"
+    combat: "Roboto, sans-serif"
+    body: "Inter, sans-serif"
+    signature: "Dancing Script, cursive"
+
+  modular_scale:  # Base Major Third (1.25)
+    caption: "12px"
+    body_sm: "14px"
+    body: "16px"
+    body_lg: "18px"
+    subtitle: "20px"
+    h6: "24px"
+    h5: "32px"
+    h4: "40px"
+    h3: "48px"
+    h2: "56px"
+    h1: "72px"
+    display: "96px"
+    mega: "128px"
+
+  line_heights:
+    tight: "1.1"
+    normal: "1.4"
+    relaxed: "1.6"
+
+# ─────────────────────────────────────────────
+# PREMIUM STYLES — Specifications
+# ─────────────────────────────────────────────
+
+premium_styles:
+  glassmorphism:
+    blur: "30px"
+    background: "rgba(15, 15, 26, 0.45)"
+    border: "1px solid rgba(255, 255, 255, 0.08)"
+    border_radius: "12px"
+  
+  filmic_noise:
+    opacity: "0.04"
+    type: "fractalNoise"
+    base_frequency: "0.8"
+
+  aurora_gradient:
+    layers:
+      - "radial-gradient(ellipse at 15% 50%, rgba(127, 76, 169, 0.25), transparent 50%)"
+      - "radial-gradient(ellipse at 85% 30%, rgba(255, 158, 0, 0.15), transparent 50%)"
+      - "radial-gradient(ellipse at 50% 120%, rgba(21, 48, 101, 0.30), transparent 50%)"
+
+# ─────────────────────────────────────────────
+# BRAND MESSAGING
+# ─────────────────────────────────────────────
+
+messages:
+  # Hierarquia de nomenclatura:
+  # brand_name  → uso cotidiano: redes sociais, merchandising, eventos, crachás, canecas, canetas, bloco de notas
+  # institution → uso formal: ofícios, relatórios, planos, documentos legais e extensos
+  brand_name: "De Mãos Dadas"
+  institution: "Instituto de Mãos Dadas"
+  tagline: "Em defesa dos direitos sociais e fortalecimento comunitário"
+  address: "R. JK 13, Q.10 L.26 — Res. Juscelino Kubitscheck | Goiânia — GO"
+  phone: "(62) 99988-7704"

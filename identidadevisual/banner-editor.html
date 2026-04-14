@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mãos Dadas Banner Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    :root {
+      --md-primary:       #7F4CA9;
+      --md-primary-dark:  #153065;
+      --md-primary-light: #BD90DA;
+      --md-accent:        #FF9E00;
+      --md-accent-dark:   #E65100;
+      --md-consciente:    #1E3A5F;
+      --md-digital:       #00B4D8;
+      --md-neutral-dark:  #0F0F1A;
+      --md-neutral-light: #FAFAFA;
+      --glass-bg:      rgba(15, 15, 26, 0.45);
+      --glass-border:  rgba(255, 255, 255, 0.08);
+      --sidebar-w:     296px;
+    }
+
+    /* Minimal shell based on previous structure */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--md-neutral-dark); color: var(--md-neutral-light); height: 100vh; overflow: hidden; }
+    
+    .app { display: grid; grid-template-columns: var(--sidebar-w) 1fr; grid-template-rows: 52px 1fr; height: 100vh; }
+    .topbar { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; padding: 0 20px; border-bottom: 1px solid var(--glass-border); background: rgba(15, 15, 26, 0.9); backdrop-filter: blur(20px); z-index: 100; }
+    .logo-type { font-family: 'Anton', sans-serif; font-size: 17px; letter-spacing: 0.5px; }
+    .logo-type em { color: var(--md-accent); font-style: normal; }
+    
+    .sidebar { border-right: 1px solid var(--glass-border); overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+    .preview-area { display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(127,76,169,0.1), transparent); }
+    
+    .banner-preview {
+      width: 400px;
+      height: 400px;
+      border-radius: 12px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      position: relative;
+    }
+
+    .field-group { display: flex; flex-direction: column; gap: 5px; }
+    label { font-size: 11px; text-transform: uppercase; opacity: 0.5; font-weight: 700; }
+    input, textarea { background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); padding: 10px; color: white; border-radius: 6px; }
+    
+    .btn-dl { background: linear-gradient(135deg, var(--md-primary), var(--md-accent)); border: none; padding: 10px 20px; color: white; border-radius: 8px; font-weight: 700; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="logo-type">Mãos Dadas <em>Designer</em></div>
+    </header>
+    <aside class="sidebar">
+      <div class="field-group">
+        <label>Tag</label>
+        <input type="text" id="iTag" value="AÇÃO SOCIAL" oninput="update()">
+      </div>
+      <div class="field-group">
+        <label>Título</label>
+        <textarea id="iHeadline" oninput="update()">AÇÃO COMUNITÁRIA</textarea>
+      </div>
+      <div class="field-group">
+        <label>Template</label>
+        <select id="iTpl" onchange="update()">
+          <option value="primary">Padrão (Roxo)</option>
+          <option value="accent">Destaque (Laranja)</option>
+          <option value="consciente">Comunidade Consciente (Azul)</option>
+        </select>
+      </div>
+      <div class="field-group" style="padding: 10px 0;">
+        <label style="display:flex; align-items:center; gap:8px; font-size:12px; opacity:1; cursor:pointer;"><input type="checkbox" id="iNoise" onchange="update()"> Ruído Fílmico (Noise)</label>
+      </div>
+      <button class="btn-dl" onclick="download()">Exportar PNG</button>
+    </aside>
+    <main class="preview-area">
+      <div id="banner" class="banner-preview" style="background: var(--primary);">
+        <div id="vNoise" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; pointer-events:none; z-index:1; border-radius:12px; background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E'); mix-blend-mode: overlay;"></div>
+        <div style="position:relative; z-index:2; display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+          <div>
+            <div id="vTag" style="font-size: 12px; font-weight: 800; background: rgba(255,255,255,0.1); width: fit-content; padding: 4px 10px; border-radius: 100px;">AÇÃO SOCIAL</div>
+            <div id="vHeadline" style="font-family: 'Anton'; font-size: 48px; line-height: 1.1; text-transform: uppercase; margin-top:20px; white-space: pre-wrap;">JUSTIÇA E CIDADANIA</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+            <img src="logo-dmd.svg" id="vLogo" style="height:40px; border-radius: 4px; padding: 2px;">
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function update() {
+      document.getElementById('vTag').innerText = document.getElementById('iTag').value;
+      document.getElementById('vHeadline').innerText = document.getElementById('iHeadline').value;
+      
+      const vNoise = document.getElementById('vNoise');
+      vNoise.style.opacity = document.getElementById('iNoise').checked ? '0.2' : '0';
+
+      const tpl = document.getElementById('iTpl').value;
+      const banner = document.getElementById('banner');
+      const logo = document.getElementById('vLogo');
+      
+      if(tpl === 'primary') {
+        banner.style.background = 'var(--md-primary)';
+        banner.style.color = 'white';
+        logo.src = 'logo-dmd.svg';
+      } else if(tpl === 'accent') {
+        banner.style.background = 'var(--md-accent)';
+        banner.style.color = 'black';
+        logo.src = 'logo-dmd-new.png';
+      } else if(tpl === 'consciente') {
+        banner.style.background = 'var(--md-consciente)';
+        banner.style.color = 'white';
+        logo.src = 'logo-dmd.svg';
+      }
+    }
+
+    async function download() {
+      const banner = document.getElementById('banner');
+      const canvas = await html2canvas(banner, { scale: 3 });
+      const link = document.createElement('a');
+      link.download = 'banner-maos-dadas.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,2752 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Interativo — Instituto De Mãos Dadas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-marinho: #153065;
+            --roxo: #7F4CA9;
+            --roxo-light: #BD90DA;
+            --laranja: #FF9E00;
+            --laranja-dark: #E65100;
+            --branco: #FAFAFA;
+            --neutro-escuro: #0F0F1A;
+            --neutro-cinza: #616161;
+            
+            /* Cores dos projetos */
+            --projeto-azul: #1E3A5F;
+            --projeto-ciano: #00B4D8;
+            --projeto-magenta: #E91E8C;
+            --projeto-verde: #2ECC40;
+            --projeto-ouro: #D4A017;
+            
+            /* Photos for Mockups - Dignity & Empowerment */
+            --photo-relatorio: url('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&q=80&w=800');
+            --photo-folder: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800');
+            --photo-banner: url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=800');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--branco);
+            color: var(--neutro-escuro);
+            line-height: 1.6;
+        }
+
+        /* ==================== HEADER ==================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(127, 76, 169, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .header-logo img {
+            height: 40px;
+        }
+
+        .header-logo span {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--roxo);
+        }
+
+        .header-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .progress-steps {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--neutro-cinza);
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: var(--roxo);
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .progress-dot.completed {
+            background: var(--laranja);
+            opacity: 1;
+        }
+
+        .progress-label {
+            font-size: 0.85rem;
+            color: var(--neutro-cinza);
+            font-weight: 500;
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, 
+                rgba(127, 76, 169, 0.15) 0%, 
+                rgba(255, 158, 0, 0.1) 50%, 
+                rgba(21, 48, 101, 0.2) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .hero-logo {
+            width: 200px;
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--azul-marinho);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .tagline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: var(--roxo);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .hero .purpose {
+            font-size: 1.1rem;
+            color: var(--neutro-cinza);
+            max-width: 600px;
+            margin: 1.5rem auto 3rem;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--roxo);
+            color: var(--branco);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(127, 76, 169, 0.3);
+        }
+
+        .hero-cta:hover {
+            background: var(--azul-marinho);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(127, 76, 169, 0.4);
+        }
+
+        .hero-cta svg {
+            transition: transform 0.3s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--neutro-cinza);
+            font-size: 0.85rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* ==================== SECTION STYLES ==================== */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-number {
+            font-family: 'Anton', sans-serif;
+            font-size: 0.9rem;
+            color: var(--laranja);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--azul-marinho);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--neutro-cinza);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ==================== MANIFESTO SECTION ==================== */
+        .manifesto {
+            background: linear-gradient(180deg, var(--branco) 0%, rgba(189, 144, 218, 0.1) 100%);
+            padding: 4rem 2rem;
+        }
+
+        .manifesto-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .manifesto-quote {
+            font-family: 'Crimson Pro', serif;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            color: var(--azul-marinho);
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .manifesto-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--roxo-light);
+            display: block;
+            line-height: 0.5;
+            margin-bottom: 1rem;
+        }
+
+        /* ==================== OPTIONS CARDS ==================== */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .option-card {
+            background: var(--branco);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--roxo);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .option-card:hover {
+            box-shadow: 0 10px 40px rgba(127, 76, 169, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .option-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .option-card.selected {
+            border-color: var(--roxo);
+            box-shadow: 0 10px 40px rgba(127, 76, 169, 0.2);
+        }
+
+        .option-card.selected::before {
+            transform: scaleX(1);
+            background: var(--laranja);
+        }
+
+        .option-card.recommended {
+            border-color: var(--laranja);
+        }
+
+        .option-card.recommended.selected {
+            border-color: var(--roxo);
+            box-shadow: 0 10px 40px rgba(127, 76, 169, 0.2);
+        }
+
+        .option-card.recommended::after {
+            content: '⭐ RECOMENDADA';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--laranja);
+            color: var(--neutro-escuro);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .option-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--roxo);
+            color: var(--branco);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .option-card.selected .option-badge {
+            opacity: 1;
+            transform: translateY(0);
+            background: var(--laranja);
+            color: var(--neutro-escuro);
+        }
+
+        .option-preview {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(127, 76, 169, 0.1) 0%, rgba(255, 158, 0, 0.1) 100%);
+        }
+
+        .option-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--azul-marinho);
+            margin-bottom: 0.5rem;
+        }
+
+        .option-description {
+            font-size: 0.95rem;
+            color: var(--neutro-cinza);
+            margin-bottom: 1rem;
+        }
+
+        .option-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .option-spec {
+            font-size: 0.8rem;
+            background: rgba(127, 76, 169, 0.1);
+            color: var(--roxo);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        
+        .option-strategy {
+            font-size: 0.85rem;
+            color: var(--azul-marinho);
+            background: rgba(127, 76, 169, 0.05);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--laranja);
+            line-height: 1.4;
+        }
+        .option-strategy strong {
+            color: var(--laranja-dark);
+            font-weight: 700;
+        }
+
+        
+        /* ==================== LOGO VARIANT STYLES ==================== */
+        .logo-variant-selector {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-start;
+        }
+        .logo-variant-selector input {
+            cursor: pointer;
+        }
+        .logo-preview {
+            margin-top: 0.5rem;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--branco);
+            border: 1px solid var(--neutro-cinza);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .logo-preview img,
+        .logo-preview svg {
+            max-height: 80%;
+            max-width: 80%;
+        }
+        .variant-primary .logo-img { opacity: 1; }
+        .variant-mono .logo-img { filter: grayscale(100%) contrast(120%); }
+        .variant-watermark .logo-img { opacity: 0.15; }
+        .logo-variant-selector label {
+            font-size: 0.85rem;
+            color: var(--neutro-escuro);
+            cursor: pointer;
+        }
+        .logo-variant-selector input:focus + label {
+            outline: 2px solid var(--roxo);
+        }
+
+/* ==================== TYPOGRAPHY PREVIEW ==================== */
+        .typography-preview {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .typography-preview .display {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--azul-marinho);
+        }
+
+        .typography-preview .heading {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--neutro-escuro);
+        }
+
+        .typography-preview .body {
+            font-size: 1rem;
+            color: var(--neutro-cinza);
+            line-height: 1.6;
+        }
+
+        /* ==================== COLOR SWATCHES ==================== */
+        .color-swatches {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .color-swatch {
+            text-align: center;
+        }
+
+        .swatch-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 3px solid var(--branco);
+        }
+
+        .swatch-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--neutro-cinza);
+        }
+
+        .swatch-hex {
+            font-size: 0.7rem;
+            color: var(--neutro-cinza);
+            font-family: monospace;
+        }
+
+        /* ==================== MATERIAL PREVIEW ==================== */
+        .material-preview {
+            background: var(--branco);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .material-mockup {
+            height: 150px;
+            background: linear-gradient(135deg, var(--azul-marinho) 0%, var(--roxo) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .material-mockup img {
+            max-width: 80%;
+            max-height: 80%;
+            filter: brightness(0) invert(1);
+        }
+
+        .material-mockup .mockup-label {
+            position: absolute;
+            bottom: 0.5rem;
+            right: 0.5rem;
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.7);
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .material-mockup.with-photo {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .material-mockup.with-photo::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(21, 48, 101, 0.4); /* Overlay for logo legibility */
+        }
+
+        .material-mockup.with-photo img {
+            z-index: 1;
+        }
+
+        /* ==================== BRAND VARIATIONS ==================== */
+        .brand-variations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .variation-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--branco);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .variation-preview {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+
+        .variation-preview.dark {
+            background: var(--azul-marinho);
+        }
+
+        .variation-preview.light {
+            background: var(--branco);
+            border: 1px solid #eee;
+        }
+
+        .variation-preview.gradient {
+            background: linear-gradient(135deg, var(--roxo) 0%, var(--laranja) 100%);
+        }
+
+        .variation-preview img {
+            max-width: 70%;
+        }
+
+        .variation-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            color: var(--azul-marinho);
+            margin-bottom: 0.25rem;
+        }
+
+        .variation-use {
+            font-size: 0.85rem;
+            color: var(--neutro-cinza);
+        }
+
+        /* ==================== SUMMARY SECTION ==================== */
+        .summary {
+            background: linear-gradient(180deg, rgba(127, 76, 169, 0.05) 0%, var(--branco) 100%);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .summary-item {
+            background: var(--branco);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .summary-item-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(127, 76, 169, 0.1);
+        }
+
+        .summary-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--roxo) 0%, var(--laranja) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+        }
+
+        .summary-item-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            color: var(--azul-marinho);
+        }
+
+        .summary-choice {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(127, 76, 169, 0.05);
+            border-radius: 8px;
+        }
+
+        .summary-choice-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--laranja);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neutro-escuro);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .summary-choice-text {
+            font-weight: 500;
+            color: var(--azul-marinho);
+        }
+
+        .summary-placeholder {
+            font-size: 0.9rem;
+            color: var(--neutro-cinza);
+            font-style: italic;
+        }
+
+        /* ==================== FORM ==================== */
+        .form-section {
+            background: var(--azul-marinho);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 2rem;
+        }
+
+        .form-section h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: var(--branco);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-section p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: var(--branco);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--laranja);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: var(--laranja);
+            color: var(--neutro-escuro);
+            border: none;
+            border-radius: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--branco);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 158, 0, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: var(--neutro-escuro);
+            color: var(--branco);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-contact {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ==================== FLOATING SUMMARY ==================== */
+        .floating-summary {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--azul-marinho);
+            color: var(--branco);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 8px 30px rgba(21, 48, 101, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .floating-summary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(21, 48, 101, 0.5);
+        }
+
+        .floating-summary-count {
+            background: var(--laranja);
+            color: var(--neutro-escuro);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .floating-summary-text {
+            font-weight: 500;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.75rem 1rem;
+            }
+
+            .progress-steps {
+                display: none;
+            }
+
+            .hero {
+                padding: 5rem 1rem 3rem;
+            }
+
+            .hero-logo {
+                width: 150px;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-summary {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.75rem 1rem;
+            }
+
+            .form-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==================== PRINT STYLES ==================== */
+        @media print {
+            .header, .floating-summary, .hero-cta, .scroll-indicator {
+                display: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* ==================== MODAL ==================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 15, 26, 0.8);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--branco);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--laranja);
+            color: var(--neutro-escuro);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+            box-shadow: 0 10px 30px rgba(255, 158, 0, 0.4);
+        }
+
+        .modal-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            color: var(--azul-marinho);
+            margin-bottom: 1rem;
+        }
+
+        .modal-text {
+            color: var(--neutro-cinza);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .modal-btn {
+            background: var(--azul-marinho);
+            color: var(--branco);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-btn:hover {
+            background: var(--roxo);
+            transform: translateY(-2px);
+        }
+
+        /* Loading Spin */
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    
+        /* ── CSS High-Fidelity Mug ── */
+        .mug-mockup {
+          --mug-color: #ffffff;
+          --mug-radius: 12px;
+          position: relative;
+          width: 80px;
+          height: 90px;
+          margin: 0 auto;
+          transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.4s ease;
+        }
+        .option-card:hover .mug-mockup { transform: scale(1.1) rotate(2deg); }
+        .mug-handle {
+          position: absolute; right: -12px; top: 15px; width: 30px; height: 50px;
+          border: 8px solid var(--mug-color); border-left: none; border-radius: 0 40px 40px 0;
+          filter: brightness(0.92); z-index: 1; transition: border-color 0.4s ease;
+        }
+        .mug-body {
+          position: absolute; width: 100%; height: 100%; background: var(--mug-color);
+          border-radius: 3px 3px var(--mug-radius) var(--mug-radius);
+          box-shadow: inset -8px -4px 15px rgba(0,0,0,0.08), inset 6px 0 10px rgba(255,255,255,0.7), 0 6px 20px rgba(0,0,0,0.12);
+          z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 5px;
+          transition: background 0.4s ease;
+        }
+        .mug-body::before {
+          content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+          background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent); z-index: 10; pointer-events: none;
+        }
+        .mug-body::after {
+          content: ''; position: absolute; top: 0; left: 20%; width: 15%; height: 100%;
+          background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%); pointer-events: none;
+        }
+
+        /* ── CSS High-Fidelity Badge ── */
+        .mock-badge {
+          width: 80px; margin: 0 auto; background: white; border: 1px solid var(--neutro-claro); border-radius: 8px;
+          overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.08); transition: transform 0.3s ease;
+          position: relative; z-index: 2;
+        }
+        .option-card:hover .mock-badge { transform: translateY(-5px); }
+        .mock-badge-header { background: var(--roxo); height: 25px; display: flex; align-items: center; justify-content: center; }
+        .mock-badge-body { padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .badge-lanyard {
+          width: 14px; height: 40px; background: var(--laranja); margin: 0 auto; margin-bottom: -5px;
+          border-radius: 2px 2px 0 0; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; overflow: hidden; gap: 2px;
+        }
+        .badge-lanyard span { color: white; font-size: 6px; font-weight: bold; transform: rotate(-90deg); }
+        .mug-col-dark { color: white; }
+        .mug-col-light { color: var(--roxo); }
+
+        /* ========== MÓDULO 4 — SUB-GRUPOS ========== */
+        .mod4-subgroup {
+            margin-top: 3rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(127, 76, 169, 0.15);
+        }
+        .mod4-subgroup:first-child {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+        .mod4-subgroup-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .mod4-subgroup-num {
+            font-family: 'Anton', sans-serif;
+            font-size: 0.75rem;
+            color: var(--laranja);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .mod4-subgroup-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--azul-marinho);
+            margin: 0;
+        }
+        .mod4-subgroup-desc {
+            font-size: 0.88rem;
+            color: var(--neutro-cinza);
+            margin: 0 0 1.5rem;
+            max-width: 60ch;
+        }
+        /* mockups extras para itens novos */
+        .mock-letterhead-pi {
+            width: 70px; height: 95px;
+            background: white; border: 1px solid #ddd;
+            border-radius: 2px; overflow: hidden;
+            box-shadow: 2px 4px 12px rgba(0,0,0,0.12);
+            display: flex; flex-direction: column;
+        }
+        .mock-letterhead-pi .lh-hdr { background: var(--azul-marinho); height: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .mock-letterhead-pi .lh-body { flex: 1; padding: 6px 5px; display: flex; flex-direction: column; gap: 4px; }
+        .mock-env-pi {
+            width: 115px; height: 72px;
+            background: white; border: 1px solid #ddd; border-radius: 4px;
+            position: relative; overflow: hidden;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+            display: flex; align-items: flex-end; padding: 8px;
+        }
+        .mock-env-pi::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 0;
+            border-left: 57px solid transparent; border-right: 57px solid transparent;
+            border-top: 36px solid var(--azul-marinho);
+            opacity: 0.18;
+        }
+        .mock-tshirt-pi {
+            position: relative; width: 90px; height: 82px;
+        }
+        .mock-tshirt-pi .ts-body {
+            position: absolute; bottom: 0; left: 14px; right: 14px; top: 18px;
+            background: var(--azul-marinho); border-radius: 2px 2px 4px 4px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .mock-tshirt-pi .ts-sl { position: absolute; top: 18px; width: 20px; height: 30px; background: var(--azul-marinho); border-radius: 3px; }
+        .mock-tshirt-pi .ts-sl-l { left: 0; transform: rotate(-8deg); transform-origin: top right; }
+        .mock-tshirt-pi .ts-sl-r { right: 0; transform: rotate(8deg); transform-origin: top left; }
+        .mock-tshirt-pi .ts-collar { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 28px; height: 20px; border-radius: 0 0 50% 50%; background: var(--azul-marinho); border: 2px solid rgba(255,255,255,0.15); }
+        .mock-mousepad-pi {
+            width: 130px; height: 88px;
+            background: var(--azul-marinho); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 3px 5px 16px rgba(0,0,0,0.25);
+        }
+        .mock-line-pi { height: 3px; border-radius: 99px; background: rgba(255,255,255,0.25); }
+
+</style>
+</head>
+<body>
+    <!-- SVG SYMBOL LIBRARY (FOR INLINING) -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <!-- logo-main: versão colorida completa (navy + roxo + círculos) -->
+        <symbol id="logo-main" viewBox="0 0 1024 1024">
+            <path fill="#153065" transform="scale(0.948148 0.948148)" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C614.381 586.805 633.079 654.283 624.528 692.552C619.312 716.702 604.723 737.793 583.965 751.192C557.428 768.004 511.717 771.414 483.461 750.007C482.255 749.093 482.77 735.89 482.515 732.989C479.764 701.802 456.561 676.705 426.689 668.87C407.444 664.008 385.867 668.456 368.747 679.129C337.542 668.688 314.441 624.038 318 592.686C318.967 584.161 320.227 571.676 324.162 563.949C334.219 567.469 343.418 571.652 354.095 573.339C355.343 573.536 364.336 574.718 364.269 575.735C363.969 580.312 362.295 584.988 361.571 589.648C359.911 599.994 361.581 610.6 366.34 619.936C385.632 657.632 436.393 650.461 469.11 638.176C469.419 638.06 470.338 638.507 471.7 640.981C473.225 651.853 473.858 655.253C475.739 665.505 478.997 675.457 483.543 684.837C493.295 704.743 506.752 719.779 529.687 722.238C551.679 724.596 573.283 710.74 580.567 689.987C584.722 678.148 583.621 666.036 582.348 653.827C577.887 614.225 562.376 577.027 544.273 541.721C542.141 537.856 539.962 534.011 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z"/>
+            <path fill="#153065" transform="scale(0.948148 0.948148)" d="M404.653 681.48C437.231 678.818 465.797 703.073 468.452 735.652C471.107 768.23 446.846 796.791 414.267 799.439C381.698 802.086 353.148 777.834 350.493 745.265C347.839 712.697 372.085 684.141 404.653 681.48Z"/>
+            <path fill="#7F4CA9" transform="scale(0.948148 0.948148)" d="M538.064 530.026C536.143 526.116 534.002 522.333 531.988 518.472C507.779 472.05 474.754 389.393 491.438 337.364C499.193 313.183 516.063 293.976 538.672 282.607C559.117 272.326 585.319 269.995 607.026 277.409C611.529 278.948 628.081 285.317 630.144 288.943C632.07 292.33 630.645 302.854 631.277 307.366C632.429 315.58 634.943 324.068 638.628 331.505C647.258 348.922 663.465 361.898 681.792 367.96C705.655 375.853 724.315 369.975 745.696 359.084C786.326 377.758 807.981 433.699 789.617 474.57C772.486 468.055 766.758 465.859 748.296 462.87C753.437 448.122 754.572 440.039 750.181 424.61C746.735 412.501 737.28 402.404 726.166 396.688C708.711 387.712 680.544 389.267 662.13 394.197C655.211 396.05 649.088 399.156 642.258 401.297C640.8 383.366 637.874 368.062 629.303 351.874C620.885 336.055 612.639 323.887 594.974 318.246C567.453 309.459 539.77 324.162 531.683 351.883C528.75 361.938 529.518 369.975 530.516 380.345C534.921 426.097 554.429 469.963 576.371 509.826C566.077 514.851 547.945 523.816 538.064 530.026Z"/>
+            <path fill="#7F4CA9" transform="scale(0.948148 0.948148)" d="M699.953 239.105C732.180 236.752 760.280 260.816 762.911 293.021C765.543 325.227 741.723 353.533 709.541 356.443C676.964 359.388 648.233 335.211 645.569 302.610C642.905 270.008 667.330 241.487 699.953 239.105Z"/>
+        </symbol>
+        <!-- logo-neg: versão monocromática completa -->
+        <symbol id="logo-neg" viewBox="0 0 1024 1024">
+            <path fill="currentColor" transform="scale(0.948148 0.948148)" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C614.381 586.805 633.079 654.283 624.528 692.552C619.312 716.702 604.723 737.793 583.965 751.192C557.428 768.004 511.717 771.414 483.461 750.007C482.255 749.093 482.77 735.89 482.515 732.989C479.764 701.802 456.561 676.705 426.689 668.87C407.444 664.008 385.867 668.456 368.747 679.129C337.542 668.688 314.441 624.038 318 592.686C318.967 584.161 320.227 571.676 324.162 563.949C334.219 567.469 343.418 571.652 354.095 573.339C355.343 573.536 364.336 574.718 364.269 575.735C363.969 580.312 362.295 584.988 361.571 589.648C359.911 599.994 361.581 610.6 366.34 619.936C385.632 657.632 436.393 650.461 469.11 638.176C469.419 638.06 470.338 638.507 471.7 640.981C473.225 651.853 473.858 655.253C475.739 665.505 478.997 675.457 483.543 684.837C493.295 704.743 506.752 719.779 529.687 722.238C551.679 724.596 573.283 710.74 580.567 689.987C584.722 678.148 583.621 666.036 582.348 653.827C577.887 614.225 562.376 577.027 544.273 541.721C542.141 537.856 539.962 534.011 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z"/>
+            <path fill="currentColor" transform="scale(0.948148 0.948148)" d="M404.653 681.48C437.231 678.818 465.797 703.073 468.452 735.652C471.107 768.23 446.846 796.791 414.267 799.439C381.698 802.086 353.148 777.834 350.493 745.265C347.839 712.697 372.085 684.141 404.653 681.48Z"/>
+            <path fill="currentColor" transform="scale(0.948148 0.948148)" d="M538.064 530.026C536.143 526.116 534.002 522.333 531.988 518.472C507.779 472.05 474.754 389.393 491.438 337.364C499.193 313.183 516.063 293.976 538.672 282.607C559.117 272.326 585.319 269.995 607.026 277.409C611.529 278.948 628.081 285.317 630.144 288.943C632.07 292.33 630.645 302.854 631.277 307.366C632.429 315.58 634.943 324.068 638.628 331.505C647.258 348.922 663.465 361.898 681.792 367.96C705.655 375.853 724.315 369.975 745.696 359.084C786.326 377.758 807.981 433.699 789.617 474.57C772.486 468.055 766.758 465.859 748.296 462.87C753.437 448.122 754.572 440.039 750.181 424.61C746.735 412.501 737.28 402.404 726.166 396.688C708.711 387.712 680.544 389.267 662.13 394.197C655.211 396.05 649.088 399.156 642.258 401.297C640.8 383.366 637.874 368.062 629.303 351.874C620.885 336.055 612.639 323.887 594.974 318.246C567.453 309.459 539.77 324.162 531.683 351.883C528.75 361.938 529.518 369.975 530.516 380.345C534.921 426.097 554.429 469.963 576.371 509.826C566.077 514.851 547.945 523.816 538.064 530.026Z"/>
+            <path fill="currentColor" transform="scale(0.948148 0.948148)" d="M699.953 239.105C732.180 236.752 760.280 260.816 762.911 293.021C765.543 325.227 741.723 353.533 709.541 356.443C676.964 359.388 648.233 335.211 645.569 302.610C642.905 270.008 667.330 241.487 699.953 239.105Z"/>
+        </symbol>
+    </svg>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-logo">
+            <svg width="40" height="40" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+            <span>Portfólio de Marca</span>
+        </div>
+        <div class="header-progress">
+            <div class="progress-steps">
+                <div class="progress-dot" data-section="hero"></div>
+                <div class="progress-dot" data-section="manifesto"></div>
+                <div class="progress-dot" data-section="brand"></div>
+                <div class="progress-dot" data-section="typography"></div>
+                <div class="progress-dot" data-section="colors"></div>
+                <div class="progress-dot" data-section="materials"></div>
+                <div class="progress-dot" data-section="summary"></div>
+            </div>
+            <span class="progress-label" id="progressLabel">Início</span>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <svg width="180" height="180" class="hero-logo"><use xlink:href="#logo-main"></use></svg>
+        <h1>Portfólio de Marca</h1>
+        <p class="tagline">Instituto De Mãos Dadas</p>
+        <p class="purpose">Explore, escolha e construa junto a identidade visual perfeita para transformar realidades sociais com dignidade e inovação.</p>
+        <a href="#manifesto" class="hero-cta">
+            Começar a Explorar
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
+        <div class="scroll-indicator">
+            <span>Role para baixo</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- MANIFESTO SECTION -->
+    <section class="manifesto" id="manifesto">
+        <div class="manifesto-content fade-in">
+            <p class="manifesto-quote">
+                O Instituto De Mãos Dadas merece uma identidade visual que comunique a mesma excelência de suas ações sociais. Este portfólio é uma declaração: organizações do terceiro setor baseadas em periferias podem — e devem — ter comunicação de nível global.
+            </p>
+        </div>
+    </section>
+
+    <!-- BRAND VARIATIONS SECTION -->
+    <section class="section" id="brand">
+        <div class="section-header fade-in">
+            <p class="section-number">Módulo 1</p>
+            <h2 class="section-title">Versões da Marca</h2>
+            <p class="section-subtitle">Flexibilidade sem perder a essência. Escolha a versão mais adequada para cada contexto de aplicação.</p>
+        </div>
+
+        <div class="brand-variations fade-in">
+            <div class="variation-item">
+                <div class="variation-preview light">
+                    <svg width="60" height="60"><use xlink:href="#logo-main"></use></svg>
+                </div>
+                <p class="variation-name">Logo Principal</p>
+                <p class="variation-use">Fundos claros, páginas institucionais, documentos formais</p>
+            </div>
+            <div class="variation-item">
+                <div class="variation-preview dark">
+                    <svg width="60" height="60" style="color: white;"><use xlink:href="#logo-neg"></use></svg>
+                </div>
+                <p class="variation-name">Logo em Negativo</p>
+                <p class="variation-use">Fundos escuros, fotos, vídeos, materiais premium</p>
+            </div>
+            <div class="variation-item">
+                <div class="variation-preview gradient">
+                    <svg width="60" height="60" style="color: white;"><use xlink:href="#logo-neg"></use></svg>
+                </div>
+                <p class="variation-name">Alto Contraste</p>
+                <p class="variation-use">Banners, campañas, situações que exigem máxima legibilidade</p>
+            </div>
+            <div class="variation-item">
+                <div class="variation-preview light">
+                    <span style="font-family: 'Anton'; font-size: 2rem; color: var(--roxo);">DMD</span>
+                </div>
+                <p class="variation-name">Monograma DMD</p>
+                <p class="variation-use">Favicon, watermark, ícones de app, merchandising</p>
+            </div>
+        </div>
+
+        <div class="options-grid fade-in" style="margin-top: 3rem;">
+            <div class="option-card recommended selected" data-choice="brand" data-value="principal">
+                <span class="option-badge">✓ Selecionado</span>
+                <p class="option-title">Versão Principal</p>
+                <p class="option-description">Uso padrão em todos os materiais institucionais e digitais</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <div class="option-specs">
+                    <span class="option-spec">Recomendada</span>
+                    <span class="option-spec">Versátil</span>
+                </div>
+            </div>
+            <div class="option-card" data-choice="brand" data-value="negativa">
+                <span class="option-badge">✓ Selecionado</span>
+                <p class="option-title">Versão Negativa</p>
+                <p class="option-description">Para fundos escuros e materiais de alto impacto visual</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <div class="option-specs">
+                    <span class="option-spec">Alto contraste</span>
+                    <span class="option-spec">Premium</span>
+                </div>
+            </div>
+            <div class="option-card" data-choice="brand" data-value="monograma">
+                <span class="option-badge">✓ Selecionado</span>
+                <p class="option-title">Monograma DMD</p>
+                <p class="option-description">Para aplicações mínimas e merchandising</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <div class="option-specs">
+                    <span class="option-spec">Minimalista</span>
+                    <span class="option-spec">Discreto</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TYPOGRAPHY SECTION -->
+    <section class="section" id="typography" style="background: linear-gradient(180deg, var(--branco) 0%, rgba(127, 76, 169, 0.05) 100%);">
+        <div class="section-header fade-in">
+            <p class="section-number">Módulo 2</p>
+            <h2 class="section-title">Combinações Tipográficas</h2>
+            <p class="section-subtitle">As vozes da nossa comunicação. Escolha a combinação que melhor representa a personalidade da marca.</p>
+        </div>
+
+        <div class="options-grid fade-in">
+            <!-- Opção 1: Inovação Social (RECOMENDADA) -->
+            <div class="option-card recommended selected" data-choice="typography" data-value="innovacao">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="typography-preview" style="text-align: left; background: rgba(127, 76, 169, 0.05); border-radius: 12px; margin-bottom: 1rem;">
+                    <p class="display" style="font-family: 'Space Grotesk', sans-serif;">Space Grotesk</p>
+                    <p class="heading" style="font-family: 'Anton', sans-serif;">Anton Display</p>
+                    <p class="body" style="font-family: 'Inter', sans-serif;">Inter para textos claros e acessíveis</p>
+                </div>
+                <p class="option-title">Inovação Social</p>
+                <p class="option-description">Moderna e inovadora, perfeita para falar com jovens e parceiros criativos. máxima legibilidade digital.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <div class="option-specs">
+                    <span class="option-spec">⭐ Recomendada</span>
+                    <span class="option-spec">Versátil</span>
+                    <span class="option-spec">Acessível</span>
+                </div>
+            </div>
+
+            <!-- Opção 2: Campanha/Urbano -->
+            <div class="option-card" data-choice="typography" data-value="campanha">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="typography-preview" style="text-align: left; background: rgba(255, 158, 0, 0.1); border-radius: 12px; margin-bottom: 1rem;">
+                    <p class="display" style="font-family: 'Anton', sans-serif;">ANTON</p>
+                    <p class="heading" style="font-family: 'Roboto', sans-serif; font-weight: 700;">Roboto Bold</p>
+                    <p class="body" style="font-family: 'Roboto', sans-serif;">Forte, urbana e comunitária</p>
+                </div>
+                <p class="option-title">Campanha Comunitária</p>
+                <p class="option-description">Estética urbana e vibrante, conectada com a linguagem das periferias. Ideal para mobilizações.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <div class="option-specs">
+                    <span class="option-spec">Impacto</span>
+                    <span class="option-spec">Urbano</span>
+                </div>
+            </div>
+
+            <!-- Opção 3: Institucional/Premium -->
+            <div class="option-card" data-choice="typography" data-value="premium">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="typography-preview" style="text-align: left; background: rgba(21, 48, 101, 0.1); border-radius: 12px; margin-bottom: 1rem;">
+                    <p class="display" style="font-family: 'Space Grotesk', sans-serif;">Space Grotesk</p>
+                    <p class="heading" style="font-family: 'Crimson Pro', serif; font-size: 1.8rem;">Crimson Pro</p>
+                    <p class="body" style="font-family: 'Crimson Pro', serif; font-style: italic;">Serifada, séria e elegante</p>
+                </div>
+                <p class="option-title">Institucional Premium</p>
+                <p class="option-description">Solidez e tradição que agrada doadores corporativos e o poder público. Compromisso institucional.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <div class="option-specs">
+                    <span class="option-spec">Executivo</span>
+                    <span class="option-spec">Premium</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COLORS SECTION -->
+    <section class="section" id="colors">
+        <div class="section-header fade-in">
+            <p class="section-number">Módulo 3</p>
+            <h2 class="section-title">Paleta de Cores</h2>
+            <p class="section-subtitle">As cores e os rostos das nossas ações. Escolha a variação que melhor se adapta ao contexto.</p>
+        </div>
+
+        <div class="options-grid fade-in">
+            <!-- Opção 1: Institucional -->
+            <div class="option-card recommended selected" data-choice="colors" data-value="institucional">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="color-swatches" style="margin-bottom: 1.5rem;">
+                    <div class="color-swatch">
+                        <div class="swatch-circle" style="background: #153065;"></div>
+                        <p class="swatch-label">Azul</p>
+                        <p class="swatch-hex">#153065</p>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-circle" style="background: #7F4CA9;"></div>
+                        <p class="swatch-label">Roxo</p>
+                        <p class="swatch-hex">#7F4CA9</p>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-circle" style="background: #FF9E00;"></div>
+                        <p class="swatch-label">Âmbar</p>
+                        <p class="swatch-hex">#FF9E00</p>
+                    </div>
+                </div>
+                <p class="option-title">Equilíbrio Institucional</p>
+                <p class="option-description">Fundo branco, dominante Azul Marinho, Roxo em detalhes. Profissional e confiável.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <div class="option-specs">
+                    <span class="option-spec">⭐ Recomendada</span>
+                    <span class="option-spec">60-30-10</span>
+                </div>
+            </div>
+
+            <!-- Opção 2: Campanha -->
+            <div class="option-card" data-choice="colors" data-value="campanha">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="color-swatches" style="margin-bottom: 1.5rem;">
+                    <div class="color-swatch">
+                        <div class="swatch-circle" style="background: #7F4CA9;"></div>
+                        <p class="swatch-label">Roxo</p>
+                        <p class="swatch-hex">#7F4CA9</p>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-circle" style="background: #FF9E00;"></div>
+                        <p class="swatch-label">Âmbar</p>
+                        <p class="swatch-hex">#FF9E00</p>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-circle" style="background: #BD90DA;"></div>
+                        <p class="swatch-label">Lilás</p>
+                        <p class="swatch-hex">#BD90DA</p>
+                    </div>
+                </div>
+                <p class="option-title">Campanha Comunitária</p>
+                <p class="option-description">Uso vibrante de Roxo e Âmbar para causar impacto urbano. Ideal para redes sociais.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <div class="option-specs">
+                    <span class="option-spec">Vibrante</span>
+                    <span class="option-spec">Engajador</span>
+                </div>
+            </div>
+
+            <!-- Opção 3: Premium -->
+            <div class="option-card" data-choice="colors" data-value="premium">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="color-swatches" style="margin-bottom: 1.5rem;">
+                    <div class="color-swatch">
+                        <div class="swatch-circle" style="background: #153065;"></div>
+                        <p class="swatch-label">Azul</p>
+                        <p class="swatch-hex">#153065</p>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-circle" style="background: #FAFAFA; border: 1px solid #ddd;"></div>
+                        <p class="swatch-label">Branco</p>
+                        <p class="swatch-hex">#FAFAFA</p>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-circle" style="background: #BD90DA;"></div>
+                        <p class="swatch-label">Lilás</p>
+                        <p class="swatch-hex">#BD90DA</p>
+                    </div>
+                </div>
+                <p class="option-title">Sóbria e Elevada</p>
+                <p class="option-description">Dominância do Azul Marinho e Branco. Gera valor percebido e confiabilidade premium.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <div class="option-specs">
+                    <span class="option-spec">Sofisticado</span>
+                    <span class="option-spec">Executivo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MATERIALS SECTION -->
+    <section class="section" id="materials" style="background: linear-gradient(180deg, var(--branco) 0%, rgba(127, 76, 169, 0.05) 100%);">
+        <div class="section-header fade-in">
+            <p class="section-number">Módulo 4</p>
+            <h2 class="section-title">Materiais de Aplicação</h2>
+            <p class="section-subtitle">A marca ganhando o mundo. Veja como a identidade se adapta aos diferentes materiais.</p>
+        </div>
+
+        <div class="fade-in">
+
+        <!-- ── 4.1 PAPELARIA INSTITUCIONAL ── -->
+        <div class="mod4-subgroup">
+            <div class="mod4-subgroup-header">
+                <span class="mod4-subgroup-num">Grupo 4.1</span>
+                <h3 class="mod4-subgroup-title">Papelaria Institucional</h3>
+            </div>
+            <p class="mod4-subgroup-desc">Materiais impressos para correspondências, reuniões formais e representação externa do Instituto.</p>
+            <div class="options-grid">
+
+            <!-- Cartão de Visita -->
+            <div class="option-card recommended selected" data-choice="material" data-value="cartao">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background: #FAFAFA; height: 110px; border: 1px solid #eee;">
+                        <svg width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                    </div>
+                </div>
+                <p class="option-title">Cartão de Visita</p>
+                <p class="option-description">Papel texturizado 300g, borda colorida em roxo. Minimalista, com logo e dados em navy.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Inserir QR Code no verso direcionando para a página 'Como Ajudar' ou Relatório de Impacto, facilitando a ação imediata após um networking.</p>
+                <div class="option-specs"><span class="option-spec">85×55mm</span><span class="option-spec">Profissional</span></div>
+            </div>
+
+            <!-- Papel Timbrado -->
+            <div class="option-card" data-choice="material" data-value="timbrado">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background: #f4f4f8; height: 110px;">
+                        <div class="mock-letterhead-pi">
+                            <div class="lh-hdr"><svg width="18" height="18" style="color:white;"><use xlink:href="#logo-neg"></use></svg></div>
+                            <div class="lh-body">
+                                <div class="mock-line-pi" style="width:80%;"></div>
+                                <div class="mock-line-pi" style="width:60%;"></div>
+                                <div class="mock-line-pi" style="width:70%;"></div>
+                                <div class="mock-line-pi" style="width:45%;margin-top:6px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Papel Timbrado A4</p>
+                <p class="option-description">Cabeçalho navy com logomarca branca. Rodapé com dados institucionais em cinza discreto.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Padronizar o rodapé com os eixos de atuação do Instituto para reforçar a amplitude do impacto em toda comunicação oficial ou ofício governamental.</p>
+                <div class="option-specs"><span class="option-spec">A4 / Impressão</span><span class="option-spec">Formal</span></div>
+            </div>
+
+            <!-- Envelope -->
+            <div class="option-card" data-choice="material" data-value="envelope">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background: #e8e8f0; height: 110px;">
+                        <div class="mock-env-pi">
+                            <svg width="22" height="22" style="color:var(--roxo);opacity:0.6;"><use xlink:href="#logo-main"></use></svg>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Envelope Institucional</p>
+                <p class="option-description">Envelope C5 com aba em navy e logomarca impressa. Para correspondências formais e ofícios.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Utilizar selos ou carimbos de campanhas ativas no fechamento do envelope para transformar a correspondência em uma peça de divulgação.</p>
+                <div class="option-specs"><span class="option-spec">C5 / DL</span><span class="option-spec">Correspondência</span></div>
+            </div>
+
+            <!-- Pasta de Documentos -->
+            <div class="option-card" data-choice="material" data-value="pasta">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background: linear-gradient(135deg, var(--roxo), #4a1a7a); height: 110px;">
+                        <svg width="70" height="70" style="color:rgba(255,255,255,0.85); z-index:2;"><use xlink:href="#logo-neg"></use></svg>
+                    </div>
+                </div>
+                <p class="option-title">Pasta de Documentos</p>
+                <p class="option-description">Roxo acolhedor com verniz localizado. Para apresentação de relatórios e projetos.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Incluir uma bolsa interna com espaço para inserção de um flyer de doação e do cartão de visita, entregando um kit completo a investidores.</p>
+                <div class="option-specs"><span class="option-spec">A4 / Encadernação</span><span class="option-spec">Impacto</span></div>
+            </div>
+
+            <!-- Bloco de Notas -->
+            <div class="option-card" data-choice="material" data-value="bloco">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background: #fff8eb; height: 110px; border: 1px solid #ede;">
+                        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                            <svg width="40" height="40" style="color:var(--azul-marinho);"><use xlink:href="#logo-main"></use></svg>
+                            <div class="mock-line-pi" style="width:60px;background:rgba(21,48,101,0.2);"></div>
+                            <div class="mock-line-pi" style="width:50px;background:rgba(21,48,101,0.15);"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Bloco de Notas</p>
+                <p class="option-description">50 folhas com cabeçalho institucional. Distribuído em recepções e eventos locais.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Distribuir em eventos de captação; cada página deve ter o site no rodapé para garantir que, mesmo destacada, a página leve a marca adiante.</p>
+                <div class="option-specs"><span class="option-spec">A5 / 50 fls</span><span class="option-spec">Cotidiano</span></div>
+            </div>
+
+            </div><!-- /options-grid 4.1 -->
+        </div><!-- /mod4-subgroup 4.1 -->
+
+        <!-- ── 4.2 DOCUMENTOS & COMUNICAÇÃO IMPRESSA ── -->
+        <div class="mod4-subgroup">
+            <div class="mod4-subgroup-header">
+                <span class="mod4-subgroup-num">Grupo 4.2</span>
+                <h3 class="mod4-subgroup-title">Documentos &amp; Comunicação Impressa</h3>
+            </div>
+            <p class="mod4-subgroup-desc">Peças editoriais e de difusão que comunicam o impacto e a missão do Instituto para diferentes públicos.</p>
+            <div class="options-grid">
+
+            <!-- Relatório de Impacto -->
+            <div class="option-card recommended" data-choice="material" data-value="relatorio">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup with-photo" style="background-image: var(--photo-relatorio);">
+                        <svg width="100" height="100" style="color: white; z-index: 2;"><use xlink:href="#logo-neg"></use></svg>
+                        <span class="mockup-label">Relatório de Impacto 2026</span>
+                    </div>
+                </div>
+                <p class="option-title">Relatório de Impacto</p>
+                <p class="option-description">Capa institucional com foto de protagonismo. Transmite seriedade e compromisso global.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Estruturar em formato de storytelling, com foco em histórias de vidas transformadas (protagonismo) combinado a dados de impacto visuais.</p>
+                <div class="option-specs">
+                    <span class="option-spec">A4 / PDF</span>
+                    <span class="option-spec">Dignidade</span>
+                </div>
+            </div>
+
+            <!-- Folder Institucional -->
+            <div class="option-card" data-choice="material" data-value="folder">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup with-photo" style="background-image: var(--photo-folder); height: 120px;">
+                        <svg width="60" height="60" style="color: white; z-index: 2;"><use xlink:href="#logo-neg"></use></svg>
+                    </div>
+                </div>
+                <p class="option-title">Folder Institucional</p>
+                <p class="option-description">Grid de sorrisos e colaboração. Capa com Aurora gradient sobreposta a fotos reais.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Manter versão digital interativa no WhatsApp e versão impressa para entrega em campo, com forte chamada para ação (CTA) para o voluntariado.</p>
+                <div class="option-specs"><span class="option-spec">A4 trifold</span><span class="option-spec">Informativo</span></div>
+            </div>
+
+            <!-- Apresentação de Slides -->
+            <div class="option-card" data-choice="material" data-value="slides">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup with-photo" style="background-image: var(--photo-relatorio); height: 120px;">
+                        <div style="position:absolute;bottom:0.5rem;right:0.5rem;width:40px;height:40px;color:white;opacity:0.7;z-index:2;"><svg width="100%" height="100%"><use xlink:href="#logo-neg"></use></svg></div>
+                        <div style="width:60%;height:2px;background:var(--laranja);z-index:2;"></div>
+                        <div style="width:40%;height:2px;background:var(--branco);margin-top:8px;z-index:2;"></div>
+                    </div>
+                </div>
+                <p class="option-title">Apresentação de Slides</p>
+                <p class="option-description">Muito respiro, fotos amplas e dados claros. Pitch para doadores e parceiros de alto nível.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Criar um template 'Pitch Deck' modular. Deve conter abas prontas para convencer rapidamente patrocinadores focado na solução e impacto.</p>
+                <div class="option-specs"><span class="option-spec">16:9</span><span class="option-spec">Pitch</span></div>
+            </div>
+
+            <!-- Boletim Comunitário -->
+            <div class="option-card" data-choice="material" data-value="boletim">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:#f4f0fa; height:120px; border:1px solid #ddd; flex-direction:column; gap:6px;">
+                        <div style="width:80%;height:4px;background:var(--azul-marinho);border-radius:2px;"></div>
+                        <svg width="30" height="30" style="color:var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                        <div style="width:70%;height:3px;background:rgba(127,76,169,0.3);border-radius:2px;"></div>
+                        <div style="width:50%;height:3px;background:rgba(127,76,169,0.2);border-radius:2px;"></div>
+                    </div>
+                </div>
+                <p class="option-title">Boletim Comunitário</p>
+                <p class="option-description">Informativo impresso distribuído nos bairros atendidos. Linguagem acessível, design limpo.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Redigir em linguagem simples e afetuosa, utilizando fotografias reais das comunidades para prestação de contas aos moradores.</p>
+                <div class="option-specs"><span class="option-spec">A5 / Offset</span><span class="option-spec">Comunidade</span></div>
+            </div>
+
+            <!-- Certificado -->
+            <div class="option-card" data-choice="material" data-value="certificado">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:linear-gradient(160deg,#0a1a40 0%,#1a3070 100%); height:120px;">
+                        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;z-index:2;position:relative;">
+                            <svg width="42" height="42" style="color:rgba(255,255,255,0.9);"><use xlink:href="#logo-neg"></use></svg>
+                            <div style="width:70px;height:2px;background:var(--laranja);border-radius:1px;"></div>
+                            <div style="width:50px;height:2px;background:rgba(255,255,255,0.3);border-radius:1px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Certificado de Participação</p>
+                <p class="option-description">Para cursos, oficinas e programas. Navy profundo com detalhes em âmbar e assinatura digitalizada.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Incentivar que alunos e parceiros promovam nas redes sociais (ex: LinkedIn) marcando e impulsionando a hashtag oficial do projeto.</p>
+                <div class="option-specs"><span class="option-spec">A4 / Oficial</span><span class="option-spec">Reconhecimento</span></div>
+            </div>
+
+            </div><!-- /options-grid 4.2 -->
+        </div><!-- /mod4-subgroup 4.2 -->
+
+        <!-- ── 4.3 COMUNICAÇÃO DIGITAL ── -->
+        <div class="mod4-subgroup">
+            <div class="mod4-subgroup-header">
+                <span class="mod4-subgroup-num">Grupo 4.3</span>
+                <h3 class="mod4-subgroup-title">Comunicação Digital</h3>
+            </div>
+            <p class="mod4-subgroup-desc">Presença online coerente com a identidade offline. Do Instagram ao e-mail, cada touchpoint mantém a linguagem visual do Instituto.</p>
+            <div class="options-grid">
+
+            <!-- Post de Redes Sociais -->
+            <div class="option-card recommended" data-choice="material" data-value="social">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup with-photo" style="background-image: var(--photo-folder);">
+                        <svg width="100" height="100" style="color: white; z-index: 2;"><use xlink:href="#logo-neg"></use></svg>
+                    </div>
+                </div>
+                <p class="option-title">Post de Feed / Carrossel</p>
+                <p class="option-description">Cores vibrantes sobrepostas a fotos de ação. Engajamento real e humano nas redes.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Focar no gancho emocional nos 2 primeiros slides e finalizar sempre com um CTA claro: 'Doe agora', 'Compartilhe' ou 'Seja Voluntário'.</p>
+                <div class="option-specs"><span class="option-spec">1080×1080px</span><span class="option-spec">Engajamento</span></div>
+            </div>
+
+            <!-- Instagram Story -->
+            <div class="option-card" data-choice="material" data-value="story">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:linear-gradient(160deg,var(--azul-marinho) 0%,var(--roxo) 100%); height:120px; flex-direction:column; gap:6px;">
+                        <svg width="50" height="50" style="color:white; z-index:2;"><use xlink:href="#logo-neg"></use></svg>
+                        <div style="width:70%;height:2px;background:rgba(255,255,255,0.4);z-index:2;border-radius:1px;"></div>
+                        <div style="width:50%;height:2px;background:rgba(255,255,255,0.25);z-index:2;border-radius:1px;"></div>
+                    </div>
+                </div>
+                <p class="option-title">Instagram Story (9:16)</p>
+                <p class="option-description">Comunicados, convocatórias e resultados. Fundo degradê institucional, texto direto.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Usar dioturnamente para mostrar os bastidores do trabalho nas comunidades (behind the scenes) gerando conexão autêntica e urgência.</p>
+                <div class="option-specs"><span class="option-spec">1080×1920px</span><span class="option-spec">Alcance</span></div>
+            </div>
+
+            <!-- Banner Web -->
+            <div class="option-card" data-choice="material" data-value="bannerweb">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:linear-gradient(90deg,var(--azul-marinho) 0%,var(--roxo) 100%); height:80px; padding:0 1rem; justify-content:space-between;">
+                        <svg width="36" height="36" style="color:rgba(255,255,255,0.9); flex-shrink:0;"><use xlink:href="#logo-neg"></use></svg>
+                        <div style="flex:1;display:flex;flex-direction:column;gap:4px;margin:0 8px;">
+                            <div style="height:3px;background:rgba(255,255,255,0.35);border-radius:2px;width:90%;"></div>
+                            <div style="height:3px;background:rgba(255,255,255,0.2);border-radius:2px;width:60%;"></div>
+                        </div>
+                        <div style="background:var(--laranja);color:#0F0F1A;font-size:6px;font-weight:700;padding:5px 8px;border-radius:4px;white-space:nowrap;">SAIBA MAIS</div>
+                    </div>
+                </div>
+                <p class="option-title">Banner Web / Site</p>
+                <p class="option-description">Banner horizontal para site e parcerias digitais. Degradê navy→roxo com CTA em âmbar.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Posicionar sempre 'acima da dobra' e promover a campanha sazonal de urgência com um botão de doação de alto contraste.</p>
+                <div class="option-specs"><span class="option-spec">1200×300px</span><span class="option-spec">Conversão</span></div>
+            </div>
+
+            <!-- Assinatura de E-mail -->
+            <div class="option-card" data-choice="material" data-value="emailsig">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:#f8f8fc; height:80px; border:1px solid #e8e; border-left:3px solid var(--roxo); justify-content:flex-start; gap:10px; padding:0 12px;">
+                        <svg width="32" height="32" style="color:var(--roxo); flex-shrink:0;"><use xlink:href="#logo-main"></use></svg>
+                        <div style="display:flex;flex-direction:column;gap:4px;">
+                            <div style="width:90px;height:4px;background:var(--azul-marinho);opacity:0.7;border-radius:2px;"></div>
+                            <div style="width:70px;height:3px;background:var(--neutro-cinza);opacity:0.4;border-radius:2px;"></div>
+                            <div style="width:80px;height:3px;background:var(--neutro-cinza);opacity:0.3;border-radius:2px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Assinatura de E-mail</p>
+                <p class="option-description">Template HTML com logomarca, cargo, telefone e links. Padrão para toda a equipe.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Transformar a assinatura em um outdoor rotativo: incluir um banner rápido para campanhas sazonais (ex: Inverno, Cesta Básica) com link direto para doação.</p>
+                <div class="option-specs"><span class="option-spec">HTML</span><span class="option-spec">Profissional</span></div>
+            </div>
+
+            <!-- Avatar / Favicon -->
+            <div class="option-card" data-choice="material" data-value="avatar">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:#edf0f7; height:110px; border:1px solid #e8e;">
+                        <div style="width:72px;height:72px;background:linear-gradient(135deg,var(--azul-marinho),var(--roxo));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(127,76,169,0.35);">
+                            <svg width="42" height="42" style="color:rgba(255,255,255,0.9);"><use xlink:href="#logo-neg"></use></svg>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Avatar &amp; Favicon</p>
+                <p class="option-description">Símbolo isolado em círculo degradê para perfis de redes sociais, favicon e ícone de app.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Utilizar em máxima legibilidade. Em épocas de campanhas (ex: Novembro da Consciência Negra), aplicar bordas temáticas sutis mantendo reconhecimento.</p>
+                <div class="option-specs"><span class="option-spec">512×512px</span><span class="option-spec">Reconhecimento</span></div>
+            </div>
+
+            </div><!-- /options-grid 4.3 -->
+        </div><!-- /mod4-subgroup 4.3 -->
+
+        <!-- ── 4.4 COMUNICAÇÃO AMBIENTAL & UNIFORMES ── -->
+        <div class="mod4-subgroup">
+            <div class="mod4-subgroup-header">
+                <span class="mod4-subgroup-num">Grupo 4.4</span>
+                <h3 class="mod4-subgroup-title">Comunicação Ambiental &amp; Uniformes</h3>
+            </div>
+            <p class="mod4-subgroup-desc">A marca no espaço físico e nas pessoas. Eventos, fachadas e uniformes que tornam o Instituto reconhecível no território.</p>
+            <div class="options-grid">
+
+            <!-- Banner para Evento -->
+            <div class="option-card recommended" data-choice="material" data-value="banner">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup with-photo" style="background-image: var(--photo-banner); height: 120px;">
+                        <svg width="100" height="100" style="color: white; z-index: 2;"><use xlink:href="#logo-neg"></use></svg>
+                    </div>
+                </div>
+                <p class="option-title">Banner / Bandeirola para Evento</p>
+                <p class="option-description">Tipografia gigante Anton sobre fotos de liderança. Máximo reconhecimento visual em campo.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Incluir um QR Code gigante no centro-inferior do material para facilitar cadastro de interessados e doações instantâneas via celular.</p>
+                <div class="option-specs"><span class="option-spec">3×1m / PVC</span><span class="option-spec">Urbano</span></div>
+            </div>
+
+            <!-- Caneca Institucional -->
+            <div class="option-card" data-choice="material" data-value="caneca">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview" style="display:flex; flex-direction:column; justify-content:flex-end; padding-top:20px;">
+                    <div id="mugLanyard" class="badge-lanyard" style="display:none;"></div>
+                    <div id="mainMug" class="mug-mockup" style="--mug-color: #ffffff;">
+                        <div class="mug-handle"></div>
+                        <div class="mug-body">
+                            <svg width="40" height="40" id="mugLogo" style="color: var(--roxo); z-index: 5;"><use xlink:href="#logo-main"></use></svg>
+                            <span id="mugText" style="font-size:6px;font-weight:bold;margin-top:4px;z-index:5;color:var(--azul-marinho);">INSTITUCIONAL</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Caneca Institucional</p>
+                <p class="option-description">Brinde para padrinhos e equipe. Cores dinâmicas baseadas na paleta escolhida.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Vender como produto social para arrecadação (merchandising) ou presentear doadores recorrentes para fidelização a longo prazo.</p>
+                <div class="option-specs"><span class="option-spec">Cerâmica / 300ml</span><span class="option-spec">Brindes</span></div>
+            </div>
+
+            <!-- Cordão de Crachá -->
+            <div class="option-card" data-choice="material" data-value="cracha">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview" style="padding-top:10px;">
+                    <div id="badgeLanyard" class="badge-lanyard">
+                        <span>DMD</span><span>DMD</span>
+                    </div>
+                    <div class="mock-badge">
+                        <div id="badgeHeader" class="mock-badge-header"></div>
+                        <div class="mock-badge-body">
+                            <div style="width:30px;height:30px;background:#eee;border-radius:50%;"></div>
+                            <div style="width:40px;height:4px;background:#ccc;margin-top:4px;"></div>
+                            <div style="width:25px;height:4px;background:#eee;"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Cordão de Crachá</p>
+                <p class="option-description">Identificação de equipe em campo. Cores baseadas na paleta escolhida pelo usuário.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Utilizar cores diferentes (Laranja para Staff, Roxo para Voluntários, Azul para Prestadores) para categorização visual imediata em ações de rua.</p>
+                <div class="option-specs"><span class="option-spec">Sublimação</span><span class="option-spec">Identificação</span></div>
+            </div>
+
+            <!-- Camiseta Estampada -->
+            <div class="option-card" data-choice="material" data-value="camiseta">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:#1e1e30; height:120px;">
+                        <div class="mock-tshirt-pi">
+                            <div class="ts-collar"></div>
+                            <div class="ts-sl ts-sl-l"></div>
+                            <div class="ts-sl ts-sl-r"></div>
+                            <div class="ts-body">
+                                <svg width="32" height="32" style="color:rgba(255,255,255,0.85);"><use xlink:href="#logo-neg"></use></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Camiseta Estampada</p>
+                <p class="option-description">Algodão 30.1, silk ou sublimação. Uniforme de voluntários e equipe de campo em eventos.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Aplicar frases de impacto social no peito ou costas que instiguem curiosidade, tornando a equipe em 'outdoors ambulantes' da causa.</p>
+                <div class="option-specs"><span class="option-spec">P ao XGG</span><span class="option-spec">Uniformes</span></div>
+            </div>
+
+            <!-- Mousepad -->
+            <div class="option-card" data-choice="material" data-value="mousepad">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:#1a1f30; height:120px;">
+                        <div class="mock-mousepad-pi">
+                            <svg width="54" height="54" style="color:rgba(255,255,255,0.8);"><use xlink:href="#logo-neg"></use></svg>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Mousepad Institucional</p>
+                <p class="option-description">Borracha antiderrapante 20×25cm, superfície tecido. Logo centralizada em branco sobre navy.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Direcionado B2B. Distribuir a parceiros e patrocinadores; estar diariamente na mesa corporativa garante 'Top of Mind' no fechamento de patrocínios.</p>
+                <div class="option-specs"><span class="option-spec">20×25cm</span><span class="option-spec">Escritório</span></div>
+            </div>
+
+            </div><!-- /options-grid 4.4 -->
+        </div><!-- /mod4-subgroup 4.4 -->
+
+        </div><!-- /fade-in wrapper -->
+    </section>
+
+    <!-- SUMMARY SECTION -->
+    <section class="section summary" id="summary">
+        <div class="section-header fade-in">
+            <p class="section-number">Revisão Final</p>
+            <h2 class="section-title">Suas Escolhas</h2>
+            <p class="section-subtitle">Confirme as opções selecionadas para finalizar o portfólio de aprovação.</p>
+        </div>
+
+        <div class="summary-grid fade-in">
+            <div class="summary-item">
+                <div class="summary-item-header">
+                    <div class="summary-item-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                    </div>
+                    <p class="summary-item-title">Versão da Marca</p>
+                </div>
+                <div class="summary-choice" id="summary-brand">
+                    <div class="summary-choice-check">✓</div>
+                    <p class="summary-choice-text">Versão Principal</p>
+                </div>
+            </div>
+
+            <div class="summary-item">
+                <div class="summary-item-header">
+                    <div class="summary-item-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="4 7 4 4 20 4 20 7"/>
+                            <line x1="9" y1="20" x2="15" y2="20"/>
+                            <line x1="12" y1="4" x2="12" y2="20"/>
+                        </svg>
+                    </div>
+                    <p class="summary-item-title">Tipografia</p>
+                </div>
+                <div class="summary-choice" id="summary-typography">
+                    <div class="summary-choice-check">✓</div>
+                    <p class="summary-choice-text">Inovação Social (Space Grotesk + Inter + Anton)</p>
+                </div>
+            </div>
+
+            <div class="summary-item">
+                <div class="summary-item-header">
+                    <div class="summary-item-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="13.5" cy="6.5" r="2.5"/>
+                            <circle cx="17.5" cy="15.5" r="2.5"/>
+                            <circle cx="8.5" cy="12.5" r="2.5"/>
+                        </svg>
+                    </div>
+                    <p class="summary-item-title">Paleta de Cores</p>
+                </div>
+                <div class="summary-choice" id="summary-colors">
+                    <div class="summary-choice-check">✓</div>
+                    <p class="summary-choice-text">Equilíbrio Institucional (60-30-10)</p>
+                </div>
+            </div>
+
+            <div class="summary-item">
+                <div class="summary-item-header">
+                    <div class="summary-item-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="3" y1="9" x2="21" y2="9"/>
+                            <line x1="9" y1="21" x2="9" y2="9"/>
+                        </svg>
+                    </div>
+                    <p class="summary-item-title">Materiais Prioritários</p>
+                </div>
+                <div class="summary-choice" id="summary-material">
+                    <div class="summary-choice-check">✓</div>
+                    <p class="summary-choice-text">Relatório de Impacto + Post de Redes Sociais</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section fade-in">
+            <h3>Pronto para Finalizar?</h3>
+            <p>Preencha seus dados abaixo e envie as escolhas para nossa equipe de design.</p>
+            
+            <form id="portfolioForm" action="https://formsubmit.co/seu-email@demãosdadas.org.br" method="POST">
+                <input type="hidden" name="_subject" value="🎨 Novas escolhas de marca - Portfólio DMD">
+                <input type="hidden" name="escolhas_selecionadas" id="hiddenChoices">
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nome">Nome completo</label>
+                        <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone (opcional)</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(62) 99999-9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="organizacao">Organização (opcional)</label>
+                        <input type="text" id="organizacao" name="organizacao" placeholder="Nome da organização">
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label for="observacoes">Observações ou justificativas (opcional)</label>
+                    <textarea id="observacoes" name="observacoes" placeholder="Compartilhe suas impressões sobre as escolhas..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                    Enviar Escolhas para Análise
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <svg width="60" height="60" style="color: white; opacity: 0.8;"><use xlink:href="#logo-neg"></use></svg>
+        </div>
+        <p class="footer-text">Instituto De Mãos Dadas — Goiânia, Goiás</p>
+        <p class="footer-contact">Em defesa dos direitos sociais e fortalecimento comunitário</p>
+    </footer>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">✓</div>
+            <h2 class="modal-title">Portfólio Enviado!</h2>
+            <p class="modal-text">As suas seleções foram enviadas com sucesso para a nossa equipe de design. Entraremos em contato em breve para os próximos passos.</p>
+            <button class="modal-btn" onclick="closeModal()">Ótimo, obrigado!</button>
+        </div>
+    </div>
+
+    <!-- FLOATING SUMMARY -->
+    <div class="floating-summary" id="floatingSummary" onclick="scrollToSummary()">
+        <div class="floating-summary-count" id="choicesCount">4</div>
+        <span class="floating-summary-text">escolhas feitas</span>
+    </div>
+
+    <script>
+        // ==================== STATE MANAGEMENT ====================
+
+        // ==================== LOGO VARIANT SWITCHING ====================
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.logo-variant-selector input')) {
+                const card = e.target.closest('.option-card');
+                const preview = card.querySelector('.logo-preview');
+                const variant = e.target.value; // primary, mono, watermark
+                preview.className = 'logo-preview variant-' + variant;
+                // persist selection
+                const materialKey = card.dataset.value;
+                const stored = JSON.parse(localStorage.getItem('logo_variants')||'{}');
+                stored[materialKey] = variant;
+                localStorage.setItem('logo_variants', JSON.stringify(stored));
+            }
+        });
+        // Load persisted variants on page load
+        window.addEventListener('load', function(){
+            const stored = JSON.parse(localStorage.getItem('logo_variants')||'{}');
+            Object.entries(stored).forEach(([key, variant]) => {
+                const card = document.querySelector(`.option-card[data-value="${key}"]`);
+                if (card) {
+                    const preview = card.querySelector('.logo-preview');
+                    preview.className = 'logo-preview variant-' + variant;
+                    const input = card.querySelector(`input[value="${variant}"]`);
+                    if (input) input.checked = true;
+                }
+            });
+        });
+
+        const state = {
+            brand: null,
+            typography: null,
+            colors: null,
+            material: null
+        };
+
+        const choiceLabels = {
+            brand: {
+                principal: 'Versão Principal',
+                negativa: 'Versão Negativa',
+                monograma: 'Monograma DMD'
+            },
+            typography: {
+                innovacao: 'Inovação Social (Space Grotesk + Inter + Anton)',
+                campanha: 'Campanha Comunitária (Anton + Roboto)',
+                premium: 'Institucional Premium (Space Grotesk + Crimson Pro)'
+            },
+            colors: {
+                institucional: 'Equilíbrio Institucional (60-30-10)',
+                campanha: 'Campanha Comunitária (Vibrante)',
+                premium: 'Sóbria e Elevada (Premium)'
+            },
+                        material: {
+                relatorio: 'Relatório de Impacto + Post de Redes Sociais',
+                social: 'Post de Redes Sociais + Banner',
+                cartao: 'Cartão de Visita + Folder',
+                folder: 'Folder + Apresentação',
+                slides: 'Apresentação de Slides + Relatório',
+                banner: 'Banner para Evento + Merchandising',
+                caneca: 'Caneca Institucional (Brindes)',
+                cracha: 'Cordão de Crachá (Identificação)'
+            }
+        };
+
+        // ==================== LOCAL STORAGE ====================
+        function saveState() {
+            localStorage.setItem('portfolio_dmd_choices', JSON.stringify(state));
+        }
+
+        function loadState() {
+            const saved = localStorage.getItem('portfolio_dmd_choices');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                Object.assign(state, parsed);
+                updateUI();
+            }
+        }
+
+        // ==================== UI UPDATES ====================
+        function updateUI() {
+            // Update option cards
+            document.querySelectorAll('.option-card[data-choice]').forEach(card => {
+                const choice = card.dataset.choice;
+                const value = card.dataset.value;
+                
+                if (state[choice] === value) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
+            });
+
+            // Update summary
+            updateSummary();
+
+            // Real-time 3D CSS Mug & Badge simulation
+            const mug = document.getElementById('mainMug');
+            const mugLogo = document.getElementById('mugLogo');
+            const mugText = document.getElementById('mugText');
+            const badgeHeader = document.getElementById('badgeHeader');
+            const badgeLanyard = document.getElementById('badgeLanyard');
+            
+            if (mug && badgeHeader) {
+                if (state.colors === 'campanha') {
+                    mug.style.setProperty('--mug-color', '#FF9E00');
+                    mugLogo.style.color = '#7F4CA9';
+                    mugText.style.color = '#7F4CA9';
+                    badgeHeader.style.background = '#FF9E00';
+                    badgeLanyard.style.background = '#7F4CA9';
+                    mugText.textContent = 'CAMPANHA';
+                } else if (state.colors === 'premium') {
+                    mug.style.setProperty('--mug-color', '#153065');
+                    mugLogo.style.color = '#FAFAFA';
+                    mugText.style.color = '#FAFAFA';
+                    badgeHeader.style.background = '#153065';
+                    badgeLanyard.style.background = '#BD90DA';
+                    mugText.textContent = 'PREMIUM';
+                } else {
+                    mug.style.setProperty('--mug-color', '#FAFAFA');
+                    mugLogo.style.color = '#7F4CA9';
+                    mugText.style.color = '#153065';
+                    badgeHeader.style.background = '#7F4CA9';
+                    badgeLanyard.style.background = '#FF9E00';
+                    mugText.textContent = 'INSTITUCIONAL';
+                }
+            }
+
+
+            // Update floating counter
+            updateFloatingCounter();
+        }
+
+        function updateSummary() {
+            const summaryBrand = document.getElementById('summary-brand');
+            const summaryTypography = document.getElementById('summary-typography');
+            const summaryColors = document.getElementById('summary-colors');
+            const summaryMaterial = document.getElementById('summary-material');
+
+            if (summaryBrand) {
+                summaryBrand.innerHTML = `
+                    <div class="summary-choice-check">✓</div>
+                    <p class="summary-choice-text">${choiceLabels.brand[state.brand] || 'Não selecionado'}</p>
+                `;
+            }
+            if (summaryTypography) {
+                summaryTypography.innerHTML = `
+                    <div class="summary-choice-check">✓</div>
+                    <p class="summary-choice-text">${choiceLabels.typography[state.typography] || 'Não selecionado'}</p>
+                `;
+            }
+            if (summaryColors) {
+                summaryColors.innerHTML = `
+                    <div class="summary-choice-check">✓</div>
+                    <p class="summary-choice-text">${choiceLabels.colors[state.colors] || 'Não selecionado'}</p>
+                `;
+            }
+            if (summaryMaterial) {
+                summaryMaterial.innerHTML = `
+                    <div class="summary-choice-check">✓</div>
+                    <p class="summary-choice-text">${choiceLabels.material[state.material] || 'Não selecionado'}</p>
+                `;
+            }
+        }
+
+        function updateFloatingCounter() {
+            const count = Object.values(state).filter(v => v).length;
+            const counter = document.getElementById('choicesCount');
+            if (counter) {
+                counter.textContent = count;
+            }
+        }
+
+        function scrollToSummary() {
+            document.getElementById('summary').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ==================== EVENT HANDLERS ====================
+        function initEventListeners() {
+            // Progress dots click logic
+            document.querySelectorAll('.progress-dot').forEach(dot => {
+                dot.style.cursor = 'pointer';
+                dot.addEventListener('click', () => {
+                    const sectionId = dot.dataset.section;
+                    const el = document.getElementById(sectionId);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // Summary items click logic
+            const summaries = [
+                { id: 'summary-brand', target: 'brand' },
+                { id: 'summary-typography', target: 'typography' },
+                { id: 'summary-colors', target: 'colors' },
+                { id: 'summary-material', target: 'materials' }
+            ];
+            summaries.forEach(s => {
+                const el = document.getElementById(s.id);
+                if (el && el.parentElement) {
+                    el.parentElement.style.cursor = 'pointer';
+                    el.parentElement.addEventListener('click', () => {
+                        document.getElementById(s.target).scrollIntoView({behavior: 'smooth'});
+                    });
+                }
+            });
+            // Option cards
+            document.querySelectorAll('.option-card[data-choice]').forEach(card => {
+                card.addEventListener('click', () => {
+                    const choice = card.dataset.choice;
+                    const value = card.dataset.value;
+                    
+                    state[choice] = value;
+                    saveState();
+                    updateUI();
+
+                    // Visual feedback
+                    card.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Form submission (AJAX)
+            document.getElementById('portfolioForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const hiddenChoices = document.getElementById('hiddenChoices');
+                hiddenChoices.value = JSON.stringify(state, null, 2);
+                
+                const btn = document.getElementById('submitBtn');
+                const form = e.target;
+                
+                // Show loading state
+                btn.disabled = true;
+                const originalText = btn.innerHTML;
+                btn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin" style="margin-right: 10px;">
+                        <circle cx="12" cy="12" r="10" stroke-opacity="0.2"/>
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12" stroke-opacity="1"/>
+                    </svg>
+                    Enviando escolhas...
+                `;
+
+                // Submit via fetch
+                const formData = new FormData(form);
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showModal();
+                        localStorage.removeItem('portfolio_dmd_choices');
+                        form.reset();
+                    } else {
+                        throw new Error('Falha no envio');
+                    }
+                })
+                .catch(error => {
+                    alert('Houve um erro ao enviar suas escolhas. Por favor, tente novamente ou entre em contato diretamente.');
+                    console.error('Submission error:', error);
+                })
+                .finally(() => {
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                });
+            });
+
+            // Progress tracking
+            const sections = ['hero', 'manifesto', 'brand', 'typography', 'colors', 'materials', 'summary'];
+            const progressDots = document.querySelectorAll('.progress-dot');
+            const progressLabel = document.getElementById('progressLabel');
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+                        const index = sections.indexOf(sectionId);
+                        
+                        progressDots.forEach((dot, i) => {
+                            dot.classList.remove('active');
+                            if (i < index) dot.classList.add('completed');
+                            if (i === index) dot.classList.add('active');
+                        });
+
+                        if (progressLabel) {
+                            const labels = ['Início', 'Propósito', 'Marca', 'Tipografia', 'Cores', 'Materiais', 'Resumo'];
+                            progressLabel.textContent = labels[index] || 'Portfólio';
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) sectionObserver.observe(el);
+            });
+
+            // Fade-in animations
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(el => fadeObserver.observe(el));
+        }
+
+        // ==================== MODAL LOGIC ====================
+        function showModal() {
+            document.getElementById('successModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+            document.body.style.overflow = '';
+            // Optional: scroll to top or home
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==================== INIT ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            loadState();
+            initEventListeners();
+            updateUI();
+        });
+
+        // Add spin animation for loading
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            .spin { animation: spin 1s linear infinite; }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

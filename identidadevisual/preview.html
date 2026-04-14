@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Marca — De Mãos Dadas 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Roboto:wght@400;500;700;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --md-dark:    #0F0F1A;
+            --md-purple:  #7F4CA9;
+            --md-navy:    #153065;
+            --md-lilac:   #BD90DA;
+            --md-amber:   #FF9E00;
+            --md-amber-d: #E65100;
+            --md-white:   #FAFAFA;
+            --md-gray:    #616161;
+            --glass: rgba(255,255,255,0.05);
+            --glass-b: rgba(255,255,255,0.08);
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--md-dark);
+            color: var(--md-white);
+            overflow-x: hidden;
+        }
+
+        /* ─── MESH BG ─── */
+        .mesh {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background:
+                radial-gradient(ellipse at 10% 40%, rgba(127,76,169,.18), transparent 55%),
+                radial-gradient(ellipse at 90% 20%, rgba(255,158,0,.10), transparent 50%),
+                radial-gradient(ellipse at 55% 90%, rgba(21,48,101,.22), transparent 55%);
+            filter: blur(90px);
+            animation: meshPulse 25s ease-in-out infinite alternate;
+        }
+        @keyframes meshPulse {
+            0%   { transform: scale(1)    translate(0,0); }
+            50%  { transform: scale(1.06) translate(2%,-2%); }
+            100% { transform: scale(1.12) translate(-2%,2%); }
+        }
+
+        .noise {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 18px 48px;
+            background: rgba(15,15,26,.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-b);
+        }
+        nav .brand { font-family: 'Roboto', sans-serif; font-weight: 900; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--md-lilac); }
+        nav .pills { display: flex; gap: 8px; }
+        nav .pills a {
+            font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 6px 14px; border-radius: 100px; border: 1px solid var(--glass-b);
+            color: rgba(255,255,255,.55); text-decoration: none;
+            transition: all .3s ease;
+        }
+        nav .pills a:hover { color: var(--md-white); border-color: rgba(255,255,255,.25); background: var(--glass); }
+
+        /* ─── LAYOUT ─── */
+        .wrap { position: relative; z-index: 1; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+        section { padding: 120px 0; }
+        section + section { border-top: 1px solid var(--glass-b); }
+
+        /* ─── EYEBROW ─── */
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: 'Roboto', sans-serif; font-size: 11px; font-weight: 700;
+            letter-spacing: 3px; text-transform: uppercase; color: var(--md-amber);
+            margin-bottom: 20px;
+        }
+        .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--md-amber); }
+
+        /* ─── HEADINGS ─── */
+        h2.section-title {
+            font-family: 'Anton', sans-serif; font-size: clamp(40px, 6vw, 80px);
+            text-transform: uppercase; line-height: .92;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            font-size: 17px; font-weight: 400; color: rgba(255,255,255,.5);
+            max-width: 560px; line-height: 1.65; margin-bottom: 64px;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center;
+            padding: 100px 48px 80px;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,158,0,.08); color: var(--md-amber);
+            border: 1px solid rgba(255,158,0,.25); border-radius: 100px;
+            padding: 8px 20px; font-size: 11px; font-weight: 700;
+            letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 40px;
+        }
+        .hero .logo-wrap { width: min(440px, 80vw); margin-bottom: 32px; }
+        .hero .logo-wrap img { width: 100%; height: auto; }
+        .hero-tagline {
+            font-family: 'Dancing Script', cursive; font-size: clamp(22px, 4vw, 40px);
+            color: var(--md-amber); transform: rotate(-2.5deg); display: block;
+        }
+        .hero-desc {
+            max-width: 520px; font-size: 16px; color: rgba(255,255,255,.45);
+            line-height: 1.7; margin-top: 24px;
+        }
+        .hero-scroll {
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+            color: rgba(255,255,255,.3);
+        }
+        .hero-scroll span { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,.3), transparent); }
+
+        /* ─── DIAGNÓSTICO ─── */
+        .diag-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .diag-card {
+            border-radius: 20px; padding: 36px; border: 1px solid var(--glass-b);
+            background: var(--glass);
+        }
+        .diag-card.wrong { border-color: rgba(255,80,80,.25); background: rgba(255,80,80,.04); }
+        .diag-card.right { border-color: rgba(46,204,64,.25); background: rgba(46,204,64,.04); }
+        .diag-label {
+            display: inline-flex; align-items: center; gap: 6px; border-radius: 100px;
+            padding: 4px 14px; font-size: 10px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; margin-bottom: 28px;
+        }
+        .diag-label.wrong { background: rgba(255,80,80,.15); color: #FF5050; }
+        .diag-label.right { background: rgba(46,204,64,.15); color: #2ECC40; }
+
+        .pen-demo {
+            width: 100%; height: 36px; border-radius: 18px; overflow: hidden;
+            display: flex; align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.15);
+            position: relative;
+        }
+        .pen-demo::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,.15) 0%, transparent 40%, rgba(0,0,0,.2) 100%);
+            border-radius: inherit; pointer-events: none;
+        }
+        .pen-demo.purple { background: var(--md-purple); }
+        .pen-demo.navy   { background: var(--md-navy); }
+        .pen-demo-inner { width: 100%; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; position: relative; z-index: 1; }
+        .pen-demo-inner img { height: 20px; object-fit: contain; filter: brightness(10); }
+        .pen-demo-inner .pen-name { font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: white; }
+        .diag-problem {
+            font-size: 13px; color: rgba(255,255,255,.45); margin-top: 16px;
+            padding: 12px 16px; background: rgba(0,0,0,.2); border-radius: 8px;
+        }
+        .diag-problem strong { color: var(--md-white); }
+
+        /* SYMBOL ONLY PEN */
+        .pen-symbol-only { display: flex; align-items: center; gap: 0; width: 100%; height: 36px; }
+        .pen-cap {
+            width: 48px; height: 36px; border-radius: 18px 0 0 18px;
+            background: linear-gradient(135deg, #7F4CA9, #153065);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.2);
+            flex-shrink: 0; position: relative; z-index: 2;
+        }
+        .pen-barrel {
+            flex: 1; height: 36px; background: var(--md-navy);
+            display: flex; align-items: center; padding: 0 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08);
+            position: relative;
+        }
+        .pen-barrel::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,.1) 0%, transparent 40%, rgba(0,0,0,.2) 100%);
+        }
+        .pen-tip {
+            width: 16px; height: 20px; border-radius: 0 0 6px 0;
+            background: linear-gradient(to right, #888, #bbb);
+            clip-path: polygon(0 0, 100% 30%, 100% 70%, 0 100%);
+            flex-shrink: 0;
+        }
+        .pen-barrel-text {
+            font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 9px;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: rgba(255,255,255,.65); position: relative; z-index: 1;
+        }
+
+        /* ─── LOGO SYSTEM ─── */
+        .logo-system-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .logo-variant {
+            border: 1px solid var(--glass-b); border-radius: 20px; overflow: hidden;
+        }
+        .logo-variant-preview {
+            padding: 48px 32px; display: flex; align-items: center; justify-content: center;
+            min-height: 200px;
+        }
+        .logo-variant-preview img, .logo-variant-preview svg { max-width: 100%; max-height: 120px; object-fit: contain; }
+        .logo-variant-preview.dark  { background: var(--md-dark); }
+        .logo-variant-preview.light { background: #FAFAFA; }
+        .logo-variant-preview.purple-bg { background: var(--md-purple); }
+        .logo-variant-meta { padding: 20px 24px; border-top: 1px solid var(--glass-b); background: var(--glass); }
+        .logo-variant-name { font-family: 'Anton', sans-serif; font-size: 18px; text-transform: uppercase; margin-bottom: 6px; }
+        .logo-variant-uses { font-size: 12px; color: rgba(255,255,255,.45); line-height: 1.5; }
+        .logo-variant-uses strong { color: var(--md-amber); font-weight: 600; }
+
+        /* horizontal logo */
+        .logo-h {
+            display: flex; align-items: center; gap: 14px;
+        }
+        .logo-h img { height: 52px; }
+        .logo-h-text { display: flex; flex-direction: column; line-height: 1; }
+        .logo-h-text .top { font-family: 'Roboto', sans-serif; font-weight: 900; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.4); }
+        .logo-h-text .main { font-family: 'Anton', sans-serif; font-size: 22px; text-transform: uppercase; color: var(--md-white); }
+        .logo-h-text .sub  { font-family: 'Roboto', sans-serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--md-amber); margin-top: 2px; }
+
+        .logo-h.dark-bg .top  { color: rgba(255,255,255,.4); }
+        .logo-h.dark-bg .main { color: white; }
+
+        .logo-h.on-light .top  { color: rgba(15,15,26,.4); }
+        .logo-h.on-light .main { color: var(--md-navy); }
+        .logo-h.on-light .sub  { color: var(--md-amber-d); }
+
+        /* ─── TIPOGRAFIA ─── */
+        .type-system { display: flex; flex-direction: column; gap: 0; }
+        .type-row {
+            display: grid; grid-template-columns: 160px 1fr 200px;
+            align-items: center; padding: 28px 0; border-bottom: 1px solid var(--glass-b);
+            gap: 32px;
+        }
+        .type-meta { display: flex; flex-direction: column; gap: 4px; }
+        .type-role { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--md-amber); }
+        .type-family { font-size: 12px; color: rgba(255,255,255,.4); }
+        .type-spec { font-size: 11px; color: rgba(255,255,255,.25); line-height: 1.6; text-align: right; }
+        .type-spec strong { color: rgba(255,255,255,.5); font-weight: 600; display: block; }
+
+        .t-display { font-family: 'Anton', sans-serif; font-size: 72px; line-height: .9; text-transform: uppercase; }
+        .t-h1      { font-family: 'Anton', sans-serif; font-size: 48px; line-height: .95; text-transform: uppercase; }
+        .t-h2      { font-family: 'Anton', sans-serif; font-size: 32px; line-height: 1; text-transform: uppercase; color: var(--md-lilac); }
+        .t-label   { font-family: 'Roboto', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--md-amber); }
+        .t-body    { font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.7; color: rgba(255,255,255,.75); max-width: 440px; }
+        .t-caption { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.5; color: rgba(255,255,255,.4); }
+        .t-quote   { font-family: 'Dancing Script', cursive; font-size: 36px; color: var(--md-amber); transform: rotate(-2deg); display: inline-block; }
+
+        .type-pair { margin-top: 80px; padding: 48px; border: 1px solid var(--glass-b); border-radius: 20px; background: var(--glass); }
+        .type-pair-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 20px; }
+        .type-pair-example { display: flex; flex-direction: column; gap: 8px; }
+
+        /* ─── CORES ─── */
+        .color-system { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+        .color-swatch {
+            border-radius: 16px; overflow: hidden; cursor: default;
+            transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease;
+        }
+        .color-swatch:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(0,0,0,.4); }
+        .swatch-color { height: 120px; }
+        .swatch-info { padding: 16px; background: rgba(255,255,255,.04); border: 1px solid var(--glass-b); border-top: none; border-radius: 0 0 16px 16px; }
+        .swatch-name { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+        .swatch-hex  { font-family: 'Roboto Mono', monospace; font-size: 11px; color: rgba(255,255,255,.4); }
+        .swatch-role { font-size: 11px; color: rgba(255,255,255,.35); margin-top: 6px; line-height: 1.4; }
+
+        .color-accent-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 20px; }
+        .mini-swatch { height: 48px; border-radius: 10px; display: flex; align-items: flex-end; padding: 8px 12px; }
+        .mini-swatch span { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; opacity: .8; }
+
+        /* ─── APLICAÇÕES ─── */
+        .app-title { font-family: 'Anton', sans-serif; font-size: 22px; text-transform: uppercase; margin-bottom: 8px; }
+        .app-sub { font-size: 13px; color: rgba(255,255,255,.4); margin-bottom: 28px; }
+
+        /* 3D PEN */
+        .pen-showcase {
+            padding: 48px; border: 1px solid var(--glass-b); border-radius: 24px;
+            background: var(--glass); margin-bottom: 24px;
+        }
+        .pen-showcase-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 32px; }
+        .pen-3d {
+            position: relative; width: 100%; height: 56px;
+            filter: drop-shadow(0 8px 24px rgba(0,0,0,.5));
+        }
+        .pen-3d-wrap {
+            display: flex; width: 100%; height: 56px; border-radius: 28px 4px 4px 28px;
+            overflow: hidden; position: relative;
+        }
+        .pen-3d-cap {
+            width: 80px; height: 56px; flex-shrink: 0;
+            background: linear-gradient(135deg, #9B5FCC 0%, #7F4CA9 50%, #5E3580 100%);
+            display: flex; align-items: center; justify-content: center;
+            border-right: 1px solid rgba(255,255,255,.1);
+            position: relative;
+        }
+        .pen-3d-cap::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 35%;
+            background: linear-gradient(to bottom, rgba(255,255,255,.25), transparent);
+            pointer-events: none;
+        }
+        .pen-3d-cap .cap-symbol { width: 38px; height: 38px; position: relative; z-index: 1; }
+        .pen-3d-band {
+            width: 12px; flex-shrink: 0;
+            background: linear-gradient(to right, rgba(255,255,255,.1), rgba(255,255,255,.05));
+            border-right: 1px solid rgba(255,255,255,.08);
+        }
+        .pen-3d-body {
+            flex: 1; height: 56px;
+            background: linear-gradient(to bottom, #1d3d6b 0%, #153065 50%, #0e2248 100%);
+            display: flex; align-items: center; padding: 0 24px;
+            position: relative;
+        }
+        .pen-3d-body::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 40%;
+            background: linear-gradient(to bottom, rgba(255,255,255,.12), transparent);
+            pointer-events: none;
+        }
+        .pen-3d-body-text {
+            display: flex; align-items: center; gap: 16px; position: relative; z-index: 1;
+        }
+        .pen-3d-body-text .website {
+            font-family: 'Roboto', sans-serif; font-weight: 500; font-size: 11px;
+            letter-spacing: 2px; color: rgba(255,255,255,.5); text-transform: lowercase;
+        }
+        .pen-3d-body-text .divider { width: 1px; height: 16px; background: rgba(255,255,255,.15); }
+        .pen-3d-body-text .tagline {
+            font-family: 'Inter', sans-serif; font-size: 10px; font-style: italic;
+            color: rgba(255,255,255,.35);
+        }
+        .pen-3d-tip {
+            width: 32px; height: 56px; flex-shrink: 0;
+            background: linear-gradient(135deg, #aaa 0%, #888 40%, #666 100%);
+            clip-path: polygon(0 15%, 100% 45%, 100% 55%, 0 85%);
+        }
+        /* Sheen strip across the pen */
+        .pen-3d-wrap::before {
+            content: ''; position: absolute; top: 6px; left: 80px; right: 32px; height: 8px;
+            background: rgba(255,255,255,.08); border-radius: 4px; pointer-events: none; z-index: 10;
+        }
+
+        /* Pen clip */
+        .pen-clip-wrap { position: absolute; top: -4px; left: 88px; width: 16px; height: 70px; z-index: 20; }
+        .pen-clip {
+            width: 10px; height: 64px; background: linear-gradient(to right, #ccc 0%, #eee 40%, #bbb 100%);
+            border-radius: 2px 2px 6px 6px; position: relative;
+            box-shadow: 1px 2px 6px rgba(0,0,0,.3);
+        }
+        .pen-clip::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 14px; height: 14px; background: #bbb; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,.3); }
+
+        .pen-variants { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        .pen-var-card { padding: 32px 24px; border: 1px solid var(--glass-b); border-radius: 16px; background: var(--glass); }
+        .pen-var-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--md-amber); margin-bottom: 20px; }
+        .pen-mini {
+            width: 100%; height: 28px; border-radius: 14px 2px 2px 14px;
+            display: flex; overflow: hidden; filter: drop-shadow(0 4px 12px rgba(0,0,0,.4));
+        }
+        .pen-mini-cap { width: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .pen-mini-cap svg { width: 22px; height: 22px; }
+        .pen-mini-body { flex: 1; display: flex; align-items: center; padding: 0 12px; }
+        .pen-mini-body span { font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 7.5px; letter-spacing: 1.5px; text-transform: uppercase; }
+        .pen-mini-tip { width: 12px; background: linear-gradient(to right, #999, #bbb); clip-path: polygon(0 20%, 100% 45%, 100% 55%, 0 80%); }
+        .pen-var-desc { font-size: 11px; color: rgba(255,255,255,.35); margin-top: 16px; line-height: 1.5; }
+
+        /* ─── CRACHÁ ─── */
+        .badge-showcase {
+            display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: start;
+        }
+        .badge-card {
+            width: 200px; background: white; border-radius: 16px; overflow: hidden;
+            box-shadow: 0 24px 64px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.1);
+            flex-shrink: 0;
+        }
+        .badge-header {
+            background: var(--md-purple); padding: 24px 16px 20px; text-align: center;
+            display: flex; justify-content: center;
+        }
+        .badge-header img { height: 44px; }
+        .badge-body { padding: 16px; color: var(--md-navy); }
+        .badge-event { font-size: 7px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--md-purple); margin-bottom: 12px; }
+        .badge-name-card { border: 2px solid var(--md-navy); border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+        .badge-name { font-family: 'Anton', sans-serif; font-size: 16px; text-transform: uppercase; color: var(--md-navy); line-height: 1.1; }
+        .badge-role { font-size: 9px; color: #777; margin-top: 4px; }
+        .badge-footer { font-size: 7px; color: #999; text-align: center; padding-bottom: 4px; }
+
+        .badge-rules { display: flex; flex-direction: column; gap: 16px; }
+        .badge-rule {
+            padding: 20px 24px; border-radius: 12px; border: 1px solid var(--glass-b);
+            background: var(--glass); display: flex; gap: 16px; align-items: flex-start;
+        }
+        .badge-rule-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+        .badge-rule-text strong { display: block; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .badge-rule-text p { font-size: 12px; color: rgba(255,255,255,.45); line-height: 1.5; }
+
+        /* ─── CANECA ─── */
+        .mug-scene {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+            margin-top: 8px;
+        }
+        .mug-card-3d {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 40px 24px 28px;
+            border: 1px solid var(--glass-b); border-radius: 20px; background: var(--glass);
+        }
+        .mug-card-3d-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--md-amber); margin-bottom: 28px; }
+        .mug-3d {
+            position: relative; width: 120px; height: 130px;
+            filter: drop-shadow(0 16px 32px rgba(0,0,0,.55));
+        }
+        /* body */
+        .mug-body-3d {
+            position: absolute; left: 0; top: 0;
+            width: 100px; height: 120px;
+            border-radius: 6px 6px 20px 20px;
+            overflow: hidden;
+        }
+        .mug-body-3d::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(100deg,
+                rgba(0,0,0,.25) 0%,
+                transparent 25%,
+                rgba(255,255,255,.12) 50%,
+                transparent 75%,
+                rgba(0,0,0,.2) 100%);
+            z-index: 2; pointer-events: none;
+        }
+        .mug-body-3d::after {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 10px;
+            background: linear-gradient(to bottom, rgba(255,255,255,.25), transparent);
+            z-index: 3; pointer-events: none;
+        }
+        .mug-inner {
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 8px; padding: 12px;
+            position: relative; z-index: 1;
+        }
+        .mug-inner img  { max-width: 70%; max-height: 44px; object-fit: contain; }
+        .mug-inner .mug-slogan {
+            font-family: 'Anton', sans-serif; font-size: 13px; text-transform: uppercase;
+            text-align: center; line-height: 1.1;
+        }
+        /* rim */
+        .mug-rim {
+            position: absolute; top: -5px; left: -2px; right: -2px; height: 14px;
+            border-radius: 50%; background: inherit;
+            box-shadow: 0 2px 6px rgba(0,0,0,.3);
+        }
+        /* handle */
+        .mug-handle-3d {
+            position: absolute; right: -22px; top: 24px;
+            width: 22px; height: 54px;
+            border-width: 7px; border-style: solid;
+            border-radius: 0 18px 18px 0;
+            border-left: none;
+            box-shadow: inset -2px 0 4px rgba(0,0,0,.2), 2px 4px 8px rgba(0,0,0,.25);
+        }
+        .mug-card-3d-desc { font-size: 11px; color: rgba(255,255,255,.35); margin-top: 20px; text-align: center; line-height: 1.5; }
+
+        /* ─── BANNERS DIGITAIS ─── */
+        .banner-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        .banner-card {
+            border-radius: 20px; overflow: hidden; aspect-ratio: 4/5;
+            display: flex; flex-direction: column; justify-content: space-between;
+            padding: 28px; position: relative;
+        }
+        .banner-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,.6) 100%);
+        }
+        .banner-card > * { position: relative; z-index: 1; }
+        .banner-tag {
+            display: inline-flex; width: fit-content;
+            font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 100px; background: rgba(255,255,255,.12);
+            backdrop-filter: blur(10px);
+        }
+        .banner-bottom { display: flex; flex-direction: column; }
+        .banner-headline { font-family: 'Anton', sans-serif; font-size: 36px; line-height: .9; text-transform: uppercase; margin-bottom: 12px; }
+        .banner-logo-row { display: flex; align-items: center; gap: 8px; border-top: 1px solid rgba(255,255,255,.15); padding-top: 12px; }
+        .banner-logo-row img { height: 20px; filter: brightness(10); }
+        .banner-logo-row span { font-size: 8px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.6); }
+
+        /* ─── DO DON'T ─── */
+        .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .rule-card {
+            padding: 28px; border-radius: 16px; border: 1px solid;
+        }
+        .rule-card.dont { border-color: rgba(255,80,80,.3); background: rgba(255,80,80,.04); }
+        .rule-card.do   { border-color: rgba(46,204,64,.3); background: rgba(46,204,64,.04); }
+        .rule-pill {
+            display: inline-flex; font-size: 9px; font-weight: 800; letter-spacing: 2px;
+            text-transform: uppercase; padding: 4px 12px; border-radius: 100px; margin-bottom: 16px;
+        }
+        .rule-pill.dont { background: rgba(255,80,80,.2); color: #FF5050; }
+        .rule-pill.do   { background: rgba(46,204,64,.2); color: #2ECC40; }
+        .rule-text { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+        .rule-detail { font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.5; }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--glass-b); padding: 48px;
+            display: flex; align-items: center; justify-content: space-between;
+            position: relative; z-index: 1;
+        }
+        footer .foot-logo img { height: 36px; }
+        footer .foot-info { font-size: 11px; color: rgba(255,255,255,.3); line-height: 1.6; text-align: right; }
+        footer .foot-info strong { color: rgba(255,255,255,.6); display: block; }
+
+        /* ─── UTILITIES ─── */
+        .divider-line { width: 48px; height: 2px; background: var(--md-amber); margin-bottom: 48px; }
+        .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+        .tag {
+            font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 4px 12px; border-radius: 100px; border: 1px solid var(--glass-b);
+            color: rgba(255,255,255,.4);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .container { padding: 0 24px; }
+            nav { padding: 16px 24px; }
+            nav .pills { display: none; }
+            .logo-system-grid { grid-template-columns: 1fr; }
+            .pen-variants { grid-template-columns: 1fr; }
+            .banner-grid { grid-template-columns: 1fr 1fr; }
+            .color-system { grid-template-columns: 1fr 1fr; }
+            .diag-grid { grid-template-columns: 1fr; }
+            .badge-showcase { grid-template-columns: 1fr; }
+            .rules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="mesh"></div>
+<div class="noise"></div>
+
+<!-- NAV -->
+<nav>
+    <div class="brand">De Mãos Dadas — Sistema de Marca</div>
+    <div class="pills">
+        <a href="#diagnostico">Diagnóstico</a>
+        <a href="#sistema">Sistema</a>
+        <a href="#tipografia">Tipografia</a>
+        <a href="#cores">Cores</a>
+        <a href="#aplicacoes">Caneta</a>
+        <a href="#aplicacoes">Caneca</a>
+        <a href="#aplicacoes">Digital</a>
+    </div>
+</nav>
+
+<div class="wrap">
+
+    <!-- ═══════════════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════════════ -->
+    <div class="hero">
+        <div class="hero-badge">Manifesto de Marca · 2026</div>
+        <div class="logo-wrap">
+            <img src="logo-dmd.svg" alt="De Mãos Dadas">
+        </div>
+        <span class="hero-tagline">Em defesa dos direitos sociais e fortalecimento comunitário</span>
+        <p class="hero-desc">Este documento define o sistema de logomarca, tipografia, cores e aplicações da identidade visual do Instituto de Mãos Dadas para 2026.</p>
+        <div class="hero-scroll">
+            ROLAR
+            <span></span>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+         SEÇÃO 1 — DIAGNÓSTICO
+    ═══════════════════════════════════════════════ -->
+    <section id="diagnostico">
+        <div class="container">
+            <div class="eyebrow">01 · Diagnóstico</div>
+            <h2 class="section-title">O problema<br>da redundância</h2>
+            <p class="section-sub">A logo atual é uma <strong>marca composta</strong> — o símbolo e o wordmark "MÃOS DADAS" convivem num único arquivo. Quando aplicada com um texto de apoio, o nome aparece duas vezes. Em formatos pequenos, ambos conflitam.</p>
+
+            <div class="diag-grid">
+                <!-- ERRADO -->
+                <div class="diag-card wrong">
+                    <div class="diag-label wrong">✕ Como está sendo feito</div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-size: 11px; color: rgba(255,255,255,.3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">Caneta — versão atual</div>
+                        <div class="pen-demo purple">
+                            <div class="pen-demo-inner">
+                                <img src="logo-dmd.svg" alt="logo">
+                                <span class="pen-name">De Mãos Dadas</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="diag-problem">
+                        A logo já contém o wordmark <strong>"MÃOS DADAS"</strong> internamente. O texto "De Mãos Dadas" ao lado duplica a identidade e o resultado visual é denso e confuso em 10mm de altura.
+                    </div>
+                </div>
+
+                <!-- CERTO -->
+                <div class="diag-card right">
+                    <div class="diag-label right">✓ Como deve ser</div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-size: 11px; color: rgba(255,255,255,.3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">Caneta — versão corrigida</div>
+                        <div class="pen-symbol-only" style="filter: drop-shadow(0 4px 16px rgba(0,0,0,.4));">
+                            <div class="pen-cap">
+                                <!-- Símbolo isolado inline -->
+                                <svg class="cap-symbol" viewBox="350 250 420 530" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="dg0" gradientUnits="userSpaceOnUse" x1="432" y1="729" x2="520" y2="519">
+                                            <stop offset="0" stop-color="#4A7ABF"/><stop offset="1" stop-color="#8AABD4"/>
+                                        </linearGradient>
+                                        <linearGradient id="dg1" gradientUnits="userSpaceOnUse" x1="630" y1="269" x2="650" y2="519">
+                                            <stop offset="0" stop-color="#A06BCE"/><stop offset="1" stop-color="#DDB8F0"/>
+                                        </linearGradient>
+                                        <linearGradient id="dg2" gradientUnits="userSpaceOnUse" x1="387" y1="794" x2="430" y2="686">
+                                            <stop offset="0" stop-color="#1E3C7A"/><stop offset="1" stop-color="#3A5A9A"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path fill="url(#dg0)" transform="scale(0.948148 0.948148)" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C614.381 586.805 633.079 654.283 624.528 692.552C619.312 716.702 604.723 737.793 583.965 751.192C557.428 768.004 511.717 771.414 483.461 750.007C482.255 749.093 482.77 735.89 482.515 732.989C479.764 701.802 456.561 676.705 426.689 668.87C407.444 664.008 385.867 668.456 368.747 679.129C337.542 668.688 314.441 624.038 318 592.686C318.967 584.161 320.227 571.676 324.162 563.949C334.219 567.469 343.418 571.652 354.095 573.339C355.343 573.536 364.336 574.718 364.269 575.735C363.969 580.312 362.295 584.988 361.571 589.648C359.911 599.994 361.581 610.6 366.34 619.936C385.632 657.632 436.393 650.461 469.11 638.176C469.419 638.06 470.338 638.399 470.674 638.507C471.7 640.981 473.225 651.853 473.858 655.253C475.739 665.505 478.997 675.457 483.543 684.837C493.295 704.743 506.752 719.779 529.687 722.238C551.679 724.596 573.283 710.74 580.567 689.987C584.722 678.148 583.621 666.036 582.348 653.827C577.887 614.225 562.376 577.027 544.273 541.721C542.141 537.856 539.962 534.011 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z"/>
+                                    <path fill="url(#dg1)" transform="scale(0.948148 0.948148)" d="M538.064 530.026C536.143 526.116 534.002 522.333 531.988 518.472C507.779 472.05 474.754 389.393 491.438 337.364C499.193 313.183 516.063 293.976 538.672 282.607C559.117 272.326 585.319 269.995 607.026 277.409C611.529 278.948 628.081 285.317 630.144 288.943C632.07 292.33 630.645 302.854 631.277 307.366C632.429 315.58 634.943 324.068 638.628 331.505C647.258 348.922 663.465 361.898 681.792 367.96C705.655 375.853 724.315 369.975 745.696 359.084C786.326 377.758 807.981 433.699 789.617 474.57C772.486 468.055 766.758 465.859 748.296 462.87C753.437 448.122 754.572 440.039 750.181 424.61C746.735 412.501 737.28 402.404 726.166 396.688C708.711 387.712 680.544 389.267 662.13 394.197C655.211 396.05 649.088 399.156 642.258 401.297C640.8 383.366 637.874 368.062 629.303 351.874C620.885 336.055 612.639 323.887 594.974 318.246C567.453 309.459 539.77 324.162 531.683 351.883C528.75 361.938 529.518 369.975 530.516 380.345C534.921 426.097 554.429 469.963 576.371 509.826C566.077 514.851 547.945 523.816 538.064 530.026Z"/>
+                                    <path fill="url(#dg2)" transform="scale(0.948148 0.948148)" d="M404.653 681.48C437.231 678.818 465.797 703.073 468.452 735.652C471.107 768.23 446.846 796.791 414.267 799.439C381.698 802.086 353.148 777.834 350.493 745.265C347.839 712.697 372.085 684.141 404.653 681.48Z"/>
+                                    <circle fill="rgba(255,255,255,0.9)" cx="662" cy="279" r="55"/>
+                                </svg>
+                            </div>
+                            <div class="pen-barrel" style="background: var(--md-navy);">
+                                <span class="pen-barrel-text" style="position:relative;z-index:1;">institutodemaosdadas.com.br</span>
+                            </div>
+                            <div class="pen-tip"></div>
+                        </div>
+                    </div>
+                    <div class="diag-problem" style="background: rgba(46,204,64,.06); border: 1px solid rgba(46,204,64,.15); border-radius: 8px;">
+                        O <strong>símbolo isolado</strong> ocupa o cap. No barrel, apenas o site ou tagline. O nome não se repete. A leitura em qualquer escala fica limpa.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SEÇÃO 2 — SISTEMA DE LOGOMARCA
+    ═══════════════════════════════════════════════ -->
+    <section id="sistema">
+        <div class="container">
+            <div class="eyebrow">02 · Sistema de Marca</div>
+            <h2 class="section-title">Três variantes,<br>um sistema</h2>
+            <p class="section-sub">Cada variante foi desenhada para um contexto de aplicação. A escolha correta evita redundância e garante legibilidade em qualquer escala.</p>
+
+            <div class="logo-system-grid">
+
+                <!-- VARIANTE 1: MARCA COMPLETA -->
+                <div class="logo-variant">
+                    <div class="logo-variant-preview dark">
+                        <img src="logo-dmd.svg" alt="Marca Completa">
+                    </div>
+                    <div class="logo-variant-meta">
+                        <div class="logo-variant-name">Marca Completa</div>
+                        <div class="logo-variant-uses">
+                            Símbolo + wordmark "MÃOS DADAS" integrado.<br>
+                            <strong>Usar em:</strong> apresentações, relatórios institucionais, banners grandes, capas de documentos, fundo escuro ou colorido.
+                        </div>
+                        <div class="tag-row">
+                            <span class="tag">Relatórios</span>
+                            <span class="tag">Banners</span>
+                            <span class="tag">Apresentações</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VARIANTE 2: ASSINATURA HORIZONTAL (7 SOLUÇÕES) -->
+                <div class="logo-variant" style="grid-column: span 2;">
+                    <div class="logo-variant-preview" style="background: #F5F5F5; display: block; padding: 48px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                            
+                            <!-- Opção 1 -->
+                            <div style="display:flex; flex-direction:column; gap:12px;">
+                                <span style="font-size:10px; color:#999; font-weight:700;">OPÇÃO 1 · The Semantic Standard</span>
+                                <div style="display: flex; align-items: center; gap: 16px;">
+                                    <img src="logo-dmd-new.png" alt="símbolo" style="height: 52px;">
+                                    <div style="display: flex; flex-direction: column; justify-content: center;">
+                                        <span style="font-family: 'Roboto', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--md-purple);">Instituto</span>
+                                        <span style="font-family: 'Anton', sans-serif; font-size: 26px; text-transform: uppercase; color: var(--md-navy); margin-top: -2px;">De Mãos Dadas</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opção 2 -->
+                            <div style="display:flex; flex-direction:column; gap:12px;">
+                                <span style="font-size:10px; color:#999; font-weight:700;">OPÇÃO 2 · Structural Divider</span>
+                                <div style="display: flex; align-items: center; gap: 16px;">
+                                    <img src="logo-dmd-new.png" alt="símbolo" style="height: 44px;">
+                                    <div style="width: 2px; height: 38px; background: var(--md-amber);"></div>
+                                    <div style="display: flex; flex-direction: column; justify-content: center;">
+                                        <span style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: #666;">Instituto</span>
+                                        <span style="font-family: 'Anton', sans-serif; font-size: 22px; text-transform: uppercase; color: var(--md-navy); line-height: 1.1;">De Mãos Dadas</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opção 3 -->
+                            <div style="display:flex; flex-direction:column; gap:12px;">
+                                <span style="font-size:10px; color:#999; font-weight:700;">OPÇÃO 3 · The Data Label</span>
+                                <div style="display: flex; align-items: center; gap: 16px;">
+                                    <img src="logo-dmd-new.png" alt="símbolo" style="height: 48px;">
+                                    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+                                        <div style="background: var(--md-navy); color: white; padding: 3px 8px; border-radius: 4px; font-family: 'Roboto', sans-serif; font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; display: inline-block;">Instituto</div>
+                                        <span style="font-family: 'Anton', sans-serif; font-size: 24px; text-transform: uppercase; color: var(--md-navy); line-height: 1;">De Mãos Dadas</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opção 4 -->
+                            <div style="display:flex; flex-direction:column; gap:12px;">
+                                <span style="font-size:10px; color:#999; font-weight:700;">OPÇÃO 4 · Baseline Anchor</span>
+                                <div style="display: flex; align-items: center; gap: 16px;">
+                                    <img src="logo-dmd-new.png" alt="símbolo" style="height: 50px;">
+                                    <div style="display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 2px; border-bottom: 4px solid var(--md-purple);">
+                                        <span style="font-family: 'Roboto', sans-serif; font-size: 9px; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; color: var(--md-amber-d); margin-bottom: -2px;">Instituto</span>
+                                        <span style="font-family: 'Anton', sans-serif; font-size: 24px; text-transform: uppercase; color: var(--md-navy); line-height: 1;">De Mãos Dadas</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opção 5 -->
+                            <div style="display:flex; flex-direction:column; gap:12px;">
+                                <span style="font-size:10px; color:#999; font-weight:700;">OPÇÃO 5 · Mono Hierarchy</span>
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <img src="logo-dmd-new.png" alt="símbolo" style="height: 48px;">
+                                    <div style="display: flex; flex-direction: column;">
+                                        <span style="font-family: 'Roboto Mono', monospace; font-size: 10px; font-weight: 700; color: #555;">[INSTITUTO]</span>
+                                        <span style="font-family: 'Anton', sans-serif; font-size: 26px; text-transform: uppercase; color: var(--md-navy); line-height: 1;">De Mãos Dadas</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opção 6 -->
+                            <div style="display:flex; flex-direction:column; gap:12px;">
+                                <span style="font-size:10px; color:#999; font-weight:700;">OPÇÃO 6 · High-Contrast Inline</span>
+                                <div style="display: flex; align-items: baseline; gap: 12px; padding-top: 10px;">
+                                    <img src="logo-dmd-new.png" alt="símbolo" style="height: 32px; transform: translateY(4px);">
+                                    <span style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; color: #777;">Instituto</span>
+                                    <span style="font-family: 'Anton', sans-serif; font-size: 32px; text-transform: uppercase; color: var(--md-navy);">De Mãos Dadas</span>
+                                </div>
+                            </div>
+
+                            <!-- Opção 7 -->
+                            <div style="display:flex; flex-direction:column; gap:12px;">
+                                <span style="font-size:10px; color:#999; font-weight:700;">OPÇÃO 7 · The Cite Approach</span>
+                                <div style="display: flex; align-items: center; gap: 18px;">
+                                    <img src="logo-dmd-new.png" alt="símbolo" style="height: 54px;">
+                                    <div style="display: flex; flex-direction: column;">
+                                        <span style="font-family: 'Dancing Script', cursive; font-size: 22px; color: var(--md-amber-d); line-height: 0.8; margin-bottom: 2px;">Instituto</span>
+                                        <span style="font-family: 'Anton', sans-serif; font-size: 26px; text-transform: uppercase; color: var(--md-navy); line-height: 1;">De Mãos Dadas</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opção 8 -->
+                            <div style="display:flex; flex-direction:column; gap:12px;">
+                                <span style="font-size:10px; color:#999; font-weight:700;">OPÇÃO 8 · Balanced Center</span>
+                                <div style="display: flex; align-items: center; gap: 16px;">
+                                    <img src="logo-dmd-new.png" alt="símbolo" style="height: 44px;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <span style="font-family: 'Roboto', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--md-purple);">Instituto</span>
+                                        <div style="width: 4px; height: 4px; background: #ccc; border-radius: 50%;"></div>
+                                        <span style="font-family: 'Anton', sans-serif; font-size: 22px; text-transform: uppercase; color: var(--md-navy);">De Mãos Dadas</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opção 9 -->
+                            <div style="display:flex; flex-direction:column; gap:12px;">
+                                <span style="font-size:10px; color:#999; font-weight:700;">OPÇÃO 9 · Two-Column Text Grid</span>
+                                <div style="display: flex; align-items: center; gap: 16px;">
+                                    <img src="logo-dmd-new.png" alt="símbolo" style="height: 48px;">
+                                    <div style="display: grid; grid-template-columns: auto auto; gap: 12px; align-items: center;">
+                                        <span style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #888; text-align: right; border-right: 1px solid #ddd; padding-right: 12px;">Instituto</span>
+                                        <span style="font-family: 'Anton', sans-serif; font-size: 24px; text-transform: uppercase; color: var(--md-navy); line-height: 1;">De Mãos<br>Dadas</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opção 10 -->
+                            <div style="display:flex; flex-direction:column; gap:12px; grid-column: span 2;">
+                                <span style="font-size:10px; color:#999; font-weight:700;">OPÇÃO 10 · Level-AAA Standard</span>
+                                <div style="display: flex; align-items: center; gap: 24px; background: white; padding: 20px 32px; border: 2px solid var(--md-navy); border-radius: 12px; width: fit-content; box-shadow: 4px 4px 0 var(--md-amber);">
+                                    <img src="logo-dmd-new.png" alt="símbolo" style="height: 64px;">
+                                    <div style="display: flex; flex-direction: column;">
+                                        <span style="font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 900; letter-spacing: 6px; text-transform: uppercase; color: var(--md-navy); margin-bottom: 2px;">Instituto</span>
+                                        <span style="font-family: 'Anton', sans-serif; font-size: 40px; text-transform: uppercase; color: var(--md-navy); line-height: 0.9;">De Mãos Dadas</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="logo-variant-meta">
+                        <div class="logo-variant-name">Assinatura Horizontal</div>
+                        <div class="logo-variant-uses">
+                            Símbolo ao lado do nome tipografado à parte. Use quando o suporte for claro ou neutro e o nome precisa aparecer por inteiro com o cargo institucional completo.<br>
+                            <strong>Usar em:</strong> timbrado, email, crachá, ofícios.
+                        </div>
+                        <div class="tag-row">
+                            <span class="tag">Timbrado</span>
+                            <span class="tag">E-mail</span>
+                            <span class="tag">Crachá</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VARIANTE 3: SÍMBOLO ISOLADO -->
+                <div class="logo-variant">
+                    <div class="logo-variant-preview purple-bg">
+                        <svg viewBox="320 245 450 555" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="sg0b" gradientUnits="userSpaceOnUse" x1="432" y1="729" x2="520" y2="519">
+                                    <stop offset="0" stop-color="#7AAEE8"/><stop offset="1" stop-color="#B0CCF0"/>
+                                </linearGradient>
+                                <linearGradient id="sg1b" gradientUnits="userSpaceOnUse" x1="630" y1="269" x2="650" y2="519">
+                                    <stop offset="0" stop-color="#F0D0FF"/><stop offset="1" stop-color="#FFFFFF"/>
+                                </linearGradient>
+                                <linearGradient id="sg2b" gradientUnits="userSpaceOnUse" x1="387" y1="794" x2="430" y2="686">
+                                    <stop offset="0" stop-color="#1E3C7A"/><stop offset="1" stop-color="#4A6FAA"/>
+                                </linearGradient>
+                            </defs>
+                            <path fill="url(#sg0b)" transform="scale(0.948148 0.948148)" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C614.381 586.805 633.079 654.283 624.528 692.552C619.312 716.702 604.723 737.793 583.965 751.192C557.428 768.004 511.717 771.414 483.461 750.007C482.255 749.093 482.77 735.89 482.515 732.989C479.764 701.802 456.561 676.705 426.689 668.87C407.444 664.008 385.867 668.456 368.747 679.129C337.542 668.688 314.441 624.038 318 592.686C318.967 584.161 320.227 571.676 324.162 563.949C334.219 567.469 343.418 571.652 354.095 573.339C355.343 573.536 364.336 574.718 364.269 575.735C363.969 580.312 362.295 584.988 361.571 589.648C359.911 599.994 361.581 610.6 366.34 619.936C385.632 657.632 436.393 650.461 469.11 638.176C469.419 638.06 470.338 638.399 470.674 638.507C471.7 640.981 473.225 651.853 473.858 655.253C475.739 665.505 478.997 675.457 483.543 684.837C493.295 704.743 506.752 719.779 529.687 722.238C551.679 724.596 573.283 710.74 580.567 689.987C584.722 678.148 583.621 666.036 582.348 653.827C577.887 614.225 562.376 577.027 544.273 541.721C542.141 537.856 539.962 534.011 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z"/>
+                            <path fill="url(#sg1b)" transform="scale(0.948148 0.948148)" d="M538.064 530.026C536.143 526.116 534.002 522.333 531.988 518.472C507.779 472.05 474.754 389.393 491.438 337.364C499.193 313.183 516.063 293.976 538.672 282.607C559.117 272.326 585.319 269.995 607.026 277.409C611.529 278.948 628.081 285.317 630.144 288.943C632.07 292.33 630.645 302.854 631.277 307.366C632.429 315.58 634.943 324.068 638.628 331.505C647.258 348.922 663.465 361.898 681.792 367.96C705.655 375.853 724.315 369.975 745.696 359.084C786.326 377.758 807.981 433.699 789.617 474.57C772.486 468.055 766.758 465.859 748.296 462.87C753.437 448.122 754.572 440.039 750.181 424.61C746.735 412.501 737.28 402.404 726.166 396.688C708.711 387.712 680.544 389.267 662.13 394.197C655.211 396.05 649.088 399.156 642.258 401.297C640.8 383.366 637.874 368.062 629.303 351.874C620.885 336.055 612.639 323.887 594.974 318.246C567.453 309.459 539.77 324.162 531.683 351.883C528.75 361.938 529.518 369.975 530.516 380.345C534.921 426.097 554.429 469.963 576.371 509.826C566.077 514.851 547.945 523.816 538.064 530.026Z"/>
+                            <path fill="url(#sg2b)" transform="scale(0.948148 0.948148)" d="M404.653 681.48C437.231 678.818 465.797 703.073 468.452 735.652C471.107 768.23 446.846 796.791 414.267 799.439C381.698 802.086 353.148 777.834 350.493 745.265C347.839 712.697 372.085 684.141 404.653 681.48Z"/>
+                            <circle fill="rgba(255,255,255,0.9)" cx="662" cy="279" r="52"/>
+                        </svg>
+                    </div>
+                    <div class="logo-variant-meta">
+                        <div class="logo-variant-name">Símbolo Isolado</div>
+                        <div class="logo-variant-uses">
+                            Somente o ícone, sem qualquer texto. Ideal onde o espaço é mínimo ou onde o nome já existe no contexto.<br>
+                            <strong>Usar em:</strong> caneta (cap), pin, favicon, bordado, carimbo, canto de documento já assinado.
+                        </div>
+                        <div class="tag-row">
+                            <span class="tag">Caneta</span>
+                            <span class="tag">Favicon</span>
+                            <span class="tag">Bordado</span>
+                            <span class="tag">Pin</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SEÇÃO 3 — TIPOGRAFIA
+    ═══════════════════════════════════════════════ -->
+    <section id="tipografia">
+        <div class="container">
+            <div class="eyebrow">03 · Tipografia</div>
+            <h2 class="section-title">Hierarquia<br>tipográfica</h2>
+            <p class="section-sub">Quatro famílias com papéis distintos. A mistura intencional entre impacto, clareza e humanidade define o tom da comunicação.</p>
+
+            <div class="type-system">
+                <div class="type-row">
+                    <div class="type-meta">
+                        <span class="type-role">Display</span>
+                        <span class="type-family">Anton</span>
+                    </div>
+                    <div class="t-display">Mãos<br>Dadas</div>
+                    <div class="type-spec">
+                        <strong>Anton Regular</strong>
+                        72px · uppercase<br>
+                        line-height: 0.9<br>
+                        Banners, capas, posts de impacto
+                    </div>
+                </div>
+                <div class="type-row">
+                    <div class="type-meta">
+                        <span class="type-role">Título H1</span>
+                        <span class="type-family">Anton</span>
+                    </div>
+                    <div class="t-h1">Comunidade<br>Viva</div>
+                    <div class="type-spec">
+                        <strong>Anton Regular</strong>
+                        48px · uppercase<br>
+                        line-height: 0.95<br>
+                        Headlines de seção, crachás
+                    </div>
+                </div>
+                <div class="type-row">
+                    <div class="type-meta">
+                        <span class="type-role">Título H2</span>
+                        <span class="type-family">Anton</span>
+                    </div>
+                    <div class="t-h2">Goiânia — Goiás</div>
+                    <div class="type-spec">
+                        <strong>Anton Regular</strong>
+                        32px · uppercase<br>
+                        cor: lilac #BD90DA<br>
+                        Subtítulos, separadores
+                    </div>
+                </div>
+                <div class="type-row">
+                    <div class="type-meta">
+                        <span class="type-role">Label / Tag</span>
+                        <span class="type-family">Roboto Bold</span>
+                    </div>
+                    <div class="t-label">Evento · Participação Comunitária · 2026</div>
+                    <div class="type-spec">
+                        <strong>Roboto 700</strong>
+                        11px · uppercase<br>
+                        letter-spacing: 3px<br>
+                        cor: amber #FF9E00
+                    </div>
+                </div>
+                <div class="type-row">
+                    <div class="type-meta">
+                        <span class="type-role">Corpo</span>
+                        <span class="type-family">Inter</span>
+                    </div>
+                    <div class="t-body">O Instituto de Mãos Dadas atua na defesa dos direitos humanos, meio ambiente e proteção de minorias no Residencial Juscelino Kubitscheck em Goiânia.</div>
+                    <div class="type-spec">
+                        <strong>Inter 400</strong>
+                        17px · normal<br>
+                        line-height: 1.7<br>
+                        cor: rgba(255,255,255,.75)
+                    </div>
+                </div>
+                <div class="type-row">
+                    <div class="type-meta">
+                        <span class="type-role">Caption</span>
+                        <span class="type-family">Inter</span>
+                    </div>
+                    <div class="t-caption">Goiânia, Goiás · Res. Juscelino Kubitscheck · R. JK 13, Q.10 L.26</div>
+                    <div class="type-spec">
+                        <strong>Inter 400</strong>
+                        13px · normal<br>
+                        cor: rgba(255,255,255,.4)<br>
+                        Rodapés, metadados
+                    </div>
+                </div>
+                <div class="type-row" style="border-bottom: none;">
+                    <div class="type-meta">
+                        <span class="type-role">Citação</span>
+                        <span class="type-family">Dancing Script</span>
+                    </div>
+                    <div class="t-quote">"Da comunidade, para a comunidade"</div>
+                    <div class="type-spec">
+                        <strong>Dancing Script 700</strong>
+                        36px · italic<br>
+                        transform: rotate(-2deg)<br>
+                        cor: amber · uso seletivo
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAIR EXAMPLE -->
+            <div class="type-pair">
+                <div class="type-pair-label">Exemplo de Composição — Post de Mobilização</div>
+                <div class="type-pair-example">
+                    <div class="t-label" style="margin-bottom: 4px;">Mutirão · 15 Mar 2026</div>
+                    <div class="t-h1" style="font-size: 52px; color: white;">Atuação<br>Social</div>
+                    <div class="t-quote" style="margin: -8px 0 8px; font-size: 28px;">"Juntos somos mais fortes"</div>
+                    <div class="t-caption">Praça Central · Goiânia · 9h às 13h</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SEÇÃO 4 — CORES
+    ═══════════════════════════════════════════════ -->
+    <section id="cores">
+        <div class="container">
+            <div class="eyebrow">04 · Cromática</div>
+            <h2 class="section-title">Sistema<br>de cores</h2>
+            <p class="section-sub">Arquitetura 60-30-10. Neutros formam a base, a primária carrega a identidade, o âmbar guia a ação. Cores de projeto sobrepõem com propósito.</p>
+
+            <div class="color-system">
+                <div class="color-swatch">
+                    <div class="swatch-color" style="background: #0F0F1A;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Dark</div>
+                        <div class="swatch-hex">#0F0F1A</div>
+                        <div class="swatch-role">60% · Fundos, texto principal</div>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="swatch-color" style="background: #7F4CA9;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Primária</div>
+                        <div class="swatch-hex">#7F4CA9</div>
+                        <div class="swatch-role">30% · Identidade, botões, headers</div>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="swatch-color" style="background: #153065;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Navy</div>
+                        <div class="swatch-hex">#153065</div>
+                        <div class="swatch-role">30% · Documentos, formalidade</div>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="swatch-color" style="background: #FF9E00;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Âmbar</div>
+                        <div class="swatch-hex">#FF9E00</div>
+                        <div class="swatch-role">10% · CTAs, destaques, labels</div>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="swatch-color" style="background: #FAFAFA; border: 1px solid rgba(0,0,0,.06);"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name" style="color:#333;">Off-white</div>
+                        <div class="swatch-hex" style="color:#888;">#FAFAFA</div>
+                        <div class="swatch-role" style="color:#999;">Texto sobre escuro, fundos doc</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <div class="eyebrow" style="margin-bottom: 16px;">Cores de Projeto</div>
+                <div class="color-accent-row">
+                    <div class="mini-swatch" style="background: #1E3A5F;"><span>Comunid.</span></div>
+                    <div class="mini-swatch" style="background: #00B4D8; color: #0F0F1A;"><span>Digital</span></div>
+                    <div class="mini-swatch" style="background: #E91E8C;"><span>Energia Fem.</span></div>
+                    <div class="mini-swatch" style="background: #2ECC40; color: #0F0F1A;"><span>Esporte</span></div>
+                    <div class="mini-swatch" style="background: #D4A017; color: #0F0F1A;"><span>Rodas</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SEÇÃO 5 — APLICAÇÕES
+    ═══════════════════════════════════════════════ -->
+    <section id="aplicacoes">
+        <div class="container">
+            <div class="eyebrow">05 · Aplicações</div>
+            <h2 class="section-title">Posicionamento<br>por material</h2>
+            <p class="section-sub">Cada suporte tem suas restrições de espaço, leiturabilidade e contexto. A escolha da variante certa é parte da identidade.</p>
+
+            <!-- ── CANETA ── -->
+            <div style="margin-bottom: 80px;">
+                <div class="app-title">CANETA</div>
+                <div class="app-sub">Suporte de alta visibilidade, espaço mínimo (85mm × 10mm). Nunca use a marca composta aqui.</div>
+
+                <!-- Pen 3D showcase -->
+                <div class="pen-showcase">
+                    <div class="pen-showcase-title">Variante Principal — Institucional Roxo/Navy</div>
+                    <div class="pen-3d">
+                        <div class="pen-3d-wrap">
+                            <div class="pen-3d-cap">
+                                <svg class="cap-symbol" style="width:36px;height:36px;" viewBox="320 245 450 570" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="pg0" gradientUnits="userSpaceOnUse" x1="432" y1="729" x2="520" y2="519">
+                                            <stop offset="0" stop-color="#8AABD4"/><stop offset="1" stop-color="#C0D8F0"/>
+                                        </linearGradient>
+                                        <linearGradient id="pg1" gradientUnits="userSpaceOnUse" x1="630" y1="269" x2="650" y2="519">
+                                            <stop offset="0" stop-color="#F0D8FF"/><stop offset="1" stop-color="#FFFFFF"/>
+                                        </linearGradient>
+                                        <linearGradient id="pg2" gradientUnits="userSpaceOnUse" x1="387" y1="794" x2="430" y2="686">
+                                            <stop offset="0" stop-color="#2A4A8A"/><stop offset="1" stop-color="#5A78B8"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path fill="url(#pg0)" transform="scale(0.948148 0.948148)" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C614.381 586.805 633.079 654.283 624.528 692.552C619.312 716.702 604.723 737.793 583.965 751.192C557.428 768.004 511.717 771.414 483.461 750.007C482.255 749.093 482.77 735.89 482.515 732.989C479.764 701.802 456.561 676.705 426.689 668.87C407.444 664.008 385.867 668.456 368.747 679.129C337.542 668.688 314.441 624.038 318 592.686C318.967 584.161 320.227 571.676 324.162 563.949C334.219 567.469 343.418 571.652 354.095 573.339C355.343 573.536 364.336 574.718 364.269 575.735C363.969 580.312 362.295 584.988 361.571 589.648C359.911 599.994 361.581 610.6 366.34 619.936C385.632 657.632 436.393 650.461 469.11 638.176C469.419 638.06 470.338 638.399 470.674 638.507C471.7 640.981 473.225 651.853 473.858 655.253C475.739 665.505 478.997 675.457 483.543 684.837C493.295 704.743 506.752 719.779 529.687 722.238C551.679 724.596 573.283 710.74 580.567 689.987C584.722 678.148 583.621 666.036 582.348 653.827C577.887 614.225 562.376 577.027 544.273 541.721C542.141 537.856 539.962 534.011 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z"/>
+                                    <path fill="url(#pg1)" transform="scale(0.948148 0.948148)" d="M538.064 530.026C536.143 526.116 534.002 522.333 531.988 518.472C507.779 472.05 474.754 389.393 491.438 337.364C499.193 313.183 516.063 293.976 538.672 282.607C559.117 272.326 585.319 269.995 607.026 277.409C611.529 278.948 628.081 285.317 630.144 288.943C632.07 292.33 630.645 302.854 631.277 307.366C632.429 315.58 634.943 324.068 638.628 331.505C647.258 348.922 663.465 361.898 681.792 367.96C705.655 375.853 724.315 369.975 745.696 359.084C786.326 377.758 807.981 433.699 789.617 474.57C772.486 468.055 766.758 465.859 748.296 462.87C753.437 448.122 754.572 440.039 750.181 424.61C746.735 412.501 737.28 402.404 726.166 396.688C708.711 387.712 680.544 389.267 662.13 394.197C655.211 396.05 649.088 399.156 642.258 401.297C640.8 383.366 637.874 368.062 629.303 351.874C620.885 336.055 612.639 323.887 594.974 318.246C567.453 309.459 539.77 324.162 531.683 351.883C528.75 361.938 529.518 369.975 530.516 380.345C534.921 426.097 554.429 469.963 576.371 509.826C566.077 514.851 547.945 523.816 538.064 530.026Z"/>
+                                    <path fill="url(#pg2)" transform="scale(0.948148 0.948148)" d="M404.653 681.48C437.231 678.818 465.797 703.073 468.452 735.652C471.107 768.23 446.846 796.791 414.267 799.439C381.698 802.086 353.148 777.834 350.493 745.265C347.839 712.697 372.085 684.141 404.653 681.48Z"/>
+                                    <circle fill="rgba(255,255,255,0.85)" cx="662" cy="279" r="52"/>
+                                </svg>
+                            </div>
+                            <div class="pen-3d-band"></div>
+                            <div class="pen-3d-body">
+                                <!-- clip -->
+                                <div class="pen-clip-wrap">
+                                    <div class="pen-clip"></div>
+                                </div>
+                                <div class="pen-3d-body-text">
+                                    <span class="website">institutodemaosdadas.com.br</span>
+                                    <div class="divider"></div>
+                                    <span class="tagline">Em defesa dos direitos sociais</span>
+                                </div>
+                            </div>
+                            <div class="pen-3d-tip"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 variantes -->
+                <div class="pen-variants">
+                    <div class="pen-var-card">
+                        <div class="pen-var-label">01 · Institucional</div>
+                        <div class="pen-mini" style="filter: drop-shadow(0 4px 12px rgba(0,0,0,.4));">
+                            <div class="pen-mini-cap" style="background: linear-gradient(135deg, #9B5FCC, #5E3580); border-radius: 14px 0 0 14px;">
+                                <svg viewBox="350 245 430 560" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="rgba(255,255,255,0.7)" transform="scale(0.948148 0.948148)" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C614.381 586.805 633.079 654.283 624.528 692.552C619.312 716.702 604.723 737.793 583.965 751.192C557.428 768.004 511.717 771.414 483.461 750.007C482.255 749.093 482.77 735.89 482.515 732.989C479.764 701.802 456.561 676.705 426.689 668.87C407.444 664.008 385.867 668.456 368.747 679.129C337.542 668.688 314.441 624.038 318 592.686C318.967 584.161 320.227 571.676 324.162 563.949C334.219 567.469 343.418 571.652 354.095 573.339C355.343 573.536 364.336 574.718 364.269 575.735C363.969 580.312 362.295 584.988 361.571 589.648C359.911 599.994 361.581 610.6 366.34 619.936C385.632 657.632 436.393 650.461 469.11 638.176C470.674 638.507 473.858 655.253 483.543 684.837C493.295 704.743 506.752 719.779 529.687 722.238C551.679 724.596 573.283 710.74 580.567 689.987C584.722 678.148 582.348 653.827 544.273 541.721C542.141 537.856 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z"/>
+                                    <path fill="rgba(255,255,255,0.9)" transform="scale(0.948148 0.948148)" d="M538.064 530.026C531.988 518.472 507.779 472.05 491.438 337.364C499.193 313.183 516.063 293.976 538.672 282.607C559.117 272.326 607.026 277.409 630.144 288.943C631.277 307.366 638.628 331.505 662.13 394.197C642.258 401.297 629.303 351.874 594.974 318.246C567.453 309.459 531.683 351.883 530.516 380.345C534.921 426.097 554.429 469.963 576.371 509.826C566.077 514.851 547.945 523.816 538.064 530.026Z"/>
+                                    <circle fill="rgba(255,255,255,0.95)" cx="662" cy="279" r="52"/>
+                                </svg>
+                            </div>
+                            <div class="pen-mini-body" style="background: var(--md-navy);">
+                                <span style="color: rgba(255,255,255,.55);">institutodemaosdadas.com.br</span>
+                            </div>
+                            <div class="pen-mini-tip"></div>
+                        </div>
+                        <div class="pen-var-desc">Cap roxo + barrel navy. Símbolo no cap, site no barrel. Uso institucional padrão.</div>
+                    </div>
+
+                    <div class="pen-var-card">
+                        <div class="pen-var-label">02 · Mobilização</div>
+                        <div class="pen-mini" style="filter: drop-shadow(0 4px 12px rgba(0,0,0,.4));">
+                            <div class="pen-mini-cap" style="background: var(--md-amber); border-radius: 14px 0 0 14px;">
+                                <svg viewBox="350 245 430 560" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="rgba(21,48,101,0.7)" transform="scale(0.948148 0.948148)" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C614.381 586.805 633.079 654.283 624.528 692.552C619.312 716.702 604.723 737.793 583.965 751.192C557.428 768.004 511.717 771.414 483.461 750.007C482.255 749.093 482.77 735.89 482.515 732.989C479.764 701.802 456.561 676.705 426.689 668.87C407.444 664.008 385.867 668.456 368.747 679.129C337.542 668.688 314.441 624.038 318 592.686C318.967 584.161 320.227 571.676 324.162 563.949C334.219 567.469 343.418 571.652 354.095 573.339C355.343 573.536 364.336 574.718 364.269 575.735C363.969 580.312 362.295 584.988 361.571 589.648C359.911 599.994 361.581 610.6 366.34 619.936C385.632 657.632 436.393 650.461 469.11 638.176C470.674 638.507 473.858 655.253 483.543 684.837C493.295 704.743 506.752 719.779 529.687 722.238C551.679 724.596 573.283 710.74 580.567 689.987C582.348 653.827 544.273 541.721 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z"/>
+                                    <path fill="rgba(21,48,101,0.95)" transform="scale(0.948148 0.948148)" d="M538.064 530.026C531.988 518.472 507.779 472.05 491.438 337.364C499.193 313.183 516.063 293.976 538.672 282.607C559.117 272.326 607.026 277.409 630.144 288.943C631.277 307.366 638.628 331.505 662.13 394.197C642.258 401.297 629.303 351.874 594.974 318.246C567.453 309.459 531.683 351.883 530.516 380.345C534.921 426.097 554.429 469.963 576.371 509.826C566.077 514.851 547.945 523.816 538.064 530.026Z"/>
+                                    <circle fill="rgba(21,48,101,0.9)" cx="662" cy="279" r="52"/>
+                                </svg>
+                            </div>
+                            <div class="pen-mini-body" style="background: #1a1a1a;">
+                                <span style="color: rgba(255,158,0,.8);">De Mãos Dadas</span>
+                            </div>
+                            <div class="pen-mini-tip" style="background: linear-gradient(to right, #888, #bbb);"></div>
+                        </div>
+                        <div class="pen-var-desc">Cap âmbar com símbolo escuro. Barrel preto com nome. Campanha/evento.</div>
+                    </div>
+
+                    <div class="pen-var-card">
+                        <div class="pen-var-label">03 · Minimalista</div>
+                        <div class="pen-mini" style="filter: drop-shadow(0 4px 12px rgba(0,0,0,.4));">
+                            <div class="pen-mini-cap" style="background: #1a1a1a; border-radius: 14px 0 0 14px; border-right: 1px solid rgba(127,76,169,.4);">
+                                <svg viewBox="350 245 430 560" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="rgba(127,76,169,0.7)" transform="scale(0.948148 0.948148)" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C614.381 586.805 633.079 654.283 624.528 692.552C619.312 716.702 604.723 737.793 583.965 751.192C557.428 768.004 511.717 771.414 483.461 750.007C482.255 749.093 482.77 735.89 482.515 732.989C479.764 701.802 456.561 676.705 426.689 668.87C407.444 664.008 385.867 668.456 368.747 679.129C337.542 668.688 314.441 624.038 318 592.686C318.967 584.161 320.227 571.676 324.162 563.949C334.219 567.469 343.418 571.652 354.095 573.339C363.969 580.312 361.571 589.648 366.34 619.936C385.632 657.632 469.11 638.176 470.674 638.507C473.858 655.253 483.543 684.837C493.295 704.743 529.687 722.238C551.679 724.596 580.567 689.987C582.348 653.827 544.273 541.721 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z"/>
+                                    <path fill="rgba(189,144,218,0.9)" transform="scale(0.948148 0.948148)" d="M538.064 530.026C531.988 518.472 507.779 472.05 491.438 337.364C499.193 313.183 516.063 293.976 538.672 282.607C607.026 277.409 630.144 288.943 631.277 307.366C638.628 331.505 662.13 394.197C642.258 401.297 629.303 351.874 594.974 318.246C567.453 309.459 531.683 351.883 530.516 380.345C534.921 426.097 554.429 469.963 576.371 509.826C566.077 514.851 547.945 523.816 538.064 530.026Z"/>
+                                    <circle fill="rgba(255,255,255,0.6)" cx="662" cy="279" r="52"/>
+                                </svg>
+                            </div>
+                            <div class="pen-mini-body" style="background: #F5F5F5;">
+                                <span style="color: var(--md-navy); font-weight: 800; font-size: 7px; letter-spacing: 2px;">MÃOS DADAS</span>
+                            </div>
+                            <div class="pen-mini-tip" style="background: linear-gradient(to right, #999, #ccc);"></div>
+                        </div>
+                        <div class="pen-var-desc">Cap escuro com símbolo em lilac. Barrel branco. Para eventos formais e parceiros.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── CRACHÁ ── -->
+            <div style="margin-bottom: 80px;">
+                <div class="app-title">CRACHÁ</div>
+                <div class="app-sub">105mm × 148.5mm. Use a Assinatura Horizontal no header. O nome da pessoa domina o corpo.</div>
+
+                <div class="badge-showcase">
+                    <div class="badge-card">
+                        <div class="badge-header">
+                            <img src="logo-dmd.svg" alt="logo">
+                        </div>
+                        <div class="badge-body">
+                            <div class="badge-event">Goiânia · 2026</div>
+                            <div class="badge-name-card">
+                                <div class="badge-name">Bárbara<br>Svetlana</div>
+                                <div class="badge-role">Coordenadora Geral · Instituto</div>
+                            </div>
+                            <div class="badge-footer">
+                                <p style="font-size: 7px; color: #aaa; font-family: 'Roboto', sans-serif; letter-spacing: 1px;">institutodemaosdadas.com.br</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="badge-rules">
+                        <div class="badge-rule">
+                            <div class="badge-rule-icon">📐</div>
+                            <div class="badge-rule-text">
+                                <strong>Posição da marca</strong>
+                                <p>A marca completa vai sempre no header com fundo roxo (#7F4CA9). O contraste negativo garante legibilidade sem precisar repetir o nome em outro lugar do crachá.</p>
+                            </div>
+                        </div>
+                        <div class="badge-rule">
+                            <div class="badge-rule-icon">✏️</div>
+                            <div class="badge-rule-text">
+                                <strong>Hierarquia de leitura</strong>
+                                <p>O nome da pessoa em Anton 18pt deve ser o elemento visual dominante do corpo. Cargo em Inter 10pt logo abaixo. Nunca use a marca maior que o nome da pessoa.</p>
+                            </div>
+                        </div>
+                        <div class="badge-rule">
+                            <div class="badge-rule-icon">🎨</div>
+                            <div class="badge-rule-text">
+                                <strong>Variação por função</strong>
+                                <p>Header roxo = equipe interna. Header âmbar = convidado externo. Header navy = parceiro/imprensa. O símbolo pode substituir a marca completa no header quando o espaço for reduzido.</p>
+                            </div>
+                        </div>
+                        <div class="badge-rule">
+                            <div class="badge-rule-icon">🚫</div>
+                            <div class="badge-rule-text">
+                                <strong>O que nunca fazer</strong>
+                                <p>Não escreva "De Mãos Dadas" ou "Instituto de Mãos Dadas" no corpo do crachá além do que já está na logo. O nome não deve aparecer mais de uma vez.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── CANECA ── -->
+            <div style="margin-bottom: 80px;">
+                <div class="app-title">CANECA</div>
+                <div class="app-sub">Sublimação 325ml — 95mm × 80mm de área impressa. Símbolo grande ocupa uma face; texto/slogan na outra. Nunca use a marca composta pequena no centro.</div>
+
+                <div class="mug-scene">
+
+                    <!-- 01 Branca -->
+                    <div class="mug-card-3d">
+                        <div class="mug-card-3d-label">01 · Branca Clássica</div>
+                        <div class="mug-3d">
+                            <div class="mug-body-3d" style="background: #F5F5F5;">
+                                <div class="mug-rim" style="background: #E8E8E8;"></div>
+                                <div class="mug-inner">
+                                    <img src="./logo-dmd-new.png" style="max-width: 75%; max-height: 48px; object-fit: contain;">
+                                    <span class="mug-slogan" style="color: var(--md-navy); font-size: 11px;">De Mãos<br>Dadas</span>
+                                </div>
+                            </div>
+                            <div class="mug-handle-3d" style="border-color: #CCCCCC;"></div>
+                        </div>
+                        <div class="mug-card-3d-desc">Fundo branco + símbolo em cores originais. Ideal para sublimação econômica e eventos.</div>
+                    </div>
+
+                    <!-- 02 Roxa -->
+                    <div class="mug-card-3d">
+                        <div class="mug-card-3d-label">02 · Roxo Institucional</div>
+                        <div class="mug-3d">
+                            <div class="mug-body-3d" style="background: var(--md-purple);">
+                                <div class="mug-rim" style="background: #6A3A90;"></div>
+                                <div class="mug-inner">
+                                    <img src="./logo-dmd.svg" style="max-width: 75%; max-height: 48px; object-fit: contain;">
+                                    <span class="mug-slogan" style="color: rgba(255,255,255,0.9); font-size: 11px;">Fazer<br>o Bem</span>
+                                </div>
+                            </div>
+                            <div class="mug-handle-3d" style="border-color: #5E3580;"></div>
+                        </div>
+                        <div class="mug-card-3d-desc">Fundo roxo com símbolo em negativo. Alta identidade. Para presentear parceiros e colaboradores.</div>
+                    </div>
+
+                    <!-- 03 Navy / Âmbar -->
+                    <div class="mug-card-3d">
+                        <div class="mug-card-3d-label">03 · Navy + Âmbar</div>
+                        <div class="mug-3d">
+                            <div class="mug-body-3d" style="background: var(--md-navy);">
+                                <div class="mug-rim" style="background: #0e2248;"></div>
+                                <div class="mug-inner">
+                                    <img src="./logo-dmd.svg" style="max-width: 75%; max-height: 48px; object-fit: contain; filter: sepia(1) saturate(8) hue-rotate(5deg) brightness(1.1);">
+                                    <span class="mug-slogan" style="color: var(--md-amber); font-size: 11px;">Comunidade<br>Viva</span>
+                                </div>
+                            </div>
+                            <div class="mug-handle-3d" style="border-color: #0e2248;"></div>
+                        </div>
+                        <div class="mug-card-3d-desc">Fundo navy com símbolo em âmbar. Variante de mobilização para campanhas e mutirões.</div>
+                    </div>
+
+                </div>
+
+                <!-- nota de posicionamento -->
+                <div style="margin-top: 20px; padding: 20px 24px; border: 1px solid var(--glass-b); border-radius: 12px; background: var(--glass); display: flex; gap: 16px; align-items: flex-start;">
+                    <span style="font-size: 18px; flex-shrink: 0;">📐</span>
+                    <div>
+                        <div style="font-weight: 700; font-size: 13px; margin-bottom: 4px;">Posicionamento na caneca</div>
+                        <p style="font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.6;">
+                            O símbolo deve ocupar <strong style="color: rgba(255,255,255,.7);">a face principal</strong> (voltada para quem usa), centralizado e em tamanho generoso — mínimo 40mm de altura. Um slogan curto ou o site pode acompanhar abaixo. A face oposta pode receber texto secundário (endereço, site, chamada). <strong style="color: rgba(255,255,255,.7);">Nunca use a marca composta pequena no centro</strong> — o wordmark interno ficará ilegível na curvatura da caneca.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── BANNERS DIGITAIS ── -->
+            <div>
+                <div class="app-title">PRODUÇÃO PARA REDES SOCIAIS</div>
+                <div class="app-sub">Posts 4:5 para redes sociais. Marca completa sempre no rodapé, nunca no centro.</div>
+
+                <div class="banner-grid">
+                    <div class="banner-card" style="background: linear-gradient(135deg, #153065 0%, #0F0F1A 100%);">
+                        <div class="banner-tag">AÇÃO SOCIAL</div>
+                        <div class="banner-bottom">
+                            <div class="banner-headline">Direitos<br>e Cidada<br>nia</div>
+                            <div class="banner-logo-row">
+                                <img src="logo-dmd.svg" alt="logo">
+                                <span>Instituto De Mãos Dadas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="banner-card" style="background: linear-gradient(135deg, #FF9E00 0%, #E65100 100%);">
+                        <div class="banner-tag" style="background: rgba(0,0,0,.15); color: #0F0F1A;">EVENTO</div>
+                        <div class="banner-bottom">
+                            <div class="banner-headline" style="color: #0F0F1A;">Mutirão<br>Pelo<br>Clima</div>
+                            <div class="banner-logo-row" style="border-color: rgba(0,0,0,.15);">
+                                <img src="logo-dmd-new.png" alt="logo" style="filter: none;">
+                                <span style="color: rgba(0,0,0,.5);">15 Mar · 9h · Praça Central</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="banner-card" style="background: linear-gradient(135deg, #7F4CA9 0%, #153065 100%);">
+                        <div class="banner-tag">DADOS</div>
+                        <div class="banner-bottom">
+                            <div style="font-family: 'Anton', sans-serif; font-size: 80px; color: var(--md-amber); line-height: .8;">47</div>
+                            <div style="font-family: 'Roboto', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 12px;">Comunidades Atendidas</div>
+                            <div class="banner-logo-row">
+                                <img src="logo-dmd.svg" alt="logo">
+                                <span>Goiânia · 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SEÇÃO 6 — DO / DON'T
+    ═══════════════════════════════════════════════ -->
+    <section>
+        <div class="container">
+            <div class="eyebrow">06 · Regras de Uso</div>
+            <h2 class="section-title">Pode e<br>não pode</h2>
+            <p class="section-sub">Regras simples que preservam a integridade da marca em qualquer suporte.</p>
+
+            <div class="rules-grid">
+                <div class="rule-card dont">
+                    <div class="rule-pill dont">✕ Não</div>
+                    <div class="rule-text">Repetir o nome na mesma peça</div>
+                    <div class="rule-detail">Se a marca composta já está presente, não escreva "De Mãos Dadas" ou "Instituto de Mãos Dadas" em texto separado na mesma face do material.</div>
+                </div>
+                <div class="rule-card do">
+                    <div class="rule-pill do">✓ Sim</div>
+                    <div class="rule-text">Símbolo isolado quando há pouco espaço</div>
+                    <div class="rule-detail">Em formatos menores que 20mm ou quando o nome já está no contexto (ex: barrel da caneta), use apenas o símbolo. A identidade é preservada.</div>
+                </div>
+                <div class="rule-card dont">
+                    <div class="rule-pill dont">✕ Não</div>
+                    <div class="rule-text">Alterar proporções ou recortar a marca</div>
+                    <div class="rule-detail">A marca composta é uma unidade. Não exiba apenas o wordmark sem o símbolo, nem apenas parte do símbolo. Use sempre um dos três variantes completos.</div>
+                </div>
+                <div class="rule-card do">
+                    <div class="rule-pill do">✓ Sim</div>
+                    <div class="rule-text">Escolher a versão pelo fundo</div>
+                    <div class="rule-detail">Fundo escuro → logo-dmd.svg (branco). Fundo claro → logo-dmd-new.png (escuro). Nunca sobreponha a versão errada — o contraste é parte da identidade.</div>
+                </div>
+                <div class="rule-card dont">
+                    <div class="rule-pill dont">✕ Não</div>
+                    <div class="rule-text">Marca menor que 20mm no impresso</div>
+                    <div class="rule-detail">Abaixo de 20mm, o wordmark interno da marca composta torna-se ilegível. Use o símbolo isolado nestes casos.</div>
+                </div>
+                <div class="rule-card do">
+                    <div class="rule-pill do">✓ Sim</div>
+                    <div class="rule-text">Zona de segurança de 15%</div>
+                    <div class="rule-detail">Mantenha ao redor da marca um espaço livre de pelo menos 15% da sua largura em todos os lados. Nenhum texto ou elemento deve entrar nessa área.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer>
+    <div class="foot-logo">
+        <img src="logo-dmd.svg" alt="De Mãos Dadas">
+    </div>
+    <div class="foot-info">
+        <strong>Instituto De Mãos Dadas</strong>
+        R. JK 13, Q.10 L.26 · Res. Juscelino Kubitscheck<br>
+        Goiânia, Goiás · (62) 99988-7704<br>
+        Sistema de Marca v2.0 · 2026
+    </div>
+</footer>
+
+<script>
+    // Smooth reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(el => {
+            if (el.isIntersecting) {
+                el.target.style.opacity = '1';
+                el.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.logo-variant, .color-swatch, .type-row, .pen-var-card, .rule-card, .banner-card, .badge-rule').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'opacity .6s ease, transform .6s cubic-bezier(.16,1,.3,1)';
+        observer.observe(el);
+    });
+
+    // Stagger children
+    document.querySelectorAll('.logo-system-grid, .pen-variants, .banner-grid, .rules-grid, .color-system').forEach(grid => {
+        [...grid.children].forEach((child, i) => {
+            child.style.transitionDelay = `${i * 80}ms`;
+        });
+    });
+</script>
+</body>
+</html>

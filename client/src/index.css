@@ -1,0 +1,753 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Brand Specific Colors as Tokens */
+  --color-dmd-navy: var(--navy-900);
+  --color-dmd-purple: var(--purple-500);
+  --color-dmd-amber: var(--amber-500);
+
+  /* Signaling — expose as Tailwind utilities (text-error, bg-success, etc.) */
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+
+  /* Typography scale — expose as Tailwind utilities */
+  --text-body-sm: 0.8125rem;
+  --text-label: 0.6875rem;
+}
+
+:root {
+  /* De Mãos Dadas Brand Colors - Standardized Scales */
+  --navy-50: #f2f5fa;
+  --navy-100: #e3eaf3;
+  --navy-200: #cdd9e9;
+  --navy-300: #a7bed9;
+  --navy-400: #7799c5;
+  --navy-500: #5076ab;
+  --navy-600: #3d5c8e;
+  --navy-700: #304973;
+  --navy-800: #233658;
+  --navy-900: #153065;
+
+  --purple-50: #f9f6fc;
+  --purple-100: #f1ecf8;
+  --purple-200: #e3daf1;
+  --purple-300: #ccbbe4;
+  --purple-400: #ac91d3;
+  --purple-500: #7f4ca9;
+  --purple-600: #6b3e91;
+  --purple-700: #583377;
+  --purple-800: #44285e;
+  --purple-900: #321d45;
+
+  --amber-50: #fff9eb;
+  --amber-100: #fff1cc;
+  --amber-200: #ffe199;
+  --amber-300: #ffcd66;
+  --amber-400: #ffb433;
+  --amber-500: #ff9e00;
+  --amber-600: #cc7e00;
+  --amber-700: #995e00;
+  --amber-800: #663f00;
+  --amber-900: #331f00;
+
+  /* Layer 1: Base (UI Structure) */
+  --background: #FFFFFF;
+  --foreground: var(--navy-900);
+  --card: #FFFFFF;
+  --card-foreground: var(--navy-900);
+  --popover: #FFFFFF;
+  --popover-foreground: var(--navy-900);
+  --muted: var(--navy-50);
+  --muted-foreground: var(--navy-600);
+  --border: var(--navy-100);
+  --input: var(--navy-50);
+
+  /* Layer 2: Communication (Interactions) */
+  --primary: var(--purple-500);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--navy-100);
+  --secondary-foreground: var(--navy-900);
+  --accent: var(--amber-500);
+  --accent-foreground: var(--navy-900);
+  --ring: var(--purple-500);
+
+  /* Layer 3: Signaling */
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --error: #DC2626;
+  --error-foreground: #FFFFFF;
+  --success: #10B981;
+  --success-foreground: #FFFFFF;
+  --warning: #F59E0B;
+  --warning-foreground: #FFFFFF;
+  --info: #3B82F6;
+
+  /* Sidebar & Components */
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: var(--navy-900);
+  --sidebar-primary: var(--purple-500);
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: var(--amber-100);
+  --sidebar-accent-foreground: var(--navy-900);
+  --sidebar-border: var(--navy-100);
+  --sidebar-ring: var(--purple-500);
+
+  --radius: 0.75rem; /* More rounded as per premium design */
+  
+  /* Additional Premium Tokens */
+  --shadow-premium: 0 10px 30px -5px rgba(21, 48, 101, 0.1), 0 4px 6px -2px rgba(21, 48, 101, 0.05);
+  --shadow-glow: 0 0 20px -5px var(--primary);
+  --glass: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-blur: blur(12px);
+
+  /* Texture */
+  --texture-opacity: 0.03;
+
+  /* Fluid Typography System (Modular Scale: 1.250) */
+  /* Scale Range: 320px -> 1440px */
+  --text-display-lg: clamp(2.5rem, 1.93rem + 2.86vw, 4.5rem);
+  --text-display-md: clamp(2rem, 1.57rem + 2.14vw, 3.5rem);
+  --text-heading-lg: clamp(1.75rem, 1.54rem + 1.07vw, 2.5rem);
+  --text-heading-md: clamp(1.5rem, 1.36rem + 0.71vw, 2rem);
+  --text-heading-sm: clamp(1.25rem, 1.18rem + 0.36vw, 1.5rem);
+  --text-body: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+  --text-body-sm: 0.8125rem;   /* 13px — descrições de card, texto de apoio */
+  --text-small: 0.875rem;
+  --text-xs: 0.75rem;
+  --text-label: 0.6875rem;     /* 11px — labels de UI, metadados, badges */
+
+  /* Line Heights (SKILL: Tipografia Rule 2.3) */
+  --leading-display: 1.1;
+  --leading-heading: 1.25;
+  --leading-body: 1.6;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    line-height: var(--leading-heading);
+    letter-spacing: -0.02em;
+    @apply tracking-tight;
+  }
+  h1 { font-size: var(--text-display-lg); line-height: var(--leading-display); }
+  h2 { font-size: var(--text-display-md); }
+  h3 { font-size: var(--text-heading-lg); }
+  h4 { font-size: var(--text-heading-md); }
+  h5 { font-size: var(--text-heading-sm); }
+  
+  .text-display {
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: var(--leading-display);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .container-reading {
+    max-width: 75ch; /* SKILL: Tipografia Rule 2.3 */
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F8F8FA;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--purple-300);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--purple-500);
+  }
+}
+
+@layer utilities {
+  .grain-texture::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    pointer-events: none;
+    filter: url(#grain-noise);
+    opacity: var(--texture-opacity);
+  }
+
+  .animate-floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+
+  /* Narrative italic — Inter italic, sem terceira família (Skill §1.2) */
+  .font-serif {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-style: italic;
+  }
+
+  /* Typography utility classes para a escala abaixo de text-xs */
+  .text-body-sm {
+    font-size: var(--text-body-sm); /* 13px */
+    line-height: 1.55;
+  }
+  .text-label {
+    font-size: var(--text-label); /* 11px — mínimo legível para labels */
+    line-height: 1.4;
+  }
+
+  .glass-card {
+    background: var(--glass);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+  }
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   *
+   * This overrides Tailwind's default container behavior to:
+   * - Auto-center content (mx-auto)
+   * - Add responsive horizontal padding
+   * - Set max-width for large screens
+   *
+   * Usage: <div className="container">...</div>
+   *
+   * For custom widths, use max-w-* utilities directly:
+   * <div className="max-w-6xl mx-auto px-4">...</div>
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* 16px - mobile padding */
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* 32px - desktop padding */
+      padding-right: 2rem;
+      max-width: 1280px; /* Standard content width */
+    }
+  }
+}
+
+/* ================================================================
+   INNOVATIONS & ENHANCEMENTS CSS
+   ================================================================ */
+.generic-svg-inline {
+  width: 100%;
+  height: auto;
+  max-width: 80px;
+}
+
+[data-theme="dark"] .generic-svg-inline,
+.dark .generic-svg-inline {
+  filter: drop-shadow(0px 2px 4px rgba(255,255,255,0.1));
+}
+
+/* SCROLL REVEAL MICRO-ANIMATIONS */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* TILT EFFECT 3D PERSPECTIVE */
+.hover-tilt {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* CARTÃO DE VISITA — flip 3D */
+.perspective-1000 { perspective: 1000px; }
+.preserve-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.rotate-y-180 { transform: rotateY(180deg); }
+
+/* ================================================================
+   DOSSIÊ ESTRATÉGICO — LAYOUT & IMPRESSÃO
+   ================================================================ */
+
+/* ── Estrutura de tela ── */
+.dossier-document {
+  width: 210mm;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.dossier-page {
+  width: 100%;
+  min-height: 297mm;
+  background: #ffffff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  margin-bottom: 2rem;
+  page-break-after: always;
+  break-after: page;
+  overflow: hidden;
+}
+
+/* ── Capa ── */
+.dossier-cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ── Conteúdo geral ── */
+.dossier-content {
+  padding: 48px 56px;
+}
+
+/* ── Cabeçalho de seção ── */
+.dossier-section-header {
+  border-left: 5px solid;
+  padding-left: 20px;
+  margin-bottom: 36px;
+}
+.dossier-section-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.dossier-section-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.dossier-section-subtitle {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* ── Grid de planejamento ── */
+.dossier-planning-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.dossier-planning-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  break-inside: avoid;
+}
+.dossier-card-number {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.dossier-card-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+.dossier-card-question {
+  font-size: 11px;
+  color: #64748b;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.dossier-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+.dossier-story {
+  border-left: 3px solid;
+  padding-left: 10px;
+}
+.dossier-story-text {
+  font-style: italic;
+  font-size: 12px;
+  color: #4b5563;
+  line-height: 1.5;
+}
+.dossier-functional {
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+.dossier-functional-text {
+  font-size: 11px;
+  color: #374151;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+.dossier-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+  margin-bottom: 4px;
+}
+
+/* ── Identidade visual ── */
+.dossier-identity-block {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 24px;
+  margin-top: 24px;
+}
+.dossier-identity-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #9ca3af;
+  margin-bottom: 4px;
+}
+.dossier-identity-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+.dossier-identity-desc {
+  font-size: 13px;
+  color: #64748b;
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.dossier-palette-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.dossier-swatch-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.dossier-swatch-color {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.dossier-swatch-hex {
+  font-size: 10px;
+  font-weight: 700;
+  color: #374151;
+  font-family: monospace;
+}
+.dossier-swatch-label {
+  font-size: 10px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+.dossier-swatch-pct {
+  font-size: 11px;
+  font-weight: 800;
+  color: #374151;
+}
+.dossier-typo-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 16px;
+  align-items: start;
+}
+.dossier-typo-item {
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+.dossier-typo-family {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-top: 4px;
+}
+.dossier-typo-specimen {
+  padding: 12px 16px;
+  background: #f8fafc;
+  border-left: 3px solid;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: #374151;
+  line-height: 1.6;
+}
+.dossier-logo-tip {
+  font-size: 12px;
+  color: #374151;
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 10px 14px;
+  line-height: 1.5;
+}
+
+/* ── Diretrizes ── */
+.dossier-guidelines-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.dossier-guideline-col {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.dossier-guideline-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px 16px;
+}
+.dossier-guideline-ok  { background: #dcfce7; color: #166534; }
+.dossier-guideline-err { background: #fee2e2; color: #991b1b; }
+.dossier-guideline-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  border-top: 1px solid #f1f5f9;
+  align-items: flex-start;
+}
+.dossier-guideline-mark {
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+.dossier-ok-mark  { color: #16a34a; }
+.dossier-err-mark { color: #dc2626; }
+
+/* ── Checklist ── */
+.dossier-checklist {
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 32px;
+}
+.dossier-checklist-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.dossier-checklist-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.dossier-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: default;
+}
+.dossier-check-box {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+/* ── Rodapé do documento ── */
+.dossier-doc-footer {
+  border-top: 1px solid;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ================================================================
+   IMPRESSÃO — @media print
+   ================================================================ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  /* Ocultar toolbar e elementos de UI */
+  .no-print,
+  header,
+  footer,
+  nav {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  .dossier-screen {
+    background: white !important;
+  }
+
+  .dossier-document {
+    width: 210mm;
+    max-width: 210mm;
+    margin: 0 !important;
+    gap: 0;
+  }
+
+  .dossier-page {
+    width: 210mm;
+    min-height: 297mm;
+    box-shadow: none !important;
+    margin-bottom: 0 !important;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .dossier-page:last-child {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .no-print-margin {
+    margin: 0 !important;
+  }
+
+  /* Garantir cores de fundo na impressão */
+  .dossier-cover,
+  .dossier-checklist,
+  .dossier-section-tag,
+  .dossier-swatch-color,
+  .dossier-guideline-ok,
+  .dossier-guideline-err {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Evitar quebra de seções internas */
+  .dossier-planning-card,
+  .dossier-guideline-col,
+  .dossier-identity-block,
+  .dossier-typo-row,
+  .dossier-palette-row {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

@@ -1,0 +1,3241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Interativo — Instituto De Mãos Dadas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Public+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Bitter:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-marinho: #153065;
+            --roxo: #7F4CA9;
+            --roxo-light: #BD90DA;
+            --laranja: #FF9E00;
+            --laranja-dark: #E65100;
+            --branco: #FAFAFA;
+            --branco-sujo: #F5F5F7;
+            --azul-claro-acolhedor: #F3F5FB;
+            --verde-menta: #00B894;
+            --navy-deep: #101A33;
+            --gold: #D4AF37;
+            --neutro-escuro: #0F0F1A;
+            --neutro-cinza: #616161;
+            
+            /* Cores dos projetos */
+            --projeto-azul: #1E3A5F;
+            --projeto-ciano: #00B4D8;
+            --projeto-magenta: #E91E8C;
+            --projeto-verde: #2ECC40;
+            --projeto-ouro: #D4A017;
+            
+            /* Photos for Mockups - Dignity & Empowerment */
+            --photo-relatorio: url('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&q=80&w=800');
+            --photo-folder: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800');
+            --photo-banner: url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=800');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lora', Georgia, serif;
+            background: var(--branco);
+            color: var(--neutro-escuro);
+            line-height: 1.7;
+        }
+
+        /* ==================== HEADER ==================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(127, 76, 169, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .header-logo img {
+            height: 40px;
+        }
+
+        .header-logo span {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--roxo);
+        }
+
+        .header-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .progress-steps {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--neutro-cinza);
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: var(--roxo);
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .progress-dot.completed {
+            background: var(--laranja);
+            opacity: 1;
+        }
+
+        .progress-label {
+            font-size: 0.85rem;
+            color: var(--neutro-cinza);
+            font-weight: 500;
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, 
+                rgba(127, 76, 169, 0.15) 0%, 
+                rgba(255, 158, 0, 0.1) 50%, 
+                rgba(21, 48, 101, 0.2) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .hero-logo {
+            width: 200px;
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            color: var(--azul-marinho);
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+        }
+
+        .hero .tagline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: var(--roxo);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .hero .purpose {
+            font-size: 1.1rem;
+            color: var(--neutro-cinza);
+            max-width: 600px;
+            margin: 1.5rem auto 3rem;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--roxo);
+            color: var(--branco);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(127, 76, 169, 0.3);
+        }
+
+        .hero-cta:hover {
+            background: var(--azul-marinho);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(127, 76, 169, 0.4);
+        }
+
+        .hero-cta svg {
+            transition: transform 0.3s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--neutro-cinza);
+            font-size: 0.85rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* ==================== SECTION STYLES ==================== */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--laranja);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--azul-marinho);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--neutro-cinza);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ==================== MANIFESTO SECTION ==================== */
+        .manifesto {
+            background: linear-gradient(180deg, var(--branco) 0%, rgba(189, 144, 218, 0.1) 100%);
+            padding: 4rem 2rem;
+        }
+
+        .manifesto-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .manifesto-quote {
+            font-family: 'Lora', Georgia, serif;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            color: var(--azul-marinho);
+            font-style: italic;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .manifesto-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--roxo-light);
+            display: block;
+            line-height: 0.5;
+            margin-bottom: 1rem;
+        }
+
+        /* ==================== OPTIONS CARDS ==================== */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .option-card {
+            background: var(--branco);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--roxo);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .option-card:hover {
+            box-shadow: 0 10px 40px rgba(127, 76, 169, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .option-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .option-card.selected {
+            border-color: var(--roxo);
+            box-shadow: 0 10px 40px rgba(127, 76, 169, 0.2);
+        }
+
+        .option-card.selected::before {
+            transform: scaleX(1);
+            background: var(--laranja);
+        }
+
+        .option-card.recommended {
+            border-color: var(--laranja);
+        }
+
+        .option-card.recommended.selected {
+            border-color: var(--roxo);
+            box-shadow: 0 10px 40px rgba(127, 76, 169, 0.2);
+        }
+
+        .option-card.recommended::after {
+            content: '⭐ RECOMENDADA';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--laranja);
+            color: var(--neutro-escuro);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .option-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--roxo);
+            color: var(--branco);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .option-card.selected .option-badge {
+            opacity: 1;
+            transform: translateY(0);
+            background: var(--laranja);
+            color: var(--neutro-escuro);
+        }
+
+        .option-preview {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(127, 76, 169, 0.1) 0%, rgba(255, 158, 0, 0.1) 100%);
+        }
+
+        .option-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--azul-marinho);
+            margin-bottom: 0.5rem;
+        }
+
+        .option-description {
+            font-size: 0.95rem;
+            color: var(--neutro-cinza);
+            margin-bottom: 1rem;
+        }
+
+        .option-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .option-spec {
+            font-size: 0.8rem;
+            background: rgba(127, 76, 169, 0.1);
+            color: var(--roxo);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        
+        .option-strategy {
+            font-size: 0.85rem;
+            color: var(--azul-marinho);
+            background: rgba(127, 76, 169, 0.05);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--laranja);
+            line-height: 1.4;
+        }
+        .option-strategy strong {
+            color: var(--laranja-dark);
+            font-weight: 700;
+        }
+
+        
+        /* ==================== LOGO VARIANT STYLES ==================== */
+        .logo-variant-selector {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-start;
+        }
+        .logo-variant-selector input {
+            cursor: pointer;
+        }
+        .logo-preview {
+            margin-top: 0.5rem;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--branco);
+            border: 1px solid var(--neutro-cinza);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .logo-preview img,
+        .logo-preview svg {
+            max-height: 80%;
+            max-width: 80%;
+        }
+        .variant-primary .logo-img { opacity: 1; }
+        .variant-mono .logo-img { filter: grayscale(100%) contrast(120%); }
+        .variant-watermark .logo-img { opacity: 0.15; }
+        .logo-variant-selector label {
+            font-size: 0.85rem;
+            color: var(--neutro-escuro);
+            cursor: pointer;
+        }
+        .logo-variant-selector input:focus + label {
+            outline: 2px solid var(--roxo);
+        }
+
+/* ==================== TYPOGRAPHY PREVIEW ==================== */
+        .typography-preview {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .typography-preview .display {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--azul-marinho);
+        }
+
+        .typography-preview .heading {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--neutro-escuro);
+        }
+
+        .typography-preview .body {
+            font-size: 1rem;
+            color: var(--neutro-cinza);
+            line-height: 1.6;
+        }
+
+        /* ==================== NEW DESIGN COMPONENTS ==================== */
+        .section-instruction {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            color: var(--roxo);
+            text-align: center;
+            margin-top: -1.5rem;
+            margin-bottom: 3rem;
+            font-weight: 500;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .section-instruction::before,
+        .section-instruction::after {
+            content: '';
+            height: 1px;
+            width: 30px;
+            background: currentColor;
+            opacity: 0.3;
+        }
+
+        /* Typography V2 */
+        .typography-preview-v2 {
+            background: var(--branco);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(127, 76, 169, 0.1);
+        }
+
+        .typo-sample-title {
+            font-size: 1.75rem;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            color: var(--azul-marinho);
+        }
+
+        .typo-sample-body {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            color: var(--neutro-cinza);
+        }
+
+        .typo-data-card {
+            background: rgba(127, 76, 169, 0.05);
+            border-radius: 8px;
+            padding: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .typo-data-item {
+            text-align: center;
+        }
+
+        .typo-data-value {
+            display: block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--roxo);
+        }
+
+        .typo-data-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--neutro-cinza);
+        }
+
+        /* Color Palette 60-30-10 */
+        .color-palette-v2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .color-bar-container {
+            height: 40px;
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .color-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .color-segment.dark { color: white; }
+        .color-segment.light { color: var(--neutro-escuro); text-shadow: none; }
+
+        .palette-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: var(--neutro-cinza);
+            font-family: monospace;
+        }
+
+        .mini-app-preview {
+            background: #f8f8fa;
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .mini-header {
+            height: 12px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .mini-content {
+            display: flex;
+            gap: 8px;
+        }
+
+        .mini-sidebar { width: 25%; height: 40px; border-radius: 4px; }
+        .mini-main { flex: 1; height: 40px; border-radius: 4px; }
+
+        /* Structured Meta Info */
+        .option-meta {
+            display: grid;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .meta-item {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+
+        .meta-icon {
+            width: 16px;
+            height: 16px;
+            margin-top: 3px;
+            opacity: 0.7;
+        }
+
+        .meta-content {
+            font-size: 0.82rem;
+            line-height: 1.4;
+        }
+
+        .meta-label {
+            font-weight: 700;
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2px;
+        }
+
+        .meta-label.use { color: #2E7D32; }
+        .meta-label.sensation { color: var(--roxo); }
+        .meta-label.risk { color: #C62828; }
+
+        /* Category Icons */
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--roxo);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Summary Identity Card */
+        .summary-card {
+            max-width: 450px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition-base);
+            text-align: left;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px -12px rgba(21, 48, 101, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f5;
+        }
+
+        .card-logo-placeholder {
+            width: 64px;
+            height: 64px;
+            background: #f8f8fa;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .card-org-name {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--azul-marinho);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .card-tagline {
+            font-size: 0.7rem;
+            color: var(--neutro-cinza);
+            margin: 4px 0 0 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .card-section-label {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--neutro-cinza);
+            letter-spacing: 1.2px;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .card-typo-preview {
+            font-family: var(--font-primary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--roxo);
+            letter-spacing: -0.02em;
+        }
+
+        .color-palette-v2.small {
+            height: 32px;
+            margin-bottom: 0;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .color-palette-v2.small > div {
+            height: 100%;
+        }
+
+        .color-bar-60 { width: 60%; }
+        .color-bar-30 { width: 30%; }
+        .color-bar-10 { width: 10%; }
+
+        .card-materials-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .material-tag {
+            background: rgba(127, 76, 169, 0.08);
+            color: var(--roxo);
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid rgba(127, 76, 169, 0.1);
+        }
+
+        .card-footer {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.25rem;
+            border-top: 1px dashed #eee;
+        }
+
+        .card-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: #bbb;
+            letter-spacing: 1px;
+        }
+
+        .card-status-pill {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ==================== BRAND VARIATIONS ==================== */
+        .material-preview {
+            background: var(--branco);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .material-mockup {
+            height: 150px;
+            background: linear-gradient(135deg, var(--azul-marinho) 0%, var(--roxo) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .material-mockup img {
+            max-width: 80%;
+            max-height: 80%;
+            filter: brightness(0) invert(1);
+        }
+
+        .material-mockup .mockup-label {
+            position: absolute;
+            bottom: 0.5rem;
+            right: 0.5rem;
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.7);
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .material-mockup.with-photo {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .material-mockup.with-photo::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(21, 48, 101, 0.4); /* Overlay for logo legibility */
+        }
+
+        .material-mockup.with-photo img {
+            z-index: 1;
+        }
+
+        /* ==================== BRAND VARIATIONS ==================== */
+        .brand-variations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .variation-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--branco);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .variation-preview {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+
+        .variation-preview.dark {
+            background: var(--azul-marinho);
+        }
+
+        .variation-preview.light {
+            background: var(--branco);
+            border: 1px solid #eee;
+        }
+
+        .variation-preview.gradient {
+            background: linear-gradient(135deg, var(--roxo) 0%, var(--laranja) 100%);
+        }
+
+        .variation-preview img {
+            max-width: 70%;
+        }
+
+        .variation-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            color: var(--azul-marinho);
+            margin-bottom: 0.25rem;
+        }
+
+        .variation-use {
+            font-size: 0.85rem;
+            color: var(--neutro-cinza);
+        }
+
+        /* ==================== SUMMARY SECTION ==================== */
+        .summary {
+            background: linear-gradient(180deg, rgba(127, 76, 169, 0.05) 0%, var(--branco) 100%);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .summary-item {
+            background: var(--branco);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .summary-item-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(127, 76, 169, 0.1);
+        }
+
+        .summary-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--roxo) 0%, var(--laranja) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+        }
+
+        .summary-item-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            color: var(--azul-marinho);
+        }
+
+        .summary-choice {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(127, 76, 169, 0.05);
+            border-radius: 8px;
+        }
+
+        .summary-choice-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--laranja);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neutro-escuro);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .summary-choice-text {
+            font-weight: 500;
+            color: var(--azul-marinho);
+        }
+
+        .summary-placeholder {
+            font-size: 0.9rem;
+            color: var(--neutro-cinza);
+            font-style: italic;
+        }
+
+        /* ==================== FORM ==================== */
+        .form-section {
+            background: var(--azul-marinho);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 2rem;
+        }
+
+        .form-section h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: var(--branco);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-section p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: var(--branco);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--laranja);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: var(--laranja);
+            color: var(--neutro-escuro);
+            border: none;
+            border-radius: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--branco);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 158, 0, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: var(--neutro-escuro);
+            color: var(--branco);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-contact {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ==================== FLOATING SUMMARY ==================== */
+        .floating-summary {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--azul-marinho);
+            color: var(--branco);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 8px 30px rgba(21, 48, 101, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .floating-summary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(21, 48, 101, 0.5);
+        }
+
+        .floating-summary-count {
+            background: var(--laranja);
+            color: var(--neutro-escuro);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .floating-summary-text {
+            font-weight: 500;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.75rem 1rem;
+            }
+
+            .progress-steps {
+                display: none;
+            }
+
+            .hero {
+                padding: 5rem 1rem 3rem;
+            }
+
+            .hero-logo {
+                width: 150px;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-summary {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.75rem 1rem;
+            }
+
+            .form-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==================== PRINT STYLES ==================== */
+        @media print {
+            .header, .floating-summary, .hero-cta, .scroll-indicator {
+                display: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* ==================== MODAL ==================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 15, 26, 0.8);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--branco);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--laranja);
+            color: var(--neutro-escuro);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+            box-shadow: 0 10px 30px rgba(255, 158, 0, 0.4);
+        }
+
+        .modal-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            color: var(--azul-marinho);
+            margin-bottom: 1rem;
+        }
+
+        .modal-text {
+            color: var(--neutro-cinza);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .modal-btn {
+            background: var(--azul-marinho);
+            color: var(--branco);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-btn:hover {
+            background: var(--roxo);
+            transform: translateY(-2px);
+        }
+
+        /* Loading Spin */
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    
+        /* ── CSS High-Fidelity Mug ── */
+        .mug-mockup {
+          --mug-color: #ffffff;
+          --mug-radius: 12px;
+          position: relative;
+          width: 80px;
+          height: 90px;
+          margin: 0 auto;
+          transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.4s ease;
+        }
+        .option-card:hover .mug-mockup { transform: scale(1.1) rotate(2deg); }
+        .mug-handle {
+          position: absolute; right: -12px; top: 15px; width: 30px; height: 50px;
+          border: 8px solid var(--mug-color); border-left: none; border-radius: 0 40px 40px 0;
+          filter: brightness(0.92); z-index: 1; transition: border-color 0.4s ease;
+        }
+        .mug-body {
+          position: absolute; width: 100%; height: 100%; background: var(--mug-color);
+          border-radius: 3px 3px var(--mug-radius) var(--mug-radius);
+          box-shadow: inset -8px -4px 15px rgba(0,0,0,0.08), inset 6px 0 10px rgba(255,255,255,0.7), 0 6px 20px rgba(0,0,0,0.12);
+          z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 5px;
+          transition: background 0.4s ease;
+        }
+        .mug-body::before {
+          content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+          background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent); z-index: 10; pointer-events: none;
+        }
+        .mug-body::after {
+          content: ''; position: absolute; top: 0; left: 20%; width: 15%; height: 100%;
+          background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%); pointer-events: none;
+        }
+
+        /* ── CSS High-Fidelity Badge ── */
+        .mock-badge {
+          width: 80px; margin: 0 auto; background: white; border: 1px solid var(--neutro-claro); border-radius: 8px;
+          overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.08); transition: transform 0.3s ease;
+          position: relative; z-index: 2;
+        }
+        .option-card:hover .mock-badge { transform: translateY(-5px); }
+        .mock-badge-header { background: var(--roxo); height: 25px; display: flex; align-items: center; justify-content: center; }
+        .mock-badge-body { padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .badge-lanyard {
+          width: 14px; height: 40px; background: var(--laranja); margin: 0 auto; margin-bottom: -5px;
+          border-radius: 2px 2px 0 0; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; overflow: hidden; gap: 2px;
+        }
+        .badge-lanyard span { color: white; font-size: 6px; font-weight: bold; transform: rotate(-90deg); }
+        .mug-col-dark { color: white; }
+        .mug-col-light { color: var(--roxo); }
+
+        /* ========== MÓDULO 4 — SUB-GRUPOS ========== */
+        .mod4-subgroup {
+            margin-top: 3rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(127, 76, 169, 0.15);
+        }
+        .mod4-subgroup:first-child {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+        .mod4-subgroup-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .mod4-subgroup-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.72rem;
+            color: var(--laranja);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .mod4-subgroup-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--azul-marinho);
+            margin: 0;
+        }
+        .mod4-subgroup-desc {
+            font-size: 0.88rem;
+            color: var(--neutro-cinza);
+            margin: 0 0 1.5rem;
+            max-width: 60ch;
+        }
+        /* mockups extras para itens novos */
+        .mock-letterhead-pi {
+            width: 70px; height: 95px;
+            background: white; border: 1px solid #ddd;
+            border-radius: 2px; overflow: hidden;
+            box-shadow: 2px 4px 12px rgba(0,0,0,0.12);
+            display: flex; flex-direction: column;
+        }
+        .mock-letterhead-pi .lh-hdr { background: var(--azul-marinho); height: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .mock-letterhead-pi .lh-body { flex: 1; padding: 6px 5px; display: flex; flex-direction: column; gap: 4px; }
+        .mock-env-pi {
+            width: 115px; height: 72px;
+            background: white; border: 1px solid #ddd; border-radius: 4px;
+            position: relative; overflow: hidden;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+            display: flex; align-items: flex-end; padding: 8px;
+        }
+        .mock-env-pi::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 0;
+            border-left: 57px solid transparent; border-right: 57px solid transparent;
+            border-top: 36px solid var(--azul-marinho);
+            opacity: 0.18;
+        }
+        .mock-tshirt-pi {
+            position: relative; width: 90px; height: 82px;
+        }
+        .mock-tshirt-pi .ts-body {
+            position: absolute; bottom: 0; left: 14px; right: 14px; top: 18px;
+            background: var(--azul-marinho); border-radius: 2px 2px 4px 4px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .mock-tshirt-pi .ts-sl { position: absolute; top: 18px; width: 20px; height: 30px; background: var(--azul-marinho); border-radius: 3px; }
+        .mock-tshirt-pi .ts-sl-l { left: 0; transform: rotate(-8deg); transform-origin: top right; }
+        .mock-tshirt-pi .ts-sl-r { right: 0; transform: rotate(8deg); transform-origin: top left; }
+        .mock-tshirt-pi .ts-collar { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 28px; height: 20px; border-radius: 0 0 50% 50%; background: var(--azul-marinho); border: 2px solid rgba(255,255,255,0.15); }
+        .mock-mousepad-pi {
+            width: 130px; height: 88px;
+            background: var(--azul-marinho); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 3px 5px 16px rgba(0,0,0,0.25);
+        }
+        .mock-line-pi { height: 3px; border-radius: 99px; background: rgba(255,255,255,0.25); }
+
+        /* Selo Circular Preview */
+        .selo-circular-preview {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(127, 76, 169, 0.15);
+            border: 4px solid var(--roxo);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .selo-circular-preview::after {
+            content: 'DMD';
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 0.65rem;
+            color: var(--azul-marinho);
+            letter-spacing: 1px;
+        }
+
+</style>
+</head>
+<body>
+    <!-- SVG SYMBOL LIBRARY (FOR INLINING) -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <!-- logo-main: versão colorida completa (navy + roxo + círculos) -->
+        <symbol id="logo-main" viewBox="0 0 1024 1024">
+            <path fill="#153065" transform="scale(0.948148 0.948148)" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C614.381 586.805 633.079 654.283 624.528 692.552C619.312 716.702 604.723 737.793 583.965 751.192C557.428 768.004 511.717 771.414 483.461 750.007C482.255 749.093 482.77 735.89 482.515 732.989C479.764 701.802 456.561 676.705 426.689 668.87C407.444 664.008 385.867 668.456 368.747 679.129C337.542 668.688 314.441 624.038 318 592.686C318.967 584.161 320.227 571.676 324.162 563.949C334.219 567.469 343.418 571.652 354.095 573.339C355.343 573.536 364.336 574.718 364.269 575.735C363.969 580.312 362.295 584.988 361.571 589.648C359.911 599.994 361.581 610.6 366.34 619.936C385.632 657.632 436.393 650.461 469.11 638.176C469.419 638.06 470.338 638.507 471.7 640.981C473.225 651.853 473.858 655.253C475.739 665.505 478.997 675.457 483.543 684.837C493.295 704.743 506.752 719.779 529.687 722.238C551.679 724.596 573.283 710.74 580.567 689.987C584.722 678.148 583.621 666.036 582.348 653.827C577.887 614.225 562.376 577.027 544.273 541.721C542.141 537.856 539.962 534.011 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z"/>
+            <path fill="#153065" transform="scale(0.948148 0.948148)" d="M404.653 681.48C437.231 678.818 465.797 703.073 468.452 735.652C471.107 768.23 446.846 796.791 414.267 799.439C381.698 802.086 353.148 777.834 350.493 745.265C347.839 712.697 372.085 684.141 404.653 681.48Z"/>
+            <path fill="#7F4CA9" transform="scale(0.948148 0.948148)" d="M538.064 530.026C536.143 526.116 534.002 522.333 531.988 518.472C507.779 472.05 474.754 389.393 491.438 337.364C499.193 313.183 516.063 293.976 538.672 282.607C559.117 272.326 585.319 269.995 607.026 277.409C611.529 278.948 628.081 285.317 630.144 288.943C632.07 292.33 630.645 302.854 631.277 307.366C632.429 315.58 634.943 324.068 638.628 331.505C647.258 348.922 663.465 361.898 681.792 367.96C705.655 375.853 724.315 369.975 745.696 359.084C786.326 377.758 807.981 433.699 789.617 474.57C772.486 468.055 766.758 465.859 748.296 462.87C753.437 448.122 754.572 440.039 750.181 424.61C746.735 412.501 737.28 402.404 726.166 396.688C708.711 387.712 680.544 389.267 662.13 394.197C655.211 396.05 649.088 399.156 642.258 401.297C640.8 383.366 637.874 368.062 629.303 351.874C620.885 336.055 612.639 323.887 594.974 318.246C567.453 309.459 539.77 324.162 531.683 351.883C528.75 361.938 529.518 369.975 530.516 380.345C534.921 426.097 554.429 469.963 576.371 509.826C566.077 514.851 547.945 523.816 538.064 530.026Z"/>
+            <path fill="currentColor" transform="scale(0.948148 0.948148)" d="M699.953 239.105C732.180 236.752 760.280 260.816 762.911 293.021C765.543 325.227 741.723 353.533 709.541 356.443C676.964 359.388 648.233 335.211 645.569 302.610C642.905 270.008 667.330 241.487 699.953 239.105Z"/>
+        </symbol>
+        <!-- logo-selo-oficio: Ícone completo (logo-main) + tipografia integrada do termo -->
+        <symbol id="logo-selo-oficio" viewBox="0 0 1024 1024">
+            <!-- Ícone completo (4 elementos, idêntico ao logo-main) -->
+            <path fill="#153065" transform="scale(0.948148 0.948148)" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C614.381 586.805 633.079 654.283 624.528 692.552C619.312 716.702 604.723 737.793 583.965 751.192C557.428 768.004 511.717 771.414 483.461 750.007C482.255 749.093 482.77 735.89 482.515 732.989C479.764 701.802 456.561 676.705 426.689 668.87C407.444 664.008 385.867 668.456 368.747 679.129C337.542 668.688 314.441 624.038 318 592.686C318.967 584.161 320.227 571.676 324.162 563.949C334.219 567.469 343.418 571.652 354.095 573.339C355.343 573.536 364.336 574.718 364.269 575.735C363.969 580.312 362.295 584.988 361.571 589.648C359.911 599.994 361.581 610.6 366.34 619.936C385.632 657.632 436.393 650.461 469.11 638.176C469.419 638.06 470.338 638.507 471.7 640.981C473.225 651.853 473.858 655.253C475.739 665.505 478.997 675.457 483.543 684.837C493.295 704.743 506.752 719.779 529.687 722.238C551.679 724.596 573.283 710.74 580.567 689.987C584.722 678.148 583.621 666.036 582.348 653.827C577.887 614.225 562.376 577.027 544.273 541.721C542.141 537.856 539.962 534.011 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z"/>
+            <path fill="#153065" transform="scale(0.948148 0.948148)" d="M404.653 681.48C437.231 678.818 465.797 703.073 468.452 735.652C471.107 768.23 446.846 796.791 414.267 799.439C381.698 802.086 353.148 777.834 350.493 745.265C347.839 712.697 372.085 684.141 404.653 681.48Z"/>
+            <path fill="#7F4CA9" transform="scale(0.948148 0.948148)" d="M538.064 530.026C536.143 526.116 534.002 522.333 531.988 518.472C507.779 472.05 474.754 389.393 491.438 337.364C499.193 313.183 516.063 293.976 538.672 282.607C559.117 272.326 585.319 269.995 607.026 277.409C611.529 278.948 628.081 285.317 630.144 288.943C632.07 292.33 630.645 302.854 631.277 307.366C632.429 315.58 634.943 324.068 638.628 331.505C647.258 348.922 663.465 361.898 681.792 367.96C705.655 375.853 724.315 369.975 745.696 359.084C786.326 377.758 807.981 433.699 789.617 474.57C772.486 468.055 766.758 465.859 748.296 462.87C753.437 448.122 754.572 440.039 750.181 424.61C746.735 412.501 737.28 402.404 726.166 396.688C708.711 387.712 680.544 389.267 662.13 394.197C655.211 396.05 649.088 399.156 642.258 401.297C640.8 383.366 637.874 368.062 629.303 351.874C620.885 336.055 612.639 323.887 594.974 318.246C567.453 309.459 539.77 324.162 531.683 351.883C528.75 361.938 529.518 369.975 530.516 380.345C534.921 426.097 554.429 469.963 576.371 509.826C566.077 514.851 547.945 523.816 538.064 530.026Z"/>
+            <path fill="#7F4CA9" transform="scale(0.948148 0.948148)" d="M699.953 239.105C732.180 236.752 760.280 260.816 762.911 293.021C765.543 325.227 741.723 353.533 709.541 356.443C676.964 359.388 648.233 335.211 645.569 302.610C642.905 270.008 667.330 241.487 699.953 239.105Z"/>
+            <!-- Tipografia integrada (wordmark do termo) -->
+            <path fill="#71409D" d="M261 501l23 0 0 7c-4 0-10 0-15 0l0 10c4 0 9 0 13 0 0 2 0 4 0 7-4 0-9 0-13 0l0 8 0 1c4 3 14-2 16 3 0 1-1 2-2 3-4 2-18 1-23 1l0-17c-8 19-18 17-37 17 0-6 0-36 1-41 17 0 29-3 36 15 0-5 0-10 0-15zm-28 34c5 0 8 0 13-2 10-10 6-26-10-25l-2 0c-2 4-1 21-1 27z"/>
+            <path fill="#71409D" d="M354 486c6-1 12-1 18-1 0 15-1 35 0 50 3-5 6-15 8-20l11-29c4 0 11-1 14 0 2 2 18 48 21 55-14 0-13 2-17-12-6 0-14 0-21 0-5 18-10 13-27 13 0-16 0-31 0-47-4 13-8 25-13 38-1 3-2 6-3 8-3 2-7 1-10 1-2-6-4-12-6-18-3-7-6-14-8-22 0-2 0-3-1-4-1 2-1 9-1 11 0 10 0 23 1 33-3 0-8 0-11 0 0-11 0-22 0-33 0-8 0-16 1-23 6 0 12 0 18 0l0 0c4 9 12 33 14 43 4-13 10-29 14-42z"/>
+            <path fill="#71409D" d="M495 484c3 0 10 0 12 2 3 3 2 7 2 11-6-2-22-6-24 2-2 8 19 12 24 20 5 9 3 15-6 21-8 5-21 2-30 0 0-4 0-8 0-12 7 5 13 5 21 4 14-10-9-16-15-20l-1 0-3-2c0 2 0 4 0 5-1 17-13 28-30 27-27-1-33-37-15-52 9-8 28-8 36 1 3 2 5 5 7 8 4-12 10-13 22-14zm-45 49c10-2 14-11 13-21-1-11-6-17-17-17-19 5-16 39 4 38z"/>
+            <path fill="#71409D" d="M408 467c6 0 4 8 0 10-6 2-11-1-17-3-1 1-2 3-3 5-2 0-2 0-3-1-2-8 6-12 13-8 6 3 8 3 10-3z"/>
+            <path fill="#153065" d="M845 485c13-1 17 0 16 13-4-2-22-6-23 1-1 10 22 12 25 22 6 26-21 24-38 22-12-2-13 6-17-13l-21 0c-1 4-3 8-4 13-5 0-10 0-15 0 2-5 4-11 6-16 3-9 6-18 10-27 2-5 3-10 5-15 4 0 11-1 14 1 3 1 18 45 20 52 0-3 0-6 0-8 7 4 25 9 26-2 1-7-26-11-26-24 0-15 10-17 22-19zm-56 36l8 0 8 0c-1-3-7-24-8-25-2 8-5 18-8 25z"/>
+            <path fill="#153065" d="M730 485c24-2 46 6 41 36-1 9-7 14-14 19-10 5-25 4-37 3 1-6 1-11 1-16 0-14 0-28 0-42l10 0zm3 48c8 0 14 1 20-4 3-4 5-5 5-10 2-20-7-23-24-23 0 8 0 29 1 37z"/>
+            <path fill="#153065" d="M619 485c3 0 10 0 13 0 9 0 20 2 26 10 7 8 8 20 5 29-2 6-4 9-9 13-10 8-29 7-42 6 0-8-1-53 1-57 2-1 4-1 6-1zm6 48c10 0 13 1 21-5 3-4 5-8 5-14 0-18-12-19-25-19l0 38z"/>
+            <path fill="#153065" d="M685 486c4 0 9-1 12 1 3 3 19 50 21 57-15 0-14 1-18-13l-5 0c-5 0-5 0-16 0-1 3-2 11-5 12-2 1-9 1-12 0 0-2 2-7 3-9 6-15 10-31 17-46 0-1 1-2 2-2zm-3 35l0 0 7 0 8 0c-1-5-3-10-4-15-1-3-2-8-3-10-2 4-7 21-8 25z"/>
+        </symbol>
+        <!-- logo-neg: versão monocromática completa -->
+        <symbol id="logo-neg" viewBox="0 0 1024 1024">
+            <path fill="currentColor" transform="scale(0.948148 0.948148)" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C614.381 586.805 633.079 654.283 624.528 692.552C619.312 716.702 604.723 737.793 583.965 751.192C557.428 768.004 511.717 771.414 483.461 750.007C482.255 749.093 482.77 735.89 482.515 732.989C479.764 701.802 456.561 676.705 426.689 668.87C407.444 664.008 385.867 668.456 368.747 679.129C337.542 668.688 314.441 624.038 318 592.686C318.967 584.161 320.227 571.676 324.162 563.949C334.219 567.469 343.418 571.652 354.095 573.339C355.343 573.536 364.336 574.718 364.269 575.735C363.969 580.312 362.295 584.988 361.571 589.648C359.911 599.994 361.581 610.6 366.34 619.936C385.632 657.632 436.393 650.461 469.11 638.176C469.419 638.06 470.338 638.507 471.7 640.981C473.225 651.853 473.858 655.253C475.739 665.505 478.997 675.457 483.543 684.837C493.295 704.743 506.752 719.779 529.687 722.238C551.679 724.596 573.283 710.74 580.567 689.987C584.722 678.148 583.621 666.036 582.348 653.827C577.887 614.225 562.376 577.027 544.273 541.721C542.141 537.856 539.962 534.011 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z"/>
+            <path fill="currentColor" transform="scale(0.948148 0.948148)" d="M404.653 681.48C437.231 678.818 465.797 703.073 468.452 735.652C471.107 768.23 446.846 796.791 414.267 799.439C381.698 802.086 353.148 777.834 350.493 745.265C347.839 712.697 372.085 684.141 404.653 681.48Z"/>
+            <path fill="currentColor" transform="scale(0.948148 0.948148)" d="M538.064 530.026C536.143 526.116 534.002 522.333 531.988 518.472C507.779 472.05 474.754 389.393 491.438 337.364C499.193 313.183 516.063 293.976 538.672 282.607C559.117 272.326 585.319 269.995 607.026 277.409C611.529 278.948 628.081 285.317 630.144 288.943C632.07 292.33 630.645 302.854 631.277 307.366C632.429 315.58 634.943 324.068 638.628 331.505C647.258 348.922 663.465 361.898 681.792 367.96C705.655 375.853 724.315 369.975 745.696 359.084C786.326 377.758 807.981 433.699 789.617 474.57C772.486 468.055 766.758 465.859 748.296 462.87C753.437 448.122 754.572 440.039 750.181 424.61C746.735 412.501 737.28 402.404 726.166 396.688C708.711 387.712 680.544 389.267 662.13 394.197C655.211 396.05 649.088 399.156 642.258 401.297C640.8 383.366 637.874 368.062 629.303 351.874C620.885 336.055 612.639 323.887 594.974 318.246C567.453 309.459 539.77 324.162 531.683 351.883C528.75 361.938 529.518 369.975 530.516 380.345C534.921 426.097 554.429 469.963 576.371 509.826C566.077 514.851 547.945 523.816 538.064 530.026Z"/>
+            <path fill="currentColor" transform="scale(0.948148 0.948148)" d="M699.953 239.105C732.180 236.752 760.280 260.816 762.911 293.021C765.543 325.227 741.723 353.533 709.541 356.443C676.964 359.388 648.233 335.211 645.569 302.610C642.905 270.008 667.330 241.487 699.953 239.105Z"/>
+        </symbol>
+    </svg>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-logo">
+            <svg width="40" height="40" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+            <span>Portfólio de Marca</span>
+        </div>
+        <div class="header-progress">
+            <div class="progress-steps">
+                <div class="progress-dot" data-section="hero"></div>
+                <div class="progress-dot" data-section="manifesto"></div>
+                <div class="progress-dot" data-section="brand"></div>
+                <div class="progress-dot" data-section="typography"></div>
+                <div class="progress-dot" data-section="colors"></div>
+                <div class="progress-dot" data-section="materials"></div>
+                <div class="progress-dot" data-section="summary"></div>
+            </div>
+            <span class="progress-label" id="progressLabel">Início</span>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <svg width="220" height="220" class="hero-logo"><use xlink:href="#logo-selo-oficio"></use></svg>
+        <h1>Portfólio de Marca</h1>
+        <p class="tagline">Instituto De Mãos Dadas</p>
+        <p class="purpose">Explore, escolha e construa junto a identidade visual perfeita para transformar realidades sociais com dignidade e inovação.</p>
+        <a href="#manifesto" class="hero-cta">
+            Começar a Explorar
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
+        <div class="scroll-indicator">
+            <span>Role para baixo</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- MANIFESTO SECTION -->
+    <section class="manifesto" id="manifesto">
+        <div class="manifesto-content fade-in">
+            <p class="manifesto-quote">
+                O Instituto De Mãos Dadas merece uma identidade visual que comunique a mesma excelência de suas ações sociais. Este portfólio é uma declaração: organizações do terceiro setor baseadas em periferias podem — e devem — ter comunicação de nível global.
+            </p>
+        </div>
+    </section>
+
+    <!-- BRAND VARIATIONS SECTION -->
+    <section class="section" id="brand">
+        <div class="section-header fade-in">
+            <p class="section-number">Módulo 1</p>
+            <h2 class="section-title">Versões da Marca</h2>
+            <p class="section-subtitle">Flexibilidade sem perder a essência. Escolha a versão mais adequada para cada contexto de aplicação.</p>
+        </div>
+        <p class="section-instruction">Escolha 1 versão principal e, opcionalmente, 1 negativa e 1 monograma.</p>
+
+        <div class="brand-variations fade-in">
+            <div class="variation-item">
+                <div class="variation-preview light">
+                    <svg width="100" height="100"><use xlink:href="#logo-selo-oficio"></use></svg>
+                </div>
+                <p class="variation-name">Logo Principal</p>
+                <p class="variation-use">Fundos claros, documentos formais, papelaria e comunicação institucional</p>
+            </div>
+            <div class="variation-item">
+                <div class="variation-preview dark">
+                    <svg width="60" height="60" style="color: white;"><use xlink:href="#logo-neg"></use></svg>
+                </div>
+                <p class="variation-name">Logo em Negativo</p>
+                <p class="variation-use">Fundos escuros, fotos, vídeos, materiais premium</p>
+            </div>
+            <div class="variation-item">
+                <div class="variation-preview gradient">
+                    <svg width="60" height="60" style="color: white;"><use xlink:href="#logo-neg"></use></svg>
+                </div>
+                <p class="variation-name">Alto Contraste</p>
+                <p class="variation-use">Banners, campañas, situações que exigem máxima legibilidade</p>
+            </div>
+            <div class="variation-item">
+                <div class="variation-preview light">
+                    <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 2rem; letter-spacing: -0.02em; color: var(--roxo);">DMD</span>
+                </div>
+                <p class="variation-name">Monograma DMD</p>
+                <p class="variation-use">Favicon, watermark, ícones de app, merchandising</p>
+            </div>
+        </div>
+
+        <div class="options-grid fade-in" style="margin-top: 3rem;">
+            <div class="option-card recommended selected" data-choice="brand" data-value="principal">
+                <span class="option-badge">✓ Selecionado</span>
+                <p class="option-title">Versão Principal</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary" style="padding: 10px 5px;">
+                    <svg class="logo-img" width="110" height="110"><use xlink:href="#logo-selo-oficio"></use></svg>
+                </div>
+
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Site institucional, documentos oficiais, papelaria e comunicação impressa.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Identidade completa: símbolo e nome integrados com autoridade institucional.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="option-card" data-choice="brand" data-value="negativa">
+                <span class="option-badge">✓ Selecionado</span>
+                <p class="option-title">Versão Negativa</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="negativa_primary" name="variant_negativa" value="primary" checked>
+                    <label for="negativa_primary">Branco</label>
+                    <input type="radio" id="negativa_mono" name="variant_negativa" value="mono">
+                    <label for="negativa_mono">Monocromático</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <svg class="logo-img" width="80" height="80" style="color: white;"><use xlink:href="#logo-neg"></use></svg>
+                </div>
+
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Sobre fotos coloridas, vídeos e fundos escuros.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label risk">Atenção</span>Garante legibilidade em materiais premium ou de alto contraste.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="option-card" data-choice="brand" data-value="monograma">
+                <span class="option-badge">✓ Selecionado</span>
+                <p class="option-title">Monograma DMD</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="mono_primary" name="variant_mono" value="primary" checked>
+                    <label for="mono_primary">Cor</label>
+                    <input type="radio" id="mono_gray" name="variant_mono" value="mono">
+                    <label for="mono_gray">Cinza</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 2.22rem; color: var(--roxo);">DMD</span>
+                </div>
+
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Favicon, ícones de redes sociais e assinaturas.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="option-card" data-choice="brand" data-value="selo">
+                <span class="option-badge">✓ Selecionado</span>
+                <p class="option-title">Selo Institucional</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="selo_primary" name="variant_selo" value="primary" checked>
+                    <label for="selo_primary">Oficial</label>
+                </div>
+                <div class="logo-preview">
+                    <div class="selo-circular-preview">
+                        <svg width="60" height="60" style="color: var(--roxo); margin-top: -10px;"><use xlink:href="#logo-main"></use></svg>
+                    </div>
+                </div>
+
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Documentos oficiais, ofícios e selos de garantia.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Credibilidade, oficialismo e tradição corporativa.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="option-card recommended selected" data-choice="brand" data-value="integrada">
+                <span class="option-badge">✓ Prioridade</span>
+                <p class="option-title">Logo Integrada — Versão do Termo</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="integrada_primary" name="variant_integrada" value="primary" checked>
+                    <label for="integrada_primary">Completa</label>
+                </div>
+                <div class="logo-preview">
+                    <div class="selo-circular-preview" style="border-width: 5px; box-shadow: 0 15px 35px rgba(21, 48, 101, 0.12);">
+                        <svg width="110" height="110" style="margin-top: 0;"><use xlink:href="#logo-selo-oficio"></use></svg>
+                    </div>
+                </div>
+
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Documentos formais, ofícios, termos, cabeçalhos de papelaria e identidade visual principal.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Autoridade, completude e rigor institucional — mesma lógica já consolidada nos documentos oficiais do Instituto.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TYPOGRAPHY SECTION -->
+    <section class="section" id="typography" style="background: linear-gradient(180deg, var(--branco) 0%, rgba(127, 76, 169, 0.05) 100%);">
+        <div class="section-header fade-in">
+            <p class="section-number">Módulo 2</p>
+            <h2 class="section-title">Combinações Tipográficas</h2>
+            <p class="section-subtitle">As vozes da nossa comunicação. Escolha a combinação que melhor representa a personalidade da marca.</p>
+        </div>
+        <p class="section-instruction">Escolha 1 combinação principal para a marca; as demais podem ser secundárias para materiais específicos.</p>
+
+        <div class="options-grid fade-in" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+
+            <!-- Opção 1: Comunidade Empoderada (RECOMENDADA) -->
+            <div class="option-card recommended selected" data-choice="typography" data-value="comunidade">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="typography-preview-v2">
+                    <p class="typo-sample-title" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">Comunidade Empoderada</p>
+                    <p class="typo-sample-body" style="font-family: 'Lora', serif;">O Instituto merece uma identidade que comunique excelência e humanidade em cada detalhe.</p>
+                    <div class="typo-data-card">
+                        <div class="typo-data-item"><span class="typo-data-value">7.4k</span><span class="typo-data-label">Impacto</span></div>
+                        <div class="typo-data-item"><span class="typo-data-value">100%</span><span class="typo-data-label">Clareza</span></div>
+                    </div>
+                </div>
+                <p class="option-title">Comunidade Empoderada</p>
+                
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Site institucional, relatórios de impacto e portais.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Contemporâneo, humano e equilibrado.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label risk">Atenção</span>Evitar em textos impressos muito densos em tamanho reduzido.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Opção 2: Presença Urbana -->
+            <div class="option-card" data-choice="typography" data-value="urbana">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="typography-preview-v2">
+                    <p class="typo-sample-title" style="font-family: 'DM Sans', sans-serif; font-weight: 700;">Presença Urbana</p>
+                    <p class="typo-sample-body" style="font-family: 'Merriweather', serif;">Comunicação forte que nasce das ruas e se destaca em qualquer tela ou território.</p>
+                    <div class="typo-data-card">
+                        <div class="typo-data-item"><span class="typo-data-value">15m</span><span class="typo-data-label">Leitura</span></div>
+                        <div class="typo-data-item"><span class="typo-data-value">4k</span><span class="typo-data-label">Mobile</span></div>
+                    </div>
+                </div>
+                <p class="option-title">Presença Urbana</p>
+                
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Redes sociais, banners de rua e aplicativos.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Próximo, robusto e dinâmico.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label risk">Destaque</span>Pensado para ser lido a 10-15 metros em ambientes abertos.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Opção 3: Dignidade Institucional -->
+            <div class="option-card" data-choice="typography" data-value="institucional">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="typography-preview-v2">
+                    <p class="typo-sample-title" style="font-family: 'Playfair Display', serif; font-weight: 700;">Dignidade Institucional</p>
+                    <p class="typo-sample-body" style="font-family: 'Source Sans 3', sans-serif;">Apresentamos dados com elegância para transformar investimentos em impacto real.</p>
+                    <div class="typo-data-card">
+                        <div class="typo-data-item"><span class="typo-data-value">R$ 2M</span><span class="typo-data-label">Captação</span></div>
+                        <div class="typo-data-item"><span class="typo-data-value">Premium</span><span class="typo-data-label">Padrão</span></div>
+                    </div>
+                </div>
+                <p class="option-title">Dignidade Institucional</p>
+                
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Relatórios anuais, editais e apresentações para investidores.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Elegante, sério e confiável.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label risk">Destaque</span>Permite usar fotos em P&B com dados em destaque.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Opção 4: Raízes Comunitárias -->
+            <div class="option-card" data-choice="typography" data-value="raizes">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="typography-preview-v2">
+                    <p class="typo-sample-title" style="font-family: 'Libre Baskerville', serif; font-weight: 700;">Raízes Comunitárias</p>
+                    <p class="typo-sample-body" style="font-family: 'Public Sans', sans-serif;">Compromisso público e transparência na comunicação direta com o morador.</p>
+                    <div class="typo-data-card">
+                        <div class="typo-data-item"><span class="typo-data-value">Oficial</span><span class="typo-data-label">Tom</span></div>
+                        <div class="typo-data-item"><span class="typo-data-value">100%</span><span class="typo-data-label">Acesso</span></div>
+                    </div>
+                </div>
+                <p class="option-title">Raízes Comunitárias</p>
+                
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Documentos oficiais, editais públicos e avisos comunitários.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Sóbrio, transparente e institucional.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Contexto</span>Sinaliza compromisso público sem pretensão.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Opção 5: Calor Acessível -->
+            <div class="option-card" data-choice="typography" data-value="calor">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="typography-preview-v2">
+                    <p class="typo-sample-title" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;">Calor Acessível</p>
+                    <p class="typo-sample-body" style="font-family: 'Bitter', serif;">A energia da juventude e o pertencimento que transforma cada praça e escola.</p>
+                    <div class="typo-data-card">
+                        <div class="typo-data-item"><span class="typo-data-value">Jovens</span><span class="typo-data-label">Foco</span></div>
+                        <div class="typo-data-item"><span class="typo-data-value">Voz</span><span class="typo-data-label">Ativa</span></div>
+                    </div>
+                </div>
+                <p class="option-title">Calor Acessível</p>
+                
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Redes sociais, campanhas para jovens e materiais de campo.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Acolhedor, vibrante e comunitário.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Estilo</span>Conecta com a estética de resistência e cartazes de periferia.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- COLORS SECTION -->
+    <section class="section" id="colors">
+        <div class="section-header fade-in">
+            <p class="section-number">Módulo 3</p>
+            <h2 class="section-title">Paleta de Cores</h2>
+            <p class="section-subtitle">As cores e os rostos das nossas ações. Escolha a variação que melhor se adapta ao contexto.</p>
+        </div>
+        <p class="section-instruction">Selecione a paleta que guiará a vibração e o equilíbrio visual de todos os seus materiais.</p>
+
+        <div class="options-grid fade-in">
+            <!-- 1. Equilíbrio Institucional -->
+            <div class="option-card recommended selected" data-choice="colors" data-value="institucional">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="color-palette-v2">
+                    <div class="color-bar-container">
+                        <div class="color-segment dark" style="background: #153065; flex: 6;">60%</div>
+                        <div class="color-segment dark" style="background: #7F4CA9; flex: 3;">30%</div>
+                        <div class="color-segment light" style="background: #FF9E00; flex: 1;">10%</div>
+                    </div>
+                    <div class="palette-labels">
+                        <span>#153065</span>
+                        <span>#7F4CA9</span>
+                        <span>#FF9E00</span>
+                    </div>
+                </div>
+                <div class="mini-app-preview" style="margin-bottom: 1.5rem;">
+                    <div class="mini-header" style="background: #153065;"></div>
+                    <div class="mini-content">
+                        <div class="mini-sidebar" style="background: rgba(127, 76, 169, 0.1);"></div>
+                        <div class="mini-main" style="background: var(--branco); border: 1px solid #153065; border-top: 4px solid #FF9E00;"></div>
+                    </div>
+                </div>
+                <p class="option-title">Equilíbrio Institucional Base</p>
+                <div class="option-meta">
+                    <div class="meta-item"><div class="meta-content"><span class="meta-label sensation">Efeito</span>Autoridade, estrutura e confiança. O navy capitaneia o tom sério.</div></div>
+                    <div class="meta-item"><div class="meta-content"><span class="meta-label risk">Atenção</span>Se o roxo for muito presente em fundos, use tipografia bold ou maior para garantir a acessibilidade (WCAG AA).</div></div>
+                </div>
+            </div>
+
+            <!-- 1.1 Variação Acolhedora -->
+            <div class="option-card" data-choice="colors" data-value="acolhedora">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="color-palette-v2">
+                    <div class="color-bar-container">
+                        <div class="color-segment dark" style="background: #153065; flex: 6;">60%</div>
+                        <div class="color-segment light" style="background: #F3F5FB; flex: 3;">30%</div>
+                        <div class="color-segment light" style="background: #FF9E00; flex: 1;">10%</div>
+                    </div>
+                    <div class="palette-labels">
+                        <span>#153065</span>
+                        <span>#F3F5FB</span>
+                        <span>#FF9E00</span>
+                    </div>
+                </div>
+                <div class="mini-app-preview" style="margin-bottom: 1.5rem;">
+                    <div class="mini-header" style="background: #153065;"></div>
+                    <div class="mini-content">
+                        <div class="mini-sidebar" style="background: #ffffff; border: 1px solid #eee;"></div>
+                        <div class="mini-main" style="background: #F3F5FB; border-top: 4px solid #FF9E00;"></div>
+                    </div>
+                </div>
+                <p class="option-title">Institucional Acolhedora</p>
+                <div class="option-meta">
+                    <div class="meta-item"><div class="meta-content"><span class="meta-label use">Uso</span>Homepage, programas e formulários — mais "humano" e leve.</div></div>
+                    <div class="meta-item"><div class="meta-content"><span class="meta-label sensation">Efeito</span>Mantém autoridade, mas abre a respiração visual com o azul claro.</div></div>
+                </div>
+            </div>
+
+            <!-- 2. Campanha Comunitária -->
+            <div class="option-card" data-choice="colors" data-value="campanha">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="color-palette-v2">
+                    <div class="color-bar-container">
+                        <div class="color-segment dark" style="background: #7F4CA9; flex: 6;">60%</div>
+                        <div class="color-segment light" style="background: #FF9E00; flex: 3;">30%</div>
+                        <div class="color-segment light" style="background: #BD90DA; flex: 1;">10%</div>
+                    </div>
+                    <div class="palette-labels">
+                        <span>#7F4CA9</span>
+                        <span>#FF9E00</span>
+                        <span>#BD90DA</span>
+                    </div>
+                </div>
+                <div class="mini-app-preview" style="margin-bottom: 1.5rem;">
+                    <div class="mini-header" style="background: #7F4CA9;"></div>
+                    <div class="mini-content">
+                        <div class="mini-sidebar" style="background: #FF9E00;"></div>
+                        <div class="mini-main" style="background: var(--branco-sujo); border: 1px solid #7F4CA9;"></div>
+                    </div>
+                </div>
+                <p class="option-title">Campanha Comunitária Base</p>
+                <div class="option-meta">
+                    <div class="meta-item"><div class="meta-content"><span class="meta-label sensation">Efeito</span>Energia e mobilização. O lilás suaviza e adiciona afeto e cuidado.</div></div>
+                    <div class="meta-item"><div class="meta-content"><span class="meta-label risk">Atenção</span>Risco de fadiga visual elevado. Exige fundos neutros (`#F5F5F7`) para equilibrar a vibração das cores principais.</div></div>
+                </div>
+            </div>
+
+            <!-- 2.1 Variação Favela Viva -->
+            <div class="option-card" data-choice="colors" data-value="favela_viva">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="color-palette-v2">
+                    <div class="color-bar-container">
+                        <div class="color-segment dark" style="background: #7F4CA9; flex: 6;">60%</div>
+                        <div class="color-segment light" style="background: #FF9E00; flex: 3;">30%</div>
+                        <div class="color-segment dark" style="background: #00B894; flex: 1;">10%</div>
+                    </div>
+                    <div class="palette-labels">
+                        <span>#7F4CA9</span>
+                        <span>#FF9E00</span>
+                        <span>#00B894</span>
+                    </div>
+                </div>
+                <div class="mini-app-preview" style="margin-bottom: 1.5rem;">
+                    <div class="mini-header" style="background: #7F4CA9;"></div>
+                    <div class="mini-content">
+                        <div class="mini-sidebar" style="background: #FF9E00;"></div>
+                        <div class="mini-main" style="background: #FFFFFF; border-bottom: 4px solid #00B894;"></div>
+                    </div>
+                </div>
+                <p class="option-title">Favela Viva / Mobilização</p>
+                <div class="option-meta">
+                    <div class="meta-item"><div class="meta-content"><span class="meta-label sensation">Efeito</span>Rua e juventude. Verde-água traz frescor e sensação de esperança.</div></div>
+                    <div class="meta-item"><div class="meta-content"><span class="meta-label use">Uso</span>Posts, cartazes e peças de alta energia. O Verde-água é estético, não funcional (não usar para sinalizar 'Sucesso').</div></div>
+                </div>
+            </div>
+
+            <!-- 3. Sóbria e Elevada -->
+            <div class="option-card" data-choice="colors" data-value="premium">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="color-palette-v2">
+                    <div class="color-bar-container">
+                        <div class="color-segment dark" style="background: #153065; flex: 6;">60%</div>
+                        <div class="color-segment light" style="background: #FAFAFA; flex: 3; border: 1px solid #ddd;">30%</div>
+                        <div class="color-segment light" style="background: #BD90DA; flex: 1;">10%</div>
+                    </div>
+                    <div class="palette-labels">
+                        <span>#153065</span>
+                        <span>#FAFAFA</span>
+                        <span>#BD90DA</span>
+                    </div>
+                </div>
+                <div class="mini-app-preview" style="margin-bottom: 1.5rem;">
+                    <div class="mini-header" style="background: #153065;"></div>
+                    <div class="mini-content">
+                        <div class="mini-sidebar" style="background: #FAFAFA; border: 1px solid #ddd;"></div>
+                        <div class="mini-main" style="background: #FFFFFF; border-bottom: 4px solid #BD90DA;"></div>
+                    </div>
+                </div>
+                <p class="option-title">Sóbria e Elevada Base</p>
+                <div class="option-meta">
+                    <div class="meta-item"><div class="meta-content"><span class="meta-label sensation">Efeito</span>Relatórios e editais. Seriedade com lilás como detalhe de humanidade.</div></div>
+                    <div class="meta-item"><div class="meta-content"><span class="meta-label use">Dica</span>Usar o lilás em gráficos e detalhes de dados para diferenciar do padrão.</div></div>
+                </div>
+            </div>
+
+            <!-- 3.1 Variação Ultra-Premium -->
+            <div class="option-card" data-choice="colors" data-value="ultra_premium">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="color-palette-v2">
+                    <div class="color-bar-container">
+                        <div class="color-segment dark" style="background: #101A33; flex: 6;">60%</div>
+                        <div class="color-segment light" style="background: #FAFAFA; flex: 3; border: 1px solid #ddd;">30%</div>
+                        <div class="color-segment light" style="background: #D4AF37; flex: 1;">10%</div>
+                    </div>
+                    <div class="palette-labels">
+                        <span>#101A33</span>
+                        <span>#FAFAFA</span>
+                        <span>#D4AF37</span>
+                    </div>
+                </div>
+                <div class="mini-app-preview" style="margin-bottom: 1.5rem;">
+                    <div class="mini-header" style="background: #101A33;"></div>
+                    <div class="mini-content">
+                        <div class="mini-sidebar" style="background: #FAFAFA; border: 1px solid #ddd;"></div>
+                        <div class="mini-main" style="background: #FFFFFF; border-top: 4px solid #D4AF37;"></div>
+                    </div>
+                </div>
+                <p class="option-title">Corporativa Ultra-Premium</p>
+                <div class="option-meta">
+                    <div class="meta-item"><div class="meta-content"><span class="meta-label use">Uso</span>Grandes doadores, apresentações para conselhos e consórcios.</div></div>
+                    <div class="meta-item"><div class="meta-content"><span class="meta-label sensation">Efeito</span>Ar corporativo de alto nível com acento em dourado suave.</div></div>
+                </div>
+
+        <!-- AMARRAÇÃO FUNCIONAL (Technical Skill Integration) -->
+        <div class="fade-in" style="margin-top: 4rem; padding: 2rem; background: #f8f9fc; border-radius: 16px; border-left: 5px solid var(--azul-marinho);">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <div class="category-icon" style="background: var(--azul-marinho);">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                </div>
+                <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--azul-marinho); margin: 0;">Amarração Funcional: A Cor como Sistema</h3>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div>
+                    <h4 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--laranja); margin-bottom: 0.75rem;">01. Função Denotativa</h4>
+                    <p style="font-size: 0.9rem; color: var(--neutro-cinza); line-height: 1.5;">Fotos e ilustrações mantêm cores reais, com leve ajuste para dialogar com azul/roxo/âmbar, preservando a diversidade das peles e territórios sem filtros artificiais.</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--roxo); margin-bottom: 0.75rem;">02. Função Conotativa</h4>
+                    <p style="font-size: 0.9rem; color: var(--neutro-cinza); line-height: 1.5;">O <strong>Azul</strong> traz a confiança e a espinha dorsal; o <strong>Roxo</strong> evoca potência e criatividade periférica; o <strong>Âmbar</strong> sinaliza urgência e o calor da comunidade em movimento.</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--azul-marinho); margin-bottom: 0.75rem;">03. Função de Sinal</h4>
+                    <p style="font-size: 0.9rem; color: var(--neutro-cinza); line-height: 1.5;">Padronização de botões e links. O <strong>Âmbar (#FF9E00)</strong> é reservado exclusivamente para ações (CTAs, doações, inscrições), garantindo reconhecimento instantâneo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MATERIALS SECTION -->
+    <section class="section" id="materials" style="background: linear-gradient(180deg, var(--branco) 0%, rgba(127, 76, 169, 0.05) 100%);">
+        <div class="section-header fade-in">
+            <p class="section-number">Módulo 4</p>
+            <h2 class="section-title">Materiais de Aplicação</h2>
+            <p class="section-subtitle">A marca ganhando o mundo. Veja como a identidade se adapta aos diferentes materiais.</p>
+        </div>
+        <p class="section-instruction">Identifique os materiais prioritários para o início da implementação da nova marca.</p>
+
+        <div class="fade-in">
+
+        <!-- ── 4.1 PAPELARIA INSTITUCIONAL ── -->
+        <div class="mod4-subgroup">
+            <div class="mod4-subgroup-header">
+                <div class="category-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                </div>
+                <span class="mod4-subgroup-num">Grupo 4.1</span>
+                <h3 class="mod4-subgroup-title">Papelaria Institucional</h3>
+            </div>
+            <p class="mod4-subgroup-desc">Materiais impressos para correspondências, reuniões formais e representação externa do Instituto.</p>
+            <div class="options-grid">
+
+            <!-- Cartão de Visita -->
+            <div class="option-card recommended selected" data-choice="material" data-value="cartao">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background: #FAFAFA; height: 110px; border: 1px solid #eee;">
+                        <svg width="100" height="100"><use xlink:href="#logo-selo-oficio"></use></svg>
+                    </div>
+                </div>
+                <p class="option-title">Cartão de Visita</p>
+                
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Networking, reuniões e eventos.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Profissionalismo e agilidade.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Dica</span>Inserir QR Code para facilitar doações imediatas.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Papel Timbrado -->
+            <div class="option-card" data-choice="material" data-value="timbrado">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background: #f4f4f8; height: 110px;">
+                        <div class="mock-letterhead-pi">
+                            <div class="lh-hdr"><svg width="18" height="18" style="color:white;"><use xlink:href="#logo-neg"></use></svg></div>
+                            <div class="lh-body">
+                                <div class="mock-line-pi" style="width:80%;"></div>
+                                <div class="mock-line-pi" style="width:60%;"></div>
+                                <div class="mock-line-pi" style="width:70%;"></div>
+                                <div class="mock-line-pi" style="width:45%;margin-top:6px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Papel Timbrado A4</p>
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Documentos oficiais, ofícios e correspondências formais.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Profissionalismo e maturidade administrativa.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Envelope Institucional -->
+            <div class="option-card" data-choice="material" data-value="envelope">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background: #e8e8f0; height: 110px;">
+                        <div class="mock-env-pi">
+                            <svg width="22" height="22" style="color:var(--roxo);opacity:0.6;"><use xlink:href="#logo-main"></use></svg>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Envelope Institucional</p>
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Envio de convites, relatórios impressos e ofícios.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label risk">Atenção</span>Garante que a marca seja reconhecida antes mesmo da abertura.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pasta de Documentos -->
+            <div class="option-card" data-choice="material" data-value="pasta">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background: linear-gradient(135deg, var(--roxo), #4a1a7a); height: 110px;">
+                        <svg width="70" height="70" style="color:rgba(255,255,255,0.85); z-index:2;"><use xlink:href="#logo-neg"></use></svg>
+                    </div>
+                </div>
+                <p class="option-title">Pasta de Projetos</p>
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Entrega de propostas comerciais e kits para doadores.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Impacto visual e organização premium.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloco de Notas -->
+            <div class="option-card" data-choice="material" data-value="bloco">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background: #fff8eb; height: 110px; border: 1px solid #ede;">
+                        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                            <svg width="80" height="80"><use xlink:href="#logo-selo-oficio"></use></svg>
+                            <div class="mock-line-pi" style="width:60px;background:rgba(21,48,101,0.2);"></div>
+                            <div class="mock-line-pi" style="width:50px;background:rgba(21,48,101,0.15);"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Bloco de Notas</p>
+                <p class="option-description">50 folhas com cabeçalho institucional. Distribuído em recepções e eventos locais.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary" style="padding: 8px 4px;">
+                    <svg class="logo-img" width="110" height="110"><use xlink:href="#logo-selo-oficio"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Distribuir em eventos de captação; cada página deve ter o site no rodapé para garantir que, mesmo destacada, a página leve a marca adiante.</p>
+                <div class="option-specs"><span class="option-spec">A5 / 50 fls</span><span class="option-spec">Cotidiano</span></div>
+            </div>
+
+            </div><!-- /options-grid 4.1 -->
+        </div><!-- /mod4-subgroup 4.1 -->
+
+        <!-- ── 4.2 DOCUMENTOS & COMUNICAÇÃO IMPRESSA ── -->
+        <div class="mod4-subgroup">
+            <div class="mod4-subgroup-header">
+                <div class="category-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                </div>
+                <span class="mod4-subgroup-num">Grupo 4.2</span>
+                <h3 class="mod4-subgroup-title">Documentos &amp; Comunicação Impressa</h3>
+            </div>
+            <p class="mod4-subgroup-desc">Peças editoriais e de difusão que comunicam o impacto e a missão do Instituto para diferentes públicos.</p>
+            <div class="options-grid">
+
+            <!-- Relatório de Impacto -->
+            <div class="option-card recommended" data-choice="material" data-value="relatorio">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup with-photo" style="background-image: var(--photo-relatorio);">
+                        <svg width="100" height="100" style="color: white; z-index: 2;"><use xlink:href="#logo-neg"></use></svg>
+                        <span class="mockup-label">Impacto 2026</span>
+                    </div>
+                </div>
+                <p class="option-title">Relatório de Impacto</p>
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Prestação de contas para doadores e investidores.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Transparência e profissionalismo.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label risk">Atenção</span>Peça editorial chave para captação de recursos.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Folder Institucional -->
+            <div class="option-card" data-choice="material" data-value="folder">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup with-photo" style="background-image: var(--photo-folder); height: 120px;">
+                        <svg width="60" height="60" style="color: white; z-index: 2;"><use xlink:href="#logo-neg"></use></svg>
+                    </div>
+                </div>
+                <p class="option-title">Folder Institucional</p>
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Eventos comunitários e feiras de projetos.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Proximidade e informação clara.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Apresentação de Slides -->
+            <div class="option-card" data-choice="material" data-value="slides">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup with-photo" style="background-image: var(--photo-relatorio); height: 120px;">
+                        <div style="position:absolute;bottom:0.5rem;right:0.5rem;width:40px;height:40px;color:white;opacity:0.7;z-index:2;"><svg width="100%" height="100%"><use xlink:href="#logo-neg"></use></svg></div>
+                        <div style="width:60%;height:2px;background:var(--laranja);z-index:2;"></div>
+                        <div style="width:40%;height:2px;background:var(--branco);margin-top:8px;z-index:2;"></div>
+                    </div>
+                </div>
+                <p class="option-title">Apresentação Slides</p>
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Reuniões de captação e Pitch Decks.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Agilidade e clareza de dados.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boletim Comunitário -->
+            <div class="option-card" data-choice="material" data-value="boletim">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:#f4f0fa; height:120px; border:1px solid #ddd; flex-direction:column; gap:6px;">
+                        <div style="width:80%;height:4px;background:var(--azul-marinho);border-radius:2px;"></div>
+                        <svg width="30" height="30" style="color:var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                        <div style="width:70%;height:3px;background:rgba(127,76,169,0.3);border-radius:2px;"></div>
+                        <div style="width:50%;height:3px;background:rgba(127,76,169,0.2);border-radius:2px;"></div>
+                    </div>
+                </div>
+                <p class="option-title">Boletim Comunitário</p>
+                <p class="option-description">Informativo impresso distribuído nos bairros atendidos. Linguagem acessível, design limpo.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary" style="padding: 8px 4px;">
+                    <svg class="logo-img" width="110" height="110"><use xlink:href="#logo-selo-oficio"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Redigir em linguagem simples e afetuosa, utilizando fotografias reais das comunidades para prestação de contas aos moradores.</p>
+                <div class="option-specs"><span class="option-spec">A5 / Offset</span><span class="option-spec">Comunidade</span></div>
+            </div>
+
+            <!-- Certificado -->
+            <div class="option-card" data-choice="material" data-value="certificado">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:linear-gradient(160deg,#0a1a40 0%,#1a3070 100%); height:120px;">
+                        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;z-index:2;position:relative;">
+                            <svg width="42" height="42" style="color:rgba(255,255,255,0.9);"><use xlink:href="#logo-neg"></use></svg>
+                            <div style="width:70px;height:2px;background:var(--laranja);border-radius:1px;"></div>
+                            <div style="width:50px;height:2px;background:rgba(255,255,255,0.3);border-radius:1px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Certificado de Participação</p>
+                <p class="option-description">Para cursos, oficinas e programas. Navy profundo com detalhes em âmbar e assinatura digitalizada.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary" style="padding: 8px 4px;">
+                    <svg class="logo-img" width="110" height="110"><use xlink:href="#logo-selo-oficio"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Incentivar que alunos e parceiros promovam nas redes sociais (ex: LinkedIn) marcando e impulsionando a hashtag oficial do projeto.</p>
+                <div class="option-specs"><span class="option-spec">A4 / Oficial</span><span class="option-spec">Reconhecimento</span></div>
+            </div>
+
+            </div><!-- /options-grid 4.2 -->
+        </div><!-- /mod4-subgroup 4.2 -->
+
+        <!-- ── 4.3 COMUNICAÇÃO DIGITAL ── -->
+        <div class="mod4-subgroup">
+            <div class="mod4-subgroup-header">
+                <div class="category-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <span class="mod4-subgroup-num">Grupo 4.3</span>
+                <h3 class="mod4-subgroup-title">Comunicação Digital</h3>
+            </div>
+            <p class="mod4-subgroup-desc">Presença online coerente com a identidade offline. Do Instagram ao e-mail, cada touchpoint mantém a linguagem visual do Instituto.</p>
+            <div class="options-grid">
+
+            <!-- Post de Redes Sociais -->
+            <div class="option-card recommended" data-choice="material" data-value="social">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup with-photo" style="background-image: var(--photo-folder);">
+                        <svg width="100" height="100" style="color: white; z-index: 2;"><use xlink:href="#logo-neg"></use></svg>
+                    </div>
+                </div>
+                <p class="option-title">Posts Feed / Carrossel</p>
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Instagram, LinkedIn e Facebook.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Vibrante, humano e engajador.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instagram Story -->
+            <div class="option-card" data-choice="material" data-value="story">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:linear-gradient(160deg,var(--azul-marinho) 0%,var(--roxo) 100%); height:120px; flex-direction:column; gap:6px;">
+                        <svg width="50" height="50" style="color:white; z-index:2;"><use xlink:href="#logo-neg"></use></svg>
+                        <div style="width:70%;height:2px;background:rgba(255,255,255,0.4);z-index:2;border-radius:1px;"></div>
+                    </div>
+                </div>
+                <p class="option-title">Instagram Stories</p>
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Bastidores, convocações rápidas e enquetes.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Conexão direta e agilidade.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner Web -->
+            <div class="option-card" data-choice="material" data-value="bannerweb">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:linear-gradient(90deg,var(--azul-marinho) 0%,var(--roxo) 100%); height:80px; padding:0 1rem; justify-content:space-between;">
+                        <svg width="36" height="36" style="color:rgba(255,255,255,0.9); flex-shrink:0;"><use xlink:href="#logo-neg"></use></svg>
+                        <div style="flex:1;display:flex;flex-direction:column;gap:4px;margin:0 8px;">
+                            <div style="height:3px;background:rgba(255,255,255,0.35);border-radius:2px;width:90%;"></div>
+                            <div style="height:3px;background:rgba(255,255,255,0.2);border-radius:2px;width:60%;"></div>
+                        </div>
+                        <div style="background:var(--laranja);color:#0F0F1A;font-size:6px;font-weight:700;padding:5px 8px;border-radius:4px;white-space:nowrap;">SAIBA MAIS</div>
+                    </div>
+                </div>
+                <p class="option-title">Banner Web / Site</p>
+                <p class="option-description">Banner horizontal para site e parcerias digitais. Degradê navy→roxo com CTA em âmbar.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Posicionar sempre 'acima da dobra' e promover a campanha sazonal de urgência com um botão de doação de alto contraste.</p>
+                <div class="option-specs"><span class="option-spec">1200×300px</span><span class="option-spec">Conversão</span></div>
+            </div>
+
+            <!-- Assinatura de E-mail -->
+            <div class="option-card" data-choice="material" data-value="emailsig">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:#f8f8fc; height:80px; border:1px solid #e8e; border-left:3px solid var(--roxo); justify-content:flex-start; gap:10px; padding:0 12px;">
+                        <svg width="32" height="32" style="color:var(--roxo); flex-shrink:0;"><use xlink:href="#logo-main"></use></svg>
+                        <div style="display:flex;flex-direction:column;gap:4px;">
+                            <div style="width:90px;height:4px;background:var(--azul-marinho);opacity:0.7;border-radius:2px;"></div>
+                            <div style="width:70px;height:3px;background:var(--neutro-cinza);opacity:0.4;border-radius:2px;"></div>
+                            <div style="width:80px;height:3px;background:var(--neutro-cinza);opacity:0.3;border-radius:2px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Assinatura de E-mail</p>
+                <p class="option-description">Template HTML com logomarca, cargo, telefone e links. Padrão para toda a equipe.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Transformar a assinatura em um outdoor rotativo: incluir um banner rápido para campanhas sazonais (ex: Inverno, Cesta Básica) com link direto para doação.</p>
+                <div class="option-specs"><span class="option-spec">HTML</span><span class="option-spec">Profissional</span></div>
+            </div>
+
+            <!-- Avatar / Favicon -->
+            <div class="option-card" data-choice="material" data-value="avatar">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:#edf0f7; height:110px; border:1px solid #e8e;">
+                        <div style="width:72px;height:72px;background:linear-gradient(135deg,var(--azul-marinho),var(--roxo));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(127,76,169,0.35);">
+                            <svg width="42" height="42" style="color:rgba(255,255,255,0.9);"><use xlink:href="#logo-neg"></use></svg>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Avatar &amp; Favicon</p>
+                <p class="option-description">Símbolo isolado em círculo degradê para perfis de redes sociais, favicon e ícone de app.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Utilizar em máxima legibilidade. Em épocas de campanhas (ex: Novembro da Consciência Negra), aplicar bordas temáticas sutis mantendo reconhecimento.</p>
+                <div class="option-specs"><span class="option-spec">512×512px</span><span class="option-spec">Reconhecimento</span></div>
+            </div>
+
+            </div><!-- /options-grid 4.3 -->
+        </div><!-- /mod4-subgroup 4.3 -->
+
+        <!-- ── 4.4 COMUNICAÇÃO AMBIENTAL & UNIFORMES ── -->
+        <div class="mod4-subgroup">
+            <div class="mod4-subgroup-header">
+                <div class="category-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.62 1.96v13.16a2 2 0 0 0 1.62 1.96L8 22a4 4 0 0 0 8 0l4.38-1.46a2 2 0 0 0 1.62-1.96V5.42a2 2 0 0 0-1.62-1.96z"></path><path d="M12 22V12"></path></svg>
+                </div>
+                <span class="mod4-subgroup-num">Grupo 4.4</span>
+                <h3 class="mod4-subgroup-title">Comunicação Ambiental &amp; Uniformes</h3>
+            </div>
+            <p class="mod4-subgroup-desc">A marca no espaço físico e nas pessoas. Eventos, fachadas e uniformes que tornam o Instituto reconhecível no território.</p>
+            <div class="options-grid">
+
+            <!-- Banner para Evento -->
+            <div class="option-card recommended" data-choice="material" data-value="banner">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup with-photo" style="background-image: var(--photo-banner); height: 120px;">
+                        <svg width="100" height="100" style="color: white; z-index: 2;"><use xlink:href="#logo-neg"></use></svg>
+                    </div>
+                </div>
+                <p class="option-title">Banner para Eventos</p>
+                
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Escolas, praças e eventos de rua.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Impacto, presença e autoridade.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label risk">Destaque</span>Pensado para ser lido com clareza a 10-15 metros de distância.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caneca Institucional -->
+            <div class="option-card" data-choice="material" data-value="caneca">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview" style="display:flex; flex-direction:column; justify-content:flex-end; padding-top:20px;">
+                    <div id="mainMug" class="mug-mockup" style="--mug-color: #ffffff;">
+                        <div class="mug-handle"></div>
+                        <div class="mug-body">
+                            <svg width="40" height="40" id="mugLogo" style="color: var(--roxo); z-index: 5;"><use xlink:href="#logo-main"></use></svg>
+                            <span id="mugText" style="font-size:6px;font-weight:bold;margin-top:4px;z-index:5;color:var(--azul-marinho);">INSTITUCIONAL</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Caneca Institucional</p>
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Brindes para parceiros e uso interno da equipe.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Pertencimento e presença diária.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cordão de Crachá -->
+            <div class="option-card" data-choice="material" data-value="cracha">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview" style="padding-top:10px;">
+                    <div id="badgeLanyard" class="badge-lanyard">
+                        <span>DMD</span><span>DMD</span>
+                    </div>
+                    <div class="mock-badge">
+                        <div id="badgeHeader" class="mock-badge-header"></div>
+                        <div class="mock-badge-body">
+                            <div style="width:30px;height:30px;background:#eee;border-radius:50%;"></div>
+                            <div style="width:40px;height:4px;background:#ccc;margin-top:4px;"></div>
+                            <div style="width:25px;height:4px;background:#eee;"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Cordão de Crachá</p>
+                <p class="option-description">Identificação de equipe em campo. Cores baseadas na paleta escolhida pelo usuário.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Utilizar cores diferentes (Laranja para Staff, Roxo para Voluntários, Azul para Prestadores) para categorização visual imediata em ações de rua.</p>
+                <div class="option-specs"><span class="option-spec">Sublimação</span><span class="option-spec">Identificação</span></div>
+            </div>
+
+            <!-- Camiseta Estampada -->
+            <div class="option-card" data-choice="material" data-value="camiseta">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:#1e1e30; height:120px;">
+                        <div class="mock-tshirt-pi">
+                            <div class="ts-collar"></div>
+                            <div class="ts-sl ts-sl-l"></div>
+                            <div class="ts-sl ts-sl-r"></div>
+                            <div class="ts-body">
+                                <svg width="32" height="32" style="color:rgba(255,255,255,0.85);"><use xlink:href="#logo-neg"></use></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Camiseta Oficial</p>
+                <div class="option-meta">
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label use">Onde usar</span>Voluntários e equipe em ações de campo.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-content"><span class="meta-label sensation">Sensação</span>Identificação imediata e orgulho.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mousepad -->
+            <div class="option-card" data-choice="material" data-value="mousepad">
+                <span class="option-badge">✓ Selecionado</span>
+                <div class="material-preview">
+                    <div class="material-mockup" style="background:#1a1f30; height:120px;">
+                        <div class="mock-mousepad-pi">
+                            <svg width="54" height="54" style="color:rgba(255,255,255,0.8);"><use xlink:href="#logo-neg"></use></svg>
+                        </div>
+                    </div>
+                </div>
+                <p class="option-title">Mousepad Institucional</p>
+                <p class="option-description">Borracha antiderrapante 20×25cm, superfície tecido. Logo centralizada em branco sobre navy.</p>
+                <div class="logo-variant-selector">
+                    <input type="radio" id="principal_primary" name="variant_principal" value="primary" checked>
+                    <label for="principal_primary">Cor</label>
+                    <input type="radio" id="principal_mono" name="variant_principal" value="mono">
+                    <label for="principal_mono">Monocromático</label>
+                    <input type="radio" id="principal_watermark" name="variant_principal" value="watermark">
+                    <label for="principal_watermark">Marca‑d’água</label>
+                </div>
+                <div class="logo-preview variant-primary">
+                    <!-- Logo SVG placeholder, will be replaced by actual logo via CSS class -->
+                    <svg class="logo-img" width="80" height="80" style="color: var(--roxo);"><use xlink:href="#logo-main"></use></svg>
+                </div>
+
+                <p class="option-strategy"><strong>Estratégia:</strong> Direcionado B2B. Distribuir a parceiros e patrocinadores; estar diariamente na mesa corporativa garante 'Top of Mind' no fechamento de patrocínios.</p>
+                <div class="option-specs"><span class="option-spec">20×25cm</span><span class="option-spec">Escritório</span></div>
+            </div>
+
+            </div><!-- /options-grid 4.4 -->
+        </div><!-- /mod4-subgroup 4.4 -->
+
+        </div><!-- /fade-in wrapper -->
+    </section>
+
+    <!-- SUMMARY SECTION -->
+    <section class="section summary" id="summary">
+        <div class="section-header fade-in">
+            <p class="section-number">Revisão Final</p>
+            <h2 class="section-title">Suas Escolhas</h2>
+            <p class="section-subtitle">Confirme as opções selecionadas para finalizar o portfólio de aprovação.</p>
+        </div>
+
+        <div class="summary-grid fade-in">
+            <div class="summary-item">
+                <div class="summary-item-header">
+                    <div class="summary-item-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                    </div>
+                    <p class="summary-item-title">Versão da Marca</p>
+                </div>
+                <div class="summary-choice" id="summary-brand">
+                    <div class="summary-choice-check">✓</div>
+                    <p class="summary-choice-text">Versão Principal</p>
+                </div>
+            </div>
+
+            <div class="summary-item">
+                <div class="summary-item-header">
+                    <div class="summary-item-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="4 7 4 4 20 4 20 7"/>
+                            <line x1="9" y1="20" x2="15" y2="20"/>
+                            <line x1="12" y1="4" x2="12" y2="20"/>
+                        </svg>
+                    </div>
+                    <p class="summary-item-title">Tipografia</p>
+                </div>
+            <p class="section-subtitle">Confirme as opções selecionadas neste cartão de identidade visual compacto.</p>
+        </div>
+
+        <div class="summary-card fade-in" id="identityCard">
+            <div class="card-inner">
+                <div class="card-front">
+                    <div class="card-header">
+                        <div class="card-logo-placeholder" id="summary-logo">
+                            <svg width="40" height="40"><use xlink:href="#logo-main"></use></svg>
+                        </div>
+                        <div class="card-title-group">
+                            <h3 class="card-org-name">Instituto de Mãos Dadas</h3>
+                            <p class="card-tagline">Guia de Identidade Visual</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="card-section">
+                            <span class="card-section-label">Tipografia</span>
+                            <div class="card-typo-preview" id="summary-typo-name">Space Grotesk + Inter</div>
+                        </div>
+                        
+                        <div class="card-section">
+                            <span class="card-section-label">Paleta de Cores</span>
+                            <div class="color-palette-v2 small" id="summary-color-bar">
+                                <div class="color-bar-60" style="background: var(--roxo);"></div>
+                                <div class="color-bar-30" style="background: var(--azul-marinho);"></div>
+                                <div class="color-bar-10" style="background: var(--laranja);"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-section">
+                            <span class="card-section-label">Prioritários</span>
+                            <div class="card-materials-list" id="summary-materials-tags">
+                                <span class="material-tag">Relatório de Impacto</span>
+                                <span class="material-tag">Redes Sociais</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer">
+                        <span class="card-id">ID: 2026-DMD-CONFIG</span>
+                        <div class="card-status-pill">Configuração Atual</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="form-section fade-in">
+            <h3>Pronto para Finalizar?</h3>
+            <p>Preencha seus dados abaixo e envie as escolhas para nossa equipe de design.</p>
+            
+            <form id="portfolioForm" action="https://formsubmit.co/seu-email@demãosdadas.org.br" method="POST">
+                <input type="hidden" name="_subject" value="🎨 Novas escolhas de marca - Portfólio DMD">
+                <input type="hidden" name="escolhas_selecionadas" id="hiddenChoices">
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nome">Nome completo</label>
+                        <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone (opcional)</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(62) 99999-9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="organizacao">Organização (opcional)</label>
+                        <input type="text" id="organizacao" name="organizacao" placeholder="Nome da organização">
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label for="observacoes">Observações ou justificativas (opcional)</label>
+                    <textarea id="observacoes" name="observacoes" placeholder="Compartilhe suas impressões sobre as escolhas..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                    Enviar Escolhas para Análise
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <svg width="60" height="60" style="color: white; opacity: 0.8;"><use xlink:href="#logo-neg"></use></svg>
+        </div>
+        <p class="footer-text">Instituto De Mãos Dadas — Goiânia, Goiás</p>
+        <p class="footer-contact">Em defesa dos direitos sociais e fortalecimento comunitário</p>
+    </footer>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">✓</div>
+            <h2 class="modal-title">Portfólio Enviado!</h2>
+            <p class="modal-text">As suas seleções foram enviadas com sucesso para a nossa equipe de design. Entraremos em contato em breve para os próximos passos.</p>
+            <button class="modal-btn" onclick="closeModal()">Ótimo, obrigado!</button>
+        </div>
+    </div>
+
+    <!-- FLOATING SUMMARY -->
+    <div class="floating-summary" id="floatingSummary" onclick="scrollToSummary()">
+        <div class="floating-summary-count" id="choicesCount">4</div>
+        <span class="floating-summary-text">escolhas feitas</span>
+    </div>
+
+    <script>
+        // ==================== STATE MANAGEMENT ====================
+
+        // ==================== LOGO VARIANT SWITCHING ====================
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.logo-variant-selector input')) {
+                const card = e.target.closest('.option-card');
+                const preview = card.querySelector('.logo-preview');
+                const variant = e.target.value; // primary, mono, watermark
+                preview.className = 'logo-preview variant-' + variant;
+                // persist selection
+                const materialKey = card.dataset.value;
+                const stored = JSON.parse(localStorage.getItem('logo_variants')||'{}');
+                stored[materialKey] = variant;
+                localStorage.setItem('logo_variants', JSON.stringify(stored));
+            }
+        });
+        // Load persisted variants on page load
+        window.addEventListener('load', function(){
+            const stored = JSON.parse(localStorage.getItem('logo_variants')||'{}');
+            Object.entries(stored).forEach(([key, variant]) => {
+                const card = document.querySelector(`.option-card[data-value="${key}"]`);
+                if (card) {
+                    const preview = card.querySelector('.logo-preview');
+                    preview.className = 'logo-preview variant-' + variant;
+                    const input = card.querySelector(`input[value="${variant}"]`);
+                    if (input) input.checked = true;
+                }
+            });
+        });
+
+        const state = {
+            brand: null,
+            typography: null,
+            colors: null,
+            material: null
+        };
+
+        const choiceLabels = {
+            brand: {
+                principal: 'Versão Principal',
+                negativa: 'Versão Negativa',
+                monograma: 'Monograma',
+                selo: 'Selo Institucional',
+                integrada: 'Logo Integrada (Ofício)'
+            },
+            typography: {
+                innovacao: 'Inovação Social',
+                campanha: 'Campanha Ativa',
+                premium: 'Institucional Premium'
+            },
+            colors: {
+                institucional: 'Equilíbrio Institucional Base',
+                acolhedora: 'Institucional Acolhedora',
+                campanha: 'Campanha Comunitária Base',
+                favela_viva: 'Favela Viva / Mobilização',
+                premium: 'Sóbria e Elevada Base',
+                ultra_premium: 'Corporativa Ultra-Premium'
+            }
+        };
+
+        // ==================== LOCAL STORAGE ====================
+        function saveState() {
+            localStorage.setItem('portfolio_dmd_choices', JSON.stringify(state));
+        }
+
+        function loadState() {
+            const saved = localStorage.getItem('portfolio_dmd_choices');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                Object.assign(state, parsed);
+                updateUI();
+            }
+        }
+
+        // ==================== UI UPDATES ====================
+        function updateUI() {
+            // Update option cards
+            document.querySelectorAll('.option-card[data-choice]').forEach(card => {
+                const choice = card.dataset.choice;
+                const value = card.dataset.value;
+                
+                if (state[choice] === value) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
+            });
+
+            // Update summary
+            updateSummary();
+
+            // Real-time 3D CSS Mug & Badge simulation
+            const mug = document.getElementById('mainMug');
+            const mugLogo = document.getElementById('mugLogo');
+            const mugText = document.getElementById('mugText');
+            const badgeHeader = document.getElementById('badgeHeader');
+            const badgeLanyard = document.getElementById('badgeLanyard');
+            
+            if (mug && badgeHeader) {
+                if (state.colors === 'campanha' || state.colors === 'favela_viva') {
+                    mug.style.setProperty('--mug-color', '#FF9E00');
+                    mugLogo.style.color = '#7F4CA9';
+                    mugText.style.color = '#7F4CA9';
+                    badgeHeader.style.background = '#FF9E00';
+                    badgeLanyard.style.background = '#7F4CA9';
+                    mugText.textContent = state.colors === 'favela_viva' ? 'FAVELA VIVA' : 'CAMPANHA';
+                    if (state.colors === 'favela_viva') badgeLanyard.style.background = '#00B894';
+                } else if (state.colors === 'premium' || state.colors === 'ultra_premium') {
+                    mug.style.setProperty('--mug-color', state.colors === 'ultra_premium' ? '#101A33' : '#153065');
+                    mugLogo.style.color = '#FAFAFA';
+                    mugText.style.color = '#FAFAFA';
+                    badgeHeader.style.background = state.colors === 'ultra_premium' ? '#101A33' : '#153065';
+                    badgeLanyard.style.background = state.colors === 'ultra_premium' ? '#D4AF37' : '#BD90DA';
+                    mugText.textContent = state.colors === 'ultra_premium' ? 'ULTRA-PREMIUM' : 'PREMIUM';
+                } else {
+                    // Institucional & Acolhedora
+                    mug.style.setProperty('--mug-color', state.colors === 'acolhedora' ? '#F3F5FB' : '#FAFAFA');
+                    mugLogo.style.color = '#7F4CA9';
+                    mugText.style.color = '#153065';
+                    badgeHeader.style.background = '#7F4CA9';
+                    badgeLanyard.style.background = '#FF9E00';
+                    mugText.textContent = state.colors === 'acolhedora' ? 'ACOLHEDORA' : 'INSTITUCIONAL';
+                }
+            }
+
+
+            // Update floating counter
+            updateFloatingCounter();
+        }
+
+        function updateSummary() {
+            const summaryLogo = document.getElementById('summary-logo');
+            const summaryTypo = document.getElementById('summary-typo-name');
+            const summaryColorBar = document.getElementById('summary-color-bar');
+            const summaryMaterials = document.getElementById('summary-materials-tags');
+
+            if (summaryLogo) {
+                let logoRef = '#logo-main';
+                if (state.brand === 'negativa') logoRef = '#logo-neg';
+                
+                if (state.brand === 'selo') {
+                    summaryLogo.innerHTML = `
+                        <div class="selo-circular-preview" style="transform: scale(0.4); margin: 0; width: 100px; height: 100px;">
+                            <svg width="60" height="60" style="color: var(--roxo); margin-top: -10px;"><use xlink:href="#logo-main"></use></svg>
+                        </div>
+                    `;
+                } else if (state.brand === 'integrada') {
+                    summaryLogo.innerHTML = `
+                        <div class="selo-circular-preview" style="transform: scale(0.4); margin: 0; width: 100px; height: 100px; border-width: 5px;">
+                            <svg width="90" height="90"><use xlink:href="#logo-selo-oficio"></use></svg>
+                        </div>
+                    `;
+                } else if (state.brand === 'monograma') {
+                    summaryLogo.innerHTML = `<span style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--roxo);">DMD</span>`;
+                } else {
+                    summaryLogo.innerHTML = `<svg width="40" height="40" style="color: var(--roxo);"><use xlink:href="${logoRef}"></use></svg>`;
+                }
+            }
+
+            if (summaryTypo) {
+                summaryTypo.textContent = choiceLabels.typography[state.typography] || 'Selecione uma opção';
+            }
+
+            if (summaryColorBar) {
+                if (state.colors === 'campanha' || state.colors === 'favela_viva') {
+                    summaryColorBar.innerHTML = `
+                        <div class="color-bar-60" style="background: #7F4CA9;"></div>
+                        <div class="color-bar-30" style="background: #FF9E00;"></div>
+                        <div class="color-bar-10" style="background: ${state.colors === 'favela_viva' ? '#00B894' : '#BD90DA'};"></div>
+                    `;
+                } else if (state.colors === 'premium' || state.colors === 'ultra_premium') {
+                    summaryColorBar.innerHTML = `
+                        <div class="color-bar-60" style="background: ${state.colors === 'ultra_premium' ? '#101A33' : '#153065'};"></div>
+                        <div class="color-bar-30" style="background: #FAFAFA; border: 1px solid #eee;"></div>
+                        <div class="color-bar-10" style="background: ${state.colors === 'ultra_premium' ? '#D4AF37' : '#BD90DA'};"></div>
+                    `;
+                } else if (state.colors === 'acolhedora') {
+                    summaryColorBar.innerHTML = `
+                        <div class="color-bar-60" style="background: #153065;"></div>
+                        <div class="color-bar-30" style="background: #F3F5FB; border: 1px solid #eee;"></div>
+                        <div class="color-bar-10" style="background: #FF9E00;"></div>
+                    `;
+                } else {
+                    summaryColorBar.innerHTML = `
+                        <div class="color-bar-60" style="background: #153065;"></div>
+                        <div class="color-bar-30" style="background: #7F4CA9;"></div>
+                        <div class="color-bar-10" style="background: #FF9E00;"></div>
+                    `;
+                }
+            }
+
+            if (summaryMaterials) {
+                summaryMaterials.innerHTML = '';
+                const selectedMaterials = Array.from(document.querySelectorAll('.option-card[data-choice="material"].selected'))
+                    .map(card => card.querySelector('.option-title').textContent);
+                
+                if (selectedMaterials.length === 0) {
+                    summaryMaterials.innerHTML = '<span class="material-tag" style="opacity:0.5;">Nenhum material selecionado</span>';
+                } else {
+                    selectedMaterials.slice(0, 3).forEach(mat => {
+                        const tag = document.createElement('span');
+                        tag.className = 'material-tag';
+                        tag.textContent = mat;
+                        summaryMaterials.appendChild(tag);
+                    });
+                    if (selectedMaterials.length > 3) {
+                        const tag = document.createElement('span');
+                        tag.className = 'material-tag';
+                        tag.textContent = `+${selectedMaterials.length - 3}`;
+                        summaryMaterials.appendChild(tag);
+                    }
+                }
+            }
+        }
+
+        function updateFloatingCounter() {
+            const count = Object.values(state).filter(v => v).length;
+            const counter = document.getElementById('choicesCount');
+            if (counter) {
+                counter.textContent = count;
+            }
+        }
+
+        function scrollToSummary() {
+            document.getElementById('summary').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ==================== EVENT HANDLERS ====================
+        function initEventListeners() {
+            // Progress dots click logic
+            document.querySelectorAll('.progress-dot').forEach(dot => {
+                dot.style.cursor = 'pointer';
+                dot.addEventListener('click', () => {
+                    const sectionId = dot.dataset.section;
+                    const el = document.getElementById(sectionId);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // Summary card click logic
+            const idCard = document.getElementById('identityCard');
+            if (idCard) {
+                idCard.addEventListener('click', () => {
+                    document.getElementById('brand').scrollIntoView({behavior: 'smooth'});
+                });
+            }
+            // Option cards
+            document.querySelectorAll('.option-card[data-choice]').forEach(card => {
+                card.addEventListener('click', () => {
+                    const choice = card.dataset.choice;
+                    const value = card.dataset.value;
+                    
+                    state[choice] = value;
+                    saveState();
+                    updateUI();
+
+                    // Visual feedback
+                    card.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Form submission (AJAX)
+            document.getElementById('portfolioForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const hiddenChoices = document.getElementById('hiddenChoices');
+                hiddenChoices.value = JSON.stringify(state, null, 2);
+                
+                const btn = document.getElementById('submitBtn');
+                const form = e.target;
+                
+                // Show loading state
+                btn.disabled = true;
+                const originalText = btn.innerHTML;
+                btn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin" style="margin-right: 10px;">
+                        <circle cx="12" cy="12" r="10" stroke-opacity="0.2"/>
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12" stroke-opacity="1"/>
+                    </svg>
+                    Enviando escolhas...
+                `;
+
+                // Submit via fetch
+                const formData = new FormData(form);
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showModal();
+                        localStorage.removeItem('portfolio_dmd_choices');
+                        form.reset();
+                    } else {
+                        throw new Error('Falha no envio');
+                    }
+                })
+                .catch(error => {
+                    alert('Houve um erro ao enviar suas escolhas. Por favor, tente novamente ou entre em contato diretamente.');
+                    console.error('Submission error:', error);
+                })
+                .finally(() => {
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                });
+            });
+
+            // Progress tracking
+            const sections = ['hero', 'manifesto', 'brand', 'typography', 'colors', 'materials', 'summary'];
+            const progressDots = document.querySelectorAll('.progress-dot');
+            const progressLabel = document.getElementById('progressLabel');
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+                        const index = sections.indexOf(sectionId);
+                        
+                        progressDots.forEach((dot, i) => {
+                            dot.classList.remove('active');
+                            if (i < index) dot.classList.add('completed');
+                            if (i === index) dot.classList.add('active');
+                        });
+
+                        if (progressLabel) {
+                            const labels = ['Início', 'Propósito', 'Marca', 'Tipografia', 'Cores', 'Materiais', 'Resumo'];
+                            progressLabel.textContent = labels[index] || 'Portfólio';
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) sectionObserver.observe(el);
+            });
+
+            // Fade-in animations
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(el => fadeObserver.observe(el));
+        }
+
+        // ==================== MODAL LOGIC ====================
+        function showModal() {
+            document.getElementById('successModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+            document.body.style.overflow = '';
+            // Optional: scroll to top or home
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==================== INIT ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            loadState();
+            initEventListeners();
+            updateUI();
+        });
+
+        // Add spin animation for loading
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            .spin { animation: spin 1s linear infinite; }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

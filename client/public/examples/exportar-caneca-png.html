@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exportar PNG — Caneca Mãos Dadas</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+        :root {
+            --md-primary-dark: #153065;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #1a1a2e;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 18pt;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: #e0e0e0;
+        }
+
+        .subtitle {
+            font-size: 10pt;
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        .preview-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+
+        #preview {
+            max-width: 600px;
+            height: auto;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 11pt;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #7F4CA9, #153065);
+            color: white;
+            box-shadow: 0 4px 15px rgba(127, 76, 169, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(127, 76, 169, 0.6);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #2d8a4e, #176d40);
+            color: white;
+            box-shadow: 0 4px 15px rgba(23, 109, 64, 0.4);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(23, 109, 64, 0.6);
+        }
+
+        .info {
+            font-size: 9pt;
+            color: #666;
+            text-align: center;
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .info strong {
+            color: #aaa;
+        }
+
+        .resolution-selector {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .resolution-selector label {
+            font-size: 10pt;
+            color: #aaa;
+        }
+
+        .resolution-selector select {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background: #2a2a3e;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10pt;
+            cursor: pointer;
+        }
+
+        .status {
+            margin-top: 15px;
+            font-size: 10pt;
+            color: #4CAF50;
+            min-height: 20px;
+        }
+
+        canvas {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Exportar Arte Final — Caneca Mãos Dadas</h1>
+    <p class="subtitle">Gere o PNG em alta qualidade para enviar à gráfica</p>
+
+    <div class="preview-container">
+        <img id="preview" src="logo-dmd-new.png" alt="Arte final caneca do Instituto">
+    </div>
+
+    <div class="resolution-selector">
+        <label for="resolution">Resolução:</label>
+        <select id="resolution">
+            <option value="2">2400 × 1500 (padrão)</option>
+            <option value="3">3600 × 2250 (alta)</option>
+            <option value="4" selected>4800 × 3000 (muito alta — recomendado)</option>
+            <option value="5">6000 × 3750 (máxima)</option>
+        </select>
+    </div>
+
+    <div class="controls">
+        <button class="btn btn-primary" onclick="exportPNG()">📥 Baixar PNG</button>
+        <button class="btn btn-secondary" onclick="exportPNGWhiteBg()">📥 Baixar PNG (fundo branco)</button>
+    </div>
+
+    <div class="status" id="status"></div>
+
+    <div class="info">
+        <strong>Fundo transparente:</strong> Para sublimação em caneca branca<br>
+        <strong>Fundo branco:</strong> Para visualização e conferência<br>
+        <strong>Imagem original:</strong> <a href="logo-dmd-new.png" download style="color: #5b9bd5;">baixar PNG
+            vetorial</a>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <script>
+        function exportPNG(whiteBg = false) {
+            const status = document.getElementById('status');
+            status.textContent = '⏳ Gerando PNG em alta resolução...';
+
+            const scale = parseInt(document.getElementById('resolution').value);
+            const baseW = 800, baseH = 500;
+            const w = baseW * scale, h = baseH * scale;
+
+            const canvas = document.getElementById('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+
+            if (whiteBg) {
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, w, h);
+            } else {
+                ctx.clearRect(0, 0, w, h);
+            }
+
+            const img = new Image();
+            img.onload = function () {
+                const imgRatio = img.width / img.height;
+                const canvasRatio = w / h;
+                let drawW = w;
+                let drawH = h;
+                let x = 0;
+                let y = 0;
+
+                if (imgRatio > canvasRatio) {
+                    drawW = w * 0.8;
+                    drawH = drawW / imgRatio;
+                } else {
+                    drawH = h * 0.8;
+                    drawW = drawH * imgRatio;
+                }
+                x = (w - drawW) / 2;
+                y = (h - drawH) / 2;
+
+                ctx.drawImage(img, x, y, drawW, drawH);
+
+                canvas.toBlob(function (blob) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    const suffix = whiteBg ? '_fundo_branco' : '_transparente';
+                    a.download = `caneca_maos_dadas_arte_final${suffix}_${w}x${h}.png`;
+                    a.href = url;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    status.textContent = `✅ PNG exportado: ${w} × ${h}px`;
+                }, 'image/png');
+            };
+            img.onerror = function () {
+                status.textContent = '❌ Erro ao carregar imagem. Verifique se o arquivo da logo está na mesma pasta.';
+            };
+            img.src = 'logo-dmd-new.png';
+        }
+
+        function exportPNGWhiteBg() {
+            exportPNG(true);
+        }
+    </script>
+
+</body>
+
+</html>

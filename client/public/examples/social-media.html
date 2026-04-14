@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DMD Social Media Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --md-navy: #153065;
+      --md-purple: #7F4CA9;
+      --md-accent: #FF9E00;
+      --md-white: #FFFFFF;
+      --md-black: #0F0F1A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+      gap: 50px;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #777;
+    }
+
+    /* Container de Preview */
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 60px;
+      width: 100%;
+      max-width: 1200px;
+      justify-items: center;
+    }
+
+    .preview-case {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Instagram Story (9:16) */
+    .story-frame {
+      width: 320px;
+      height: 568px; /* Proporcional a 1080x1920 */
+      background: var(--md-purple);
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 40px 25px;
+      color: white;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    /* Instagram Feed (4:5) */
+    .feed-frame {
+      width: 360px;
+      height: 450px; /* Proporcional a 1080x1350 */
+      background: var(--md-white);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 30px;
+      color: var(--md-navy);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      border: 1px solid #eee;
+    }
+
+    /* Conteúdo do Card */
+    .brand-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .logo { height: 35px; }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      background: rgba(255,255,255,0.1);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .feed-frame .tag { background: #f0f0f0; color: #153065; }
+
+    .headline {
+      font-family: 'Anton', sans-serif;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 15px;
+    }
+
+    .story-frame .headline { font-size: 56px; }
+    .feed-frame .headline { font-size: 42px; }
+
+    .subline {
+      font-size: 16px;
+      line-height: 1.4;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .cta {
+      margin-top: auto;
+      background: var(--md-accent);
+      color: var(--md-black);
+      padding: 12px;
+      text-align: center;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .footer-info {
+        margin-top: auto;
+        font-size: 12px;
+        font-weight: 700;
+        opacity: 0.6;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Grafismos */
+    .noise {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      opacity: 0.05;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Variações de Cores */
+    .bg-story-institucional { background: linear-gradient(135deg, #7F4CA9, #153065); }
+    .bg-feed-accent { background: #FF9E00; color: #0F0F1A; }
+    .bg-feed-accent .tag { background: rgba(0,0,0,0.05); }
+
+  </style>
+</head>
+<body>
+
+  <div class="preview-grid">
+    
+    <!-- Stories Example -->
+    <div class="preview-case" id="story-case" style="display: none;">
+      <h2 class="section-title">Instagram Stories</h2>
+      <div id="story-frame" class="story-frame bg-story-institucional">
+        <div class="noise"></div>
+        <div class="brand-bar">
+          <div class="tag" id="sTag">DMD INSIGHTS</div>
+          <img src="logo-dmd.svg" class="logo" id="sLogo">
+        </div>
+        <div>
+          <h1 class="headline" id="sHeadline">FAÇA<br>PARTE DO<br>MOVIMENTO</h1>
+          <p class="subline" id="sSubline">Pequenas ações geram grandes transformações. Venha construir o amanhã conosco.</p>
+        </div>
+        <div class="cta" id="sCTA">Arraste para Ver</div>
+      </div>
+    </div>
+
+    <!-- Feed Example -->
+    <div class="preview-case" id="feed-case" style="display: none;">
+      <h2 class="section-title">Post de Feed (4:5)</h2>
+      <div id="feed-frame" class="feed-frame bg-feed-accent">
+        <div class="brand-bar">
+          <div class="tag" id="fTag">RESULTADOS</div>
+          <img src="logo-dmd-new.png" class="logo" id="fLogo">
+        </div>
+        <div>
+          <h1 class="headline" id="fHeadline">150 FAMÍLIAS<br>ATENDIDAS</h1>
+          <p class="subline" id="fSubline">Nossa última ação comunitária impactou diretamente o bairro Jd. Kennedy III.</p>
+        </div>
+        <div class="footer-info">
+            <span id="fFooterLeft">@INSTITUTODEMOASDADAS</span>
+            <span id="fFooterRight">SET 2026</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function update() {
+      const params = new URLSearchParams(window.location.search);
+      const type = params.get('type') || 'both';
+      
+      if (type === 'story' || type === 'both') document.getElementById('story-case').style.display = 'flex';
+      if (type === 'feed' || type === 'both') document.getElementById('feed-case').style.display = 'flex';
+
+      // Variáveis Story
+      if (params.has('tag')) document.getElementById('sTag').innerText = params.get('tag');
+      if (params.has('headline')) document.getElementById('sHeadline').innerHTML = params.get('headline').replace(/\\n/g, '<br>');
+      if (params.has('subline')) document.getElementById('sSubline').innerText = params.get('subline');
+      if (params.has('cta')) document.getElementById('sCTA').innerText = params.get('cta');
+
+      // Variáveis Feed
+      if (params.has('tag')) document.getElementById('fTag').innerText = params.get('tag');
+      if (params.has('headline')) document.getElementById('fHeadline').innerHTML = params.get('headline').replace(/\\n/g, '<br>');
+      if (params.has('subline')) document.getElementById('fSubline').innerText = params.get('subline');
+      if (params.has('footerL')) document.getElementById('fFooterLeft').innerText = params.get('footerL');
+      if (params.has('footerR')) document.getElementById('fFooterRight').innerText = params.get('footerR');
+
+      // Temas e Layouts
+      const layout = params.get('layout') || 'institucional';
+      const storyFrame = document.getElementById('story-frame');
+      const feedFrame = document.getElementById('feed-frame');
+
+      if (layout === 'resultado') {
+        storyFrame.className = 'story-frame bg-story-institucional';
+        feedFrame.className = 'feed-frame bg-feed-accent';
+      } else if (layout === 'engajamento') {
+        storyFrame.style.background = 'var(--md-navy)';
+        feedFrame.style.background = 'var(--md-purple)';
+        feedFrame.style.color = 'white';
+        document.getElementById('fTag').style.background = 'rgba(255,255,255,0.1)';
+        document.getElementById('fTag').style.color = 'white';
+        document.getElementById('fLogo').src = 'logo-dmd.svg';
+      } else if (layout === 'citacao') {
+        storyFrame.style.background = 'var(--md-white)';
+        storyFrame.style.color = 'var(--md-navy)';
+        document.getElementById('sTag').style.background = '#f0f0f0';
+        document.getElementById('sTag').style.color = 'var(--md-navy)';
+        document.getElementById('sLogo').src = 'logo-dmd-new.png';
+        document.getElementById('sCTA').style.background = 'var(--md-navy)';
+        document.getElementById('sCTA').style.color = 'white';
+
+        feedFrame.style.background = 'var(--md-navy)';
+        feedFrame.style.color = 'white';
+        document.getElementById('fLogo').src = 'logo-dmd.svg';
+      } else if (layout === 'template') {
+        storyFrame.style.background = 'transparent';
+        storyFrame.style.border = '2px dashed var(--md-purple)';
+        storyFrame.style.color = 'var(--md-purple)';
+        document.getElementById('sCTA').style.opacity = '0.5';
+
+        feedFrame.style.background = 'transparent';
+        feedFrame.style.border = '2px dashed var(--md-navy)';
+        feedFrame.style.color = 'var(--md-navy)';
+      }
+    }
+    window.onload = update;
+  </script>
+</body>
+</html>

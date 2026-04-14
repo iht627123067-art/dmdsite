@@ -1,0 +1,3929 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio de Identidade Visual — Instituto De Mãos Dadas 2026. Marca, cores, tipografia e aplicações.">
+  <meta property="og:title" content="Portfolio de Identidade Visual · Instituto De Mãos Dadas">
+  <meta property="og:description" content="A identidade visual que dá voz ao compromisso com comunidades periféricas. Marca, cores, tipografia e aplicações.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="logo-dmd-new.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Portfolio — Instituto De Mãos Dadas</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Portfolio de Identidade Visual — Instituto De Mãos Dadas",
+    "description": "Sistema de marca completo: logomarca, paleta de cores, tipografia e aplicações.",
+    "datePublished": "2026-01-01",
+    "creator": {
+      "@type": "Organization",
+      "name": "Instituto De Mãos Dadas",
+      "url": "https://demaosdadas.org.br"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================================================================
+       RESET
+       ================================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+
+    /* ================================================================
+       TOKENS
+       ================================================================ */
+    :root {
+      --ink:        #0F0F1A;
+      --paper:      #ffffff;
+      --muted:      #4a4a5e;
+      --rule:       #e8e8f0;
+      --light:      #f6f6fb;
+      --accent:     #7F4CA9;
+      --accent-dim: #b085d4;
+      --navy:       #153065;
+      --amber:      #FF9E00;
+      --pink:       #E91E8C;
+      --dark-bg:    #0c0c18;
+
+      --font-sans:  'Space Grotesk', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+      --font-mono:  'IBM Plex Mono', 'Courier New', monospace;
+
+      --measure: 68ch;
+      --gap: clamp(1rem, 4vw, 2.5rem);
+
+      /* Novas cores do preview */
+      --md-purple:  #7F4CA9;
+      --md-navy:    #153065;
+      --md-lilac:   #BD90DA;
+      --md-amber:   #FF9E00;
+      --md-white:   #FAFAFA;
+    }
+
+    /* ================================================================
+       BASE
+       ================================================================ */
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-serif);
+      font-size: clamp(1rem, 1.1vw + 0.5rem, 1.2rem);
+      line-height: 1.75;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:hover { color: var(--navy); }
+    a:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: var(--font-sans);
+      line-height: 1.1;
+      color: var(--navy);
+    }
+
+    h1 { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 700; letter-spacing: -0.04em; }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 600; letter-spacing: -0.02em; }
+    h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 600; }
+    h4 { font-size: 1rem; font-weight: 600; }
+
+    p { max-width: var(--measure); }
+    p + p { margin-top: 1rem; }
+
+    strong { font-weight: 700; }
+
+    blockquote {
+      font-style: italic;
+      font-size: 1.2em;
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.5rem;
+      background: var(--light);
+      border-radius: 0 8px 8px 0;
+    }
+
+    blockquote cite {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-style: normal;
+      color: var(--muted);
+      display: block;
+      margin-top: 0.75rem;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.82em;
+      background: var(--light);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 0.15em 0.45em;
+    }
+
+    /* ================================================================
+       MARCA DOM DINÂMICA
+       ================================================================ */
+    .brand-dmd {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6em;
+      color: currentColor;
+      font-family: var(--font-sans);
+      user-select: none;
+      font-size: 1rem;
+    }
+
+    .brand-dmd-icon {
+      width: 2.2em;
+      height: 2.2em;
+      flex-shrink: 0;
+    }
+
+    .brand-dmd-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 0.85;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-dmd-text .de {
+      font-size: 0.38em;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      opacity: 0.8;
+      margin-bottom: 0.15em;
+    }
+
+    .brand-dmd-text .dadas {
+      font-size: 1em;
+    }
+
+    .brand-dmd--colored {
+      color: var(--accent);
+    }
+    
+    .brand-dmd--colored .brand-dmd-text .dadas {
+      color: var(--navy);
+    }
+
+    /* ================================================================
+       SKIP LINK
+       ================================================================ */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0 0 6px 6px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      z-index: 1000;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ================================================================
+       NAVIGATION
+       ================================================================ */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--gap);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+
+    .nav-logo-text {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .nav-logo-text small {
+      display: block;
+      font-weight: 400;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 0.2rem;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
+
+    /* ================================================================
+       LAYOUT UTILITIES
+       ================================================================ */
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--gap);
+    }
+
+    .section { padding: clamp(4rem, 8vw, 8rem) 0; }
+
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-label::before {
+      content: '— ';
+    }
+
+    /* ================================================================
+       CHOICE SECTIONS (Logo & Mugs)
+       ================================================================ */
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .choice-item {
+      position: relative;
+      background: var(--light);
+      border: 2px solid var(--rule);
+      border-radius: 12px;
+      padding: 2.5rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .choice-item:hover {
+      border-color: var(--accent-dim);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+    }
+
+    .choice-item.is-selected {
+      border-color: var(--accent);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(127, 76, 169, 0.1), 0 12px 24px rgba(0,0,0,0.1);
+    }
+
+    .choice-item.is-selected::after {
+      content: '✓ Selecionado';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--accent);
+      color: white;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-weight: 600;
+      animation: fadeInSlide 0.3s ease-out;
+    }
+
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .choice-label {
+      margin-top: 1.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .choice-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Logo Conjugation Variants ── */
+    .logo-variant-preview {
+      width: 100%;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .choice-item:hover .logo-variant-preview {
+      transform: scale(1.05);
+    }
+
+    /* ── CSS High-Fidelity Mug ── */
+    .mug-mockup {
+      --mug-color: #ffffff;
+      --mug-radius: 12px;
+      position: relative;
+      width: 110px;
+      height: 125px;
+      margin: 0 auto;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .choice-item:hover .mug-mockup {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .mug-handle {
+      position: absolute;
+      right: -18px;
+      top: 25px;
+      width: 40px;
+      height: 65px;
+      border: 10px solid var(--mug-color);
+      border-left: none;
+      border-radius: 0 40px 40px 0;
+      filter: brightness(0.92);
+      z-index: 1;
+    }
+
+    .mug-rim { display: none; } /* rim via ::before */
+
+    .mug-body {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--mug-color);
+      border-radius: 3px 3px var(--mug-radius) var(--mug-radius);
+      box-shadow:
+        inset -12px -5px 25px rgba(0,0,0,0.08),
+        inset 8px 0 12px rgba(255,255,255,0.7),
+        0 8px 30px rgba(0,0,0,0.12);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 10px 8px;
+      overflow: hidden;
+    }
+
+    .mug-body::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 8px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.3), transparent);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .mug-body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20%;
+      width: 15%;
+      height: 100%;
+      background: linear-gradient(to right,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.4) 50%,
+        rgba(255,255,255,0) 100%);
+      pointer-events: none;
+    }
+
+    .mug-logo {
+      width: 62%;
+      max-height: 52px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+      z-index: 5;
+    }
+
+    .mug-tagline {
+      font-family: var(--font-sans);
+      font-size: 6px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.3;
+      color: var(--navy);
+      z-index: 5;
+      max-width: 84%;
+    }
+
+    .mug--dark .mug-tagline { color: rgba(255,255,255,0.6); }
+
+    .divider {
+
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 3rem 0;
+    }
+
+    /* ================================================================
+       HERO
+       ================================================================ */
+    .hero {
+      min-height: 90vh;
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      align-items: center;
+      gap: clamp(2rem, 5vw, 4rem);
+      background: linear-gradient(160deg, var(--dark-bg) 0%, #1a0a2e 60%, #0d1f4a 100%);
+    }
+
+    .hero-content {
+      padding: clamp(3rem, 8vw, 8rem) var(--gap) clamp(3rem, 8vw, 8rem) clamp(2rem, 6vw, 6rem);
+    }
+
+    .hero-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--accent-dim);
+    }
+
+    .hero-desc {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+      color: rgba(255,255,255,0.65);
+      max-width: 52ch;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-ghost   { border: 1.5px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); }
+    .btn-ghost:hover { color: white; border-color: white; }
+
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(3rem, 6vw, 6rem) clamp(2rem, 4vw, 4rem);
+    }
+
+    .hero-logo-wrap {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: clamp(2.5rem, 5vw, 4rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      max-width: 380px;
+      width: 100%;
+    }
+
+    .hero-logo-wrap img {
+      width: clamp(160px, 20vw, 240px);
+      filter: drop-shadow(0 8px 32px rgba(127, 76, 169, 0.4));
+    }
+
+    .hero-logo-caption {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      width: 100%;
+    }
+
+    .stat {
+      text-align: center;
+      flex: 1;
+    }
+
+    .stat-num {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-dim);
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-visual { order: -1; padding-bottom: 0; }
+      .hero-content { padding-top: 2rem; }
+    }
+
+    /* ================================================================
+       MISSION
+       ================================================================ */
+    .mission { background: var(--paper); }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 6vw, 5rem);
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .mission-text h2 { margin-bottom: 1.5rem; }
+    .mission-text p { color: var(--muted); }
+
+    .mission-values {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .value-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .value-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--light);
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+    }
+
+    .value-text strong {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--navy);
+    }
+
+    .value-text p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .mission-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ================================================================
+       BRAND MARK
+       ================================================================ */
+    .brand-mark { background: var(--light); }
+
+    .brand-mark-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .logo-card {
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      min-height: 240px;
+    }
+
+    .logo-card img {
+      width: 120px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-card:hover img { transform: scale(1.05); }
+
+    .logo-card-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .logo-card--light { background: white; border: 1px solid var(--rule); }
+    .logo-card--light .logo-card-label { color: var(--muted); }
+
+    .logo-card--dark  { background: var(--navy); }
+    .logo-card--dark  .logo-card-label { color: rgba(255,255,255,0.45); }
+
+    .logo-card--brand { background: linear-gradient(135deg, var(--navy), var(--accent)); }
+    .logo-card--brand .logo-card-label { color: rgba(255,255,255,0.55); }
+
+    .logo-card--dark  img,
+    .logo-card--brand img { filter: brightness(1.1) drop-shadow(0 2px 12px rgba(0,0,0,0.5)); }
+
+    @media (max-width: 768px) {
+      .brand-mark-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ================================================================
+       REDUNDÂNCIA DE MARCA
+       ================================================================ */
+    .redundancy { background: var(--paper); }
+
+    /* ================================================================
+       MATRIZ DE ASSINATURAS (ESTILOS DO PREVIEW)
+       ================================================================ */
+    .sig-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    .dmd-navy { fill: var(--md-navy); }
+    .dmd-purple { fill: var(--md-purple); }
+    
+    .sig-option-card:hover .dmd-purple { fill: var(--md-lilac); }
+    .sig-option-card:hover .dmd-navy { fill: var(--md-purple); }
+
+    /* Quando dentro de um card escuro ou degradê */
+    .logo-card--dark .dmd-navy,
+    .logo-card--dark .dmd-purple,
+    .logo-card--brand .dmd-navy,
+    .logo-card--brand .dmd-purple {
+      fill: white !important;
+    }
+
+    .sig-option-card {
+      background: var(--light);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .sig-option-card:hover {
+      border-color: var(--accent-dim);
+      transform: translateY(-4px);
+    }
+
+    .sig-option-preview {
+      padding: 2.5rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 160px;
+      background: #fdfdfd;
+      position: relative;
+    }
+
+    .sig-option-preview.dark-bg { background: var(--navy); }
+
+    .sig-option-info {
+      padding: 1.25rem;
+      border-top: 1px solid var(--rule);
+      background: white;
+      flex: 1;
+    }
+
+    .sig-option-num {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .sig-option-title {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sig-option-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      line-height: 1.4;
+    }
+
+    /* Estilos específicos para os mockups da matriz */
+    .mock-anton { font-family: 'Anton', sans-serif; }
+    .mock-roboto { font-family: 'Space Grotesk', sans-serif; } /* Usando Space Grotesk como fallback do Roboto do preview */
+    
+    .sig-label-small { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+    .sig-title-large { font-size: 26px; text-transform: uppercase; line-height: 1; }
+
+    /* Estilos do crachá e outros mockups estendidos */
+    .mock-badge-anatomy {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      width: 180px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+    .mock-badge-anatomy-header { background: var(--accent); height: 40px; display: flex; align-items: center; justify-content: center; }
+    .mock-badge-anatomy-body { padding: 12px; }
+
+    /* ================================================================
+       ESTILOS EXISTENTES (CONTINUAÇÃO)
+       ================================================================ */
+    .problem-banner {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .problem-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      min-width: 180px;
+      position: relative;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .problem-chip {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #fee2e2;
+      color: #b91c1c;
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      margin-bottom: 0.25rem;
+    }
+
+    .problem-sep {
+      width: 100%;
+      height: 1px;
+      background: var(--rule);
+      margin: 0.5rem 0;
+    }
+
+    .problem-support-text {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .problem-support-text mark {
+      background: #fee2e2;
+      color: #b91c1c;
+      border-radius: 2px;
+      padding: 0 2px;
+      font-style: normal;
+    }
+
+    .problem-annotation {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.2rem;
+    }
+
+    .problem-annotation-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #b91c1c;
+      flex-shrink: 0;
+    }
+
+    .problem-annotation-text {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: #b91c1c;
+      letter-spacing: 0.05em;
+    }
+
+    .problem-text {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .alt-intro {
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+    }
+
+    .alt-intro h3 { color: var(--navy); margin-bottom: 0.5rem; }
+    .alt-intro p  { color: var(--muted); }
+
+    .alt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .alt-card {
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .alt-card:hover {
+      box-shadow: 0 8px 32px rgba(15,15,26,0.08);
+      transform: translateY(-3px);
+    }
+
+    .alt-mockup {
+      background: var(--light);
+      padding: 2.25rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 172px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .alt-mockup--dark  { background: var(--navy); }
+    .alt-mockup--brand { background: linear-gradient(135deg, var(--navy), var(--accent)); }
+    .alt-mockup--amber { background: #fffbf0; }
+
+    .alt-body {
+      padding: 1.4rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .alt-num {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+
+    .alt-name {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .alt-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .alt-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 1rem;
+    }
+
+    .alt-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.5rem;
+      border-radius: 20px;
+      background: var(--light);
+      color: var(--muted);
+      border: 1px solid var(--rule);
+    }
+
+    /* Mock components inside alt-mockup */
+    .mock-wm {
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-sans);
+      line-height: 0.82;
+      user-select: none;
+    }
+
+    .mock-wm-pre {
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--navy);
+      opacity: 0.6;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+    }
+
+    .mock-wm-main {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--navy);
+    }
+
+    .mock-sym-support {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .mock-support-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--navy);
+      letter-spacing: 0.04em;
+      text-align: center;
+      max-width: 120px;
+      line-height: 1.3;
+    }
+
+    .mock-monogram {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: 3.2rem;
+      letter-spacing: -0.06em;
+      line-height: 1;
+      user-select: none;
+      display: flex;
+    }
+
+    .mock-compact {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.65;
+    }
+
+    .mock-compact-text {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    /* ── Assinatura Horizontal ─────────────────────────────── */
+    .horiz-sig-section {
+      margin-top: 5rem;
+      padding-top: 4rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .horiz-sig-section h3 {
+      font-size: clamp(1.3rem, 2.5vw, 2rem);
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .horiz-sig-section > p { margin-bottom: 1rem; }
+
+    .horiz-sig-anatomy {
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+      padding: 2.5rem;
+      background: var(--light);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .horiz-sig-anatomy-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .horiz-sig-anatomy-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .horiz-sig-anatomy-arrow {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--rule);
+      margin: 0 0.25rem;
+      align-self: center;
+    }
+
+    .horiz-sig-anatomy-divline {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .horiz-sig-anatomy-divline-el {
+      width: 1px;
+      height: 48px;
+      background: var(--muted);
+      opacity: 0.3;
+    }
+
+    .horiz-sig-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .horiz-sig-card {
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .horiz-sig-preview {
+      padding: 2.25rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      min-height: 120px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .horiz-sig-preview--dark    { background: var(--navy); border-bottom-color: rgba(255,255,255,0.08); }
+    .horiz-sig-preview--paper   { background: #faf9f5; border-bottom-color: #e8e4d0; }
+    .horiz-sig-preview--neutral { background: #f4f6f8; }
+    .horiz-sig-preview--brand   { background: linear-gradient(120deg, var(--navy), var(--accent)); border-bottom-color: rgba(255,255,255,0.08); }
+
+    .sig-vdivider {
+      width: 1px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+
+    .sig-vdivider--light { background: rgba(255,255,255,0.2); }
+    .sig-vdivider--dark  { background: rgba(21,48,101,0.18); }
+
+    .sig-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .sig-name {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .sig-name--light { color: white; }
+    .sig-name--dark  { color: var(--navy); }
+
+    .sig-role {
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 0.72rem;
+      letter-spacing: 0.03em;
+      line-height: 1.3;
+    }
+
+    .sig-role--light { color: rgba(255,255,255,0.5); }
+    .sig-role--dark  { color: var(--muted); }
+
+    .horiz-sig-label {
+      padding: 0.9rem 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 960px) {
+      .alt-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .problem-banner  { grid-template-columns: 1fr; }
+      .alt-grid        { grid-template-columns: 1fr; }
+      .horiz-sig-showcase { grid-template-columns: 1fr; }
+    }
+
+    /* ================================================================
+       COLOR SYSTEM
+       ================================================================ */
+    .colors { background: var(--paper); }
+
+    .palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .swatch {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+    }
+
+    .swatch-color {
+      height: 120px;
+    }
+
+    .swatch-info {
+      padding: 1rem;
+      background: white;
+    }
+
+    .swatch-name {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .swatch-role {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      display: block;
+    }
+
+    /* ================================================================
+       TYPOGRAPHY
+       ================================================================ */
+    .typography { background: var(--dark-bg); color: white; }
+
+    .type-showcase {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .type-row {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 3rem;
+    }
+
+    .type-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .type-specimen-display {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: white;
+    }
+
+    .type-specimen-serif {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+      line-height: 1.45;
+      color: rgba(255,255,255,0.75);
+      font-style: italic;
+    }
+
+    .type-specimen-mono {
+      font-family: var(--font-mono);
+      font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+      color: var(--accent-dim);
+      letter-spacing: 0.04em;
+    }
+
+    /* ================================================================
+       APPLICATIONS
+       ================================================================ */
+    .applications { background: var(--light); }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .app-card {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .app-card:hover {
+      border-color: var(--accent-dim);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(127, 76, 169, 0.12);
+    }
+
+    .app-visual {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-meta {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .app-meta h4 {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .app-meta p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Mockup: Crachá */
+    .mock-badge {
+      width: 90px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+
+    .mock-badge-header {
+      background: var(--accent);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .mock-badge-header img { width: 40px; filter: brightness(0) invert(1); }
+
+    .mock-badge-body {
+      background: white;
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .mock-avatar {
+      width: 32px; height: 32px;
+      background: var(--light);
+      border-radius: 50%;
+      border: 2px solid var(--rule);
+    }
+
+    .mock-line {
+      height: 4px; border-radius: 99px; background: var(--light);
+    }
+
+    /* Mockup: Stories */
+    .mock-phone {
+      width: 80px;
+      height: 150px;
+      background: white;
+      border-radius: 14px;
+      padding: 8px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mock-phone-logo { width: 24px; }
+
+    .mock-phone-img {
+      flex: 1;
+      background: linear-gradient(135deg, var(--light) 0%, var(--rule) 100%);
+      border-radius: 6px;
+    }
+
+    .mock-phone-cta {
+      height: 18px;
+      background: var(--amber);
+      border-radius: 99px;
+    }
+
+    /* Mockup: Fachada */
+    .mock-building {
+      width: 200px;
+      height: 140px;
+      background: #2a2a3e;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,0.05);
+    }
+
+    .mock-building img { width: 48px; filter: brightness(0) invert(1) brightness(0.8) sepia(1) saturate(2) hue-rotate(220deg); }
+
+    .mock-building-text {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+    }
+
+    /* Mockup: Tote */
+    .mock-tote {
+      width: 110px;
+      height: 130px;
+      background: #f0ebe0;
+      border-radius: 4px 4px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 4px 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .mock-tote::before,
+    .mock-tote::after {
+      content: '';
+      position: absolute;
+      top: -16px;
+      width: 3px;
+      height: 20px;
+      background: #c0b090;
+      border-radius: 99px;
+    }
+
+    .mock-tote::before { left: 30%; }
+    .mock-tote::after  { right: 30%; }
+
+    .mock-tote img { width: 64px; opacity: 0.75; filter: sepia(0.4) saturate(0.7); }
+
+    /* Mockups: Material de Escritório */
+    .mock-notebook { width: 100px; height: 140px; background: var(--navy); border-radius: 4px 12px 12px 4px; position: relative; box-shadow: inset -6px 0 12px rgba(0,0,0,0.2), 4px 6px 16px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; }
+    .mock-notebook::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: rgba(0,0,0,0.3); border-radius: 4px 0 0 4px; }
+    .mock-notebook img { width: 48px; filter: brightness(0) invert(1) opacity(0.85); }
+
+    .mock-pen { width: 160px; height: 12px; background: linear-gradient(to bottom, #d4cfc9 0%, #e8e5e1 50%, #b8b3ae 100%); border-radius: 6px; position: relative; box-shadow: 2px 4px 8px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -1px 2px rgba(0,0,0,0.12); display: flex; align-items: center; justify-content: flex-end; padding-right: 20px; transform: perspective(800px) rotateX(4deg); }
+    .mock-pen::before { content: ''; position: absolute; right: 10px; top: -2px; width: 30px; height: 4px; background: #888; border-radius: 2px; }
+    .mock-pen::after { content: ''; position: absolute; left: -10px; top: 1px; border-right: 10px solid #888; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+    .mock-pen img { height: 6px; filter: brightness(0) opacity(0.6); }
+
+    .mock-folder { width: 130px; height: 160px; background: var(--accent); border-radius: 4px 16px 4px 4px; position: relative; box-shadow: 4px 6px 16px rgba(0,0,0,0.15); display: flex; align-items: flex-end; padding: 12px; }
+    .mock-folder::before { content: ''; position: absolute; right: 0; top: 0; width: 40px; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.1)); }
+    .mock-folder img { width: 45px; filter: brightness(0) invert(1) opacity(0.9); }
+
+    .mock-card { width: 140px; height: 80px; background: white; border-radius: 4px; box-shadow: 2px 4px 12px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; padding: 10px; position: relative; overflow: hidden; }
+    .mock-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent); }
+    .mock-card img { width: 40px; }
+
+    .mock-notepad { width: 100px; height: 140px; background: #fffae6; border-radius: 2px; box-shadow: 2px 4px 12px rgba(0,0,0,0.1); position: relative; padding: 20px 10px 10px; display: flex; flex-direction: column; gap: 8px; }
+    .mock-notepad::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 12px; background: var(--navy); border-radius: 2px 2px 0 0; }
+    .mock-notepad img { width: 30px; align-self: flex-start; margin-bottom: 4px; opacity: 0.8; }
+    .mock-notepad-line { height: 2px; background: rgba(0,0,0,0.05); width: 100%; }
+
+    .mock-mug { width: 70px; height: 80px; background: linear-gradient(to right, #f4f4f4 0%, #ffffff 50%, #e0e0e0 100%); border-radius: 4px 4px 8px 8px; position: relative; box-shadow: inset -5px -5px 15px rgba(0,0,0,0.05), 4px 8px 16px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; }
+    .mock-mug::before { content: ''; position: absolute; right: -18px; top: 15px; width: 20px; height: 35px; border: 6px solid #e0e0e0; border-left: none; border-radius: 0 12px 12px 0; }
+    .mock-mug img { width: 32px; z-index: 1; opacity: 0.9; }
+
+    /* ================================================================
+       QUOTE BREAK
+       ================================================================ */
+    .quote-break {
+      background: linear-gradient(135deg, var(--navy), var(--accent));
+      color: white;
+      padding: clamp(4rem, 8vw, 8rem) var(--gap);
+      text-align: center;
+    }
+
+    .quote-break blockquote {
+      background: transparent;
+      border: none;
+      max-width: 800px;
+      margin: 0 auto;
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.5;
+    }
+
+    .quote-break blockquote cite {
+      color: rgba(255,255,255,0.45);
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+    }
+
+    /* ================================================================
+       BRAND RULES
+       ================================================================ */
+    .brand-rules { background: var(--paper); }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .rules-col h3 {
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid;
+    }
+
+    .rules-col--do h3   { color: #1a6b00; border-color: #2ECC40; }
+    .rules-col--dont h3 { color: #8b0000; border-color: #E91E8C; }
+
+    .rule-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .rule-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      margin-top: 0.15rem;
+    }
+
+    .rule-icon--do   { background: #d4f5d0; color: #1a6b00; }
+    .rule-icon--dont { background: #fcd0e0; color: #8b0000; }
+
+    .rule-item p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    @media (max-width: 640px) {
+      .rules-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ================================================================
+       FOOTER
+       ================================================================ */
+    .site-footer {
+      background: var(--dark-bg);
+      color: rgba(255,255,255,0.5);
+      padding: clamp(3rem, 6vw, 5rem) var(--gap);
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .footer-logo img {
+      width: 72px;
+      filter: brightness(0) invert(1);
+      opacity: 0.6;
+      margin: 0 auto;
+    }
+
+    .footer-tagline {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ================================================================
+       DOWNLOADS FOOTER
+       ================================================================ */
+    .footer-downloads {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    .btn-download {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      padding: 0.4rem 0.85rem;
+      text-decoration: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-download:hover {
+      color: rgba(255,255,255,0.85);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    /* ================================================================
+       PROJETO CORES
+       ================================================================ */
+    .palette-projeto {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .palette-projeto-header {
+      margin-top: 3.5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .palette-projeto-header h3 {
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .palette-projeto-header p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* ================================================================
+       TYPOGRAPHY COMPOSITION EXAMPLE
+       ================================================================ */
+    .type-composition {
+      margin-top: 3.5rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .type-composition-header {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .type-composition-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+    }
+
+    .type-composition-card .section-label-demo {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .type-composition-card h2 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .type-composition-card p {
+      color: rgba(255,255,255,0.6);
+      font-family: var(--font-serif);
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+    }
+
+    .type-font-guide {
+      margin-top: 2rem;
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      overflow-x: auto;
+    }
+
+    .type-font-guide code {
+      background: transparent;
+      border: none;
+      font-size: 0.8rem;
+      color: var(--accent-dim);
+      display: block;
+      line-height: 2;
+    }
+
+    /* ================================================================
+       SCROLL PROGRESS BAR
+       ================================================================ */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--accent), var(--pink));
+      z-index: 200;
+      width: 0%;
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* ================================================================
+       SCROLL ANIMATIONS
+       ================================================================ */
+    @media (prefers-reduced-motion: no-preference) {
+      .logo-card { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+      .logo-card:hover img { transform: scale(1.08) translateY(-4px); }
+
+      .swatch { transition: transform 0.3s cubic-bezier(.16,1,.3,1), box-shadow 0.3s ease; }
+      .swatch:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0,0,0,0.1); }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.55s ease, transform 0.55s ease;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ================================================================
+       DARK MODE
+       ================================================================ */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper:  #16161f;
+        --light:  #1f1f2e;
+        --rule:   rgba(255,255,255,0.08);
+        --muted:  #9898b0;
+        --ink:    #f0f0f8;
+      }
+
+      .site-nav {
+        background: rgba(22,22,31,0.95);
+        border-bottom-color: rgba(255,255,255,0.06);
+      }
+
+      code {
+        background: #1f1f2e;
+        border-color: rgba(255,255,255,0.1);
+      }
+
+      blockquote { background: #1f1f2e; }
+
+      .swatch-info { background: var(--light); }
+
+      .mock-card { background: #2a2a3e; }
+      .mock-card::before { background: var(--accent); }
+
+      .app-card { background: var(--light); }
+
+      .value-icon {
+        background: #1f1f2e;
+        border-color: rgba(255,255,255,0.08);
+      }
+
+      .logo-card--light {
+        background: #1f1f2e;
+        border-color: rgba(255,255,255,0.1);
+      }
+    }
+
+    /* ================================================================
+       MÓDULO 4 — MATERIAIS DE APLICAÇÃO
+       ================================================================ */
+    .mod4-intro { background: var(--dark-bg); color: white; }
+    .mod4-intro .section-label { color: var(--accent-dim); }
+    .mod4-intro h2, .mod4-intro p { color: rgba(255,255,255,0.9); }
+    .mod4-intro p { color: rgba(255,255,255,0.65); }
+
+    .mod4-group {
+      padding: clamp(3rem, 6vw, 5rem) 0;
+      border-top: 1px solid var(--rule);
+    }
+    .mod4-group:first-of-type,
+    #mod4-grupos .mod4-group:first-child { border-top: none; }
+
+    .mod4-group-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .mod4-group-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .mod4-group-title {
+      font-family: var(--font-sans);
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0;
+    }
+
+    .mod4-group-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0 0 2.5rem;
+      max-width: 60ch;
+    }
+
+    /* Mockup: Papel Timbrado */
+    .mock-letterhead {
+      width: 80px; height: 110px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      box-shadow: 3px 4px 14px rgba(0,0,0,0.14);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .mock-letterhead-hdr {
+      background: var(--navy);
+      padding: 5px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .mock-letterhead-body {
+      flex: 1;
+      padding: 7px 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    /* Mockup: Envelope */
+    .mock-envelope {
+      width: 130px; height: 82px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      position: relative;
+      box-shadow: 2px 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 8px 10px;
+    }
+    .mock-envelope::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 0;
+      border-left: 65px solid transparent;
+      border-right: 65px solid transparent;
+      border-top: 40px solid var(--navy);
+    }
+    .mock-envelope .env-seal {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      position: absolute;
+      bottom: 12px; right: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Mockup: Mousepad */
+    .mock-mousepad {
+      width: 150px; height: 100px;
+      background: var(--navy);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 4px 6px 20px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    /* Mockup: Post quadrado (feed) */
+    .mock-post {
+      width: 110px; height: 110px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 100%);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mock-post::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 28px;
+      background: rgba(0,0,0,0.35);
+    }
+    .mock-post-bar {
+      position: absolute;
+      bottom: 8px;
+      left: 8px; right: 8px;
+      height: 4px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 2px;
+    }
+
+    /* Mockup: Banner web horizontal */
+    .mock-banner-web {
+      width: 200px; height: 72px;
+      background: linear-gradient(90deg, var(--navy) 0%, var(--accent) 100%);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(127,76,169,0.3);
+    }
+    .mock-banner-web-cta {
+      background: var(--amber);
+      color: #0F0F1A;
+      font-family: var(--font-sans);
+      font-size: 6px;
+      font-weight: 700;
+      padding: 4px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    /* Mockup: Assinatura de e-mail */
+    .mock-email-sig {
+      width: 200px;
+      background: white;
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+    .mock-email-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    /* Mockup: Ícone/Avatar */
+    .mock-avatar-icon {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, var(--navy), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(127,76,169,0.35);
+    }
+
+    /* Mockup: Camiseta */
+    .mock-tshirt {
+      position: relative;
+      width: 100px; height: 90px;
+    }
+    .mock-tshirt-body {
+      position: absolute;
+      bottom: 0; left: 15px; right: 15px;
+      top: 20px;
+      background: var(--navy);
+      border-radius: 2px 2px 4px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mock-tshirt-sleeve-l,
+    .mock-tshirt-sleeve-r {
+      position: absolute;
+      top: 20px;
+      width: 22px; height: 35px;
+      background: var(--navy);
+      border-radius: 3px;
+    }
+    .mock-tshirt-sleeve-l { left: 0; transform: rotate(-8deg); transform-origin: top right; }
+    .mock-tshirt-sleeve-r { right: 0; transform: rotate(8deg); transform-origin: top left; }
+    .mock-tshirt-collar {
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 32px; height: 22px;
+      border-radius: 0 0 50% 50%;
+      background: var(--navy);
+      border: 2px solid rgba(255,255,255,0.15);
+    }
+
+    /* Mockup: Boné */
+    .mock-cap {
+      width: 100px; height: 72px;
+      position: relative;
+    }
+    .mock-cap-crown {
+      position: absolute;
+      top: 0; left: 10px; right: 10px;
+      height: 52px;
+      background: var(--accent);
+      border-radius: 50% 50% 0 0 / 70% 70% 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 10px;
+    }
+    .mock-cap-brim {
+      position: absolute;
+      bottom: 0; left: 0; right: 30%;
+      height: 22px;
+      background: var(--accent);
+      border-radius: 4px 0 4px 4px;
+      filter: brightness(0.8);
+    }
+    .mock-cap-band {
+      position: absolute;
+      top: 50px; left: 10px; right: 10px;
+      height: 8px;
+      background: rgba(0,0,0,0.2);
+    }
+
+    /* Mockup: Banner externo */
+    .mock-banner-ext {
+      width: 60px; height: 160px;
+      background: var(--navy);
+      border-radius: 4px 4px 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 6px;
+      position: relative;
+      box-shadow: 3px 6px 20px rgba(0,0,0,0.3);
+    }
+    .mock-banner-ext::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; left: 50%; transform: translateX(-50%);
+      width: 8px; height: 8px;
+      background: #888;
+      border-radius: 50%;
+    }
+    .mock-banner-ext-line {
+      width: 36px; height: 3px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 2px;
+    }
+
+    /* Mockup: Adesivo veicular */
+    .mock-sticker {
+      width: 130px; height: 50px;
+      background: white;
+      border: 2px solid var(--navy);
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 2px 4px 12px rgba(0,0,0,0.12);
+      padding: 0 12px;
+    }
+    .mock-sticker-text {
+      font-family: var(--font-sans);
+      font-size: 7px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    /* Módulo 4 — Canecas (5.B legado renomeado) */
+    .mod4-canecas {
+      background: var(--light);
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ================================================================
+       PRINT STYLES
+       ================================================================ */
+    @media print {
+      body { background: white !important; color: black !important; }
+      .site-nav, .hero-actions, .skip-link, .footer-downloads, .scroll-progress { display: none !important; }
+      .hero { background: none !important; min-height: auto; padding: 0 !important; gap: 1rem !important; }
+      .hero-logo-wrap, .quote-break { background: none !important; border: none !important; color: black !important; padding: 2rem 0 !important; }
+      .hero h1, .hero-desc, .quote-break blockquote, .type-specimen-display, .type-specimen-serif, .type-composition-card h2, .type-composition-card p { color: black !important; }
+      .section { page-break-inside: avoid; break-inside: avoid; }
+      .color-card, .swatch, .choice-item, .app-card, .logo-card { page-break-inside: avoid; break-inside: avoid; border: 1px solid #ddd !important; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .site-footer { background: white !important; color: black !important; padding: 2rem 0 !important; }
+      .footer-logo img { filter: invert(0) brightness(0) !important; opacity: 1 !important; }
+      .footer-tagline, .footer-meta, .site-footer p { color: black !important; }
+      .mug-mockup, .mock-building, .mock-badge-header, .quote-break blockquote cite { font-weight: bold; }
+    }
+  </style>
+
+<style>
+/* ================================================================
+   INNOVATIONS & ENHANCEMENTS CSS (Injetado)
+   ================================================================ */
+
+/* 1. VARIÁVEIS DE TEMA DINÂMICAS E TRANSIÇÕES GERAIS */
+:root {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+[data-theme="dark"] {
+  --navy: #1E1E2E;
+  --accent: #2A1A3E;
+  --md-navy: #E0E0E0;
+  --md-purple: #C2A0E4;
+  --light: #181825;
+  background-color: var(--navy);
+  color: #cdd6f4;
+}
+[data-theme="dark"] .site-nav {
+  background: rgba(30, 30, 46, 0.85);
+  border-bottom-color: rgba(255,255,255,0.1);
+  color: #cdd6f4;
+}
+[data-theme="dark"] .nav-logo-text { color: #cdd6f4; border-left-color: rgba(255,255,255,0.3); }
+[data-theme="dark"] .nav-links a { color: #a6adc8; }
+[data-theme="dark"] .nav-links a:hover { color: #f38ba8; }
+[data-theme="dark"] .header-line { background: rgba(255,255,255,0.1); }
+[data-theme="dark"] .hero h1 { color: #fff; }
+[data-theme="dark"] .section-label { color: var(--amber); }   
+[data-theme="dark"] .problem-banner { background: #2A1A24; border-color: rgba(255,255,255,0.1); }
+[data-theme="dark"] .sig-option-card { background: #313244; border-color: rgba(255,255,255,0.05); } 
+[data-theme="dark"] .sig-option-card:hover { border-color: var(--md-purple); }
+[data-theme="dark"] .rules-col--do { background: rgba(39,174,96,0.1); border-color: rgba(39,174,96,0.2); }
+[data-theme="dark"] .rules-col--dont { background: rgba(231,76,60,0.1); border-color: rgba(231,76,60,0.2); }
+[data-theme="dark"] .mod4-canecas { background: #11111b; border-color: #313244; }
+[data-theme="dark"] .choice-item { background: #1e1e2e; border: 1px solid rgba(255,255,255,0.05); }
+[data-theme="dark"] .choice-item.is-selected { background: #313244; border-color: var(--amber); box-shadow: 0 0 0 2px var(--amber); }
+[data-theme="dark"] .choice-label { color: #f5f5f5; }
+[data-theme="dark"] h2 { color: #f5f5f5; }
+[data-theme="dark"] .mission-text h2 { color: #f5f5f5; }
+[data-theme="dark"] .quote-break blockquote { color: #f5f5f5; }
+
+/* 2. CLASSES DE AUXÍLIO PARA SVGs SUBSTITUÍDOS */
+.generic-svg-inline {
+  width: 100%;
+  height: auto;
+  max-width: 80px;
+}
+.mock-phone-logo {
+  max-width: 60px !important;
+  margin-bottom: 20px;
+}
+.mug-logo {
+  max-width: 55%;
+  height: auto;
+  z-index: 2;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+/* 3. SCROLL REVEAL MICRO-ANIMATIONS */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 4. TILT EFFECT 3D PERSPECTIVE */
+.app-card, .alt-card, .sig-option-card {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.app-visual, .alt-mockup {
+  transform: translateZ(30px);
+  transition: transform 0.3s ease-out;
+}
+.app-card:hover .app-visual, .alt-card:hover .alt-mockup {
+  transform: translateZ(50px);
+}
+
+/* 5. THEME SWITCHER PANEL (GLASSMORPHISM) */
+.theme-switcher-panel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 16px;
+  border-radius: 40px;
+  display: flex;
+  gap: 12px;
+  z-index: 9999;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  align-items: center;
+}
+.theme-switcher-panel span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+[data-theme="dark"] .theme-switcher-panel span { color: #fff; }
+
+.theme-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.theme-btn:hover {
+  transform: scale(1.15);
+}
+.theme-btn.active {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px var(--md-purple);
+  transform: scale(1.1);
+}
+.theme-btn.light-mode { background-color: #ffffff; border: 1px solid #ddd; }
+.theme-btn.dark-mode { background-color: #12121e; border: 1px solid #555;}
+</style>
+</head>
+<body>
+
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true" role="presentation"></div>
+
+  <svg style="display: none;" aria-hidden="true">
+    <symbol id="icon-dmd-logo" viewBox="200 200 635 570">
+      <!-- Símbolo Real De Mãos Dadas extraído de logo-dmd-new.svg -->
+      <g transform="scale(0.948148)">
+        <!-- Parte Navy Profundo -->
+        <path class="dmd-navy" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C614.381 586.805 633.079 654.283 624.528 692.552C619.312 716.702 604.723 737.793 583.965 751.192C557.428 768.004 511.717 771.414 483.461 750.007C482.255 749.093 482.77 735.89 482.515 732.989C479.764 701.802 456.561 676.705 426.689 668.87C407.444 664.008 385.867 668.456 368.747 679.129C337.542 668.688 314.441 624.038 318 592.686C318.967 584.161 320.227 571.676 324.162 563.949C334.219 567.469 343.418 571.652 354.095 573.339C355.343 573.536 364.336 574.718 364.269 575.735C363.969 580.312 362.295 584.988 361.571 589.648C359.911 599.994 361.581 610.6 366.34 619.936C385.632 657.632 436.393 650.461 469.11 638.176C469.419 638.06 470.338 638.507C471.7 640.981 473.225 651.853 473.858 655.253C475.739 665.505 478.997 675.457 483.543 684.837C493.295 704.743 506.752 719.779 529.687 722.238C551.679 724.596 573.283 710.74 580.567 689.987C584.722 678.148 583.621 666.036 582.348 653.827C577.887 614.225 562.376 577.027 544.273 541.721C542.141 537.856 539.962 534.011 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z" fill="#153065"/>
+        <path class="dmd-navy" d="M404.653 681.48C437.231 678.818 465.797 703.073 468.452 735.652C471.107 768.23 446.846 796.791 414.267 799.439C381.698 802.086 353.148 777.834 350.493 745.265C347.839 712.697 372.085 684.141 404.653 681.48Z" fill="#153065"/>
+        <!-- Parte Roxa Acolhedora -->
+        <path class="dmd-purple" d="M538.064 530.026C536.143 526.116 534.002 522.333 531.988 518.472C507.779 472.05 474.754 389.393 491.438 337.364C499.193 313.183 516.063 293.976 538.672 282.607C559.117 272.326 585.319 269.995 607.026 277.409C611.529 278.948 628.081 285.317 630.144 288.943C632.07 292.33 630.645 302.854 631.277 307.366C632.429 315.58 634.943 324.068 638.628 331.505C647.258 348.922 663.465 361.898 681.792 367.96C705.655 375.853 724.315 369.975 745.696 359.084C786.326 377.758 807.981 433.699 789.617 474.57C772.486 468.055 766.758 465.859 748.296 462.87C753.437 448.122 754.572 440.039 750.181 424.61C746.735 412.501 737.28 402.404 726.166 396.688C708.711 387.712 680.544 389.267 662.13 394.197C655.211 396.05 649.088 399.156 642.258 401.297C640.8 383.366 637.874 368.062 629.303 351.874C620.885 336.055 612.639 323.887 594.974 318.246C567.453 309.459 539.77 324.162 531.683 351.883C528.75 361.938 529.518 369.975 530.516 380.345C534.921 426.097 554.429 469.963 576.371 509.826C566.077 514.851 547.945 523.816 538.064 530.026Z" fill="#7F4CA9"/>
+        <path class="dmd-purple" d="M699.953 239.105C732.180 236.752 760.280 260.816 762.911 293.021C765.543 325.227 741.723 353.533 709.541 356.443C676.964 359.388 648.233 335.211 645.569 302.610C642.905 270.008 667.330 241.487 699.953 239.105Z" fill="#7F4CA9"/>
+      </g>
+    </symbol>
+
+    
+  </svg>
+
+
+  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+
+  <!-- ── NAVEGAÇÃO ──────────────────────────────────────────── -->
+  <nav class="site-nav" aria-label="Navegação principal">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#main" aria-label="Instituto De Mãos Dadas — início">
+        <svg width="32" height="32" viewBox="200 200 635 570" style="flex-shrink:0;"><use href="#icon-dmd-logo"/></svg>
+        <span class="nav-logo-text" style="border-left: 1px solid var(--rule); padding-left: 0.75rem;">
+          Instituto De Mãos Dadas
+          <small>Portfolio de Identidade Visual</small>
+        </span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#marca">A Marca</a></li>
+        <li><a href="#redundancia">Redundância</a></li>
+        <li><a href="#cores">Cores</a></li>
+        <li><a href="#tipografia">Tipografia</a></li>
+        <li><a href="#modulo4">Aplicações</a></li>
+        <li><a href="#regras">Guia de Uso</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ── HERO ──────────────────────────────────────────────── -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="hero-label">Portfolio de Identidade Visual · 2026</p>
+        <h1 id="hero-title">Uma marca<br>que une <em>pessoas.</em></h1>
+        <p class="hero-desc">O Instituto De Mãos Dadas transforma comunidades periféricas através do afeto, da escuta e da ação coletiva. Esta é a identidade visual que dá voz a esse compromisso.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#marca">Explorar a marca</a>
+          <a class="btn btn-ghost" href="#aplicacoes">Ver aplicações</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-logo-wrap">
+          <svg width="120" height="120" viewBox="200 200 635 570" style="margin-bottom: 20px;"><use href="#icon-dmd-logo"/></svg>
+          <p class="hero-logo-caption">Logomarca oficial · Instituto De Mãos Dadas</p>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-num">4</span>
+              <span class="stat-label">cores</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">3</span>
+              <span class="stat-label">fontes</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">∞</span>
+              <span class="stat-label">impacto</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MISSÃO ─────────────────────────────────────────────── -->
+    <section class="section mission" id="missao" aria-labelledby="missao-title">
+      <div class="wrap">
+        <span class="section-label">01 · A Essência</span>
+        <div class="mission-grid">
+          <div class="mission-text">
+            <h2 id="missao-title">O coração do Instituto</h2>
+            <p>Nossa marca não é apenas um desenho. É um compromisso. O Instituto De Mãos Dadas nasceu da necessidade de criar pontes onde havia abismos — entre oportunidade e exclusão, entre poder e periferia.</p>
+            <p>Nossa personalidade é <strong>acolhedora</strong>, mas <strong>inquietante</strong>; <strong>transparente</strong>, mas <strong>profunda</strong>. Não somos um "órgão", somos um movimento.</p>
+            <hr class="divider">
+            <blockquote>
+              <p>"A identidade visual nos deu uma voz que as comunidades periféricas reconhecem como sua."</p>
+              <cite>Maria, Coordenadora Comunitária</cite>
+            </blockquote>
+          </div>
+
+          <aside class="mission-values" aria-label="Valores do instituto">
+            <div class="value-item">
+              <div class="value-icon" aria-hidden="true">🤝</div>
+              <div class="value-text">
+                <strong>Acolhimento</strong>
+                <p>Toda pessoa é recebida com dignidade, sem julgamento.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon" aria-hidden="true">🔍</div>
+              <div class="value-text">
+                <strong>Transparência</strong>
+                <p>Comunicação aberta com a comunidade e parceiros.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon" aria-hidden="true">🌱</div>
+              <div class="value-text">
+                <strong>Transformação</strong>
+                <p>Ação que gera mudança real e duradoura no território.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon" aria-hidden="true">🔗</div>
+              <div class="value-text">
+                <strong>Conexão</strong>
+                <p>Pontes entre pessoas, saberes e oportunidades.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── A MARCA ────────────────────────────────────────────── -->
+    <section class="section brand-mark" id="marca" aria-labelledby="marca-title">
+      <div class="wrap">
+        <span class="section-label">02 · O Símbolo</span>
+        <h2 id="marca-title">A logomarca em contexto</h2>
+        <p>Duas figuras humanas formam um S — movimento, abraço, continuidade. A cor superior em roxo representa o acolhimento; o azul profundo, a seriedade do compromisso. Use sempre com espaço de respiro ao redor.</p>
+
+        <div class="brand-mark-grid">
+          <figure class="logo-card logo-card--light">
+            <svg width="120" height="120" viewBox="200 200 635 570" role="img" aria-label="Logomarca De Mãos Dadas — fundo claro"><use href="#icon-dmd-logo"/></svg>
+            <figcaption class="logo-card-label">Fundo claro · uso padrão colorido</figcaption>
+          </figure>
+
+          <figure class="logo-card logo-card--dark">
+            <svg width="120" height="120" viewBox="200 200 635 570" role="img" aria-label="Logomarca De Mãos Dadas — fundo escuro"><use href="#icon-dmd-logo"/></svg>
+            <figcaption class="logo-card-label">Fundo escuro · versão contraste</figcaption>
+          </figure>
+
+          <figure class="logo-card logo-card--brand">
+            <svg width="120" height="120" viewBox="200 200 635 570" role="img" aria-label="Logomarca De Mãos Dadas — fundo marca"><use href="#icon-dmd-logo"/></svg>
+            <figcaption class="logo-card-label">Fundo marca · degradê institucional</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SISTEMA DE MARCA ────────────────────────────────────── -->
+    <section class="section brand-system" id="sistema-marca" aria-labelledby="sistema-marca-title">
+      <div class="wrap">
+        <span class="section-label">02.B · Sistema de Marca</span>
+        <h2 id="sistema-marca-title">Três variantes, um sistema</h2>
+        <p>A identidade do Instituto De Mãos Dadas não é estática. Ela é um ecossistema de soluções desenhadas para evitar a redundância e garantir legibilidade. O sistema se baseia em três pilares: a Marca Composta (para impacto), o Símbolo Isolado (para escalas mínimas) e a Assinatura Horizontal (para flexibilidade formal).</p>
+
+        <!-- Diagnóstico visual -->
+        <div class="problem-banner">
+          <div class="problem-visual" role="img" aria-label="Demonstração do problema: o nome Mãos Dadas aparece duplicado na logo e no texto de apoio">
+            <span class="problem-chip" aria-hidden="true">redundância</span>
+            <svg viewBox="200 200 635 570" aria-hidden="true" style="height: 58px; width: auto;"><use href="#icon-dmd-logo"/></svg>
+            <div class="problem-sep" aria-hidden="true"></div>
+            <span class="problem-support-text">Instituto <mark>de Mãos Dadas</mark></span>
+            <div class="problem-annotation" aria-hidden="true">
+              <div class="problem-annotation-dot"></div>
+              <span class="problem-annotation-text">nome duplicado</span>
+            </div>
+          </div>
+          <p class="problem-text">
+            O wordmark já contém <strong>"Mãos Dadas"</strong>. Ao adicionar um texto de apoio — nome completo do instituto, título de programa ou cargo — o nome inevitavelmente se repete, gerando ruído visual e comprometendo a hierarquia de leitura. Cada alternativa abaixo resolve esse conflito de uma forma distinta, adequada a um suporte ou escala específicos.
+          </p>
+        </div>
+
+        <!-- Seis alternativas estruturais -->
+        <div class="alt-intro">
+          <h3>Seis alternativas de uso</h3>
+          <p>Escolha a configuração que serve ao suporte, à escala e ao grau de formalidade — nunca force a marca composta onde ela cria ruído.</p>
+        </div>
+
+        <div class="alt-grid">
+
+          <!-- 01 Símbolo isolado -->
+          <article class="alt-card">
+            <div class="alt-mockup alt-mockup--brand" aria-hidden="true">
+              <svg width="72" height="72" viewBox="200 200 635 570" focusable="false">
+                <use href="#icon-dmd-logo"/>
+              </svg>
+            </div>
+            <div class="alt-body">
+              <span class="alt-num">01</span>
+              <h4 class="alt-name">Símbolo Isolado</h4>
+              <p class="alt-desc">Remove o wordmark por completo. O símbolo é reconhecível o suficiente para representar a marca em formatos reduzidos, circulares ou quando o nome já aparece no contexto ao redor.</p>
+              <div class="alt-tags">
+                <span class="alt-tag">favicon</span>
+                <span class="alt-tag">avatar</span>
+                <span class="alt-tag">ícone de app</span>
+                <span class="alt-tag">pin</span>
+                <span class="alt-tag">selo</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 02 Wordmark isolado -->
+          <article class="alt-card">
+            <div class="alt-mockup" aria-hidden="true">
+              <div class="mock-wm">
+                <span class="mock-wm-pre">De</span>
+                <span class="mock-wm-main">Mãos<br>Dadas</span>
+              </div>
+            </div>
+            <div class="alt-body">
+              <span class="alt-num">02</span>
+              <h4 class="alt-name">Wordmark Isolado</h4>
+              <p class="alt-desc">Suprime o símbolo. O nome tipografado em Space Grotesk carrega a identidade onde o ícone geraria ruído, seria pequeno demais ou quebraria o ritmo de um layout de texto.</p>
+              <div class="alt-tags">
+                <span class="alt-tag">papel timbrado</span>
+                <span class="alt-tag">menção em texto</span>
+                <span class="alt-tag">rodapé de doc</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03 Símbolo + texto de apoio direto (sem wordmark) -->
+          <article class="alt-card">
+            <div class="alt-mockup alt-mockup--dark" aria-hidden="true">
+              <div class="mock-sym-support">
+                <svg width="44" height="44" viewBox="200 200 635 570" focusable="false">
+                  <use href="#icon-dmd-logo"/>
+                </svg>
+                <span class="mock-support-label" style="color:rgba(255,255,255,.55);">Projeto<br>Escola Viva</span>
+              </div>
+            </div>
+            <div class="alt-body">
+              <span class="alt-num">03</span>
+              <h4 class="alt-name">Símbolo + Apoio Direto</h4>
+              <p class="alt-desc">O símbolo identifica a instituição; o texto de apoio nomeia o programa ou cargo abaixo. O wordmark é suprimido — o nome não aparece duas vezes.</p>
+              <div class="alt-tags">
+                <span class="alt-tag">cartão de visita</span>
+                <span class="alt-tag">crachá de programa</span>
+                <span class="alt-tag">material específico</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04 Assinatura horizontal -->
+          <article class="alt-card">
+            <div class="alt-mockup alt-mockup--dark" aria-hidden="true">
+              <div style="display:flex;align-items:center;gap:0.85rem;">
+                <svg width="38" height="38" viewBox="200 200 635 570" style="flex-shrink:0;" focusable="false">
+                  <use href="#icon-dmd-logo"/>
+                </svg>
+                <div style="width:1px;height:36px;background:rgba(255,255,255,.18);flex-shrink:0;"></div>
+                <div style="display:flex;flex-direction:column;gap:2px;">
+                  <span style="font-family:var(--font-sans);font-weight:700;font-size:.88rem;color:white;letter-spacing:-.02em;line-height:1.1;">De Mãos Dadas</span>
+                  <span style="font-family:var(--font-sans);font-size:.62rem;color:rgba(255,255,255,.42);letter-spacing:.04em;">Diretora Executiva</span>
+                </div>
+              </div>
+            </div>
+            <div class="alt-body">
+              <span class="alt-num">04</span>
+              <h4 class="alt-name">Assinatura Horizontal</h4>
+              <p class="alt-desc">Símbolo ao lado do nome tipografado à parte, separados por um fio vertical. Nome completo e cargo coexistem sem repetição do wordmark. Detalhada na seção seguinte.</p>
+              <div class="alt-tags">
+                <span class="alt-tag">timbrado</span>
+                <span class="alt-tag">e-mail</span>
+                <span class="alt-tag">crachá</span>
+                <span class="alt-tag">ofícios</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 05 Monograma DMD -->
+          <article class="alt-card">
+            <div class="alt-mockup alt-mockup--amber" aria-hidden="true">
+              <div class="mock-monogram" role="img" aria-label="Monograma DMD">
+                <span style="color:var(--navy);">D</span><span style="color:var(--accent);">M</span><span style="color:var(--navy);">D</span>
+              </div>
+            </div>
+            <div class="alt-body">
+              <span class="alt-num">05</span>
+              <h4 class="alt-name">Monograma DMD</h4>
+              <p class="alt-desc">As iniciais formam um identificador compacto para suportes onde a logo completa seria impraticável. O M central em roxo funciona como âncora visual e distingue as três letras.</p>
+              <div class="alt-tags">
+                <span class="alt-tag">bordado</span>
+                <span class="alt-tag">carimbo</span>
+                <span class="alt-tag">sinalização</span>
+                <span class="alt-tag">merchandise</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 06 Versão reduzida -->
+          <article class="alt-card">
+            <div class="alt-mockup" aria-hidden="true">
+              <div class="mock-compact">
+                <svg width="20" height="20" viewBox="200 200 635 570" style="flex-shrink:0;" focusable="false">
+                  <use href="#icon-dmd-logo"/>
+                </svg>
+                <div class="mock-compact-text">
+                  <div>Instituto</div>
+                  <div>De Mãos Dadas</div>
+                </div>
+              </div>
+            </div>
+            <div class="alt-body">
+              <span class="alt-num">06</span>
+              <h4 class="alt-name">Versão Reduzida</h4>
+              <p class="alt-desc">Símbolo e nome em escala mínima, linha horizontal compacta. Para contextos secundários onde a marca precisa estar presente mas não deve dominar o layout.</p>
+              <div class="alt-tags">
+                <span class="alt-tag">rodapé de página</span>
+                <span class="alt-tag">watermark</span>
+                <span class="alt-tag">assinatura de e-mail</span>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /alt-grid -->
+
+        <!-- ── Subseção: Assinatura Horizontal ─────────────────── -->
+        <div class="horiz-sig-section" id="assinatura-horizontal">
+          <span class="section-label">02.C · Assinatura Horizontal</span>
+          <h3>A Matriz de Assinaturas</h3>
+          <p>A assinatura horizontal é o pilar da nossa flexibilidade. Ela permite que o símbolo e o nome convivam em harmonia, sem que o nome apareça duplicado. Abaixo, a matriz de possibilidades estruturais para diferentes suportes e níveis de formalidade.</p>
+
+          <!-- Matriz de Assinaturas (10 Opções do Preview) -->
+          <div class="sig-matrix-grid">
+
+            <!-- 01 The Semantic Standard -->
+            <article class="sig-option-card">
+              <div class="sig-option-preview">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <svg width="52" height="52" viewBox="200 200 635 570" focusable="false"><use href="#icon-dmd-logo"/></svg>
+                  <div style="display: flex; flex-direction: column; justify-content: center;">
+                    <span class="sig-label-small" style="color:var(--md-purple); margin-bottom: -4px;">Instituto</span>
+                    <span class="sig-title-large mock-anton" style="color:var(--md-navy);">De Mãos Dadas</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sig-option-info">
+                <span class="sig-option-num">OPÇÃO 01</span>
+                <h4 class="sig-option-title">The Semantic Standard</h4>
+                <p class="sig-option-desc">O padrão ouro. Hierarquia clara entre o descritivo e o nome próprio. Ideal para documentos oficiais.</p>
+              </div>
+            </article>
+
+            <!-- 02 Structural Divider -->
+            <article class="sig-option-card">
+              <div class="sig-option-preview">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <svg width="44" height="44" viewBox="200 200 635 570" focusable="false"><use href="#icon-dmd-logo"/></svg>
+                  <div style="width: 2px; height: 38px; background: var(--md-amber);"></div>
+                  <div style="display: flex; flex-direction: column; justify-content: center;">
+                    <span class="sig-label-small" style="color:#666; margin-bottom: 2px;">Instituto</span>
+                    <span class="sig-title-large mock-anton" style="color:var(--md-navy); font-size: 22px;">De Mãos Dadas</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sig-option-info">
+                <span class="sig-option-num">OPÇÃO 02</span>
+                <h4 class="sig-option-title">Structural Divider</h4>
+                <p class="sig-option-desc">O fio vertical em âmbar cria um ponto de ancoragem visual. Moderno e equilibrado.</p>
+              </div>
+            </article>
+
+            <!-- 03 The Data Label -->
+            <article class="sig-option-card">
+              <div class="sig-option-preview">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <svg width="48" height="48" viewBox="200 200 635 570" focusable="false"><use href="#icon-dmd-logo"/></svg>
+                  <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+                    <div style="background: var(--md-navy); color: white; padding: 3px 8px; border-radius: 4px; font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Instituto</div>
+                    <span class="sig-title-large mock-anton" style="color:var(--md-navy); font-size: 24px; line-height: 1;">De Mãos Dadas</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sig-option-info">
+                <span class="sig-option-num">OPÇÃO 03</span>
+                <h4 class="sig-option-title">The Data Label</h4>
+                <p class="sig-option-desc">Uso de chip para o descritivo. Excelente para contextos de interface digital ou sinalização.</p>
+              </div>
+            </article>
+
+            <!-- 04 Baseline Anchor -->
+            <article class="sig-option-card">
+              <div class="sig-option-preview">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <svg width="50" height="50" viewBox="200 200 635 570" focusable="false"><use href="#icon-dmd-logo"/></svg>
+                  <div style="display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 2px; border-bottom: 4px solid var(--md-purple);">
+                    <span class="sig-label-small" style="color:var(--amber); margin-bottom: -2px; font-weight: 900;">Instituto</span>
+                    <span class="sig-title-large mock-anton" style="color:var(--md-navy); font-size: 24px; line-height: 1;">De Mãos Dadas</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sig-option-info">
+                <span class="sig-option-num">OPÇÃO 04</span>
+                <h4 class="sig-option-title">Baseline Anchor</h4>
+                <p class="sig-option-desc">O traço inferior roxo ancora a tipografia. Transmite estabilidade e peso institucional.</p>
+              </div>
+            </article>
+
+            <!-- 05 Mono Hierarchy -->
+            <article class="sig-option-card">
+              <div class="sig-option-preview">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                  <svg width="48" height="48" viewBox="200 200 635 570" class="sig-opt-mono" style="color:var(--md-navy);" focusable="false"><use href="#icon-dmd-logo"/></svg>
+                  <div style="display: flex; flex-direction: column;">
+                    <span style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: #555;">[INSTITUTO]</span>
+                    <span class="sig-title-large mock-anton" style="color:var(--md-navy); font-size: 26px; line-height: 1;">De Mãos Dadas</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sig-option-info">
+                <span class="sig-option-num">OPÇÃO 05</span>
+                <h4 class="sig-option-title">Mono Hierarchy</h4>
+                <p class="sig-option-desc">Contraste técnico com fonte mono. Perfeito para relatórios de dados e transparência.</p>
+              </div>
+            </article>
+
+            <!-- 06 High-Contrast Inline -->
+            <article class="sig-option-card">
+              <div class="sig-option-preview">
+                <div style="display: flex; align-items: baseline; gap: 12px; padding-top: 10px;">
+                  <svg width="32" height="32" viewBox="200 200 635 570" style="transform: translateY(4px);" focusable="false"><use href="#icon-dmd-logo"/></svg>
+                  <span style="font-size: 12px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; color: #777;">Instituto</span>
+                  <span class="sig-title-large mock-anton" style="color:var(--md-navy); font-size: 32px;">De Mãos Dadas</span>
+                </div>
+              </div>
+              <div class="sig-option-info">
+                <span class="sig-option-num">OPÇÃO 06</span>
+                <h4 class="sig-option-title">High-Contrast Inline</h4>
+                <p class="sig-option-desc">Alinhamento pela base com variação de peso. Máxima elegibilidade em escala reduzida.</p>
+              </div>
+            </article>
+
+            <!-- 07 The Cite Approach -->
+            <article class="sig-option-card">
+              <div class="sig-option-preview">
+                <div style="display: flex; align-items: center; gap: 18px;">
+                  <svg width="54" height="54" viewBox="200 200 635 570" focusable="false"><use href="#icon-dmd-logo"/></svg>
+                  <div style="display: flex; flex-direction: column;">
+                    <span style="font-family: var(--font-serif); font-style: italic; font-size: 22px; color: var(--amber); line-height: 0.8; margin-bottom: 2px;">Instituto</span>
+                    <span class="sig-title-large mock-anton" style="color:var(--md-navy); font-size: 26px; line-height: 1;">De Mãos Dadas</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sig-option-info">
+                <span class="sig-option-num">OPÇÃO 07</span>
+                <h4 class="sig-option-title">The Cite Approach</h4>
+                <p class="sig-option-desc">Toque humano com a itálica do Crimson Pro. Para materiais de storytelling e impacto social.</p>
+              </div>
+            </article>
+
+            <!-- 08 Balanced Center -->
+            <article class="sig-option-card">
+              <div class="sig-option-preview">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <svg width="44" height="44" viewBox="200 200 635 570" focusable="false"><use href="#icon-dmd-logo"/></svg>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="sig-label-small" style="color:var(--md-purple);">Instituto</span>
+                    <div style="width: 4px; height: 4px; background: #ccc; border-radius: 50%;"></div>
+                    <span class="sig-title-large mock-anton" style="color:var(--md-navy); font-size: 22px;">De Mãos Dadas</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sig-option-info">
+                <span class="sig-option-num">OPÇÃO 08</span>
+                <h4 class="sig-option-title">Balanced Center</h4>
+                <p class="sig-option-desc">Simétrica e pontuada. Funciona muito bem em rodapés e assinaturas curtas.</p>
+              </div>
+            </article>
+
+            <!-- 09 Two-Column Text Grid -->
+            <article class="sig-option-card">
+              <div class="sig-option-preview">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <svg width="48" height="48" viewBox="200 200 635 570" focusable="false"><use href="#icon-dmd-logo"/></svg>
+                  <div style="display: grid; grid-template-columns: auto auto; gap: 12px; align-items: center;">
+                    <span style="font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #888; text-align: right; border-right: 1px solid #ddd; padding-right: 12px;">Instituto</span>
+                    <span class="sig-title-large mock-anton" style="color:var(--md-navy); font-size: 24px; line-height: 1;">De Mãos<br>Dadas</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sig-option-info">
+                <span class="sig-option-num">OPÇÃO 09</span>
+                <h4 class="sig-option-title">Two-Column Text Grid</h4>
+                <p class="sig-option-desc">Ideal para espaços estreitos. O bilinguismo entre ícone e texto é reforçado pela grade.</p>
+              </div>
+            </article>
+
+            <!-- 10 Level-AAA Standard -->
+            <article class="sig-option-card" style="grid-column: span 1;">
+              <div class="sig-option-preview">
+                <div style="display: flex; align-items: center; gap: 20px; background: white; padding: 10px 20px; border: 2px solid var(--md-navy); border-radius: 12px; box-shadow: 3px 3px 0 var(--md-amber);">
+                  <svg width="48" height="48" viewBox="200 200 635 570" focusable="false"><use href="#icon-dmd-logo"/></svg>
+                  <div style="display: flex; flex-direction: column;">
+                    <span class="sig-label-small" style="color:var(--md-navy); margin-bottom: 2px;">Instituto</span>
+                    <span class="sig-title-large mock-anton" style="color:var(--md-navy); font-size: 24px; line-height: 0.9;">De Mãos Dadas</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sig-option-info">
+                <span class="sig-option-num">OPÇÃO 10</span>
+                <h4 class="sig-option-title">Level-AAA Standard</h4>
+                <p class="sig-option-desc">Versão de alto contraste e borda definida. Para aplicações onde a marca precisa de destaque total.</p>
+              </div>
+            </article>
+
+          </div><!-- /sig-matrix-grid -->
+
+          <p style="margin-top: 2rem;">Cada uma dessas opções resolve o problema da redundância ao isolar os elementos. A escolha depende do suporte: do papel timbrado clássico ao crachá moderno.</p>
+
+          <!-- Anatomia -->
+          <div class="horiz-sig-anatomy" role="img" aria-label="Anatomia: símbolo, fio vertical, nome e cargo">
+            <div class="horiz-sig-anatomy-icon">
+              <svg width="44" height="44" viewBox="200 200 635 570" focusable="false">
+                <use href="#icon-dmd-logo"/>
+              </svg>
+              <span class="horiz-sig-anatomy-label">símbolo</span>
+            </div>
+            <span class="horiz-sig-anatomy-arrow" aria-hidden="true">+</span>
+            <div class="horiz-sig-anatomy-divline">
+              <div class="horiz-sig-anatomy-divline-el"></div>
+              <span class="horiz-sig-anatomy-label">fio</span>
+            </div>
+            <span class="horiz-sig-anatomy-arrow" aria-hidden="true">+</span>
+            <div class="horiz-sig-anatomy-icon">
+              <div style="display:flex;flex-direction:column;gap:3px;font-family:var(--font-sans);">
+                <span style="font-weight:700;font-size:.9rem;color:var(--navy);letter-spacing:-.02em;line-height:1;">De Mãos Dadas</span>
+                <span style="font-weight:400;font-size:.68rem;color:var(--muted);letter-spacing:.04em;">Cargo Institucional</span>
+              </div>
+              <span class="horiz-sig-anatomy-label">nome + cargo</span>
+            </div>
+          </div>
+
+          <!-- Casos de uso -->
+          <div class="horiz-sig-showcase">
+
+            <!-- Papel timbrado -->
+            <div class="horiz-sig-card">
+              <div class="horiz-sig-preview horiz-sig-preview--paper">
+                <svg width="40" height="40" viewBox="200 200 635 570" aria-hidden="true" focusable="false">
+                  <use href="#icon-dmd-logo"/>
+                </svg>
+                <div class="sig-vdivider sig-vdivider--dark"></div>
+                <div class="sig-text">
+                  <span class="sig-name sig-name--dark">De Mãos Dadas</span>
+                  <span class="sig-role sig-role--dark">Instituto de Desenvolvimento Comunitário</span>
+                </div>
+              </div>
+              <div class="horiz-sig-label">Papel timbrado · fundo papel</div>
+            </div>
+
+            <!-- Assinatura de e-mail -->
+            <div class="horiz-sig-card">
+              <div class="horiz-sig-preview horiz-sig-preview--neutral">
+                <svg width="40" height="40" viewBox="200 200 635 570" aria-hidden="true" focusable="false">
+                  <use href="#icon-dmd-logo"/>
+                </svg>
+                <div class="sig-vdivider sig-vdivider--dark"></div>
+                <div class="sig-text">
+                  <span class="sig-name sig-name--dark">De Mãos Dadas</span>
+                  <span class="sig-role sig-role--dark">Coordenadora de Projetos · São Paulo</span>
+                </div>
+              </div>
+              <div class="horiz-sig-label">Assinatura de e-mail · fundo neutro</div>
+            </div>
+
+            <!-- Crachá -->
+            <div class="horiz-sig-card">
+              <div class="horiz-sig-preview horiz-sig-preview--dark">
+                <svg width="40" height="40" viewBox="200 200 635 570" aria-hidden="true" focusable="false">
+                  <use href="#icon-dmd-logo"/>
+                </svg>
+                <div class="sig-vdivider sig-vdivider--light"></div>
+                <div class="sig-text">
+                  <span class="sig-name sig-name--light">De Mãos Dadas</span>
+                  <span class="sig-role sig-role--light">Assistente Social</span>
+                </div>
+              </div>
+              <div class="horiz-sig-label">Crachá · fundo institucional escuro</div>
+            </div>
+
+            <!-- Ofício -->
+            <div class="horiz-sig-card">
+              <div class="horiz-sig-preview horiz-sig-preview--brand">
+                <svg width="40" height="40" viewBox="200 200 635 570" aria-hidden="true" focusable="false">
+                  <use href="#icon-dmd-logo"/>
+                </svg>
+                <div class="sig-vdivider sig-vdivider--light"></div>
+                <div class="sig-text">
+                  <span class="sig-name sig-name--light">De Mãos Dadas</span>
+                  <span class="sig-role sig-role--light">Núcleo Jurídico e de Advocacy</span>
+                </div>
+              </div>
+              <div class="horiz-sig-label">Cabeçalho de ofício · degradê institucional</div>
+            </div>
+
+          </div><!-- /horiz-sig-showcase -->
+        </div><!-- /horiz-sig-section -->
+
+      </div>
+    </section>
+
+
+    <!-- ── CORES ──────────────────────────────────────────────── -->
+    <section class="section colors" id="cores" aria-labelledby="cores-title">
+      <div class="wrap">
+        <span class="section-label">03 · Paleta</span>
+        <h2 id="cores-title">Cores que contam histórias</h2>
+        <p>Cada tom carrega intenção. Do Roxo Acolhedor que abraça, ao Navy que ancora, ao Âmbar que convoca à ação. Não são escolhas estéticas — são posicionamentos.</p>
+
+        <div class="palette" role="list" aria-label="Paleta de cores da marca">
+          <article class="swatch" role="listitem">
+            <div class="swatch-color" style="background: #7F4CA9;" aria-hidden="true"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Roxo Acolhedor</span>
+              <code class="swatch-hex">#7F4CA9</code>
+              <span class="swatch-role">Cor primária · identidade</span>
+            </div>
+          </article>
+
+          <article class="swatch" role="listitem">
+            <div class="swatch-color" style="background: #153065;" aria-hidden="true"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Navy Profundo</span>
+              <code class="swatch-hex">#153065</code>
+              <span class="swatch-role">Cor secundária · âncora</span>
+            </div>
+          </article>
+
+          <article class="swatch" role="listitem">
+            <div class="swatch-color" style="background: #FF9E00;" aria-hidden="true"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Âmbar da Ação</span>
+              <code class="swatch-hex">#FF9E00</code>
+              <span class="swatch-role">Destaque · chamadas para ação</span>
+            </div>
+          </article>
+
+          <article class="swatch" role="listitem">
+            <div class="swatch-color" style="background: #E91E8C;" aria-hidden="true"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Energia Pulsa</span>
+              <code class="swatch-hex">#E91E8C</code>
+              <span class="swatch-role">Acento · urgência e vibração</span>
+            </div>
+          </article>
+
+          <article class="swatch" role="listitem">
+            <div class="swatch-color" style="background: #BD90DA;" aria-hidden="true"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Lilás Suave</span>
+              <code class="swatch-hex">#BD90DA</code>
+              <span class="swatch-role">Apoio · versão clara do primário</span>
+            </div>
+          </article>
+
+          <article class="swatch" role="listitem">
+            <div class="swatch-color" style="background: #0c0c18;" aria-hidden="true"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Tinta Profunda</span>
+              <code class="swatch-hex">#0C0C18</code>
+              <span class="swatch-role">Fundo escuro · contraste máximo</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="palette-projeto-header">
+          <h3>Cores de Projeto</h3>
+          <p>Cada frente de atuação do instituto tem uma cor de apoio. Usadas em materiais específicos de cada projeto, sempre combinadas com a paleta principal.</p>
+        </div>
+        <div class="palette-projeto" role="list" aria-label="Cores de projeto">
+          <article class="swatch" role="listitem">
+            <div class="swatch-color" style="background: #1E3A5F;" aria-hidden="true"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Comunidade</span>
+              <code class="swatch-hex">#1E3A5F</code>
+              <span class="swatch-role">Projetos comunitários</span>
+            </div>
+          </article>
+          <article class="swatch" role="listitem">
+            <div class="swatch-color" style="background: #00B4D8;" aria-hidden="true"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Digital</span>
+              <code class="swatch-hex">#00B4D8</code>
+              <span class="swatch-role">Projetos de tecnologia</span>
+            </div>
+          </article>
+          <article class="swatch" role="listitem">
+            <div class="swatch-color" style="background: #2ECC40;" aria-hidden="true"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Território</span>
+              <code class="swatch-hex">#2ECC40</code>
+              <span class="swatch-role">Projetos ambientais</span>
+            </div>
+          </article>
+          <article class="swatch" role="listitem">
+            <div class="swatch-color" style="background: #FF6B35;" aria-hidden="true"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Educação</span>
+              <code class="swatch-hex">#FF6B35</code>
+              <span class="swatch-role">Projetos educacionais</span>
+            </div>
+          </article>
+          <article class="swatch" role="listitem">
+            <div class="swatch-color" style="background: #F7C59F;" aria-hidden="true"></div>
+            <div class="swatch-info">
+              <span class="swatch-name">Cuidado</span>
+              <code class="swatch-hex">#F7C59F</code>
+              <span class="swatch-role">Projetos de saúde</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TIPOGRAFIA ─────────────────────────────────────────── -->
+    <section class="section typography" id="tipografia" aria-labelledby="tipografia-title">
+      <div class="wrap">
+        <span class="section-label" style="color: rgba(255,255,255,0.35);">04 · Voz Tipográfica</span>
+        <h2 id="tipografia-title" style="color: white; margin-bottom: 0.5rem;">A linguagem do afeto</h2>
+        <p style="color: rgba(255,255,255,0.5); max-width: 60ch;">Três famílias com funções distintas. Cada uma fala um idioma — juntas formam uma conversa.</p>
+
+        <div class="type-showcase">
+          <div class="type-row">
+            <span class="type-meta">Space Grotesk · Títulos, navegação, destaques</span>
+            <p class="type-specimen-display">FORTE<br>& PRESENTE</p>
+          </div>
+
+          <div class="type-row">
+            <span class="type-meta">Crimson Pro · Corpo de texto, citações, narrativa</span>
+            <p class="type-specimen-serif">Onde a razão encontra a sensibilidade, nossa tipografia equilibra a força do amanhã com a herança clássica do saber coletivo.</p>
+          </div>
+
+          <div class="type-row" style="border-bottom: none; padding-bottom: 0;">
+            <span class="type-meta">IBM Plex Mono · Códigos, labels técnicas, metadados</span>
+            <p class="type-specimen-mono">Instituto De Mãos Dadas · Sistema de Marca · 2026<br>cores: #7F4CA9 · #153065 · #FF9E00 · #E91E8C</p>
+          </div>
+        </div>
+
+        <div class="type-composition">
+          <span class="type-composition-header">Exemplo de composição — capa de relatório</span>
+          <div class="type-composition-card">
+            <span class="section-label-demo">— Relatório Anual · 2026</span>
+            <h2>Comunidades Transformadas:<br>O Impacto de Uma Marca</h2>
+            <p>O Instituto De Mãos Dadas percorreu 14 territórios em 2026, alcançando mais de 3.200 famílias através de ações integradas de saúde, educação e geração de renda.</p>
+          </div>
+
+          <div class="type-font-guide" aria-label="Código de importação das fontes">
+            <code>/* Importação via Google Fonts */</code>
+            <code>@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');</code>
+            <code>&nbsp;</code>
+            <code>/* Uso: títulos → Space Grotesk 700 | corpo → Crimson Pro 400 | labels → IBM Plex Mono 500 */</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CITAÇÃO ─────────────────────────────────────────────── -->
+    <div class="quote-break" role="complementary" aria-label="Declaração de princípio">
+      <blockquote>
+        <p>"Não somos uma instituição que ajuda as pessoas. Somos um movimento que caminha com elas."</p>
+        <cite>Princípio fundador do Instituto De Mãos Dadas</cite>
+      </blockquote>
+    </div>
+
+    <!-- ── MÓDULO 4 — MATERIAIS DE APLICAÇÃO ──────────────────── -->
+    <section class="section mod4-intro" id="modulo4" aria-labelledby="mod4-title">
+      <div class="wrap">
+        <span class="section-label">05 · Módulo 4</span>
+        <h2 id="mod4-title">Materiais de Aplicação</h2>
+        <p>Da papelaria ao vestuário, do digital à comunicação ambiental — cada suporte é uma oportunidade de reforçar o compromisso do Instituto De Mãos Dadas. O módulo está organizado em quatro grupos, cada um com pelo menos cinco modelos prontos para produção.</p>
+      </div>
+    </section>
+
+    <section class="section" id="mod4-grupos" style="padding-top: 0;">
+      <div class="wrap">
+
+        <!-- ── 4.1 PAPELARIA INSTITUCIONAL ─────────────────────── -->
+        <div class="mod4-group" id="papelaria">
+          <div class="mod4-group-header">
+            <span class="mod4-group-num">Grupo 4.1</span>
+            <h3 class="mod4-group-title">Papelaria Institucional</h3>
+          </div>
+          <p class="mod4-group-desc">Materiais impressos que representam o Instituto em correspondências, reuniões e entregas formais. Acabamento consistente com a paleta navy + roxo.</p>
+
+          <div class="apps-grid">
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#2a2a35;" aria-hidden="true">
+                <div class="mock-card">
+                  <svg viewBox="200 200 635 570" class="generic-svg-inline" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Cartão de Visita</h4>
+                <p>Papel texturizado 300g, borda colorida em roxo. Frente com logomarca e verso com paleta institucional.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#f4f4f8;" aria-hidden="true">
+                <div class="mock-letterhead">
+                  <div class="mock-letterhead-hdr">
+                    <svg width="32" height="32" viewBox="200 200 635 570" style="flex-shrink:0;"><use href="#icon-dmd-logo"/></svg>
+                  </div>
+                  <div class="mock-letterhead-body">
+                    <div class="mock-line" style="width:80%;"></div>
+                    <div class="mock-line" style="width:60%;"></div>
+                    <div class="mock-line" style="width:75%;"></div>
+                    <div class="mock-line" style="width:45%;"></div>
+                    <div class="mock-line" style="width:70%;margin-top:6px;"></div>
+                    <div class="mock-line" style="width:55%;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Papel Timbrado A4</h4>
+                <p>Cabeçalho em navy com logomarca branca. Rodapé com dados institucionais em cinza discreto.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#e8e8f0;" aria-hidden="true">
+                <div class="mock-envelope">
+                  <div class="env-seal">
+                    <svg width="10" height="10" viewBox="200 200 635 570"><use href="#icon-dmd-logo"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Envelope Institucional</h4>
+                <p>Envelope C5 com aba em navy e logomarca impressa. Ideal para correspondências formais e ofícios.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#e6e0f8;" aria-hidden="true">
+                <div class="mock-folder">
+                  <svg viewBox="200 200 635 570" class="generic-svg-inline" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Pasta de Documentos</h4>
+                <p>Roxo acolhedor com verniz localizado. Para apresentação de relatórios, ofícios e projetos.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#fff8eb;" aria-hidden="true">
+                <div class="mock-notepad">
+                  <svg viewBox="200 200 635 570" class="generic-svg-inline" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                  <div class="mock-notepad-line"></div>
+                  <div class="mock-notepad-line"></div>
+                  <div class="mock-notepad-line"></div>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Bloco de Notas</h4>
+                <p>50 folhas com cabeçalho e marca d'água sutil. Distribuído em recepções e eventos locais.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- ── 4.2 ESCRITÓRIO & BRINDES ─────────────────────────── -->
+        <div class="mod4-group" id="escritorio">
+          <div class="mod4-group-header">
+            <span class="mod4-group-num">Grupo 4.2</span>
+            <h3 class="mod4-group-title">Escritório &amp; Brindes</h3>
+          </div>
+          <p class="mod4-group-desc">Objetos de uso cotidiano que mantêm a marca presente no ambiente de trabalho e em ações comunitárias. Reforçam pertencimento e identidade.</p>
+
+          <div class="apps-grid">
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#f8f9fa;" aria-hidden="true">
+                <div class="mock-notebook">
+                  <svg viewBox="200 200 635 570" class="generic-svg-inline" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Caderno Institucional</h4>
+                <p>Capa dura em navy, 96 folhas com pauta personalizada. Para reuniões e planejamento estratégico.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#eef2f5;" aria-hidden="true">
+                <div class="mock-pen">
+                  <svg viewBox="200 200 635 570" class="generic-svg-inline" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Caneta Executiva</h4>
+                <p>Acabamento metálico fosco com logomarca gravada a laser. Resistente e discreta.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#1a1a2e;" aria-hidden="true">
+                <div class="mock-badge">
+                  <div class="mock-badge-header">
+                    <svg viewBox="200 200 635 570" class="generic-svg-inline" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                  </div>
+                  <div class="mock-badge-body">
+                    <div class="mock-avatar"></div>
+                    <div class="mock-line" style="width:60%;margin-top:2px;"></div>
+                    <div class="mock-line" style="width:40%;"></div>
+                    <div class="mock-line" style="width:70%;margin-top:4px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Crachá Funcional</h4>
+                <p>Identificação de colaboradores e voluntários. PVC rígido com header roxo e dados pessoais.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#1a1f30;" aria-hidden="true">
+                <div class="mock-mousepad">
+                  <svg width="60" height="60" viewBox="200 200 635 570" style="filter:brightness(0) invert(1);opacity:0.8;"><use href="#icon-dmd-logo"/></svg>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Mousepad Institucional</h4>
+                <p>Borracha antiderrapante 20×25cm, superfície tecido. Logomarca centralizada em branco sobre navy.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#f0ebe0;" aria-hidden="true">
+                <div class="mock-tote">
+                  <svg viewBox="200 200 635 570" class="generic-svg-inline" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Ecobag Institucional</h4>
+                <p>Algodão cru 140g, alças reforçadas. Distribuída em ações comunitárias. Sustentável por design.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- ── 4.3 COMUNICAÇÃO DIGITAL ──────────────────────────── -->
+        <div class="mod4-group" id="digital">
+          <div class="mod4-group-header">
+            <span class="mod4-group-num">Grupo 4.3</span>
+            <h3 class="mod4-group-title">Comunicação Digital</h3>
+          </div>
+          <p class="mod4-group-desc">Presença online coerente com a identidade offline. Do Instagram ao e-mail, cada touchpoint digital mantém a linguagem visual do Instituto.</p>
+
+          <div class="apps-grid">
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#2a1a3e;" aria-hidden="true">
+                <div class="mock-phone">
+                  <svg viewBox="200 200 635 570" class="mock-phone-logo" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                  <div class="mock-phone-img"></div>
+                  <div class="mock-line" style="width:80%;"></div>
+                  <div class="mock-line" style="width:55%;"></div>
+                  <div class="mock-phone-cta"></div>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Instagram Story</h4>
+                <p>Formato 9:16, fundo degradê institucional. Para comunicados, convocatórias e resultados de projetos.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#1e1e30;" aria-hidden="true">
+                <div class="mock-post">
+                  <svg width="48" height="48" viewBox="200 200 635 570" style="filter:brightness(0) invert(1);opacity:0.9;z-index:1;position:relative;"><use href="#icon-dmd-logo"/></svg>
+                  <div class="mock-post-bar"></div>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Post de Feed / Carrossel</h4>
+                <p>Formato quadrado 1080×1080px. Template para notícias, conquistas e histórias de impacto comunitário.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#f0f4f8;" aria-hidden="true">
+                <div class="mock-banner-web">
+                  <svg width="36" height="36" viewBox="200 200 635 570" style="filter:brightness(0) invert(1);opacity:0.9;flex-shrink:0;"><use href="#icon-dmd-logo"/></svg>
+                  <div style="display:flex;flex-direction:column;gap:4px;flex:1;">
+                    <div class="mock-line" style="width:90%;background:rgba(255,255,255,0.4);height:3px;"></div>
+                    <div class="mock-line" style="width:60%;background:rgba(255,255,255,0.3);height:3px;"></div>
+                  </div>
+                  <div class="mock-banner-web-cta">Saiba mais</div>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Banner Web / Site</h4>
+                <p>Banner horizontal para site e parcerias digitais. Degradê navy→roxo com CTA em âmbar.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#f8f8fc;" aria-hidden="true">
+                <div class="mock-email-sig">
+                  <svg width="32" height="32" viewBox="200 200 635 570" style="flex-shrink:0;"><use href="#icon-dmd-logo"/></svg>
+                  <div class="mock-email-lines">
+                    <div class="mock-line" style="width:120px;height:5px;background:var(--navy);opacity:0.7;"></div>
+                    <div class="mock-line" style="width:90px;height:3px;background:var(--muted);opacity:0.4;"></div>
+                    <div class="mock-line" style="width:105px;height:3px;background:var(--muted);opacity:0.3;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Assinatura de E-mail</h4>
+                <p>Template HTML para e-mails institucionais. Logomarca, cargo, telefone e links de contato.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#edf0f7;" aria-hidden="true">
+                <div class="mock-avatar-icon">
+                  <svg width="44" height="44" viewBox="200 200 635 570" style="filter:brightness(0) invert(1);opacity:0.9;"><use href="#icon-dmd-logo"/></svg>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Avatar &amp; Favicon</h4>
+                <p>Símbolo isolado em círculo degradê para perfis de redes sociais, favicon e ícone de app.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- ── 4.4 COMUNICAÇÃO AMBIENTAL & VESTUÁRIO ─────────────── -->
+        <div class="mod4-group" id="ambiental">
+          <div class="mod4-group-header">
+            <span class="mod4-group-num">Grupo 4.4</span>
+            <h3 class="mod4-group-title">Comunicação Ambiental &amp; Vestuário</h3>
+          </div>
+          <p class="mod4-group-desc">A marca no espaço físico e nas pessoas. Fachadas, sinalização, uniformes e brindes que tornam o Instituto visível e reconhecível no território.</p>
+
+          <div class="apps-grid">
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#0c1a2e;" aria-hidden="true">
+                <div class="mock-building">
+                  <svg viewBox="200 200 635 570" class="generic-svg-inline" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                  <div class="mock-building-text">De Mãos<br>Dadas</div>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Fachada da Sede</h4>
+                <p>Placa de acrílico iluminada ou adesivo recortado. Presença institucional no território que a marca serve.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#101828;" aria-hidden="true">
+                <div class="mock-banner-ext">
+                  <svg width="32" height="32" viewBox="200 200 635 570" style="filter:brightness(0) invert(1);opacity:0.85;flex-shrink:0;"><use href="#icon-dmd-logo"/></svg>
+                  <div class="mock-banner-ext-line"></div>
+                  <div class="mock-banner-ext-line" style="width:24px;"></div>
+                  <div class="mock-banner-ext-line"></div>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Bandeirola / Totem</h4>
+                <p>Banner vertical para eventos, feiras e ações externas. PVC em navy com impressão UV.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#edf1f5;" aria-hidden="true">
+                <div class="mock-sticker">
+                  <svg width="22" height="22" viewBox="200 200 635 570" style="flex-shrink:0;"><use href="#icon-dmd-logo"/></svg>
+                  <div class="mock-sticker-text">Instituto<br>De Mãos Dadas</div>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Adesivo Veicular</h4>
+                <p>Vinil recortado para carros e motos da equipe. Silhueta da marca em navy ou roxo.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#1e1e30;" aria-hidden="true">
+                <div class="mock-tshirt">
+                  <div class="mock-tshirt-collar"></div>
+                  <div class="mock-tshirt-sleeve-l"></div>
+                  <div class="mock-tshirt-sleeve-r"></div>
+                  <div class="mock-tshirt-body">
+                    <svg width="36" height="36" viewBox="200 200 635 570" style="filter:brightness(0) invert(1);opacity:0.85;"><use href="#icon-dmd-logo"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Camiseta Estampada</h4>
+                <p>Algodão 30.1, silk ou sublimação. Uniforme de voluntários e equipe de campo em eventos.</p>
+              </div>
+            </article>
+
+            <article class="app-card">
+              <div class="app-visual" style="background:#2a1a3e;" aria-hidden="true">
+                <div class="mock-cap">
+                  <div class="mock-cap-crown">
+                    <svg width="28" height="28" viewBox="200 200 635 570" style="filter:brightness(0) invert(1);opacity:0.8;"><use href="#icon-dmd-logo"/></svg>
+                  </div>
+                  <div class="mock-cap-band"></div>
+                  <div class="mock-cap-brim"></div>
+                </div>
+              </div>
+              <div class="app-meta">
+                <h4>Boné Institucional</h4>
+                <p>Bordado frontal com símbolo ou wordmark. Roxo acolhedor ou navy. Para voluntários e brindes.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── 4.5 ESCOLHA DE CANECAS (interativo) ─────────────────── -->
+    <section class="section mod4-canecas" id="escolha-caneca">
+      <div class="wrap">
+        <span class="section-label">Grupo 4.5 · Merchandise</span>
+        <h2>Canecas Institucionais</h2>
+        <p>Dez combinações de cores que celebram nossa identidade e nossos projetos. Selecione a sua favorita para nos ajudar a escolher o próximo brinde institucional.</p>
+
+        <div class="choice-grid" id="caneca-grid">
+
+
+          <!-- 01 Classic White — logo colorida (PNG) sobre branco -->
+          <div class="choice-item is-selected" data-caneca="classic-white">
+            <div class="mug-mockup" style="--mug-color: #ffffff;">
+              <div class="mug-handle"></div>
+              <div class="mug-rim"></div>
+              <div class="mug-body">
+                <svg viewBox="200 200 635 570" class="mug-logo" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                <span class="mug-tagline">Goiânia · GO</span>
+              </div>
+            </div>
+            <div class="choice-label">Clássica Brilhante</div>
+            <div class="choice-tag">Premium · Porcelana</div>
+          </div>
+
+          <!-- 02 Navy Community — logo SVG (wordmark branco) sobre navy -->
+          <div class="choice-item" data-caneca="navy-community">
+            <div class="mug-mockup mug--dark" style="--mug-color: var(--navy);">
+              <div class="mug-handle"></div>
+              <div class="mug-rim"></div>
+              <div class="mug-body">
+                <svg viewBox="200 200 635 570" class="mug-logo" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                <span class="mug-tagline">Comunidade Unida</span>
+              </div>
+            </div>
+            <div class="choice-label">Azul Comunitário</div>
+            <div class="choice-tag">Institucional · Mate</div>
+          </div>
+
+          <!-- 03 Purple Institution — logo SVG (wordmark branco) sobre roxo -->
+          <div class="choice-item" data-caneca="purple-inst">
+            <div class="mug-mockup mug--dark" style="--mug-color: var(--accent);">
+              <div class="mug-handle"></div>
+              <div class="mug-rim"></div>
+              <div class="mug-body">
+                <svg viewBox="200 200 635 570" class="mug-logo" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                <span class="mug-tagline">institutodemaosdadas.com.br</span>
+              </div>
+            </div>
+            <div class="choice-label">Roxo Acolhedor</div>
+            <div class="choice-tag">Branding · Mate</div>
+          </div>
+
+          <!-- 04 Amber Action — logo colorida (PNG) sobre âmbar -->
+          <div class="choice-item" data-caneca="amber-action">
+            <div class="mug-mockup" style="--mug-color: var(--amber);">
+              <div class="mug-handle"></div>
+              <div class="mug-rim"></div>
+              <div class="mug-body">
+                <svg viewBox="200 200 635 570" class="mug-logo" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                <span class="mug-tagline">Ação Coletiva</span>
+              </div>
+            </div>
+            <div class="choice-label">Âmbar da Ação</div>
+            <div class="choice-tag">Destaque · Vibrante</div>
+          </div>
+
+          <!-- 05 Green Territory — logo SVG (wordmark branco) sobre verde -->
+          <div class="choice-item" data-caneca="green-territory">
+            <div class="mug-mockup mug--dark" style="--mug-color: #2ECC40;">
+              <div class="mug-handle"></div>
+              <div class="mug-rim"></div>
+              <div class="mug-body">
+                <svg viewBox="200 200 635 570" class="mug-logo" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                <span class="mug-tagline">Território Vivo</span>
+              </div>
+            </div>
+            <div class="choice-label">Verde Território</div>
+            <div class="choice-tag">Projeto · Sustentável</div>
+          </div>
+
+          <!-- 06 Cyan Digital — logo SVG (wordmark branco) sobre ciano -->
+          <div class="choice-item" data-caneca="cyan-digital">
+            <div class="mug-mockup mug--dark" style="--mug-color: #00B4D8;">
+              <div class="mug-handle"></div>
+              <div class="mug-rim"></div>
+              <div class="mug-body">
+                <svg viewBox="200 200 635 570" class="mug-logo" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                <span class="mug-tagline">Tecnologia Social</span>
+              </div>
+            </div>
+            <div class="choice-label">Ciano Digital</div>
+            <div class="choice-tag">Projeto · Tech</div>
+          </div>
+
+          <!-- 07 Pink Energy — logo SVG (wordmark branco) sobre rosa -->
+          <div class="choice-item" data-caneca="pink-energy">
+            <div class="mug-mockup mug--dark" style="--mug-color: var(--pink);">
+              <div class="mug-handle"></div>
+              <div class="mug-rim"></div>
+              <div class="mug-body">
+                <svg viewBox="200 200 635 570" class="mug-logo" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                <span class="mug-tagline">Com Empatia</span>
+              </div>
+            </div>
+            <div class="choice-label">Energia Rosa</div>
+            <div class="choice-tag">Vibração · Empatia</div>
+          </div>
+
+          <!-- 08 Orange Education — logo SVG (wordmark branco) sobre laranja -->
+          <div class="choice-item" data-caneca="orange-ed">
+            <div class="mug-mockup mug--dark" style="--mug-color: #FF6B35;">
+              <div class="mug-handle"></div>
+              <div class="mug-rim"></div>
+              <div class="mug-body">
+                <svg viewBox="200 200 635 570" class="mug-logo" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                <span class="mug-tagline">Educação Transforma</span>
+              </div>
+            </div>
+            <div class="choice-label">Laranja Sabedoria</div>
+            <div class="choice-tag">Projeto · Educação</div>
+          </div>
+
+          <!-- 09 Peach Care — logo colorida (PNG) sobre pêssego -->
+          <div class="choice-item" data-caneca="peach-care">
+            <div class="mug-mockup" style="--mug-color: #F7C59F;">
+              <div class="mug-handle"></div>
+              <div class="mug-rim"></div>
+              <div class="mug-body">
+                <svg viewBox="200 200 635 570" class="mug-logo" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                <span class="mug-tagline">Saúde é Direito</span>
+              </div>
+            </div>
+            <div class="choice-label">Pêssego Cuidado</div>
+            <div class="choice-tag">Projeto · Saúde</div>
+          </div>
+
+          <!-- 10 Ink Dark — logo SVG (wordmark branco) sobre ink -->
+          <div class="choice-item" data-caneca="ink-dark">
+            <div class="mug-mockup mug--dark" style="--mug-color: #1a1a2e;">
+              <div class="mug-handle"></div>
+              <div class="mug-rim"></div>
+              <div class="mug-body">
+                <svg viewBox="200 200 635 570" class="mug-logo" aria-label="De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+                <span class="mug-tagline">Edição Especial · 2026</span>
+              </div>
+            </div>
+            <div class="choice-label">Tinta Profunda</div>
+            <div class="choice-tag">Exclusiva · Noite</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ── REGRAS ──────────────────────────────────────────────── -->
+    <section class="section brand-rules" id="regras" aria-labelledby="regras-title">
+      <div class="wrap">
+        <span class="section-label">06 · Guia de Uso</span>
+        <h2 id="regras-title">O que fazer — e o que não fazer</h2>
+        <p>Uma marca forte depende da consistência de quem a usa. Estas regras protegem a integridade da identidade e o reconhecimento público conquistado.</p>
+
+        <div class="rules-grid">
+          <div class="rules-col rules-col--do">
+            <h3>Pode</h3>
+
+            <div class="rule-item">
+              <div class="rule-icon rule-icon--do" aria-hidden="true">✓</div>
+              <p>Usar a logomarca sobre fundos brancos, escuros ou no degradê institucional</p>
+            </div>
+            <div class="rule-item">
+              <div class="rule-icon rule-icon--do" aria-hidden="true">✓</div>
+              <p>Ampliar ou reduzir a logo proporcionalmente, mantendo o mínimo de 32px de altura</p>
+            </div>
+            <div class="rule-item">
+              <div class="rule-icon rule-icon--do" aria-hidden="true">✓</div>
+              <p>Usar a versão monocromática (branca ou preta) quando a logo colorida comprometer a leitura</p>
+            </div>
+            <div class="rule-item">
+              <div class="rule-icon rule-icon--do" aria-hidden="true">✓</div>
+              <p>Combinar as cores da paleta oficial nos materiais de comunicação</p>
+            </div>
+            <div class="rule-item">
+              <div class="rule-icon rule-icon--do" aria-hidden="true">✓</div>
+              <p>Manter espaço de respiro ao redor da logo equivalente à altura da letra "M" do símbolo</p>
+            </div>
+          </div>
+
+          <div class="rules-col rules-col--dont">
+            <h3>Não pode</h3>
+
+            <div class="rule-item">
+              <div class="rule-icon rule-icon--dont" aria-hidden="true">✗</div>
+              <p>Distorcer, rotacionar ou recolorir o símbolo com cores fora da paleta</p>
+            </div>
+            <div class="rule-item">
+              <div class="rule-icon rule-icon--dont" aria-hidden="true">✗</div>
+              <p>Usar a logo sobre fundos com pouco contraste ou fotos de alta complexidade</p>
+            </div>
+            <div class="rule-item">
+              <div class="rule-icon rule-icon--dont" aria-hidden="true">✗</div>
+              <p>Adicionar sombras, efeitos de brilho ou outros tratamentos ao símbolo</p>
+            </div>
+            <div class="rule-item">
+              <div class="rule-icon rule-icon--dont" aria-hidden="true">✗</div>
+              <p>Separar o símbolo do texto "De Mãos Dadas" exceto em aplicações de ícone pequeno</p>
+            </div>
+            <div class="rule-item">
+              <div class="rule-icon rule-icon--dont" aria-hidden="true">✗</div>
+              <p>Substituir as fontes institucionais por outras sem aprovação do núcleo de comunicação</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <svg width="80" height="80" viewBox="200 200 635 570" style="filter:brightness(0) invert(1);opacity:0.65;" role="img" aria-label="Instituto De Mãos Dadas"><use href="#icon-dmd-logo"/></svg>
+      </div>
+      <p class="footer-tagline" style="margin-top: 1.5rem;">"Vamos construir juntos?"</p>
+      <p style="color: rgba(255,255,255,0.4); font-family: var(--font-sans); font-size: 0.85rem;">Instituto De Mãos Dadas · 2026</p>
+      <div class="footer-downloads" aria-label="Download dos arquivos de marca">
+        <a href="logo-dmd-new.png" download class="btn-download">↓ PNG</a>
+        <a href="logo-dmd-new.svg" download class="btn-download">↓ SVG</a>
+        <a href="#" class="btn-download" aria-label="Download do guia completo em PDF">↓ PDF Guide</a>
+      </div>
+      <p class="footer-meta">Portfolio de identidade visual · Pure HTML & CSS · Web Standards</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Scroll progress bar ─────────────────────────────────── */
+    (function () {
+      var bar = document.getElementById('scroll-progress');
+      if (!bar) return;
+      function update() {
+        var scrolled = window.scrollY;
+        var total = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+
+    /* ── Fade-up ao scroll (IntersectionObserver) ────────────── */
+    (function () {
+      if (!('IntersectionObserver' in window)) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+ 
+      var targets = document.querySelectorAll(
+        '.section-label, .logo-card, .swatch, .app-card, .value-item, .rule-item, .type-row, .alt-card, .horiz-sig-card, .choice-item'
+      );
+ 
+      targets.forEach(function (el, i) {
+        el.classList.add('fade-up');
+        el.style.transitionDelay = (i % 6 * 60) + 'ms';
+      });
+ 
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+ 
+      targets.forEach(function (el) { observer.observe(el); });
+    })();
+
+    /* ── Lógica de Seleção para Mãos Dadas Portfolio ─────────── */
+    (function () {
+      function setupSelection(gridId, storageKey) {
+        const grid = document.getElementById(gridId);
+        if (!grid) return;
+
+        const items = grid.querySelectorAll('.choice-item');
+        
+        // Restore from localStorage if exists
+        const savedChoice = localStorage.getItem(storageKey);
+        if (savedChoice) {
+          items.forEach(i => {
+            const val = i.getAttribute('data-choice') || i.getAttribute('data-caneca');
+            if (val === savedChoice) {
+              items.forEach(c => c.classList.remove('is-selected'));
+              i.classList.add('is-selected');
+            }
+          });
+        }
+
+        items.forEach(item => {
+          item.addEventListener('click', () => {
+            // Remove selection from others
+            items.forEach(i => i.classList.remove('is-selected'));
+            // Add to clicked
+            item.classList.add('is-selected');
+            
+            const choiceValue = item.getAttribute('data-choice') || item.getAttribute('data-caneca');
+            
+            // Log preference
+            console.log(`Preferência selecionada em ${gridId}:`, choiceValue);
+            
+            // Salvar no localStorage
+            localStorage.setItem(storageKey, choiceValue);
+            
+            // Efeito de feedback tátil/visual extra
+            item.style.transform = 'scale(0.98)';
+            setTimeout(() => item.style.transform = '', 100);
+          });
+        });
+      }
+
+      setupSelection('conjugacao-grid', 'dmd_conjugacao_fav');
+      setupSelection('caneca-grid', 'dmd_caneca_fav');
+    })();
+  </script>
+
+
+<!-- ================================================================
+   INNOVATIONS & ENHANCEMENTS SCRIPTS
+   ================================================================ -->
+<div class="theme-switcher-panel" aria-label="Seletor de Temas">
+  <span>Theme</span>
+  <button class="theme-btn light-mode active" aria-label="Tema Claro" data-set-theme="light"></button>
+  <button class="theme-btn dark-mode" aria-label="Tema Escuro" data-set-theme="dark"></button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. SCROLL REVEAL ANIMATIONS
+  const elementsToReveal = document.querySelectorAll('.app-card, .alt-card, .sig-option-card, .mission-text, .horiz-sig-section, .choice-item, .hero-content, .hero-visual');
+  elementsToReveal.forEach(el => el.classList.add('reveal-on-scroll'));
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15
+  };
+  
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+  // 2. 3D DOM TILT EFFECT ON CARDS
+  const tiltCards = document.querySelectorAll('.app-card, .alt-card, .sig-option-card');
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      card.style.boxShadow = `${-rotateY*2}px ${rotateX*2}px 25px rgba(0,0,0,0.15)`;
+      
+      // Rotate the inner mockup in opposing direction marginally for depth
+      const visual = card.querySelector('.app-visual, .alt-mockup');
+      if(visual) {
+         visual.style.transform = `translateZ(40px)`;
+      }
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      card.style.boxShadow = 'none';
+      if(card.classList.contains('sig-option-card')){
+        card.style.boxShadow = '0 8px 30px rgba(0,0,0,0.05)';
+      }
+      const visual = card.querySelector('.app-visual, .alt-mockup');
+      if(visual) {
+         visual.style.transform = `translateZ(30px)`;
+      }
+    });
+  });
+
+  // 3. THEME SWITCHER
+  const themeBtns = document.querySelectorAll('.theme-btn');
+  themeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.getAttribute('data-set-theme');
+      
+      themeBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      if(theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+    });
+  });
+
+  // 4. MUGS SELECTION INTERACTIVITY (Enhanced Experience)
+  const mugItems = document.querySelectorAll('.choice-item');
+  mugItems.forEach(item => {
+    item.addEventListener('click', () => {
+      mugItems.forEach(m => m.classList.remove('is-selected'));
+      item.classList.add('is-selected');
+      
+      const mockup = item.querySelector('.mug-mockup');
+      if(mockup){
+        mockup.style.transition = 'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)';
+        mockup.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          mockup.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+          mockup.style.transform = 'scale(1.08)';
+          setTimeout(() => mockup.style.transform = 'scale(1)', 200);
+        }, 150);
+      }
+    });
+  });
+});
+</script>
+
+</body>
+
+</html>
