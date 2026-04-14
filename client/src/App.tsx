@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch, useLocation, Redirect } from "wouter";
+import { Router as WouterRouter, Route, Switch, useLocation, Redirect } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { BrandProvider } from "./contexts/BrandContext";
@@ -11,7 +11,7 @@ import Applications from "./pages/Applications";
 import Dossier from "./pages/Dossier";
 
 
-function Router() {
+function AppRoutes() {
   return (
     <Switch>
       <Route path="/" component={Home} />
@@ -104,7 +104,9 @@ function App() {
         <BrandProvider>
           <TooltipProvider>
             <Toaster />
-            <Router />
+            <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+              <AppRoutes />
+            </WouterRouter>
           </TooltipProvider>
         </BrandProvider>
       </ThemeProvider>
