@@ -338,7 +338,7 @@ export default function Applications() {
             {...(props as EmailSignatureProps)}
             primaryColor={pc.primary}
             secondaryColor={pc.secondary}
-            logoVariant={logoVariant as any}
+            logoVariant={toCardVariant(logoVariant)}
             fontFamily={currentTypo.fonts.display}
             name={customData.name}
             role={customData.role}
@@ -352,7 +352,7 @@ export default function Applications() {
             primaryColor={pc.primary}
             secondaryColor={pc.secondary}
             accentColor={pc.accent}
-            logoVariant={logoVariant as any}
+            logoVariant={toCardVariant(logoVariant)}
             fontFamily={currentTypo.fonts.display}
             title={isSmart ? planningData.quemSomos.story : customData.bannerTitle}
             subtitle={isSmart ? planningData.proposito.story : customData.bannerSub}
@@ -366,7 +366,7 @@ export default function Applications() {
             primaryColor={pc.primary}
             secondaryColor={pc.secondary}
             accentColor={pc.accent}
-            logoVariant={logoVariant as any}
+            logoVariant={toCardVariant(logoVariant)}
             fontFamily={currentTypo.fonts.display}
             studentName={customData.studentName}
             courseTitle={customData.courseTitle}
@@ -391,7 +391,7 @@ export default function Applications() {
             primaryColor={pc.primary}
             secondaryColor={pc.secondary}
             accentColor={pc.accent}
-            logoVariant={logoVariant as any}
+            logoVariant={toCardVariant(logoVariant)}
             fontFamily={currentTypo.fonts.display}
             brandName={brandName}
           />
@@ -403,7 +403,7 @@ export default function Applications() {
             primaryColor={pc.primary}
             secondaryColor={pc.secondary}
             accentColor={pc.accent}
-            logoVariant={logoVariant as any}
+            logoVariant={toCardVariant(logoVariant)}
             fontFamily={currentTypo.fonts.display}
             brandName={brandName}
           />
@@ -420,7 +420,7 @@ export default function Applications() {
             primaryColor={pc.primary}
             secondaryColor={pc.secondary}
             accentColor={pc.accent}
-            logoVariant={logoVariant as any}
+            logoVariant={toCardVariant(logoVariant)}
             fontFamily={currentTypo.fonts.display}
             name={customData.name}
             role={customData.role}
