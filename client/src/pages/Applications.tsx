@@ -24,27 +24,7 @@ import { colorSchemes, typographyStyles, logoVariants } from '@/data/brand-ident
 import { assetCategories } from '@/data/assets.ts';
 import { useBrand, ColorScheme, TypographyStyle, LogoVariant, ShapeStyle, shapeRadius } from '@/contexts/BrandContext';
 
-type AssetLogoVariant = 'horizontal' | 'vertical' | 'symbol' | 'wordmark' | 'circle';
-type CardLogoVariant  = 'horizontal' | 'vertical' | 'symbol' | 'circle';
-
-function toAssetVariant(variant: LogoVariant): AssetLogoVariant {
-  const map: Record<LogoVariant, AssetLogoVariant> = {
-    primary:   'horizontal',
-    horizontal:'horizontal',
-    vertical:  'vertical',
-    symbol:    'symbol',
-    wordmark:  'wordmark',
-    circle:    'circle',
-    mono:      'symbol',
-    watermark: 'horizontal',
-  };
-  return map[variant];
-}
-
-function toCardVariant(variant: LogoVariant): CardLogoVariant {
-  const v = toAssetVariant(variant);
-  return v === 'wordmark' ? 'horizontal' : v;
-}
+import { toAssetVariant, toCardVariant } from '@/lib/logoVariants';
 
 
 
@@ -516,20 +496,23 @@ export default function Applications() {
         <div className="container py-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 size="sm"
                 onClick={() => navigate('/')}
                 className="hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all rounded-full"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Sair
+                Brand Journey
               </Button>
               <div className="h-6 w-px bg-navy-100" />
               <img src="/logofundobranco.svg" alt="De Mãos Dadas" className="h-8 w-auto" />
-              <h1 className="text-lg font-bold text-foreground hidden md:block">
-                Aplicação da Marca
-              </h1>
+              <div className="hidden md:block">
+                <h1 className="text-lg font-bold text-foreground leading-none">Aplicação da Marca</h1>
+                <p className="text-[10px] text-muted-foreground font-medium mt-0.5">
+                  {currentPalette.name} · {currentTypo.name}
+                </p>
+              </div>
             </div>
 
             <div className="flex items-center gap-4">

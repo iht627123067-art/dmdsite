@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useLocation } from 'wouter';
-import { useBrand, PlanningData, LogoVariant } from '@/contexts/BrandContext';
+import { useBrand, PlanningData } from '@/contexts/BrandContext';
 import { colorSchemes, typographyStyles, logoVariants } from '@/data/brand-identity';
 import { ArrowLeft, Printer, CheckCircle2, XCircle, Sparkles, Palette, Quote, Square } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,29 +10,7 @@ import { BadgeAsset } from '@/components/assets/BadgeAsset';
 import { NotepadAsset } from '@/components/assets/NotepadAsset';
 import { BusinessCardAsset } from '@/components/assets/BusinessCardAsset';
 
-type AssetLogoVariant = 'horizontal' | 'vertical' | 'symbol' | 'wordmark' | 'circle';
-type CardLogoVariant  = 'horizontal' | 'vertical' | 'symbol' | 'circle';
-
-/** Maps the full LogoVariant set to the subset accepted by most asset components. */
-function toAssetVariant(variant: LogoVariant): AssetLogoVariant {
-  const map: Record<LogoVariant, AssetLogoVariant> = {
-    primary:   'horizontal',
-    horizontal:'horizontal',
-    vertical:  'vertical',
-    symbol:    'symbol',
-    wordmark:  'wordmark',
-    circle:    'circle',
-    mono:      'symbol',
-    watermark: 'horizontal',
-  };
-  return map[variant];
-}
-
-/** Maps to the subset accepted by BusinessCardAsset (no 'wordmark'). */
-function toCardVariant(variant: LogoVariant): CardLogoVariant {
-  const v = toAssetVariant(variant);
-  return v === 'wordmark' ? 'horizontal' : v;
-}
+import { toAssetVariant, toCardVariant } from '@/lib/logoVariants';
 
 /**
  * Dossiê Estratégico — Revisão Final Impressa

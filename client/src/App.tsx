@@ -15,7 +15,6 @@ function AppRoutes() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path={"/guidelines"} component={Home} />
       <Route path={"/applications"} component={Applications} />
       <Route path={"/dossie"} component={Dossier} />
       <Route path={"/examples"}>

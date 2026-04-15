@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   BookOpen, Palette, Type, Layout, Sparkles, ShieldCheck, HeartPulse,
   History, Users, Target, Info, MessageSquare, CheckCircle2, XCircle,
-  ArrowRight, Globe, Square, FileText, Pencil, Check, Eye
+  ArrowRight, Globe, Square, FileText, Pencil, Check, Eye, ChevronRight
 } from 'lucide-react';
 import { LogoVariantSelector } from '@/components/brand/LogoVariantSelector';
 import { BrandSummaryCard } from '@/components/brand/BrandSummaryCard';
@@ -504,6 +504,32 @@ export default function Home() {
   const [editingSection, setEditingSection] = useState<string | null>(null);
   const [, navigate] = useLocation();
 
+  const CHECKLIST_ITEMS = [
+    'O logo está numa versão aprovada (colorida, branca ou mono)?',
+    'A área de respiro ao redor do logo está respeitada?',
+    'As cores usadas pertencem à paleta institucional selecionada?',
+    'As pessoas aparecem em posição de ação ou liderança?',
+    'A mensagem evita narrativa de caridade ou vitimização?',
+  ];
+  const [checkedItems, setCheckedItems] = useState<boolean[]>(() => {
+    try {
+      const stored = localStorage.getItem('dmd-checklist');
+      const parsed = stored ? JSON.parse(stored) : null;
+      return Array.isArray(parsed) && parsed.length === CHECKLIST_ITEMS.length
+        ? parsed
+        : Array(CHECKLIST_ITEMS.length).fill(false);
+    } catch { return Array(CHECKLIST_ITEMS.length).fill(false); }
+  });
+
+  const toggleCheck = (i: number) => {
+    setCheckedItems(prev => {
+      const next = [...prev];
+      next[i] = !next[i];
+      localStorage.setItem('dmd-checklist', JSON.stringify(next));
+      return next;
+    });
+  };
+
   const scrollToPhase = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
@@ -586,14 +612,16 @@ export default function Home() {
                   </span>
                 </button>
               ))}
+              <div className="w-px h-4 bg-navy-200/60 hidden sm:block" />
               <button
                 onClick={() => navigate('/applications')}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-label font-bold uppercase tracking-wider text-muted-foreground hover:text-primary transition-all"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-label font-bold uppercase tracking-wider text-accent hover:bg-accent/10 transition-all"
               >
-                <div className="w-4 h-4 flex items-center justify-center rounded-full text-[8px] font-black bg-navy-200/60 text-navy-500">
+                <div className="w-4 h-4 flex items-center justify-center rounded-full text-[8px] font-black bg-accent/15 text-accent">
                   <Layout className="w-2.5 h-2.5" />
                 </div>
-                <span className="hidden sm:inline">Aplicação da Marca</span>
+                <span className="hidden sm:inline">Aplicações</span>
+                <ArrowRight className="w-3 h-3 hidden sm:inline" />
               </button>
             </nav>
 
@@ -1033,7 +1061,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="mt-14 text-center">
+          <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => scrollToPhase('fase-03')}
               className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full text-sm font-bold hover:-translate-y-0.5 hover:shadow-glow transition-all"
@@ -1041,6 +1069,13 @@ export default function Home() {
               Avançar para as Diretrizes
               <ArrowRight className="w-4 h-4" />
             </button>
+            <Link href="/applications">
+              <button className="inline-flex items-center gap-2 px-6 py-3 border border-accent/40 text-accent rounded-full text-sm font-semibold hover:bg-accent/10 hover:-translate-y-0.5 transition-all">
+                <Layout className="w-3.5 h-3.5" />
+                Ou veja a marca aplicada
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </Link>
           </div>
         </section>
 
@@ -1050,184 +1085,37 @@ export default function Home() {
         ══════════════════════════════════════════════════════ */}
         <section id="fase-03" className="scroll-mt-24">
 
-          <div className="max-w-4xl mb-16 animate-in fade-in slide-in-from-bottom-5 duration-700">
+          <div className="max-w-4xl mb-14 animate-in fade-in slide-in-from-bottom-5 duration-700">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-100 text-navy-900 text-label font-bold uppercase tracking-widest mb-5 border border-navy-200">
               <BookOpen className="w-3 h-3" />
               Fase 03 — Diretrizes
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-5 text-foreground tracking-tight leading-[1.1]">
-              A força da <span className="text-primary italic">união</span> <br />codificada em design.
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground tracking-tight leading-[1.1]">
+              Como a marca deve<br /><span className="text-primary italic">se comportar</span>.
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed font-light mb-4">
-              As regras que garantem que a marca seja usada com consistência, clareza e o impacto que a missão exige.
+            <p className="text-lg text-muted-foreground leading-relaxed font-light">
+              Não são escolhas — são regras de uso que valem independente do contexto ou da paleta selecionada.
             </p>
-            <NaPratica items={[
-              'Estas diretrizes são fixas — não dependem das escolhas das fases anteriores.',
-              'Use esta seção como checklist antes de publicar qualquer material do Instituto.',
-              'Cada bloco tem o rótulo DIRETRIZ FIXA — sinaliza que não é para editar, é para consultar.',
-            ]} />
           </div>
 
-          {/* Sistema Cromático */}
-          <div className="mb-20">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 rounded-2xl bg-primary/10 text-primary">
-                <Palette className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h3 className="text-2xl font-bold text-foreground">Sistema Cromático</h3>
-                  <ContentBadge type="diretriz" />
-                </div>
-                <p className="text-sm text-muted-foreground">Baseado na técnica de Paleta de Cores de três camadas.</p>
-              </div>
+          {/* Bloco 1 — Uso do Logo */}
+          <div className="mb-14">
+            <div className="flex items-center gap-2 mb-5">
+              <h3 className="text-xl font-bold text-foreground">Uso do Logo</h3>
+              <ContentBadge type="diretriz" />
             </div>
-            <NaPratica items={[
-              'Azul Marinho sempre como cor principal em materiais institucionais (60% da composição)',
-              'Roxo é reservado para calls-to-action e destaques — nunca como fundo principal',
-              'Âmbar usado apenas como acento pontual (máximo 10% da área visual)',
-              'Violeta/Lilás e Pink são exclusivos de campanhas de alto impacto emocional',
-            ]} />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { name: 'Navy 900', hex: 'var(--navy-900)', role: 'Base & Confiança', desc: 'Cor pilar para textos e contextos institucionais.' },
-                { name: 'Purple 500', hex: 'var(--purple-500)', role: 'Transformação', desc: 'Motor da marca. Usado para CTAs e destaques.' },
-                { name: 'Amber 500', hex: 'var(--amber-500)', role: 'Energia & Alerta', desc: 'Acento de esperança e sinalização crítica.' },
-                { name: 'Navy 100', hex: 'var(--navy-100)', role: 'Apoio & Respiro', desc: 'Fundos suaves e elementos de separação.' }
-              ].map((color) => (
-                <Card key={color.name} className="p-6 border-none shadow-premium hover:shadow-lg transition-all group">
-                  <div className="w-full h-36 rounded-2xl mb-5 shadow-inner group-hover:scale-[1.02] transition-transform duration-500" style={{ backgroundColor: color.hex }} />
-                  <h4 className="font-bold text-lg mb-1 text-foreground">{color.name}</h4>
-                  <p className="text-xs font-bold text-primary uppercase tracking-widest mb-2">{color.role}</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{color.desc}</p>
-                </Card>
-              ))}
-            </div>
-
-            <Card className="p-10 bg-navy-900 text-white overflow-hidden relative group">
-              <div className="absolute right-0 top-0 w-1/3 h-full bg-primary/10 skew-x-12 translate-x-20" />
-              <div className="flex items-center gap-2 mb-6">
-                <h4 className="font-bold text-xl flex items-center gap-2">
-                  <ShieldCheck className="w-6 h-6 text-accent" />
-                  Hierarquia de Uso
-                </h4>
-                <ContentBadge type="diretriz" />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-                <ul className="space-y-4">
-                  <li className="flex gap-3">
-                    <span className="text-accent font-bold">01.</span>
-                    <div>
-                      <p className="font-bold text-sm">Contraste é Inegociável</p>
-                      <p className="text-xs text-navy-200">Garanta sempre legibilidade WCAG AA (mínimo 4.5:1).</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-accent font-bold">02.</span>
-                    <div>
-                      <p className="font-bold text-sm">Marca Escura sobre Claro</p>
-                      <p className="text-xs text-navy-200">Use a versão colorida sobre fundos brancos ou Navy 50.</p>
-                    </div>
-                  </li>
-                </ul>
-                <ul className="space-y-4">
-                  <li className="flex gap-3">
-                    <span className="text-accent font-bold">03.</span>
-                    <div>
-                      <p className="font-bold text-sm">Marca Branca sobre Escuro</p>
-                      <p className="text-xs text-navy-200">Use a versão negativa sobre Navy 900 ou fotos saturadas.</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-accent font-bold">04.</span>
-                    <div>
-                      <p className="font-bold text-sm">O "Toque" de Âmbar</p>
-                      <p className="text-xs text-navy-200">O Âmbar deve ser usado com parcimônia, como um ponto de luz.</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </Card>
-          </div>
-
-          {/* Tipografia Sistêmica */}
-          <div className="mb-20">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 rounded-2xl bg-primary/10 text-primary">
-                <Type className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h3 className="text-2xl font-bold text-foreground">Tipografia Sistêmica & Fluida</h3>
-                  <ContentBadge type="diretriz" />
+                { num: '01', title: 'Contraste Inegociável', desc: 'Legibilidade WCAG AA mínima (4.5:1). Sem exceções.' },
+                { num: '02', title: 'Marca Colorida sobre Claro', desc: 'Use a versão colorida sobre fundos brancos ou Navy 50.' },
+                { num: '03', title: 'Marca Branca sobre Escuro', desc: 'Use a versão negativa sobre Navy 900 ou fotos saturadas.' },
+                { num: '04', title: 'Nunca Distorcer', desc: 'Nunca esticar, achatar, rotacionar ou aplicar sombras pesadas.' },
+              ].map(({ num, title, desc }) => (
+                <div key={num} className="p-5 rounded-2xl bg-navy-50/60 border border-navy-100/50 flex flex-col gap-2">
+                  <span className="text-xs font-black text-primary/40 tracking-widest">{num}.</span>
+                  <p className="font-bold text-sm text-foreground">{title}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
                 </div>
-                <p className="text-sm text-muted-foreground">Arquitetura do texto desenhada para legibilidade absoluta e adaptabilidade.</p>
-              </div>
-            </div>
-            <NaPratica items={[
-              'Nunca use mais de 2 famílias tipográficas no mesmo material',
-              'Interlinha mínima de 1.6x no corpo do texto — nunca abaixo disso',
-              'Limite colunas de texto a 55–75 caracteres por linha (legibilidade ótima)',
-              'Títulos sempre em Space Grotesk Bold; corpo em Inter ou Crimson Pro conforme a paleta ativa',
-            ]} />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 mb-10">
-              <Card className="p-8 border-none shadow-premium bg-white">
-                <h4 className="font-bold text-xs text-primary uppercase tracking-[0.2em] mb-6">Métrica de Leitura (Microtipografia)</h4>
-                <ul className="space-y-4 text-sm text-muted-foreground">
-                  {[
-                    ['Interlinha (Corpo)', '1.6x'],
-                    ['Largura de Coluna', '55-75 caracteres'],
-                    ['Escala Modular', '1.250 (Major Third)'],
-                    ['Sistema', 'Fluido (clamp)'],
-                  ].map(([label, value]) => (
-                    <li key={label} className="flex justify-between border-b border-navy-50 pb-2">
-                      <span>{label}</span>
-                      <span className="font-bold text-foreground">{value}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-
-              <Card className="p-8 border-none shadow-premium bg-navy-900 text-white">
-                <h4 className="font-bold text-xs text-accent uppercase tracking-[0.2em] mb-4">Filosofia de Hierarquia</h4>
-                <p className="text-xs text-navy-200 leading-relaxed italic mb-4">
-                  "A tipografia fala antes de ser lida." — Enric Jardí.
-                </p>
-                <NaPratica items={[
-                  'Tamanho e Peso guiam o olhar — nunca cor sozinha',
-                  'Espaço em branco é separação semântica, não desperdício',
-                  'Hierarquia: Display → Heading → Body → Caption (nunca pule níveis)',
-                ]} />
-              </Card>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                { name: 'Títulos de Impacto (Display)', font: 'Space Grotesk', weight: 'Bold (700)', sample: 'A Favela no Topo', desc: 'Fluido: 40px → 72px. Tracking: -0.02em.' },
-                { name: 'Interações & Tópicos', font: 'Space Grotesk', weight: 'Medium (500)', sample: 'Autonomia Produtiva', desc: 'Fluido: 24px → 32px. Texto de apoio a headers.' },
-                { name: 'Leitura Contínua (UI)', font: 'Inter', weight: 'Regular (400)', sample: 'Transformação social é um compromisso diário.', desc: 'Fluido: 16px → 18px. Interlinha rigorosa de 1.6x.' }
-              ].map((typo) => (
-                <Card key={typo.name} className="p-8 border-none shadow-sm hover:shadow-premium transition-all">
-                  <div className="flex items-center gap-2 mb-6">
-                    <h4 className="font-bold text-label text-primary uppercase tracking-widest">{typo.name}</h4>
-                  </div>
-                  <p
-                    className="mb-6 text-foreground text-balance"
-                    style={{
-                      fontFamily: typo.font,
-                      fontSize: typo.name.includes('Impacto') ? 'var(--text-display-lg)' :
-                                typo.name.includes('Interações') ? 'var(--text-heading-md)' : 'var(--text-body)'
-                    }}
-                  >
-                    {typo.sample}
-                  </p>
-                  <div className="pt-6 border-t border-navy-50">
-                    <p className="text-label text-muted-foreground font-bold">{typo.font} <span className="opacity-40 ml-2">/ {typo.weight}</span></p>
-                    <p className="text-label text-muted-foreground mt-2 italic">{typo.desc}</p>
-                  </div>
-                </Card>
               ))}
             </div>
           </div>
@@ -1294,47 +1182,55 @@ export default function Home() {
           </div>
 
           {/* Checklist Final */}
-          <Card className="p-12 border-none shadow-2xl bg-foreground text-white rounded-[3rem] text-center max-w-4xl mx-auto">
-            <ShieldCheck className="w-16 h-16 text-accent mx-auto mb-8" />
-            <h3 className="text-3xl font-bold mb-3">Checklist de Conformidade</h3>
-            <p className="text-navy-100/60 mb-10 font-light">Antes de publicar qualquer material, valide estes pontos cruciais:</p>
+          <Card className="p-10 md:p-12 border-none shadow-2xl bg-foreground text-white rounded-[3rem] text-center max-w-4xl mx-auto">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <ShieldCheck className="w-10 h-10 text-accent" />
+              {checkedItems.every(Boolean) && (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-success/20 text-success text-xs font-bold uppercase tracking-widest">
+                  <CheckCircle2 className="w-3 h-3" /> Tudo validado
+                </span>
+              )}
+            </div>
+            <h3 className="text-2xl font-bold mb-2 mt-4">Checklist de Conformidade</h3>
+            <p className="text-navy-100/50 mb-8 text-sm font-light">Antes de publicar qualquer material. Suas respostas ficam salvas.</p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left mb-12">
-              {[
-                'Contraste passa no teste WCAG AA?',
-                'A área de respiro é maior que 15%?',
-                'A tipografia segue a hierarquia correta?',
-                'O tom de voz é encorajador e legítimo?',
-                'As fotos comunicam protagonismo?'
-              ].map((item, i) => (
-                <label key={i} className="flex items-center gap-4 cursor-pointer group p-3 rounded-xl hover:bg-white/5 transition-all">
-                  <input
-                    type="checkbox"
-                    className="w-5 h-5 rounded-lg border-navy-700 bg-navy-800 text-primary focus:ring-primary"
-                  />
-                  <span className="text-sm font-light text-navy-100 group-hover:text-white transition-colors">{item}</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left mb-10">
+              {CHECKLIST_ITEMS.map((item, i) => (
+                <label key={i} onClick={() => toggleCheck(i)} className="flex items-center gap-4 cursor-pointer group p-3 rounded-xl hover:bg-white/5 transition-all">
+                  <div className={`w-5 h-5 rounded-md border-2 shrink-0 flex items-center justify-center transition-all ${
+                    checkedItems[i] ? 'bg-success border-success' : 'border-navy-600 bg-transparent'
+                  }`}>
+                    {checkedItems[i] && <CheckCircle2 className="w-3.5 h-3.5 text-white" />}
+                  </div>
+                  <span className={`text-sm leading-snug transition-colors ${checkedItems[i] ? 'text-navy-300 line-through' : 'text-navy-100 group-hover:text-white'}`}>{item}</span>
                 </label>
               ))}
             </div>
 
+            <p className="text-navy-100/40 text-xs mb-6">
+              Identidade definida. O próximo passo é ver a marca aplicada em materiais reais.
+            </p>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => scrollToPhase('fase-01')}
-                className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary/90 transition-all"
-              >
-                Revisar do Início
-              </button>
               <Link href="/applications">
-                <Button variant="outline" size="lg" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground rounded-full px-10 font-bold">
-                  Ver Aplicações
+                <Button size="lg" className="bg-accent text-foreground hover:bg-accent/90 rounded-full px-10 font-bold gap-2 shadow-lg hover:-translate-y-0.5 transition-all">
+                  <Layout className="w-4 h-4" />
+                  Ver Aplicações da Marca
+                  <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
               <Link href="/dossie">
-                <Button size="lg" className="bg-accent text-foreground hover:bg-accent/90 rounded-full px-10 font-bold gap-2 shadow-lg">
+                <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 rounded-full px-8 font-bold gap-2">
                   <FileText className="w-4 h-4" />
-                  Gerar Dossiê Final
+                  Gerar Dossiê
                 </Button>
               </Link>
+              <button
+                onClick={() => scrollToPhase('fase-01')}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 text-navy-300 hover:text-white text-sm font-medium transition-colors"
+              >
+                Revisar do início
+              </button>
             </div>
           </Card>
         </section>
