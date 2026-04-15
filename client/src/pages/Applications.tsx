@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ArrowLeft, CheckCircle2, Send, Sparkles, ShoppingBag, ChevronRight, Info, Download, FileType, Palette, Type, Quote, ShieldCheck, Square, Maximize2, X, Printer, MessageCircle } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { toast } from "sonner";
@@ -550,6 +550,20 @@ export default function Applications() {
         }}
         getOrder={getOrder}
       />
+
+      {/* ── Expanded asset modal ─────────────────────────────── */}
+      <Dialog open={isExpanded} onOpenChange={setIsExpanded}>
+        <DialogContent className="max-w-[95vw] w-fit max-h-[95vh] overflow-auto bg-white/95 backdrop-blur-xl border-none shadow-2xl rounded-[2rem] p-6 md:p-10">
+          <DialogHeader className="mb-4">
+            <DialogTitle className="text-sm font-bold uppercase tracking-widest text-primary">
+              {activePreviewModel?.name ?? 'Visualização'}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="flex items-center justify-center min-h-[60vh]">
+            {previewId && <AssetRenderer modelId={previewId} isFinal={true} />}
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <main className="container py-10 md:py-16">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-12">

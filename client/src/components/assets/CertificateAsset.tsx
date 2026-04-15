@@ -105,8 +105,8 @@ export function CertificateAsset({
              </div>
              <h1 className="text-5xl font-black uppercase tracking-tighter mb-4 leading-tight" style={{ color: primaryColor, fontFamily }}>VOCÊ CONCLUIU!</h1>
              <p className="text-xl text-navy-400 mb-8">Certificamos que <strong>{studentName}</strong> brilhou no:</p>
-             <div className="bg-secondary/10 px-10 py-6 rounded-[2rem] border-2 border-secondary/20 mb-10">
-                <h3 className="text-2xl font-bold text-secondary leading-tight">{courseTitle}</h3>
+             <div className="px-10 py-6 rounded-[2rem] border-2 mb-10" style={{ background: `${secondaryColor}18`, borderColor: `${secondaryColor}40` }}>
+                <h3 className="text-2xl font-bold leading-tight" style={{ color: secondaryColor }}>{courseTitle}</h3>
              </div>
              <p className="text-sm font-medium text-navy-400 tracking-widest uppercase mb-12">{date} · GOIÂNIA</p>
              <div className="w-full h-px bg-navy-100 mb-8" />
