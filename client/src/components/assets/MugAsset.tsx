@@ -186,14 +186,14 @@ export function MugAsset({
       );
       break;
 
-    // 08 · Pattern Grid — símbolo centralizado
+    // 08 · Pattern Grid — logo fundo branco centralizado
     case 'pattern-grid':
       bodyStyle.background = `radial-gradient(${primaryColor} 12%, transparent 13%)`;
       bodyStyle.backgroundSize = '14px 14px';
       bodyStyle.backgroundColor = '#FFFFFF';
       contentLayout = (
-        <div className="w-24 h-24 bg-white/95 rounded-full flex items-center justify-center shadow-xl border border-primary/10">
-          <LogoAsset type="symbol" primaryColor={primaryColor} secondaryColor={secondaryColor} size={70} />
+        <div className="bg-white rounded-lg flex items-center justify-center shadow-lg px-3 py-2">
+          <LogoAsset type="horizontal" primaryColor={primaryColor} secondaryColor={secondaryColor} size={84} />
         </div>
       );
       break;
@@ -206,10 +206,7 @@ export function MugAsset({
         <div className="flex flex-col items-center gap-2 w-full">
           {/* Faixa de cor no topo */}
           <div className="absolute top-0 left-0 right-0 h-2 z-30" style={{ background: `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})` }} />
-          <LogoAsset type="symbol" primaryColor={primaryColor} secondaryColor={secondaryColor} size={60} />
-          <span className="text-[8px] font-bold uppercase tracking-widest" style={{ color: primaryColor }}>
-            Instituto De Mãos Dadas
-          </span>
+          <LogoAsset type="horizontal" primaryColor={primaryColor} secondaryColor={secondaryColor} size={84} />
           {/* Faixa de cor na base */}
           <div className="absolute bottom-0 left-0 right-0 h-1.5 z-30" style={{ background: secondaryColor }} />
         </div>

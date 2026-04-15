@@ -37,12 +37,12 @@ export function CertificateAsset({
                    <div className="flex justify-center mb-6">
                       <Award className="w-16 h-16" style={{ color: accentColor }} />
                    </div>
-                   <h1 className="text-4xl font-black uppercase tracking-[0.2em] mb-2" style={{ color: primaryColor, fontFamily }}>Certificado</h1>
+                   <h1 className="text-4xl font-black uppercase tracking-[0.2em] mb-2 leading-tight" style={{ color: primaryColor, fontFamily }}>Certificado</h1>
                    <p className="text-navy-400 text-sm italic">O Instituto De Mãos Dadas confere o presente título a:</p>
                 </div>
                 
                 <div className="text-center w-full">
-                   <h2 className="text-3xl font-bold border-b-2 inline-block px-12 pb-2" style={{ color: primaryColor, borderColor: accentColor }}>{studentName}</h2>
+                   <h2 className="text-3xl font-bold border-b-2 inline-block px-12 pb-2 leading-tight" style={{ color: primaryColor, borderColor: accentColor }}>{studentName}</h2>
                    <p className="mt-8 text-navy-600 text-md max-w-lg mx-auto leading-relaxed">
                       Pela conclusão exitosa do módulo <strong>{courseTitle}</strong>, realizado com excelência técnica e impacto comunitário.
                    </p>
@@ -77,7 +77,7 @@ export function CertificateAsset({
                    <div className="inline-block px-4 py-1 bg-primary/10 text-primary font-bold text-xs rounded-full uppercase tracking-widest">
                       Certificado de Mérito
                    </div>
-                   <h2 className="text-4xl font-black text-navy-900 leading-tight" style={{ fontFamily }}>{studentName}</h2>
+                   <h2 className="text-4xl font-black text-navy-900 leading-snug" style={{ fontFamily }}>{studentName}</h2>
                    <p className="text-navy-500 text-lg max-w-md">
                       Participou ativamente do programa nacional <span className="text-primary font-bold">{courseTitle}</span>.
                    </p>
@@ -103,10 +103,10 @@ export function CertificateAsset({
              <div className="mb-10">
                 <LogoAsset type="symbol" primaryColor={primaryColor} secondaryColor={secondaryColor} size={80} />
              </div>
-             <h1 className="text-5xl font-black uppercase tracking-tighter mb-4" style={{ color: primaryColor, fontFamily }}>VOCÊ CONCLUIU!</h1>
+             <h1 className="text-5xl font-black uppercase tracking-tighter mb-4 leading-tight" style={{ color: primaryColor, fontFamily }}>VOCÊ CONCLUIU!</h1>
              <p className="text-xl text-navy-400 mb-8">Certificamos que <strong>{studentName}</strong> brilhou no:</p>
              <div className="bg-secondary/10 px-10 py-6 rounded-[2rem] border-2 border-secondary/20 mb-10">
-                <h3 className="text-2xl font-bold text-secondary">{courseTitle}</h3>
+                <h3 className="text-2xl font-bold text-secondary leading-tight">{courseTitle}</h3>
              </div>
              <p className="text-sm font-medium text-navy-400 tracking-widest uppercase mb-12">{date} · GOIÂNIA</p>
              <div className="w-full h-px bg-navy-100 mb-8" />
@@ -138,7 +138,7 @@ export function CertificateAsset({
                 </div>
              </div>
              <div className="space-y-4">
-                <h1 className="text-5xl font-light text-navy-900" style={{ fontFamily }}>Certificado de <span className="font-bold">Participação</span></h1>
+                <h1 className="text-5xl font-light text-navy-900 leading-tight" style={{ fontFamily }}>Certificado de <span className="font-bold">Participação</span></h1>
                 <p className="text-xl text-navy-500 max-w-xl">
                    Atestamos para os devidos fins que <strong>{studentName}</strong> concluiu com êxito o programa de formação em <strong>{courseTitle}</strong>.
                 </p>

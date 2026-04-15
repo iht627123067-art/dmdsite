@@ -3,7 +3,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { ArrowLeft, CheckCircle2, Send, Sparkles, ShoppingBag, ChevronRight, Info, Download, FileType, Palette, Type, Quote, ShieldCheck, Square, Maximize2, X } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Send, Sparkles, ShoppingBag, ChevronRight, Info, Download, FileType, Palette, Type, Quote, ShieldCheck, Square, Maximize2, X, Printer, MessageCircle } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { toast } from "sonner";
 import { AssetCart } from '@/components/brand/AssetCart';
@@ -181,6 +181,32 @@ export default function Applications() {
     }
   }, [activeTab]);
 
+  // Inject @media print styles for clean PDF export
+  React.useEffect(() => {
+    const styleId = 'dmd-print-styles';
+    if (document.getElementById(styleId)) return;
+    const style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = `
+      @media print {
+        body { visibility: hidden !important; }
+        #printable-report {
+          visibility: visible !important;
+          position: absolute !important;
+          top: 0; left: 0;
+          width: 100% !important;
+          padding: 40px !important;
+          background: white !important;
+        }
+        #printable-report * { visibility: visible !important; }
+        .no-print { display: none !important; }
+        @page { margin: 1.5cm; }
+      }
+    `;
+    document.head.appendChild(style);
+    return () => { document.getElementById(styleId)?.remove(); };
+  }, []);
+
   // Reativo à seleção da Arquitetura do Nome
   const brandName = useInstitutePrefix ? "Instituto De Mãos Dadas" : "De Mãos Dadas";
 
@@ -231,6 +257,33 @@ export default function Applications() {
     () => allModels.find(m => m.id === previewId) ?? null,
     [allModels, previewId]
   );
+
+  /** Returns the 1-based selection order of the given asset id */
+  const getOrder = (id: string) => selectedIds.indexOf(id) + 1;
+
+  /** Generates WhatsApp-formatted text of the current brand dossier */
+  const generateWhatsAppText = (): string => {
+    const emojiNums = ['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
+    const shapeLabel =
+      shapeStyle === 'curves' ? 'Curvas — Acolhimento' :
+      shapeStyle === 'lines'  ? 'Retas — Rigor' :
+                                'Equilíbrio Híbrido';
+    const lines: string[] = [
+      `*📋 DOSSIÊ DE MARCA — ${brandName}*`,
+      ``,
+      `🎨 Paleta: ${currentPalette.name}`,
+      `🔤 Tipografia: ${currentTypo.name} (${currentTypo.fonts.display})`,
+      `🔲 Traçado: ${shapeLabel}`,
+      ``,
+      `📦 *ASSETS SELECIONADOS (${selectedModels.length}):*`,
+      ...selectedModels.map((m, i) =>
+        `${i < 10 ? emojiNums[i] : `${i + 1}.`} [${(m.parent as any).title}] · ${m.name}`
+      ),
+      ``,
+      `_Gerado pelo Brand Builder DMD_`,
+    ];
+    return lines.join('\n');
+  };
 
   const AssetRenderer = ({ modelId, isFinal = false }: { modelId: string, isFinal?: boolean }) => {
     const model = allModels.find(m => m.id === modelId);
@@ -427,18 +480,25 @@ export default function Applications() {
             shapeStyle={ss}
           />
         );
-      case 'external-app':
+      case 'external-app': {
+        const rawSrc: string = (model as any).src ?? '';
+        // Em produção (GitHub Pages com base /dmdsite/), caminhos absolutos tipo /examples/...
+        // resolveriam para a raiz do domínio e cairiam em 404. Usa BASE_URL para corrigir.
+        const resolvedSrc = rawSrc.startsWith('/')
+          ? `${import.meta.env.BASE_URL}${rawSrc.replace(/^\//, '')}`
+          : rawSrc;
         return (
           <div className="w-full h-full flex flex-col">
             <div className="flex-1 rounded-[2rem] overflow-hidden border border-navy-100/50 shadow-2xl bg-white relative">
-              <iframe 
-                src={(model as any).src} 
+              <iframe
+                src={resolvedSrc}
                 title={model.name}
                 className="w-full h-full border-0"
               />
             </div>
           </div>
         );
+      }
       default:
         return null;
     }
@@ -504,6 +564,7 @@ export default function Applications() {
           setIsCartOpen(false);
           setActiveTab('summary');
         }}
+        getOrder={getOrder}
       />
 
       <main className="container py-10 md:py-16">
@@ -557,8 +618,18 @@ export default function Applications() {
                             }}
                           >
                             <div className="flex items-center gap-3 overflow-hidden">
-                              <div className={`p-2 rounded-lg shrink-0 transition-colors ${isSelected(model.id) ? 'bg-primary text-white' : 'bg-navy-50 text-navy-300'}`}>
-                                <CheckCircle2 className="w-3 h-3" />
+                              <div className={`relative w-7 h-7 rounded-lg shrink-0 flex items-center justify-center transition-all duration-300 ${
+                                isSelected(model.id)
+                                  ? 'bg-primary text-white scale-110 shadow-md'
+                                  : 'bg-navy-50 text-navy-300'
+                              }`}>
+                                {isSelected(model.id) ? (
+                                  <span className="text-[9px] font-black leading-none">
+                                    {String(getOrder(model.id)).padStart(2, '0')}
+                                  </span>
+                                ) : (
+                                  <CheckCircle2 className="w-3 h-3" />
+                                )}
                               </div>
                               <span className="text-xs font-bold text-foreground truncate">{model.name}</span>
                             </div>
@@ -566,7 +637,7 @@ export default function Applications() {
                               {e.id === 'identidade-base' ? (
                                 <ChevronRight className="w-4 h-4 text-primary" />
                               ) : isSelected(model.id) ? (
-                                <span className="text-[8px] font-extrabold text-primary uppercase tracking-tighter">No Carrinho</span>
+                                <span className="text-[8px] font-extrabold text-primary uppercase tracking-tighter">#{String(getOrder(model.id)).padStart(2, '0')}</span>
                               ) : (
                                 <span className="text-[8px] font-extrabold text-navy-300 uppercase tracking-tighter">+ Adicionar</span>
                               )}
@@ -575,6 +646,29 @@ export default function Applications() {
                         ))}
                       </div>
                     </div>
+
+                    {/* Category selection progress */}
+                    {e.id !== 'identidade-base' && (() => {
+                      const total = e.models.length;
+                      const selCount = e.models.filter(m => isSelected(m.id)).length;
+                      const pct = total > 0 ? (selCount / total) * 100 : 0;
+                      return (
+                        <div className="mt-4 p-3 bg-primary/5 rounded-2xl border border-primary/10 transition-all duration-500">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-[9px] font-bold text-primary uppercase tracking-widest">
+                              {selCount === 0 ? 'Nenhum selecionado' : `${selCount} adicionado${selCount > 1 ? 's' : ''} ao pacote`}
+                            </span>
+                            <span className="text-[9px] font-bold text-primary/60">{selCount} / {total}</span>
+                          </div>
+                          <div className="h-1 bg-primary/10 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-primary rounded-full transition-all duration-700 ease-out"
+                              style={{ width: `${pct}%` }}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })()}
 
                     <div className="mt-8 p-4 bg-navy-50/50 rounded-2xl border border-navy-100/50">
                       <div className="flex items-center gap-2 mb-2">
@@ -1221,7 +1315,7 @@ export default function Applications() {
           ))}
 
           <TabsContent value="summary" className="mt-12 animate-in zoom-in-95 duration-700">
-            <div className="max-w-6xl mx-auto space-y-20">
+            <div id="printable-report" className="max-w-6xl mx-auto space-y-20">
               <div className="text-center space-y-6 max-w-3xl mx-auto">
                 <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center text-primary mx-auto ring-8 ring-primary/5">
                    <ShieldCheck className="w-10 h-10" />
@@ -1424,22 +1518,56 @@ export default function Applications() {
                     ))}
                   </div>
                   
-                  <Card className="p-16 border-none shadow-glow bg-foreground text-white rounded-[4rem] text-center max-w-4xl mx-auto relative overflow-hidden group">
+                  <Card className="p-16 border-none shadow-glow bg-foreground text-white rounded-[4rem] text-center max-w-4xl mx-auto relative overflow-hidden group no-print">
                     <div className="absolute -right-20 -top-20 w-96 h-96 bg-primary/30 rounded-full blur-[120px]" />
                     <div className="relative z-10 space-y-10">
-                      <div className="bg-white/10 backdrop-blur-xl p-6 rounded-3xl w-fit mx-auto border border-white/10">
-                        <Send className="w-12 h-12 text-accent" />
+                      <div className="flex items-center justify-center gap-4">
+                        <div className="bg-white/10 backdrop-blur-xl p-5 rounded-3xl border border-white/10">
+                          <Send className="w-10 h-10 text-accent" />
+                        </div>
                       </div>
                       <div className="space-y-4">
-                        <h3 className="text-display text-white">Consolidar Estudo de Marca</h3>
+                        <h3 className="text-display text-white">Exportar Dossiê de Marca</h3>
                         <p className="text-navy-100/70 font-light text-lg max-w-xl mx-auto leading-relaxed">
-                          Sua curadoria de <strong>{selectedIds.length} assets</strong> baseada na identidade <strong>{currentPalette.name}</strong> está pronta para exportação técnica.
+                          Sua curadoria de <strong>{selectedIds.length} assets</strong> baseada na identidade <strong>{currentPalette.name}</strong> está pronta para exportação.
                         </p>
                       </div>
-                      <Button size="lg" className="bg-primary hover:bg-primary/80 text-white font-bold uppercase tracking-widest rounded-full px-16 h-20 text-md transition-all shadow-2xl" onClick={() => toast.success("Dossiê gerado com sucesso!")}>
-                        Solicitar Exportação ({selectedIds.length})
-                        <Sparkles className="w-6 h-6 ml-3" />
-                      </Button>
+
+                      {/* Export action buttons */}
+                      <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        {/* PDF Print */}
+                        <Button
+                          size="lg"
+                          className="bg-primary hover:bg-primary/80 text-white font-bold uppercase tracking-widest rounded-full px-10 h-16 text-sm transition-all shadow-2xl"
+                          onClick={() => {
+                            setActiveTab('summary');
+                            setTimeout(() => window.print(), 150);
+                          }}
+                        >
+                          <Printer className="w-5 h-5 mr-3" />
+                          Imprimir / Salvar PDF
+                        </Button>
+
+                        {/* WhatsApp copy */}
+                        <Button
+                          size="lg"
+                          variant="outline"
+                          className="border-white/30 bg-white/5 text-white hover:bg-white/15 font-bold uppercase tracking-widest rounded-full px-10 h-16 text-sm transition-all"
+                          onClick={() => {
+                            navigator.clipboard
+                              .writeText(generateWhatsAppText())
+                              .then(() => toast.success('Texto copiado! Cole direto no WhatsApp 💬'))
+                              .catch(() => toast.error('Não foi possível acessar a área de transferência'));
+                          }}
+                        >
+                          <MessageCircle className="w-5 h-5 mr-3" />
+                          Copiar para WhatsApp
+                        </Button>
+                      </div>
+
+                      <p className="text-white/30 text-[10px] uppercase tracking-widest font-bold">
+                        PDF: salve como arquivo no diálogo de impressão do browser
+                      </p>
                     </div>
                   </Card>
                 </div>

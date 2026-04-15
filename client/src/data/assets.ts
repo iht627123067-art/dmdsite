@@ -47,20 +47,13 @@ export const assetCategories: AssetCategory[] = [
   {
     id: 'caneca',
     title: 'Caneca Social',
-    description: 'Onze variações explorando a paleta institucional, missão e hierarquia visual do Instituto.',
+    description: 'Variações aprovadas explorando a paleta institucional e hierarquia visual do Instituto.',
     type: 'mug',
     models: [
-      { id: 'smart-mug', name: '⭐ Sugestão da Marca (Dinâmica)', isSmart: true },
       { id: 'mug-ring', name: '01 · Pilares de Impacto', config: { layout: 'dimensional-ring' } as MugProps },
-      { id: 'mug-slice', name: '02 · Dois Tons · Símbolo + Site', config: { layout: 'duo-tone-slice' } as MugProps },
-      { id: 'mug-invert', name: '03 · Dois Tons Invertido', config: { layout: 'duo-tone-inverted' } as MugProps },
-      { id: 'mug-solar', name: '04 · Âmbar · Comunidade Viva', config: { layout: 'classic-solar' } as MugProps },
-      { id: 'mug-blue', name: '05 · Navy · Goiânia 2026', config: { layout: 'executive-blue' } as MugProps },
-      { id: 'mug-bold', name: '06 · Manifesto · COMUNIDADE VIVA', config: { layout: 'manifesto-bold' } as MugProps },
       { id: 'mug-tech', name: '07 · Matter Tech', config: { layout: 'matter-tech' } as MugProps },
-      { id: 'mug-grid', name: '08 · Pattern Grid · Símbolo', config: { layout: 'pattern-grid' } as MugProps },
-      { id: 'mug-rim', name: '09 · Color Rim Concept', config: { layout: 'color-rim' } as MugProps },
-      { id: 'mug-crest', name: '10 · Solar Crest', config: { layout: 'solar-crest' } as MugProps },
+      { id: 'mug-grid', name: '08 · Pattern Grid', config: { layout: 'pattern-grid' } as MugProps },
+      { id: 'mug-rim', name: '09 · Color Rim', config: { layout: 'color-rim' } as MugProps },
       { id: 'mug-contrast', name: '11 · Alça Âmbar · Impacto Social', config: { layout: 'contrast-handle' } as MugProps },
     ]
   },
