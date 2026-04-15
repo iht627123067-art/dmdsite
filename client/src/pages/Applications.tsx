@@ -22,7 +22,7 @@ import { SlideAsset, SlideProps } from '@/components/assets/SlideAsset';
 import { BusinessCardAsset, BusinessCardProps } from '@/components/assets/BusinessCardAsset';
 import { colorSchemes, typographyStyles, logoVariants } from '@/data/brand-identity';
 import { assetCategories } from '@/data/assets.ts';
-import { useBrand, ColorScheme, TypographyStyle, LogoVariant, ShapeStyle, shapeRadius } from '@/contexts/BrandContext';
+import { useBrand, ColorScheme, TypographyStyle, LogoVariant, ShapeStyle } from '@/contexts/BrandContext';
 
 import { toAssetVariant, toCardVariant } from '@/lib/logoVariants';
 import { BrandLogo } from '@/components/brand/BrandLogo';
@@ -981,100 +981,109 @@ export default function Applications() {
                              </p>
                            </div>
 
-                           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                              {([
                                {
                                  id: 'curves' as ShapeStyle,
                                  name: 'Curvas',
                                  sub: 'Acolhimento · Comunidade',
-                                 desc: 'Formas orgânicas e arredondadas. Transmite calor humano, acessibilidade e cuidado com a comunidade.',
-                                 cardRadius: '32px',
+                                 desc: 'Calor humano e acessibilidade em cada detalhe.',
+                                 cardRadius: '24px',
                                  btnRadius: '999px',
-                                 innerRadius: '20px',
+                                 innerRadius: '16px',
+                                 tagRadius: '999px',
                                },
                                {
                                  id: 'lines' as ShapeStyle,
                                  name: 'Retas',
                                  sub: 'Rigor · Excelência',
-                                 desc: 'Ângulos precisos e geometria definida. Transmite profissionalismo, clareza e estrutura institucional.',
-                                 cardRadius: '4px',
-                                 btnRadius: '4px',
-                                 innerRadius: '2px',
+                                 desc: 'Clareza estrutural e profissionalismo institucional.',
+                                 cardRadius: '6px',
+                                 btnRadius: '6px',
+                                 innerRadius: '4px',
+                                 tagRadius: '4px',
                                },
                                {
                                  id: 'hybrid' as ShapeStyle,
                                  name: 'Híbrido',
                                  sub: 'Equilíbrio · Identidade DMD',
-                                 desc: 'Cards com cantos suaves, botões em pílula. Equilíbrio entre a estrutura profissional e o acolhimento humano.',
+                                 desc: 'Estrutura profissional com toque de acolhimento.',
                                  cardRadius: '16px',
                                  btnRadius: '999px',
-                                 innerRadius: '12px',
+                                 innerRadius: '10px',
+                                 tagRadius: '999px',
                                },
-                             ] as const).map(p => (
-                               <Card
-                                 key={p.id}
-                                 onClick={() => setShapeStyle(p.id)}
-                                 className={`p-6 border-2 cursor-pointer transition-all flex flex-col gap-5 rounded-[2rem] ${shapeStyle === p.id ? 'border-primary shadow-glow ring-4 ring-primary/5 bg-primary/[0.01]' : 'border-navy-100/50 hover:border-primary/30 bg-white'}`}
-                               >
-                                 {/* Shape preview */}
-                                 <div className="h-28 bg-navy-50/60 border border-navy-100/40 rounded-2xl flex flex-col items-center justify-center gap-3 p-4">
-                                   <div
-                                     className="w-full h-10 border-2 border-primary/30 bg-primary/5"
-                                     style={{ borderRadius: p.cardRadius }}
-                                   />
-                                   <div className="flex gap-2 w-full">
+                             ] as const).map(p => {
+                               const active = shapeStyle === p.id;
+                               const pc = currentPalette.colors;
+                               return (
+                                 <div
+                                   key={p.id}
+                                   onClick={() => setShapeStyle(p.id)}
+                                   className={`cursor-pointer border-2 transition-all duration-300 overflow-hidden ${active ? 'border-primary ring-4 ring-primary/10 shadow-glow' : 'border-navy-100/60 hover:border-primary/30'}`}
+                                   style={{ borderRadius: p.cardRadius }}
+                                 >
+                                   {/* Mini card preview usando a paleta ativa */}
+                                   <div className="p-4 space-y-3" style={{ background: '#f8f9fc' }}>
+                                     {/* Header strip */}
                                      <div
-                                       className="h-5 flex-1 bg-primary/20"
-                                       style={{ borderRadius: p.btnRadius }}
-                                     />
-                                     <div
-                                       className="h-5 w-12 bg-accent/30"
-                                       style={{ borderRadius: p.innerRadius }}
-                                     />
+                                       className="h-7 flex items-center px-3"
+                                       style={{ background: pc.primary, borderRadius: p.innerRadius }}
+                                     >
+                                       <div className="h-1.5 w-16 bg-white/40 rounded-full" />
+                                     </div>
+                                     {/* Content lines */}
+                                     <div className="space-y-1.5 px-1">
+                                       <div className="h-2 w-full bg-gray-200" style={{ borderRadius: p.innerRadius }} />
+                                       <div className="h-2 w-3/4 bg-gray-200" style={{ borderRadius: p.innerRadius }} />
+                                     </div>
+                                     {/* Tag + Button */}
+                                     <div className="flex items-center gap-2 pt-1">
+                                       <div
+                                         className="h-5 px-2 flex items-center text-[8px] font-bold text-white"
+                                         style={{ background: pc.secondary, borderRadius: p.tagRadius, whiteSpace: 'nowrap' }}
+                                       >
+                                         Instituto
+                                       </div>
+                                       <div
+                                         className="h-5 flex-1 flex items-center justify-center text-[8px] font-bold text-white"
+                                         style={{ background: pc.accent, borderRadius: p.btnRadius }}
+                                       >
+                                         Saiba mais
+                                       </div>
+                                     </div>
+                                   </div>
+
+                                   {/* Label */}
+                                   <div className={`px-4 py-3 flex items-center justify-between border-t ${active ? 'border-primary/20 bg-primary/[0.03]' : 'border-navy-100/50 bg-white'}`}>
+                                     <div>
+                                       <p className="font-bold text-xs text-navy-900">{p.name}</p>
+                                       <p className="text-[9px] font-bold uppercase tracking-widest text-primary mt-0.5">{p.sub}</p>
+                                     </div>
+                                     {active
+                                       ? <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                                       : <div className="w-4 h-4 rounded-full border-2 border-navy-200 shrink-0" />
+                                     }
                                    </div>
                                  </div>
-
-                                 <div className="space-y-1.5 flex-1">
-                                   <div className="flex items-center justify-between">
-                                     <h4 className="font-bold text-navy-900">{p.name}</h4>
-                                     {shapeStyle === p.id && <CheckCircle2 className="w-4 h-4 text-primary" />}
-                                   </div>
-                                   <p className="text-[9px] font-bold uppercase tracking-widest text-primary">{p.sub}</p>
-                                   <p className="text-[10px] text-muted-foreground leading-relaxed italic">{p.desc}</p>
-                                 </div>
-
-                                 <div className="pt-3 border-t border-navy-50 flex items-center gap-2 text-[9px] text-navy-400 font-bold uppercase tracking-widest">
-                                   <div className="w-3 h-3 border border-navy-200" style={{ borderRadius: p.cardRadius }} />
-                                   card: {p.cardRadius} · btn: {p.btnRadius}
-                                 </div>
-                               </Card>
-                             ))}
+                               );
+                             })}
                            </div>
 
-                           {/* Preview ao vivo */}
-                           <div className="space-y-3">
-                             <p className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground px-1">
-                               Impacto em tempo real — aplica-se a todos os produtos
-                             </p>
-                             <div className="grid grid-cols-3 gap-4">
-                               {(['curves', 'lines', 'hybrid'] as ShapeStyle[]).map(s => {
-                                 const rad = shapeRadius(s);
-                                 const isActive = shapeStyle === s;
-                                 return (
-                                   <div
-                                     key={s}
-                                     onClick={() => setShapeStyle(s)}
-                                     className={`cursor-pointer p-4 bg-white border-2 transition-all flex flex-col gap-2 ${isActive ? 'border-primary' : 'border-navy-100 hover:border-primary/40'}`}
-                                     style={{ borderRadius: rad.card }}
-                                   >
-                                     <div className="h-2 w-full" style={{ background: currentPalette.colors.primary, borderRadius: rad.sm }} />
-                                     <div className="h-6 border border-navy-100" style={{ borderRadius: rad.inner }} />
-                                     <div className="h-3 w-1/2" style={{ background: currentPalette.colors.accent, borderRadius: rad.btn }} />
-                                   </div>
-                                 );
-                               })}
-                             </div>
-                           </div>
+                           {/* Descrição do estilo selecionado */}
+                           {(() => {
+                             const selected = ([
+                               { id: 'curves', desc: 'Formas orgânicas e arredondadas. Transmite calor humano, acessibilidade e cuidado com a comunidade.' },
+                               { id: 'lines',  desc: 'Ângulos precisos e geometria definida. Transmite profissionalismo, clareza e estrutura institucional.' },
+                               { id: 'hybrid', desc: 'Cards com cantos suaves, botões em pílula. Equilíbrio entre estrutura profissional e acolhimento humano.' },
+                             ] as const).find(s => s.id === shapeStyle);
+                             return selected ? (
+                               <div className="flex items-start gap-3 p-4 rounded-2xl bg-primary/5 border border-primary/10">
+                                 <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                                 <p className="text-[11px] text-navy-700 leading-relaxed">{selected.desc}</p>
+                               </div>
+                             ) : null;
+                           })()}
                          </div>
                        )}
 
