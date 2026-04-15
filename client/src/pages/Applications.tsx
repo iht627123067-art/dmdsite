@@ -25,6 +25,7 @@ import { assetCategories } from '@/data/assets.ts';
 import { useBrand, ColorScheme, TypographyStyle, LogoVariant, ShapeStyle, shapeRadius } from '@/contexts/BrandContext';
 
 import { toAssetVariant, toCardVariant } from '@/lib/logoVariants';
+import { BrandLogo } from '@/components/brand/BrandLogo';
 
 
 
@@ -506,7 +507,7 @@ export default function Applications() {
                 Brand Journey
               </Button>
               <div className="h-6 w-px bg-navy-100" />
-              <img src="/logofundobranco.svg" alt="De Mãos Dadas" className="h-8 w-auto" />
+              <BrandLogo variant="on-light" className="h-8 w-auto" />
               <div className="hidden md:block">
                 <h1 className="text-lg font-bold text-foreground leading-none">Aplicação da Marca</h1>
                 <p className="text-[10px] text-muted-foreground font-medium mt-0.5">

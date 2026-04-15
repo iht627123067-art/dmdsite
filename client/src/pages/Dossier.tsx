@@ -11,6 +11,7 @@ import { NotepadAsset } from '@/components/assets/NotepadAsset';
 import { BusinessCardAsset } from '@/components/assets/BusinessCardAsset';
 
 import { toAssetVariant, toCardVariant } from '@/lib/logoVariants';
+import { BrandLogo } from '@/components/brand/BrandLogo';
 
 /**
  * Dossiê Estratégico — Revisão Final Impressa
@@ -114,7 +115,7 @@ export default function Dossier() {
           <div className="flex flex-col justify-between h-full p-12 text-white">
 
             <div className="flex items-center gap-4">
-              <img src="/logo_fundotransparente.svg" alt="De Mãos Dadas" className="h-16 w-auto opacity-90" />
+              <BrandLogo variant="on-dark" className="h-16 w-auto opacity-90" />
               <div className="h-10 w-px bg-white/20" />
               <div>
                 <p className="text-label font-bold uppercase tracking-[0.3em] text-white/50">Instituto</p>
@@ -435,7 +436,7 @@ export default function Dossier() {
           {/* Rodapé do documento */}
           <div className="dossier-doc-footer" style={{ borderTopColor: `${colors.navy}20` }}>
             <div className="flex items-center gap-3">
-              <img src="/logofundobranco.svg" alt="De Mãos Dadas" className="h-8 w-auto opacity-40" />
+              <BrandLogo variant="on-light" className="h-8 w-auto opacity-40" />
               <div>
                 <p className="text-label font-bold uppercase tracking-widest text-gray-400">Instituto De Mãos Dadas</p>
                 <p className="text-label text-gray-400">Brand Standards 2026 · Dossiê gerado em {today}</p>

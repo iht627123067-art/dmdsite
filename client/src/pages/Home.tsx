@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { LogoVariantSelector } from '@/components/brand/LogoVariantSelector';
 import { BrandSummaryCard } from '@/components/brand/BrandSummaryCard';
+import { BrandLogo } from '@/components/brand/BrandLogo';
 import { projectColors } from '@/data/brand-identity';
 import { useBrand, PlanningData } from '@/contexts/BrandContext';
 import { useLocation, Link } from 'wouter';
@@ -574,9 +575,8 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-3 group">
               <div className="p-2 rounded-xl bg-navy-50 group-hover:scale-110 transition-transform duration-500">
-                <img
-                  src="/logofundobranco.svg"
-                  alt="De Mãos Dadas"
+                <BrandLogo
+                  variant="on-light"
                   className={`h-9 md:h-10 w-auto transition-all ${
                     logoVariant === 'mono' ? 'grayscale brightness-0' :
                     logoVariant === 'watermark' ? 'opacity-20' : ''
@@ -820,9 +820,8 @@ export default function Home() {
                   <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]" />
                   <div className="relative animate-floating">
                     <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full group-hover:bg-primary/20 transition-all duration-700" />
-                    <img
-                      src="/logofundobranco.svg"
-                      alt="De Mãos Dadas"
+                    <BrandLogo
+                      variant="on-light"
                       className={`relative h-48 md:h-64 w-auto mb-10 drop-shadow-2xl transition-all duration-700 ${
                         logoVariant === 'mono' ? 'grayscale brightness-0' :
                         logoVariant === 'watermark' ? 'opacity-10' : 'hover:scale-105'
@@ -1241,7 +1240,7 @@ export default function Home() {
         <div className="container py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 opacity-60">
             <div className="flex items-center gap-3">
-              <img src="/logofundobranco.svg" alt="De Mãos Dadas" className="h-6 w-auto grayscale" />
+              <BrandLogo variant="on-light" className="h-6 w-auto grayscale" />
               <span className="text-xs font-bold tracking-widest uppercase">BRAND STANDARDS 2026</span>
             </div>
             <nav className="flex flex-wrap justify-center gap-6 text-xs font-semibold uppercase tracking-widest">

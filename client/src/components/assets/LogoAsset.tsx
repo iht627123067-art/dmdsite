@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { LOGO_SRC } from '@/components/brand/BrandLogo';
 
 export interface LogoAssetProps {
   type?: 'horizontal' | 'vertical' | 'symbol' | 'wordmark' | 'circle';
@@ -28,7 +29,7 @@ const LightLogoImg = React.memo(({
   className?: string;
 }) => (
   <img
-    src="/logofundobranco.svg"
+    src={LOGO_SRC['on-light']}
     alt="Instituto De Mãos Dadas Logo (Fundo Claro)"
     className={className}
     style={{ width: size, height: 'auto' }}
@@ -48,7 +49,7 @@ const DarkLogoImg = React.memo(({
   className?: string;
 }) => (
   <img
-    src="/logo_fundotransparente.svg"
+    src={LOGO_SRC['on-dark']}
     alt="Instituto De Mãos Dadas Logo (Fundo Escuro)"
     className={className}
     style={{ width: size, height: 'auto' }}

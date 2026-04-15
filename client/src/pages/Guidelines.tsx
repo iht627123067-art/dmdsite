@@ -2,6 +2,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, CheckCircle2, XCircle, ShieldCheck, Palette, Type } from 'lucide-react';
 import { useLocation } from 'wouter';
+import { BrandLogo } from '@/components/brand/BrandLogo';
 
 /**
  * Design Philosophy: Minimalismo Progressivo & Criterioso
@@ -28,7 +29,7 @@ export default function Guidelines() {
             </Button>
             <div className="h-8 w-px bg-navy-100 hidden md:block" />
             <div className="flex items-center gap-3">
-              <img src="/logofundobranco.svg" alt="De Mãos Dadas" className="h-10 w-auto" />
+              <BrandLogo variant="on-light" className="h-10 w-auto" />
               <h1 className="text-xl font-bold text-foreground hidden sm:block">
                 Diretrizes da Marca
               </h1>
@@ -320,7 +321,7 @@ export default function Guidelines() {
       {/* Footer */}
       <footer className="mt-20 border-t border-navy-100 py-12">
         <div className="container text-center text-muted-foreground text-[10px] items-center flex flex-col gap-4 opacity-50">
-          <img src="/logofundobranco.svg" alt="De Mãos Dadas" className="h-6 w-auto grayscale" />
+          <BrandLogo variant="on-light" className="h-6 w-auto grayscale" />
           <p>© 2026 Instituto De Mãos Dadas. Todos os direitos reservados.</p>
         </div>
       </footer>
