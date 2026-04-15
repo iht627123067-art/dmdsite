@@ -209,13 +209,14 @@ export function BusinessCardAsset({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 bg-transparent w-full h-full">
+    <div className="flex flex-col items-center justify-center py-6 px-4 bg-transparent w-full">
       <div
-        className="w-full max-w-[420px] aspect-[1.75/1] relative cursor-pointer perspective-1000 group"
+        className="w-full max-w-[420px] relative cursor-pointer group"
+        style={{ aspectRatio: '1.75 / 1', perspective: 1000 }}
         onClick={() => setIsFlipped(!isFlipped)}
       >
         <motion.div
-          className="w-full h-full relative preserve-3d"
+          className="absolute inset-0 preserve-3d"
           animate={{ rotateY: isFlipped ? 180 : 0 }}
           transition={{ duration: 0.6, type: 'spring', stiffness: 260, damping: 20 }}
         >
@@ -231,7 +232,7 @@ export function BusinessCardAsset({
         </motion.div>
 
         {/* Indicador de flip */}
-        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
           <RefreshCw className="w-4 h-4 text-navy-300" />
           <span className="text-[10px] text-navy-400 font-bold uppercase tracking-widest">Clique para virar</span>
         </div>
