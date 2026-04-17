@@ -45,7 +45,7 @@ export function CoralUniformAsset({
           <div className="flex flex-col items-center text-center gap-0">
             {/* Pentagrama musical */}
             <div className="flex flex-col gap-[3.5px] mb-4 w-24 opacity-[0.13]">
-              {[0,1,2,3,4].map(i => <div key={i} className="h-px w-full" style={{ background: textColor }} />)}
+              {[0, 1, 2, 3, 4].map(i => <div key={i} className="h-px w-full" style={{ background: textColor }} />)}
             </div>
             <span className="text-[8px] font-black tracking-[0.55em] uppercase mb-1" style={{ color: textColor, opacity: 0.45 }}>Coral</span>
             <h2 className="text-5xl font-black leading-none tracking-tight" style={{ color: textColor, fontFamily: 'Inter' }}>
@@ -224,14 +224,14 @@ export function CoralUniformAsset({
               <span className="text-[7px] font-black tracking-[0.45em] uppercase" style={{ color: textColor, opacity: 0.35 }}>Est. Residencial JK</span>
               <span style={{ color: amber, fontFamily: 'serif', fontSize: 13, opacity: 0.7 }}>♬</span>
             </div>
-            <h2 className="text-[42px] font-bold italic leading-[1.0]" style={{ color: textColor, fontFamily: 'Georgia, serif' }}>
+            <span className="text-[18px] font-bold italic leading-tight" style={{ color: textColor, opacity: 0.6, fontFamily: 'Georgia, serif' }}>
               Coral
-            </h2>
-            <h3 className="text-2xl font-bold italic leading-tight -mt-1" style={{ color: textColor, fontFamily: 'Georgia, serif' }}>
+            </span>
+            <h2 className="text-[44px] font-bold italic leading-[1.0] -mt-1" style={{ color: textColor, fontFamily: 'Georgia, serif' }}>
               V<Clef size="1em" style={{ fontFamily: 'serif' }} />zes
-            </h3>
-            <div className="w-20 h-[1.5px] mt-2 rounded-full" style={{ background: amber, opacity: 0.7 }} />
-            <span className="text-[9px] font-medium tracking-[0.3em] uppercase mt-1.5" style={{ color: textColor, opacity: 0.4 }}>
+            </h2>
+            <div className="w-20 h-[1.5px] mt-1 rounded-full" style={{ background: amber, opacity: 0.7 }} />
+            <span className="text-[22px] font-medium italic mt-1" style={{ color: textColor, opacity: 0.7, fontFamily: 'Georgia, serif' }}>
               de Mãos Dadas
             </span>
           </div>
@@ -293,7 +293,6 @@ export function CoralUniformAsset({
 
           {/* BACK */}
           <div className="absolute inset-0 backface-hidden rotate-y-180 flex flex-col items-center">
-            {/* T-Shirt Shape Base */}
             <div
               className="absolute inset-x-4 top-0 h-full rounded-[4rem] rounded-t-[2.5rem] shadow-2xl transition-all duration-700"
               style={{ backgroundColor: bgColor }}
@@ -304,7 +303,6 @@ export function CoralUniformAsset({
               <div className="absolute inset-0 opacity-10 pointer-events-none bg-gradient-to-b from-black/20 to-transparent" />
             </div>
 
-            {/* Print Area - BACK */}
             <div className="relative z-10 mt-24 px-8 flex flex-col items-center pointer-events-none">
               <LogoAsset
                 type="symbol"
@@ -314,26 +312,17 @@ export function CoralUniformAsset({
                 showTagline={false}
               />
               <div className="mt-6 flex flex-col items-center gap-3">
-                <p
-                  className="text-[14px] font-medium italic text-center max-w-[180px] leading-tight"
-                  style={{ color: textColor, fontFamily: 'Inter' }}
-                >
+                <p className="text-[14px] font-medium italic text-center max-w-[180px] leading-tight" style={{ color: textColor, fontFamily: 'Inter' }}>
                   "Vozes que tocam corações"
                 </p>
                 <div className="h-[1px] w-8 bg-current opacity-30 mt-2" style={{ color: textColor }} />
-                <p className="text-[10px] font-black tracking-[0.2em] uppercase mt-2" style={{ color: textColor }}>
-                  Residencial JK
-                </p>
-                <p className="text-[8px] font-bold tracking-widest uppercase opacity-60" style={{ color: textColor }}>
-                  Goiânia · Brasil
-                </p>
+                <p className="text-[10px] font-black tracking-[0.2em] uppercase mt-2" style={{ color: textColor }}>Residencial JK</p>
+                <p className="text-[8px] font-bold tracking-widest uppercase opacity-60" style={{ color: textColor }}>Goiânia · Brasil</p>
               </div>
             </div>
 
             <div className="absolute bottom-12 z-10">
-              <p className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-40" style={{ color: textColor }}>
-                Coral
-              </p>
+              <p className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-40" style={{ color: textColor }}>Coral</p>
             </div>
           </div>
         </motion.div>
