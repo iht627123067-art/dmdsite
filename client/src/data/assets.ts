@@ -419,8 +419,8 @@ export const assetCategories: AssetCategory[] = [
   },
   {
     id: 'coral',
-    title: 'Coral Vozes JK',
-    description: 'Aplicações para o Coral Vozes JK — Uniformes e camisas para membros e apresentações.',
+    title: 'Coral Vozes de Mãos Dadas',
+    description: 'Aplicações para o Coral Vozes de Mãos Dadas — Uniformes e camisas para membros e apresentações.',
     type: 'uniform',
     models: [
       { id: 'coral-navy-front', name: 'Uniforme Navy (Frente)', config: { color: 'navy', view: 'front' } },

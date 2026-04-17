@@ -57,11 +57,18 @@ export function CoralUniformAsset({
                   Coral
                 </span>
                 <h2 
-                  className="text-5xl font-black uppercase tracking-tighter leading-[0.8] mb-0"
+                  className="text-4xl font-black uppercase tracking-tighter leading-[0.8] mb-2"
                   style={{ color: textColor, fontFamily: 'Space Grotesk' }}
                 >
-                  Vozes JK
+                  Vozes de Mãos Dadas
                 </h2>
+                <div className="flex items-center gap-3 w-full justify-center">
+                  <div className="h-[1px] flex-1 bg-current opacity-30" style={{ color: textColor }} />
+                  <span className="text-[11px] font-black tracking-[0.3em] uppercase whitespace-nowrap opacity-90" style={{ color: textColor }}>
+                    Residencial JK
+                  </span>
+                  <div className="h-[1px] flex-1 bg-current opacity-30" style={{ color: textColor }} />
+                </div>
               </div>
             </div>
             
