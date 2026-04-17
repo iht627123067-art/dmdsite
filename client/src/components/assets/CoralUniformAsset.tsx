@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 export interface CoralUniformProps {
   color: 'navy' | 'white' | 'purple';
   view: 'front' | 'back';
+  layout?: 'classic-stack' | 'modern-bold' | 'minimalist-clean' | 'artistic-serif';
   primaryColor?: string;
   secondaryColor?: string;
   fontFamily?: string;
@@ -13,12 +14,72 @@ export interface CoralUniformProps {
 export function CoralUniformAsset({
   color = 'navy',
   view = 'front',
+  layout = 'classic-stack',
   primaryColor = '#153065',
   secondaryColor = '#7F4CA9',
-  fontFamily = 'Space Grotesk'
 }: CoralUniformProps) {
   const bgColor = color === 'navy' ? '#153065' : color === 'purple' ? '#7F4CA9' : '#FFFFFF';
   const textColor = (color === 'navy' || color === 'purple') ? '#FFFFFF' : '#153065';
+
+  const renderFront = () => {
+    switch (layout) {
+      case 'modern-bold':
+        return (
+          <div className="flex flex-col items-center">
+             <div className="w-10 h-1 bg-current opacity-40 mb-4" style={{ color: textColor }} />
+             <h2 className="text-4xl font-black uppercase leading-[0.75] tracking-tighter" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
+               Vozes<br />
+               <span className="text-[2.2rem] opacity-90">JK</span>
+             </h2>
+             <span className="mt-3 text-[10px] font-bold tracking-[0.4em] uppercase opacity-60" style={{ color: textColor }}>
+                Coral de Mãos Dadas
+             </span>
+          </div>
+        );
+      case 'minimalist-clean':
+        return (
+          <div className="flex flex-col items-start px-4">
+             <span className="text-[10px] font-black tracking-[0.5em] uppercase opacity-40 mb-2" style={{ color: textColor }}>
+                ESTREIA 2026
+             </span>
+             <h2 className="text-5xl font-black uppercase tracking-tight leading-none" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
+               VOZES
+             </h2>
+             <span className="text-lg font-medium opacity-80" style={{ color: textColor, fontFamily: 'Inter' }}>
+               de Mãos Dadas
+             </span>
+          </div>
+        );
+      case 'artistic-serif':
+        return (
+          <div className="flex flex-col items-center">
+             <span className="text-4xl font-serif italic mb-2" style={{ color: textColor }}>
+               Vozes
+             </span>
+             <div className="flex items-center gap-2">
+               <div className="w-6 h-[1px] bg-current opacity-30" style={{ color: textColor }} />
+               <span className="text-[9px] font-bold tracking-[0.4em] uppercase" style={{ color: textColor }}>
+                 Mãos Dadas
+               </span>
+               <div className="w-6 h-[1px] bg-current opacity-30" style={{ color: textColor }} />
+             </div>
+          </div>
+        );
+      case 'classic-stack':
+      default:
+        return (
+          <div className="flex flex-col items-center">
+            <span className="text-lg font-medium tracking-[0.4em] uppercase opacity-70 mb-1" style={{ color: textColor, fontFamily: 'Inter' }}>
+              Coral
+            </span>
+            <h2 className="text-4xl font-black uppercase tracking-tighter leading-[0.8] mb-4" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
+              Vozes de Mãos Dadas
+            </h2>
+            <div className="w-12 h-1 rounded-full" style={{ background: color === 'white' ? primaryColor : '#FF9E00' }} />
+          </div>
+        );
+    }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center p-8 bg-transparent select-none">
@@ -32,7 +93,7 @@ export function CoralUniformAsset({
           <div className="absolute inset-0 backface-hidden flex flex-col items-center">
             {/* T-Shirt Shape Base */}
             <div 
-              className="absolute inset-x-4 top-0 h-full rounded-[4rem] rounded-t-[2.5rem] shadow-2xl transition-colors duration-500"
+              className="absolute inset-x-4 top-0 h-full rounded-[4rem] rounded-t-[2.5rem] shadow-2xl transition-all duration-700"
               style={{ backgroundColor: bgColor }}
             >
               {/* Sleeves (Pseudo) */}
@@ -48,35 +109,15 @@ export function CoralUniformAsset({
             </div>
 
             {/* Print Area - FRONT */}
-            <div className="relative z-10 mt-32 px-8 text-center pointer-events-none">
-              <div className="flex flex-col items-center">
-                <span 
-                  className="text-lg font-medium tracking-[0.4em] uppercase opacity-70 mb-1"
-                  style={{ color: textColor, fontFamily: 'Inter' }}
-                >
-                  Coral
-                </span>
-                <h2 
-                  className="text-4xl font-black uppercase tracking-tighter leading-[0.8] mb-2"
-                  style={{ color: textColor, fontFamily: 'Space Grotesk' }}
-                >
-                  Vozes de Mãos Dadas
-                </h2>
-                <div className="flex items-center gap-3 w-full justify-center">
-                  <div className="h-[1px] flex-1 bg-current opacity-30" style={{ color: textColor }} />
-                  <span className="text-[11px] font-black tracking-[0.3em] uppercase whitespace-nowrap opacity-90" style={{ color: textColor }}>
-                    Residencial JK
-                  </span>
-                  <div className="h-[1px] flex-1 bg-current opacity-30" style={{ color: textColor }} />
-                </div>
-              </div>
+            <div className="relative z-10 mt-32 px-8 text-center pointer-events-none h-40 flex items-center justify-center">
+               {renderFront()}
             </div>
             
             <div className="absolute bottom-12 z-10">
               <div className="flex flex-col items-center gap-1">
                 <div className="w-1 h-1 rounded-full" style={{ background: textColor, opacity: 0.2 }} />
                 <p className="text-[9px] font-bold tracking-[0.3em] uppercase opacity-30" style={{ color: textColor }}>
-                  Identidade Coral
+                   Studio Edition 26
                 </p>
               </div>
             </div>
@@ -86,7 +127,7 @@ export function CoralUniformAsset({
           <div className="absolute inset-0 backface-hidden rotate-y-180 flex flex-col items-center">
              {/* T-Shirt Shape Base */}
              <div 
-              className="absolute inset-x-4 top-0 h-full rounded-[4rem] rounded-t-[2.5rem] shadow-2xl transition-colors duration-500"
+              className="absolute inset-x-4 top-0 h-full rounded-[4rem] rounded-t-[2.5rem] shadow-2xl transition-all duration-700"
               style={{ backgroundColor: bgColor }}
             >
               <div className="absolute -left-10 top-8 w-24 h-40 bg-inherit rounded-3xl -rotate-12" />
@@ -115,10 +156,10 @@ export function CoralUniformAsset({
                 </p>
                 <div className="h-[1px] w-8 bg-current opacity-30 mt-2" style={{ color: textColor }} />
                 <p className="text-[10px] font-black tracking-[0.2em] uppercase mt-2" style={{ color: textColor }}>
-                  Residencial JK
+                   Residencial JK
                 </p>
                 <p className="text-[8px] font-bold tracking-widest uppercase opacity-60" style={{ color: textColor }}>
-                  Goiânia · Brasil
+                   Goiânia · Brasil
                 </p>
               </div>
             </div>

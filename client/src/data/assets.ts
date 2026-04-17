@@ -423,11 +423,11 @@ export const assetCategories: AssetCategory[] = [
     description: 'Aplicações para o Coral Vozes de Mãos Dadas — Uniformes e camisas para membros e apresentações.',
     type: 'uniform',
     models: [
-      { id: 'coral-navy-front', name: 'Uniforme Navy (Frente)', config: { color: 'navy', view: 'front' } },
-      { id: 'coral-navy-back', name: 'Uniforme Navy (Costa)', config: { color: 'navy', view: 'back' } },
-      { id: 'coral-white-front', name: 'Camisa Branca (Frente)', config: { color: 'white', view: 'front' } },
-      { id: 'coral-white-back', name: 'Camisa Branca (Costa)', config: { color: 'white', view: 'back' } },
-      { id: 'coral-purple-front', name: 'Variant Roxo (Frente)', config: { color: 'purple', view: 'front' } },
+      { id: 'tshirt-classic-front', name: '01 · Empilhamento Clássico', config: { color: 'navy', view: 'front', layout: 'classic-stack' } },
+      { id: 'tshirt-modern-front', name: '02 · Impacto Moderno', config: { color: 'navy', view: 'front', layout: 'modern-bold' } },
+      { id: 'tshirt-minimal-front', name: '03 · Minimalismo Clean', config: { color: 'white', view: 'front', layout: 'minimalist-clean' } },
+      { id: 'tshirt-artistic-front', name: '04 · Estética Artística', config: { color: 'purple', view: 'front', layout: 'artistic-serif' } },
+      { id: 'tshirt-base-back', name: '05 · Identidade (Costas)', config: { color: 'navy', view: 'back' } },
     ]
   }
 ];
