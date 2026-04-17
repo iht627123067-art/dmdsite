@@ -5,16 +5,16 @@ import { motion } from 'framer-motion';
 export interface CoralUniformProps {
   color: 'navy' | 'white' | 'purple';
   view: 'front' | 'back';
-  layout?: 
-    | 'classic-stack' 
-    | 'modern-bold' 
-    | 'minimalist-clean' 
-    | 'artistic-serif'
-    | 'badge-circle'
-    | 'vertical-modern'
-    | 'oversized-impact'
-    | 'boxed-lockup'
-    | 'script-signature';
+  layout?:
+  | 'classic-stack'
+  | 'modern-bold'
+  | 'minimalist-clean'
+  | 'artistic-serif'
+  | 'badge-circle'
+  | 'vertical-modern'
+  | 'oversized-impact'
+  | 'boxed-lockup'
+  | 'script-signature';
   primaryColor?: string;
   secondaryColor?: string;
   fontFamily?: string;
@@ -33,6 +33,12 @@ export function CoralUniformAsset({
   const VozesWithClef = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
     <span className={className} style={style}>
       V<span style={{ color: '#FF9E00', fontFamily: 'serif', letterSpacing: 0 }}>𝄞</span>zes
+    </span>
+  );
+
+  const CoralWithClef = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <span className={className} style={style}>
+      C<span style={{ color: '#FF9E00', fontFamily: 'serif', fontSize: '1.3em', lineHeight: 1, letterSpacing: 0, verticalAlign: 'middle' }}>𝄞</span>RAL
     </span>
   );
 
@@ -55,7 +61,7 @@ export function CoralUniformAsset({
       case 'minimalist-clean':
         return (
           <div className="flex flex-col items-center text-center">
-            <span className="text-[10px] font-black tracking-[0.8em] uppercase opacity-40 mb-2" style={{ color: textColor }}>CORAL</span>
+            <CoralWithClef className="text-[10px] font-black tracking-[0.8em] uppercase opacity-60 mb-2" style={{ color: textColor }} />
             <div className="flex flex-col items-center leading-tight">
               <VozesWithClef className="text-2xl font-medium tracking-tight" style={{ color: textColor, fontFamily: 'Inter' }} />
               <span className="text-2xl font-medium tracking-tight italic opacity-80" style={{ color: textColor, fontFamily: 'Inter' }}>
@@ -170,7 +176,7 @@ export function CoralUniformAsset({
               className="absolute inset-x-4 top-0 h-full rounded-[4rem] rounded-t-[2.5rem] shadow-2xl transition-all duration-700"
               style={{ backgroundColor: bgColor }}
             >
-              {/* Sleeves (Pseudo) */}
+              {/* Sleeves */}
               <div className="absolute -left-10 top-8 w-24 h-40 bg-inherit rounded-3xl -rotate-12 shadow-lg" />
               <div className="absolute -right-10 top-8 w-24 h-40 bg-inherit rounded-3xl rotate-12 shadow-lg" />
 
@@ -180,15 +186,20 @@ export function CoralUniformAsset({
               {/* Fabric Texture/Fold effects */}
               <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.2),transparent_70%)]" />
               <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-black/20 to-transparent rounded-b-[4rem]" />
+
+              {/* Decorative musical notes — front fabric only */}
+              <span className="absolute pointer-events-none select-none" style={{ top: '12%', left: '10%', fontSize: 14, opacity: 0.18, color: '#FF9E00', fontFamily: 'serif' }}>♩</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '8%', right: '12%', fontSize: 11, opacity: 0.14, color: textColor, fontFamily: 'serif' }}>♫</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '28%', left: '6%', fontSize: 10, opacity: 0.12, color: textColor, fontFamily: 'serif' }}>♪</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '22%', right: '8%', fontSize: 13, opacity: 0.16, color: '#FF9E00', fontFamily: 'serif' }}>♬</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '68%', left: '14%', fontSize: 12, opacity: 0.13, color: '#FF9E00', fontFamily: 'serif' }}>♫</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '72%', right: '10%', fontSize: 10, opacity: 0.12, color: textColor, fontFamily: 'serif' }}>♩</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '82%', left: '30%', fontSize: 9, opacity: 0.10, color: textColor, fontFamily: 'serif' }}>♪</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '78%', right: '28%', fontSize: 11, opacity: 0.11, color: '#FF9E00', fontFamily: 'serif' }}>♬</span>
             </div>
 
             {/* Print Area - FRONT */}
             <div className="relative z-10 mt-32 px-8 text-center pointer-events-none h-40 flex items-center justify-center">
-              {/* Musical accent elements */}
-              <span className="absolute -top-2 left-6 text-[11px] opacity-25 select-none" style={{ color: '#FF9E00', fontFamily: 'serif' }}>♩</span>
-              <span className="absolute top-1 right-4 text-[9px] opacity-20 select-none" style={{ color: textColor, fontFamily: 'serif' }}>♫</span>
-              <span className="absolute bottom-0 left-4 text-[9px] opacity-15 select-none" style={{ color: '#FF9E00', fontFamily: 'serif' }}>♪</span>
-              <span className="absolute -bottom-1 right-6 text-[10px] opacity-15 select-none" style={{ color: textColor, fontFamily: 'serif' }}>♬</span>
               {renderFront()}
             </div>
 
@@ -212,8 +223,6 @@ export function CoralUniformAsset({
               <div className="absolute -left-10 top-8 w-24 h-40 bg-inherit rounded-3xl -rotate-12" />
               <div className="absolute -right-10 top-8 w-24 h-40 bg-inherit rounded-3xl rotate-12" />
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-black/5 rounded-b-full border-b border-black/5" />
-
-              {/* Back shadows */}
               <div className="absolute inset-0 opacity-10 pointer-events-none bg-gradient-to-b from-black/20 to-transparent" />
             </div>
 
@@ -231,7 +240,7 @@ export function CoralUniformAsset({
                   className="text-[14px] font-medium italic text-center max-w-[180px] leading-tight"
                   style={{ color: textColor, fontFamily: 'Inter' }}
                 >
-                  "V<span style={{ color: '#FF9E00', fontFamily: 'serif' }}>𝄞</span>zes que tocam corações"
+                  "Vozes que tocam corações"
                 </p>
                 <div className="h-[1px] w-8 bg-current opacity-30 mt-2" style={{ color: textColor }} />
                 <p className="text-[10px] font-black tracking-[0.2em] uppercase mt-2" style={{ color: textColor }}>
@@ -245,7 +254,7 @@ export function CoralUniformAsset({
 
             <div className="absolute bottom-12 z-10">
               <p className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-40" style={{ color: textColor }}>
-                Estampa Traseira
+                Coral
               </p>
             </div>
           </div>
