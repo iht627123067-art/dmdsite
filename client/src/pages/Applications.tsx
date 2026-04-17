@@ -26,6 +26,7 @@ import { useBrand, ColorScheme, TypographyStyle, LogoVariant, ShapeStyle } from 
 
 import { toAssetVariant, toCardVariant } from '@/lib/logoVariants';
 import { BrandLogo } from '@/components/brand/BrandLogo';
+import { CoralUniformAsset, CoralUniformProps } from '@/components/assets/CoralUniformAsset';
 
 
 
@@ -480,6 +481,15 @@ export default function Applications() {
           </div>
         );
       }
+      case 'uniform':
+        return (
+          <CoralUniformAsset
+            {...(props as CoralUniformProps)}
+            primaryColor={pc.primary}
+            secondaryColor={pc.secondary}
+            fontFamily={currentTypo.fonts.display}
+          />
+        );
       default:
         return null;
     }

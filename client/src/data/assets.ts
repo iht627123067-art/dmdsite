@@ -416,5 +416,18 @@ export const assetCategories: AssetCategory[] = [
         src: '/examples/avatar-favicon.html?variation=app-icon'
       }
     ]
+  },
+  {
+    id: 'coral',
+    title: 'Coral Vozes',
+    description: 'Aplicações para o Coral Vozes de Mãos Dadas — Uniformes e camisas para membros e apresentações.',
+    type: 'uniform',
+    models: [
+      { id: 'coral-navy-front', name: 'Uniforme Navy (Frente)', config: { color: 'navy', view: 'front' } },
+      { id: 'coral-navy-back', name: 'Uniforme Navy (Costa)', config: { color: 'navy', view: 'back' } },
+      { id: 'coral-white-front', name: 'Camisa Branca (Frente)', config: { color: 'white', view: 'front' } },
+      { id: 'coral-white-back', name: 'Camisa Branca (Costa)', config: { color: 'white', view: 'back' } },
+      { id: 'coral-purple-front', name: 'Variant Roxo (Frente)', config: { color: 'purple', view: 'front' } },
+    ]
   }
 ];

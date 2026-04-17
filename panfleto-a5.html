@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panfleto A5 — Instituto De Mãos Dadas</title>
+
+  <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  ESPECIFICAÇÃO TÉCNICA — PANFLETO A5 (FRENTE)                   ║
+    ║  Formato final: 148 × 210 mm (ISO 216)                          ║
+    ║  Arquivo com sangria: 154 × 216 mm (3 mm em cada lado)          ║
+    ║  Margem de segurança interna: 5 mm mínimo                        ║
+    ║  Resolução sugerida: 300 dpi · Modo: CMYK                       ║
+    ║  Papel sugerido: Couchê 115 g ou 150 g, brilho ou fosco         ║
+    ║  Impressão: 4×0 (frente) ou 4×4 (frente e verso)                ║
+    ╚══════════════════════════════════════════════════════════════════╝
+
+    Para exportar como PDF de alta qualidade:
+    ① Abra este arquivo no Chrome/Edge
+    ② Ctrl+P (ou Cmd+P)
+    ③ Destino: "Salvar como PDF"
+    ④ Mais configurações → Papel: A5, Margens: Nenhuma, ✓ Gráficos em segundo plano
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── Tokens da Marca (Paleta Acolhedora Institucional) ────── */
+    :root {
+      --dmd-navy:   #153065;
+      --dmd-purple: #7F4CA9;
+      --dmd-amber:  #FF9E00;
+      --dmd-lilac:  #BD90DA;
+      --dmd-pink:   #E91E8C;
+      --dmd-white:  #FAFAFA;
+      --dmd-bg:     #FAFAFA;
+
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body:    'Inter', sans-serif;
+
+      /* A5 em px a 96 dpi para preview no navegador */
+      --page-w:    560px;   /* 148 mm */
+      --page-h:    794px;   /* 210 mm */
+
+      /* Sangria (3 mm ≈ 11.3 px a 96 dpi) */
+      --bleed:     11.3px;
+
+      /* Margem de segurança interna (5 mm ≈ 18.9 px) */
+      --safe:      19px;
+    }
+
+    /* ─── Página impressa — regras @page ────────────────────────── */
+    @page {
+      size: 154mm 216mm;      /* A5 + 3 mm sangria em cada lado */
+      margin: 0;
+    }
+
+    /* ─── Layout de preview no navegador ───────────────────────── */
+    body {
+      background: #E5E7EB;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 40px 20px 80px;
+      font-family: var(--font-body);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .preview-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #6B7280;
+      margin-bottom: 16px;
+    }
+
+    /* ─── Folha (inclui a área de sangria) ─────────────────────── */
+    .sheet {
+      width:  calc(var(--page-w) + var(--bleed) * 2);
+      height: calc(var(--page-h) + var(--bleed) * 2);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
+
+    /* ─── Guias visuais (só no preview) ────────────────────────── */
+    .bleed-guide {
+      position: absolute;
+      inset: 0;
+      border: 1px dashed rgba(255, 100, 100, .35);
+      pointer-events: none;
+      z-index: 999;
+    }
+    .safe-guide {
+      position: absolute;
+      inset: calc(var(--bleed) + var(--safe));
+      border: 1px dashed rgba(100, 200, 100, .35);
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* ─── Frente do panfleto ────────────────────────────────────── */
+    .front {
+      width: 100%;
+      height: 100%;
+      background: var(--dmd-bg);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Sangria: faixa superior com cor primária */
+    .front__header-bar {
+      background: var(--dmd-navy);
+      padding: calc(var(--bleed) + 18px) calc(var(--bleed) + var(--safe)) 20px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .front__header-bar::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(127, 76, 169, .18);
+    }
+    .front__header-bar::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: 40%;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: rgba(255, 158, 0, .12);
+    }
+
+    /* Logo inline */
+    .logo-lockup {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .logo-lockup__icon {
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+    }
+    .logo-lockup__text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .logo-lockup__prefix {
+      font-family: var(--font-display);
+      font-size: 8.5px;
+      font-weight: 500;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+    }
+    .logo-lockup__name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -.02em;
+    }
+    .logo-lockup__name span {
+      color: var(--dmd-lilac);
+    }
+
+    /* Tagline no header */
+    .front__tagline {
+      margin-top: 22px;
+      position: relative;
+      z-index: 1;
+    }
+    .front__tagline h1 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #fff;
+      max-width: 280px;
+    }
+    .front__tagline h1 em {
+      font-style: normal;
+      color: var(--dmd-amber);
+    }
+    .front__tagline p {
+      margin-top: 8px;
+      font-size: 10px;
+      font-weight: 400;
+      color: rgba(255,255,255,.65);
+      line-height: 1.6;
+      max-width: 260px;
+    }
+
+    /* Faixa de acento (separador) */
+    .accent-bar {
+      height: 5px;
+      background: linear-gradient(90deg, var(--dmd-amber) 0%, var(--dmd-pink) 50%, var(--dmd-purple) 100%);
+      flex-shrink: 0;
+    }
+
+    /* ─── Corpo do panfleto ─────────────────────────────────────── */
+    .front__body {
+      flex: 1;
+      padding: 22px calc(var(--bleed) + var(--safe));
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      background: #fff;
+    }
+
+    /* Seção de impacto — números */
+    .impact-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .impact-item {
+      background: var(--dmd-bg);
+      border-radius: 8px;
+      padding: 12px 10px;
+      text-align: center;
+      border-top: 3px solid var(--dmd-navy);
+    }
+    .impact-item--purple { border-top-color: var(--dmd-purple); }
+    .impact-item--amber  { border-top-color: var(--dmd-amber);  }
+    .impact-item__number {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--dmd-navy);
+      line-height: 1;
+    }
+    .impact-item--purple .impact-item__number { color: var(--dmd-purple); }
+    .impact-item--amber  .impact-item__number { color: var(--dmd-amber);  }
+    .impact-item__label {
+      font-size: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #6B7280;
+      margin-top: 4px;
+      line-height: 1.3;
+    }
+
+    /* Seção "O que fazemos" */
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--dmd-purple);
+      padding-bottom: 6px;
+      border-bottom: 1.5px solid var(--dmd-lilac);
+      margin-bottom: 10px;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .pillar {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .pillar__icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+    .pillar__icon--blue   { background: rgba(21,48,101,.1); }
+    .pillar__icon--purple { background: rgba(127,76,169,.12); }
+    .pillar__icon--amber  { background: rgba(255,158,0,.12); }
+    .pillar__icon--pink   { background: rgba(233,30,140,.1); }
+
+    .pillar__text strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--dmd-navy);
+      line-height: 1.2;
+    }
+    .pillar__text span {
+      font-size: 9px;
+      color: #6B7280;
+      line-height: 1.4;
+    }
+
+    /* Citação */
+    .quote-block {
+      background: linear-gradient(135deg, var(--dmd-navy) 0%, #1e3c78 100%);
+      border-radius: 10px;
+      padding: 14px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-block::before {
+      content: '\201C';
+      font-family: Georgia, serif;
+      font-size: 72px;
+      color: rgba(255,255,255,.08);
+      position: absolute;
+      top: -8px; left: 6px;
+      line-height: 1;
+    }
+    .quote-block p {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.55;
+      position: relative;
+      z-index: 1;
+    }
+    .quote-block cite {
+      display: block;
+      margin-top: 6px;
+      font-size: 8.5px;
+      color: var(--dmd-lilac);
+      font-style: normal;
+      letter-spacing: .08em;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── Rodapé ────────────────────────────────────────────────── */
+    .front__footer {
+      background: var(--dmd-navy);
+      padding: 14px calc(var(--bleed) + var(--safe)) calc(var(--bleed) + 14px);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .contact-item__icon {
+      width: 16px; height: 16px;
+      background: rgba(255,255,255,.12);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      flex-shrink: 0;
+    }
+    .contact-item__text {
+      font-size: 8px;
+      color: rgba(255,255,255,.75);
+      line-height: 1.3;
+    }
+    .contact-item__text strong {
+      display: block;
+      color: #fff;
+      font-size: 8.5px;
+    }
+
+    .footer-divider {
+      width: 1px;
+      height: 28px;
+      background: rgba(255,255,255,.15);
+      flex-shrink: 0;
+    }
+
+    /* ─── Regras de impressão ───────────────────────────────────── */
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+        display: block;
+      }
+      .preview-label,
+      .bleed-guide,
+      .safe-guide,
+      .print-note {
+        display: none !important;
+      }
+      .sheet {
+        box-shadow: none;
+        width:  154mm;
+        height: 216mm;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <p class="preview-label">Preview — Panfleto A5 · Frente · Instituto De Mãos Dadas</p>
+
+  <div class="sheet">
+
+    <!-- Guias visuais (só no navegador) -->
+    <div class="bleed-guide" title="Área de sangria (3 mm)"></div>
+    <div class="safe-guide" title="Margem de segurança (5 mm)"></div>
+
+    <!-- ── FRENTE ────────────────────────────────────────────── -->
+    <div class="front">
+
+      <!-- Cabeçalho colorido com logo -->
+      <header class="front__header-bar">
+
+        <!-- Logo: símbolo SVG + nome -->
+        <div class="logo-lockup">
+          <svg class="logo-lockup__icon" viewBox="200 215 635 555" xmlns="http://www.w3.org/2000/svg" aria-label="Símbolo Instituto De Mãos Dadas">
+            <defs>
+              <linearGradient id="g0" gradientUnits="userSpaceOnUse" x1="432" y1="729" x2="520" y2="519">
+                <stop offset="0" stop-color="#153065"/>
+                <stop offset="1" stop-color="#153065CC"/>
+              </linearGradient>
+              <linearGradient id="g1" gradientUnits="userSpaceOnUse" x1="630" y1="270" x2="650" y2="519">
+                <stop offset="0" stop-color="#7F4CA9"/>
+                <stop offset="1" stop-color="#7F4CA9CC"/>
+              </linearGradient>
+              <linearGradient id="g2" gradientUnits="userSpaceOnUse" x1="388" y1="794" x2="431" y2="686">
+                <stop offset="0" stop-color="#153065"/>
+                <stop offset="1" stop-color="#153065BB"/>
+              </linearGradient>
+            </defs>
+            <g transform="scale(0.948148 0.948148)">
+              <path fill="url(#g0)" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C614.381 586.805 633.079 654.283 624.528 692.552C619.312 716.702 604.723 737.793 583.965 751.192C557.428 768.004 511.717 771.414 483.461 750.007C482.255 749.093 482.77 735.89 482.515 732.989C479.764 701.802 456.561 676.705 426.689 668.87C407.444 664.008 385.867 668.456 368.747 679.129C337.542 668.688 314.441 624.038 318 592.686C318.967 584.161 320.227 571.676 324.162 563.949C334.219 567.469 343.418 571.652 354.095 573.339C355.343 573.536 364.336 574.718 364.269 575.735C363.969 580.312 362.295 584.988 361.571 589.648C359.911 599.994 361.581 610.6 366.34 619.936C385.632 657.632 436.393 650.461 469.11 638.176C469.419 638.06 470.338 638.399 470.674 638.507C471.7 640.981 473.225 651.853 473.858 655.253C475.739 665.505 478.997 675.457 483.543 684.837C493.295 704.743 506.752 719.779 529.687 722.238C551.679 724.596 573.283 710.74 580.567 689.987C584.722 678.148 583.621 666.036 582.348 653.827C577.887 614.225 562.376 577.027 544.273 541.721C542.141 537.856 539.962 534.011 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z"/>
+              <path fill="#153065AA" d="M576.371 509.826C579.188 515.243 595.848 547.697 596.73 552.028C596.838 553.387 596.911 554.264 596.896 555.64C596.479 556.174 595.977 557.337 594.721 556.64C592.865 555.61 589.101 552.247 587.404 551.362C579.26 547.114 567.618 537.063 558.584 536.956C557.652 536.945 550.648 539.378 549.361 539.891C548.832 540.595 548.376 541.203 547.993 541.714C546.021 542.395 546.601 542.172 544.273 541.721C542.141 537.856 539.962 534.011 538.064 530.026C547.945 523.816 566.077 514.851 576.371 509.826Z"/>
+              <path fill="url(#g1)" d="M538.064 530.026C536.143 526.116 534.002 522.333 531.988 518.472C507.779 472.05 474.754 389.393 491.438 337.364C499.193 313.183 516.063 293.976 538.672 282.607C559.117 272.326 585.319 269.995 607.026 277.409C611.529 278.948 628.081 285.317 630.144 288.943C632.07 292.33 630.645 302.854 631.277 307.366C632.429 315.58 634.943 324.068 638.628 331.505C647.258 348.922 663.465 361.898 681.792 367.96C705.655 375.853 724.315 369.975 745.696 359.084C786.326 377.758 807.981 433.699 789.617 474.57C772.486 468.055 766.758 465.859 748.296 462.87C753.437 448.122 754.572 440.039 750.181 424.61C746.735 412.501 737.28 402.404 726.166 396.688C708.711 387.712 680.544 389.267 662.13 394.197C655.211 396.05 649.088 399.156 642.258 401.297C640.8 383.366 637.874 368.062 629.303 351.874C620.885 336.055 612.639 323.887 594.974 318.246C567.453 309.459 539.77 324.162 531.683 351.883C528.75 361.938 529.518 369.975 530.516 380.345C534.921 426.097 554.429 469.963 576.371 509.826C566.077 514.851 547.945 523.816 538.064 530.026Z"/>
+              <path fill="url(#g2)" d="M404.653 681.48C437.231 678.818 465.797 703.073 468.452 735.652C471.107 768.23 446.846 796.791 414.267 799.439C381.698 802.086 353.148 777.834 350.493 745.265C347.839 712.697 372.085 684.141 404.653 681.48Z"/>
+              <path fill="#7F4CA9" d="M699.953 239.105C732.18 236.752 760.28 260.816 762.911 293.021C765.543 325.227 741.723 353.533 709.541 356.443C676.964 359.388 648.233 335.211 645.569 302.61C642.905 270.008 667.33 241.487 699.953 239.105Z"/>
+              <!-- Texto interno "De Mãos Dadas" — simplificado em branco -->
+              <g fill="#FFFFFF">
+                <path d="M353.993 486.13C359.792 484.905 366.029 485.153 371.951 485.252C372.335 500.623 371.402 520.442 372.219 535.007C374.718 530.22 378.036 520.503 379.934 515.285L390.743 485.722C394.763 485.444 401.566 484.601 405.051 485.975C407.198 488.344 423 534.531 425.542 541.658C411.694 541.411 412.307 543.063 408.537 529.105C402.045 528.794 394.047 529.193 387.28 529.112C382.144 546.774 376.953 541.626 359.857 541.52C359.813 525.716 360.071 510.203 360.216 494.402C356.46 507.227 351.863 519.793 347.573 532.446C346.654 535.158 345.784 537.896 344.277 540.351C341.561 542.33 337.367 541.618 333.948 541.438C331.601 535.853 329.999 529.609 327.983 523.851C325.32 516.246 322.359 509.168 320.368 501.324C319.813 499.482 319.862 498.282 318.635 497.452C317.604 499.424 317.94 506.225 318.472 508.415C318.238 518.771 317.943 531.915 318.5 542.092C315.569 541.632 311.047 541.511 307.973 541.344C307.628 530.353 307.493 519.357 307.569 508.361C307.559 500.826 307.336 493.001 308.004 485.517C313.775 485.33 319.548 485.229 325.322 485.215L325.408 485.395C329.806 494.456 337.466 518.384 339.83 528.404C343.631 515.314 349.51 499.301 353.993 486.13ZM390.161 519.874L398.759 519.766L405.053 519.901C403.615 515.05 399.321 498.2 397.81 495.006C396.112 499.961 391.041 515.205 390.161 519.874Z"/>
+                <path d="M729.965 485.39C754.375 483.013 775.702 491.484 770.958 521.152C769.53 530.082 763.507 535.446 756.31 540.138C745.955 545.257 730.77 544.217 719.162 543.765C720.087 538.196 719.616 533.039 719.74 527.387C720.044 513.55 719.525 499.646 719.988 485.813L729.965 485.39ZM732.941 533.551C740.646 533.654 746.336 534.172 752.35 528.774C755.189 525.218 756.871 523.558 757.239 518.774C758.75 499.1 749.971 495.808 732.686 495.817C732.452 504.287 732.024 525.661 732.941 533.551Z"/>
+              </g>
+            </g>
+          </svg>
+
+          <div class="logo-lockup__text">
+            <span class="logo-lockup__prefix">Instituto</span>
+            <span class="logo-lockup__name">De Mãos <span>Dadas</span></span>
+          </div>
+        </div>
+
+        <!-- Headline principal -->
+        <div class="front__tagline">
+          <h1>Mãos que<br><em>transformam</em><br>realidades.</h1>
+          <p>Desenvolvimento comunitário, educação e protagonismo em Goiânia e região.</p>
+        </div>
+
+      </header>
+
+      <!-- Faixa de acento cromático -->
+      <div class="accent-bar"></div>
+
+      <!-- Corpo principal -->
+      <main class="front__body">
+
+        <!-- Números de impacto -->
+        <div>
+          <p class="section-title">Impacto em números</p>
+          <div class="impact-row">
+            <div class="impact-item">
+              <div class="impact-item__number">+1.2k</div>
+              <div class="impact-item__label">Famílias atendidas</div>
+            </div>
+            <div class="impact-item impact-item--purple">
+              <div class="impact-item__number">85</div>
+              <div class="impact-item__label">Voluntários ativos</div>
+            </div>
+            <div class="impact-item impact-item--amber">
+              <div class="impact-item__number">12</div>
+              <div class="impact-item__label">Projetos ativos</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pilares de atuação -->
+        <div>
+          <p class="section-title">O que fazemos</p>
+          <div class="pillars">
+            <div class="pillar">
+              <div class="pillar__icon pillar__icon--blue">🎓</div>
+              <div class="pillar__text">
+                <strong>Educação</strong>
+                <span>Capacitação e reforço escolar para jovens em situação de vulnerabilidade.</span>
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar__icon pillar__icon--purple">💻</div>
+              <div class="pillar__text">
+                <strong>Inclusão Digital</strong>
+                <span>Acesso a tecnologia e formação para o mercado de trabalho digital.</span>
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar__icon pillar__icon--amber">🤝</div>
+              <div class="pillar__text">
+                <strong>Mobilização</strong>
+                <span>Articulação comunitária e fortalecimento de lideranças locais.</span>
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar__icon pillar__icon--pink">❤️</div>
+              <div class="pillar__text">
+                <strong>Saúde & Cuidado</strong>
+                <span>Atenção integral ao bem-estar das famílias nas comunidades.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Citação institucional -->
+        <div class="quote-block">
+          <p>"Acreditamos que cada mão estendida é um ato político de construção de um mundo mais justo."</p>
+          <cite>— Princípio fundador · Instituto De Mãos Dadas</cite>
+        </div>
+
+      </main>
+
+      <!-- Rodapé com contatos -->
+      <footer class="front__footer">
+        <div class="contact-item">
+          <div class="contact-item__icon">🌐</div>
+          <div class="contact-item__text">
+            <strong>Site</strong>
+            institutodemaosdadas.com.br
+          </div>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="contact-item">
+          <div class="contact-item__icon">📱</div>
+          <div class="contact-item__text">
+            <strong>WhatsApp</strong>
+            (62) 9 9999-0000
+          </div>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="contact-item">
+          <div class="contact-item__icon">📍</div>
+          <div class="contact-item__text">
+            <strong>Goiânia</strong>
+            Goiás · Brasil
+          </div>
+        </div>
+      </footer>
+
+    </div>
+    <!-- /FRENTE -->
+
+  </div>
+  <!-- /sheet -->
+
+  <!-- Nota de uso (ocultada na impressão) -->
+  <p class="preview-label" style="margin-top: 24px; max-width: 582px; text-align: center; line-height: 1.8;">
+    <strong style="color:#374151">Para exportar PDF de impressão:</strong>
+    Ctrl+P → Destino: Salvar como PDF → Papel: A5 → Margens: Nenhuma → ✓ Gráficos em segundo plano<br>
+    Linhas vermelhas = sangria (3 mm) · Linhas verdes = margem de segurança (5 mm) — desaparecem na impressão
+  </p>
+
+</body>
+</html>
