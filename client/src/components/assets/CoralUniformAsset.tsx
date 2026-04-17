@@ -38,140 +38,132 @@ export function CoralUniformAsset({
   const renderFront = () => {
     switch (layout) {
 
-      /* ── 1. CLASSIC STACK — staff + hierarquia limpa ── */
+      /* ── 1. CLASSIC STACK ── */
       case 'classic-stack':
       default:
         return (
           <div className="flex flex-col items-center text-center gap-0">
-            {/* Pentagrama musical */}
-            <div className="flex flex-col gap-[3.5px] mb-4 w-24 opacity-[0.13]">
+            <div className="flex flex-col gap-[3.5px] mb-3 w-24 opacity-[0.13]">
               {[0, 1, 2, 3, 4].map(i => <div key={i} className="h-px w-full" style={{ background: textColor }} />)}
             </div>
-            <span className="text-[8px] font-black tracking-[0.55em] uppercase mb-1" style={{ color: textColor, opacity: 0.45 }}>Coral</span>
-            <h2 className="text-5xl font-black leading-none tracking-tight" style={{ color: textColor, fontFamily: 'Inter' }}>
+            <span className="text-[8px] font-black tracking-[0.55em] uppercase mb-1" style={{ color: textColor, opacity: 0.4 }}>Coral</span>
+            <h2 className="text-[48px] font-black leading-none tracking-tight" style={{ color: textColor, fontFamily: 'Inter' }}>
               V<Clef size="0.85em" />zes
             </h2>
             <div className="w-10 h-[2px] my-2 rounded-full" style={{ background: amber, opacity: 0.75 }} />
-            <span className="text-lg font-medium italic" style={{ color: textColor, opacity: 0.7, fontFamily: 'Inter' }}>de Mãos Dadas</span>
+            <span className="text-[22px] font-medium italic" style={{ color: textColor, opacity: 0.75, fontFamily: 'Inter' }}>de Mãos Dadas</span>
           </div>
         );
 
-      /* ── 2. MODERN BOLD — barras âmbar + tipografia impacto ── */
+      /* ── 2. MODERN BOLD ── */
       case 'modern-bold':
         return (
           <div className="flex flex-col items-center w-full gap-0">
-            <div className="w-full h-[2px] mb-3 rounded-full" style={{ background: amber, opacity: 0.65 }} />
-            <h2 className="text-[54px] font-black uppercase leading-none tracking-[-3px]" style={{ color: textColor, fontFamily: 'Inter' }}>
+            <div className="flex items-center justify-between w-full mb-2">
+              <span className="text-[7px] font-black tracking-[0.55em] uppercase" style={{ color: textColor, opacity: 0.35 }}>Coral</span>
+              <div className="flex-1 h-[1.5px] mx-3 rounded-full" style={{ background: amber, opacity: 0.5 }} />
+              <span className="text-[7px] font-black tracking-[0.4em] uppercase" style={{ color: textColor, opacity: 0.35 }}>♩ ♫</span>
+            </div>
+            <h2 className="text-[52px] font-black uppercase leading-none tracking-[-3px]" style={{ color: textColor, fontFamily: 'Inter' }}>
               V<Clef size="0.8em" />ZES
             </h2>
-            <div className="w-full h-[5px] mt-3 rounded-full" style={{ background: amber, opacity: 0.9 }} />
-            <span className="text-[10px] font-black tracking-[0.4em] uppercase mt-3" style={{ color: textColor, opacity: 0.55 }}>
-              De Mãos Dadas · Coral
+            <div className="w-full h-[5px] mt-2 rounded-full" style={{ background: amber, opacity: 0.9 }} />
+            <span className="text-[20px] font-medium italic mt-2" style={{ color: textColor, opacity: 0.7, fontFamily: 'Inter' }}>
+              de Mãos Dadas
             </span>
           </div>
         );
 
-      /* ── 3. MINIMALIST CLEAN — swiss, regras finas, espaço negativo ── */
+      /* ── 3. MINIMALIST CLEAN ── */
       case 'minimalist-clean':
         return (
-          <div className="flex flex-col items-start w-full gap-2 px-1">
+          <div className="flex flex-col items-start w-full gap-1.5 px-1">
             <div className="flex items-center gap-2 w-full">
               <span className="text-[7px] font-black tracking-[0.6em] uppercase" style={{ color: textColor, opacity: 0.4 }}>
                 C<span style={{ color: amber, fontFamily: 'serif' }}>𝄞</span>RAL
               </span>
               <div className="flex-1 h-px" style={{ background: textColor, opacity: 0.15 }} />
             </div>
-            <h2 className="text-[42px] font-black leading-none tracking-[-2px]" style={{ color: textColor, fontFamily: 'Inter' }}>
+            <h2 className="text-[44px] font-black leading-none tracking-[-2px]" style={{ color: textColor, fontFamily: 'Inter' }}>
               V<Clef size="0.82em" />zes
             </h2>
-            <span className="text-xl font-light italic" style={{ color: textColor, opacity: 0.55, fontFamily: 'Inter' }}>de Mãos Dadas</span>
-            <div className="flex items-center gap-2 w-full mt-1">
+            <span className="text-[22px] font-light italic" style={{ color: textColor, opacity: 0.65, fontFamily: 'Inter' }}>de Mãos Dadas</span>
+            <div className="flex items-center gap-2 w-full mt-0.5">
               <div className="flex-1 h-px" style={{ background: textColor, opacity: 0.15 }} />
               <span className="text-[7px] font-bold tracking-[0.4em]" style={{ color: textColor, opacity: 0.25 }}>JK</span>
             </div>
           </div>
         );
 
-      /* ── 4. ARTISTIC SERIF — itálico dominante, label de acento ── */
+      /* ── 4. ARTISTIC SERIF ── */
       case 'artistic-serif':
         return (
           <div className="flex flex-col items-center text-center">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-5 h-px" style={{ background: amber, opacity: 0.4 }} />
-              <span className="text-[7px] font-black tracking-[0.45em] uppercase" style={{ color: textColor, opacity: 0.4 }}>
-                Coral V<span style={{ color: amber, fontFamily: 'serif' }}>𝄞</span>zes
-              </span>
-              <div className="w-5 h-px" style={{ background: amber, opacity: 0.4 }} />
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-4 h-px" style={{ background: amber, opacity: 0.4 }} />
+              <span className="text-[7px] font-black tracking-[0.45em] uppercase" style={{ color: textColor, opacity: 0.38 }}>Coral</span>
+              <div className="w-4 h-px" style={{ background: amber, opacity: 0.4 }} />
             </div>
-            <h2 className="text-[38px] font-bold italic leading-[1.05]" style={{ color: textColor, fontFamily: 'Georgia, serif' }}>
-              de Mãos<br />Dadas
+            <h2 className="text-[44px] font-bold italic leading-none" style={{ color: textColor, fontFamily: 'Georgia, serif' }}>
+              V<Clef size="0.88em" />zes
             </h2>
-            <div className="flex gap-2 mt-3">
-              <div className="w-1 h-1 rounded-full" style={{ background: textColor, opacity: 0.5 }} />
+            <div className="flex gap-1.5 my-2">
+              <div className="w-1 h-1 rounded-full" style={{ background: textColor, opacity: 0.4 }} />
               <div className="w-1 h-1 rounded-full" style={{ background: amber }} />
-              <div className="w-1 h-1 rounded-full" style={{ background: textColor, opacity: 0.5 }} />
+              <div className="w-1 h-1 rounded-full" style={{ background: textColor, opacity: 0.4 }} />
             </div>
+            <span className="text-[22px] font-medium italic" style={{ color: textColor, opacity: 0.7, fontFamily: 'Georgia, serif' }}>
+              de Mãos Dadas
+            </span>
           </div>
         );
 
-      /* ── 5. BADGE CIRCLE — crachá circular em SVG ── */
+      /* ── 5. BADGE CIRCLE ── */
       case 'badge-circle':
         return (
           <svg width="158" height="158" viewBox="0 0 158 158" style={{ overflow: 'visible' }}>
             <defs>
               <path id="ringPath" d="M 79,79 m -57,0 a 57,57 0 1,1 114,0 a 57,57 0 1,1 -114,0" />
             </defs>
-            {/* Círculos */}
             <circle cx="79" cy="79" r="62" fill="none" stroke={textColor} strokeWidth="1" opacity="0.25" />
             <circle cx="79" cy="79" r="55" fill="none" stroke={amber} strokeWidth="0.5" opacity="0.2" />
-            {/* Texto circular */}
-            <text fontSize="7.2" fontWeight="900" letterSpacing="4.8" fill={textColor} fontFamily="Inter" opacity="0.6">
+            <text fontSize="7" fontWeight="900" letterSpacing="4.5" fill={textColor} fontFamily="Inter" opacity="0.55">
               <textPath href="#ringPath" startOffset="3%">CORAL · DE MÃOS DADAS · RES. JK ·</textPath>
             </text>
-            {/* Centro */}
-            <text x="79" y="69" textAnchor="middle" fontSize="10" fontWeight="800" fill={textColor} fontFamily="Inter" opacity="0.45" letterSpacing="2.5">
-              VOZES
-            </text>
-            <text x="79" y="96" textAnchor="middle" fontSize="30" fontWeight="900" fontFamily="Inter" letterSpacing="-1">
+            <text x="79" y="63" textAnchor="middle" fontSize="8" fontWeight="800" fill={textColor} fontFamily="Inter" opacity="0.35" letterSpacing="2">coral</text>
+            <text x="79" y="91" textAnchor="middle" fontSize="32" fontWeight="900" fontFamily="Inter" letterSpacing="-1">
               <tspan fill={textColor}>V</tspan>
               <tspan fill={amber} fontFamily="serif">𝄞</tspan>
               <tspan fill={textColor}>ZES</tspan>
             </text>
-            <text x="79" y="109" textAnchor="middle" fontSize="6.5" fontWeight="700" fill={textColor} opacity="0.3" letterSpacing="2.8" fontFamily="Inter">
-              GOIÂNIA · BRASIL
-            </text>
+            <text x="79" y="108" textAnchor="middle" fontSize="10" fontWeight="500" fill={textColor} opacity="0.55" letterSpacing="0.5" fontFamily="Inter">de Mãos Dadas</text>
           </svg>
         );
 
-      /* ── 6. VERTICAL MODERN — CORAL rotacionado + letras empilhadas ── */
+      /* ── 6. VERTICAL MODERN ── */
       case 'vertical-modern':
         return (
           <div className="flex items-center gap-3">
-            {/* Eixo lateral com CORAL vertical */}
             <div className="flex flex-col items-center gap-2">
               <div className="h-8 w-px opacity-20" style={{ background: textColor }} />
               <span
                 className="text-[7px] font-black tracking-[0.5em] uppercase"
-                style={{ color: textColor, opacity: 0.4, writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+                style={{ color: textColor, opacity: 0.38, writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
               >
                 Coral
               </span>
               <div className="h-8 w-px opacity-20" style={{ background: textColor }} />
             </div>
-            {/* Letras empilhadas */}
             <h2 className="text-[48px] font-black uppercase leading-[0.82] tracking-[-1px] flex flex-col" style={{ color: textColor, fontFamily: 'Inter' }}>
               <span>V</span>
               <span style={{ color: amber, fontFamily: 'serif', fontSize: '0.85em' }}>𝄞</span>
-              <span>Z</span>
-              <span>E</span>
-              <span>S</span>
+              <span>Z</span><span>E</span><span>S</span>
             </h2>
-            {/* Texto lateral direito */}
-            <div className="flex flex-col items-start gap-1">
-              <div className="h-px w-14 mb-1" style={{ background: amber, opacity: 0.5 }} />
+            <div className="flex flex-col items-start gap-1.5">
+              <div className="h-px w-14 mb-0.5" style={{ background: amber, opacity: 0.5 }} />
               <span
-                className="text-[10px] font-black uppercase leading-snug"
-                style={{ color: textColor, opacity: 0.65, fontFamily: 'Inter', letterSpacing: '0.04em' }}
+                className="text-[14px] font-semibold italic leading-snug"
+                style={{ color: textColor, opacity: 0.7, fontFamily: 'Inter' }}
               >
                 de<br />Mãos<br />Dadas
               </span>
@@ -179,38 +171,36 @@ export function CoralUniformAsset({
           </div>
         );
 
-      /* ── 7. OVERSIZED IMPACT — V𝄞 gigante + grid tipográfico ── */
+      /* ── 7. OVERSIZED IMPACT ── */
       case 'oversized-impact':
         return (
           <div className="flex flex-col items-start w-full px-1">
-            <h2 className="text-[66px] font-black leading-none tracking-[-4px]" style={{ color: textColor, fontFamily: 'Inter', lineHeight: 0.85 }}>
+            <span className="text-[8px] font-black tracking-[0.5em] uppercase mb-1" style={{ color: textColor, opacity: 0.38 }}>Coral</span>
+            <h2 className="text-[62px] font-black leading-none tracking-[-4px]" style={{ color: textColor, fontFamily: 'Inter', lineHeight: 0.85 }}>
               V<Clef size="0.78em" />
             </h2>
-            <div className="flex items-baseline gap-3 -mt-1">
-              <span className="text-[38px] font-black leading-none tracking-[-1px]" style={{ color: textColor, fontFamily: 'Inter' }}>ZES</span>
-              <span className="text-[8px] font-black tracking-[0.35em] uppercase pb-1" style={{ color: textColor, opacity: 0.45 }}>Coral</span>
-            </div>
+            <span className="text-[38px] font-black leading-none tracking-[-1px] -mt-1" style={{ color: textColor, fontFamily: 'Inter' }}>ZES</span>
             <div className="w-full h-px mt-2" style={{ background: amber, opacity: 0.5 }} />
-            <span className="text-[11px] font-medium italic mt-1.5" style={{ color: textColor, opacity: 0.55, fontFamily: 'Inter' }}>
+            <span className="text-[19px] font-medium italic mt-1.5" style={{ color: textColor, opacity: 0.65, fontFamily: 'Inter' }}>
               de Mãos Dadas
             </span>
           </div>
         );
 
-      /* ── 8. BOXED LOCKUP — bloco geométrico com faixa âmbar ── */
+      /* ── 8. BOXED LOCKUP ── */
       case 'boxed-lockup':
         return (
           <div className="flex items-stretch">
             <div className="w-[4px] rounded-sm" style={{ background: amber }} />
             <div
               className="flex flex-col justify-between px-4 py-2"
-              style={{ border: `1.5px solid ${textColor}`, borderLeft: 'none', borderRadius: '0 4px 4px 0', opacity: 0.95 }}
+              style={{ border: `1.5px solid ${textColor}`, borderLeft: 'none', borderRadius: '0 4px 4px 0' }}
             >
-              <span className="text-[8px] font-black tracking-[0.55em] uppercase" style={{ color: textColor, opacity: 0.45 }}>Coral</span>
-              <h2 className="text-[40px] font-black leading-none tracking-[-1.5px] py-1" style={{ color: textColor, fontFamily: 'Inter' }}>
+              <span className="text-[8px] font-black tracking-[0.55em] uppercase" style={{ color: textColor, opacity: 0.4 }}>Coral</span>
+              <h2 className="text-[38px] font-black leading-none tracking-[-1.5px] py-1" style={{ color: textColor, fontFamily: 'Inter' }}>
                 V<Clef size="0.82em" />ZES
               </h2>
-              <span className="text-[10px] font-medium italic" style={{ color: textColor, opacity: 0.6, fontFamily: 'Inter' }}>de Mãos Dadas</span>
+              <span className="text-[18px] font-medium italic" style={{ color: textColor, opacity: 0.65, fontFamily: 'Inter' }}>de Mãos Dadas</span>
             </div>
           </div>
         );
@@ -266,14 +256,16 @@ export function CoralUniformAsset({
               <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-black/20 to-transparent rounded-b-[4rem]" />
 
               {/* Decorative musical notes — front fabric only */}
-              <span className="absolute pointer-events-none select-none" style={{ top: '12%', left: '10%', fontSize: 14, opacity: 0.18, color: amber, fontFamily: 'serif' }}>♩</span>
-              <span className="absolute pointer-events-none select-none" style={{ top: '8%', right: '12%', fontSize: 11, opacity: 0.14, color: textColor, fontFamily: 'serif' }}>♫</span>
-              <span className="absolute pointer-events-none select-none" style={{ top: '28%', left: '6%', fontSize: 10, opacity: 0.12, color: textColor, fontFamily: 'serif' }}>♪</span>
-              <span className="absolute pointer-events-none select-none" style={{ top: '22%', right: '8%', fontSize: 13, opacity: 0.16, color: amber, fontFamily: 'serif' }}>♬</span>
-              <span className="absolute pointer-events-none select-none" style={{ top: '68%', left: '14%', fontSize: 12, opacity: 0.13, color: amber, fontFamily: 'serif' }}>♫</span>
-              <span className="absolute pointer-events-none select-none" style={{ top: '72%', right: '10%', fontSize: 10, opacity: 0.12, color: textColor, fontFamily: 'serif' }}>♩</span>
-              <span className="absolute pointer-events-none select-none" style={{ top: '82%', left: '30%', fontSize: 9, opacity: 0.10, color: textColor, fontFamily: 'serif' }}>♪</span>
-              <span className="absolute pointer-events-none select-none" style={{ top: '78%', right: '28%', fontSize: 11, opacity: 0.11, color: amber, fontFamily: 'serif' }}>♬</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '9%',  left: '10%',  fontSize: 15, opacity: 0.18, color: amber }}>🎵</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '7%',  right: '11%', fontSize: 12, opacity: 0.14, color: textColor, fontFamily: 'serif' }}>♫</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '18%', left: '5%',  fontSize: 11, opacity: 0.13, color: amber, fontFamily: 'serif' }}>𝄞</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '20%', right: '7%', fontSize: 14, opacity: 0.16, color: amber }}>🎶</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '30%', left: '8%',  fontSize: 10, opacity: 0.11, color: textColor, fontFamily: 'serif' }}>♪</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '26%', right: '9%', fontSize: 11, opacity: 0.12, color: textColor, fontFamily: 'serif' }}>♩</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '65%', left: '12%', fontSize: 13, opacity: 0.14, color: amber }}>🎵</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '70%', right: '9%', fontSize: 10, opacity: 0.12, color: textColor, fontFamily: 'serif' }}>♬</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '78%', left: '28%', fontSize: 10, opacity: 0.10, color: amber, fontFamily: 'serif' }}>♩</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '75%', right: '26%', fontSize: 12, opacity: 0.11, color: textColor }}>🎶</span>
             </div>
 
             {/* Print Area - FRONT */}
