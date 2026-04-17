@@ -818,13 +818,6 @@ export default function Home() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <Card className="p-12 flex flex-col items-center justify-center min-h-[500px] bg-gradient-to-br from-navy-50/50 via-white to-purple-50/30 border-none shadow-premium reveal-on-scroll group relative overflow-hidden">
                   <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]" />
-                  {/* Decorative musical notes */}
-                  <span className="absolute top-6 left-8 text-2xl pointer-events-none select-none opacity-10 group-hover:opacity-20 transition-opacity duration-700" style={{ color: '#FF9E00', fontFamily: 'serif' }}>♩</span>
-                  <span className="absolute top-10 right-10 text-xl pointer-events-none select-none opacity-8 group-hover:opacity-15 transition-opacity duration-700" style={{ color: '#153065', fontFamily: 'serif' }}>♫</span>
-                  <span className="absolute bottom-32 left-6 text-lg pointer-events-none select-none opacity-8 group-hover:opacity-15 transition-opacity duration-700" style={{ color: '#FF9E00', fontFamily: 'serif' }}>♪</span>
-                  <span className="absolute bottom-36 right-8 text-2xl pointer-events-none select-none opacity-10 group-hover:opacity-20 transition-opacity duration-700" style={{ color: '#7F4CA9', fontFamily: 'serif' }}>♬</span>
-                  <span className="absolute top-1/3 left-4 text-sm pointer-events-none select-none opacity-6 group-hover:opacity-12 transition-opacity duration-700" style={{ color: '#7F4CA9', fontFamily: 'serif' }}>♫</span>
-                  <span className="absolute top-1/3 right-4 text-sm pointer-events-none select-none opacity-6 group-hover:opacity-12 transition-opacity duration-700" style={{ color: '#FF9E00', fontFamily: 'serif' }}>♩</span>
                   <div className="relative animate-floating">
                     <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full group-hover:bg-primary/20 transition-all duration-700" />
                     <BrandLogo
