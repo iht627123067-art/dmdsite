@@ -1,113 +1,323 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preview Uniforme - Coral Vozes JK</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        :root {
-            --color-navy: #153065;
-            --color-amber: #FF9E00;
-            --color-purple: #7F4CA9;
-        }
-        body {
-            background-color: #f4f7f9;
-            font-family: 'Inter', sans-serif;
-        }
-        .perspective-1000 { perspective: 1000px; }
-        .preserve-3d { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
-        
-        .tshirt-card {
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .tshirt-card.flip {
-            transform: rotateY(180deg);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preview Uniformes — Coral V𝄞zes de Mãos Dadas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --navy:#153065; --amber:#FF9E00; --purple:#7F4CA9; }
+    body { background:#eef0f4; font-family:'Inter',sans-serif; }
+
+    /* 3D flip */
+    .perspective { perspective: 1000px; }
+    .preserve-3d { transform-style: preserve-3d; }
+    .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .rotate-y-180 { transform: rotateY(180deg); }
+    .shirt-card { transition: transform 0.75s cubic-bezier(.4,0,.2,1); }
+    .shirt-card.flipped { transform: rotateY(180deg); }
+
+    .clef { font-family: Georgia,serif; color: var(--amber); letter-spacing: 0; line-height: 1; }
+    .note { position:absolute; pointer-events:none; user-select:none; font-family:Georgia,serif; }
+    .vertical-rl { writing-mode:vertical-rl; transform:rotate(180deg); }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-10">
+<body class="min-h-screen p-8 md:p-12">
 
-    <div class="mb-10 text-center">
-        <h1 class="text-2xl font-bold text-[#153065]">Preview do Uniforme</h1>
-        <p class="text-gray-500">Clique na camiseta para alternar entre Frente e Verso</p>
+  <!-- Header -->
+  <div class="text-center mb-12">
+    <p class="text-xs font-black tracking-[0.5em] uppercase text-gray-400 mb-2">Coral · Residencial JK</p>
+    <h1 class="text-4xl font-black text-[#153065]">
+      V<span class="clef" style="font-size:1.1em">𝄞</span>zes de Mãos Dadas
+    </h1>
+    <p class="text-sm text-gray-400 mt-2 mb-8">Clique em qualquer camiseta para ver o verso</p>
+
+    <!-- Color selector -->
+    <div class="inline-flex items-center gap-3 bg-white rounded-full px-5 py-2.5 shadow border border-gray-100">
+      <span class="text-[10px] font-black tracking-[0.5em] uppercase text-gray-400">Cor</span>
+      <button onclick="setColor('navy')" id="btn-navy" title="Navy"
+        class="w-7 h-7 rounded-full transition-all" style="background:#153065;outline:3px solid #153065;outline-offset:2px"></button>
+      <button onclick="setColor('purple')" id="btn-purple" title="Roxo"
+        class="w-7 h-7 rounded-full transition-all" style="background:#7F4CA9"></button>
+      <button onclick="setColor('white')" id="btn-white" title="Branco"
+        class="w-7 h-7 rounded-full border border-gray-200 transition-all" style="background:#FFFFFF"></button>
     </div>
+  </div>
 
-    <!-- T-Shirt Container -->
-    <div class="relative w-80 h-[32rem] perspective-1000 cursor-pointer" onclick="document.getElementById('card').classList.toggle('flip')">
-        <div id="card" class="relative w-full h-full preserve-3d tshirt-card">
-            
-            <!-- FRONT SIDE -->
-            <div class="absolute inset-0 backface-hidden flex flex-col items-center">
-                <!-- Shape -->
-                <div class="absolute inset-x-4 top-0 h-[28rem] bg-[#153065] rounded-[4rem] rounded-t-[2.5rem] shadow-2xl">
-                    <div class="absolute -left-10 top-8 w-24 h-40 bg-[#153065] rounded-3xl -rotate-12 shadow-lg"></div>
-                    <div class="absolute -right-10 top-8 w-24 h-40 bg-[#153065] rounded-3xl rotate-12 shadow-lg"></div>
-                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-10 bg-black/10 rounded-b-full"></div>
-                    <div class="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-black/20 to-transparent rounded-b-[4rem]"></div>
-                </div>
+  <!-- Grid -->
+  <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto place-items-center"></div>
 
-                <!-- Print -->
-                <div class="relative z-10 mt-32 px-4 text-center">
-                    <h2 class="text-5xl font-black text-white uppercase tracking-tighter leading-none mb-4" style="font-family: 'Space Grotesk';">
-                        Vozes
-                    </h2>
-                    <p class="text-xl font-medium italic text-white/80" style="font-family: 'Inter';">
-                        de Mãos Dadas
-                    </p>
-                    <div class="mt-8 flex items-center justify-center gap-4">
-                        <div class="w-12 h-[2px] bg-white/20"></div>
-                        <div class="w-2.5 h-2.5 rotate-45 border-2 border-[#FF9E00]"></div>
-                        <div class="w-12 h-[2px] bg-white/20"></div>
-                    </div>
-                </div>
-                
-                <p class="absolute bottom-20 text-[10px] font-bold tracking-[0.3em] uppercase text-white/30">ESTAMPA FRONTAL</p>
-            </div>
+  <footer class="text-center mt-16 text-xs font-bold tracking-widest uppercase text-gray-300">
+    Instituto De Mãos Dadas · Goiânia · Brasil · 2026
+  </footer>
 
-            <!-- BACK SIDE -->
-            <div class="absolute inset-0 backface-hidden rotate-y-180 flex flex-col items-center">
-                <!-- Shape -->
-                <div class="absolute inset-x-4 top-0 h-[28rem] bg-[#153065] rounded-[4rem] rounded-t-[2.5rem] shadow-2xl">
-                    <div class="absolute -left-10 top-8 w-24 h-40 bg-[#153065] rounded-3xl -rotate-12 shadow-lg"></div>
-                    <div class="absolute -right-10 top-8 w-24 h-40 bg-[#153065] rounded-3xl rotate-12 shadow-lg"></div>
-                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-black/10 rounded-b-full"></div>
-                </div>
+<script>
+const MODELS = [
+  { id:'classic-stack',    name:'Classic Stack'    },
+  { id:'modern-bold',      name:'Modern Bold'      },
+  { id:'minimalist-clean', name:'Minimalist Clean' },
+  { id:'artistic-serif',   name:'Artistic Serif'   },
+  { id:'badge-circle',     name:'Badge Circle'     },
+  { id:'vertical-modern',  name:'Vertical Modern'  },
+  { id:'oversized-impact', name:'Oversized Impact' },
+  { id:'boxed-lockup',     name:'Boxed Lockup'     },
+  { id:'script-signature', name:'Script Signature' },
+];
 
-                <!-- Print -->
-                <div class="relative z-10 mt-20 px-4 text-center flex flex-col items-center">
-                    <!-- Placeholder Logo Symbol -->
-                    <div class="w-20 h-20 mb-8 flex items-center justify-center">
-                        <svg viewBox="0 0 100 100" class="w-full h-full">
-                            <circle cx="50" cy="50" r="45" fill="none" stroke="#FF9E00" stroke-width="2" />
-                            <path d="M30 50 Q 50 20, 70 50 T 30 50" fill="#FF9E00" opacity="0.8" />
-                            <circle cx="50" cy="50" r="10" fill="white" />
-                        </svg>
-                    </div>
-                    
-                    <p class="text-[14px] font-medium italic text-white mb-6" style="font-family: 'Inter';">
-                        "Vozes que tocam corações"
-                    </p>
-                    
-                    <div class="h-[1px] w-8 bg-white/30 mb-4"></div>
-                    
-                    <p class="text-[12px] font-black tracking-[0.2em] text-white uppercase">Residencial JK</p>
-                    <p class="text-[8px] font-bold tracking-widest text-white/60 uppercase mt-1">Goiânia · Brasil</p>
-                </div>
+let currentColor = 'navy';
+let shirtCount = 0;
 
-                <p class="absolute bottom-20 text-[10px] font-bold tracking-[0.3em] uppercase text-white/30">ESTAMPA TRASEIRA</p>
-            </div>
+function getColors(c) {
+  return {
+    bg:   c==='navy'?'#153065': c==='purple'?'#7F4CA9':'#FFFFFF',
+    text: (c==='navy'||c==='purple')?'#FFFFFF':'#153065'
+  };
+}
 
+function notes(tc) {
+  const am='#FF9E00';
+  return [
+    [tc,'♩',14,.18,'12%','10%',null],
+    [tc,'♫',11,.14,'8%',null,'12%'],
+    [tc,'♪',10,.12,'28%','6%',null],
+    [am,'♬',13,.16,'22%',null,'8%'],
+    [am,'♫',12,.13,'68%','14%',null],
+    [tc,'♩',10,.12,'72%',null,'10%'],
+    [tc,'♪', 9,.10,'82%','30%',null],
+    [am,'♬',11,.11,'78%',null,'28%'],
+  ].map(([color,sym,size,op,top,left,right])=>
+    `<span class="note" style="font-size:${size}px;opacity:${op};color:${color};top:${top};${left?`left:${left}`:''};${right?`right:${right}`:''};">${sym}</span>`
+  ).join('');
+}
+
+function frontPrint(id, tc, uid) {
+  const am = '#FF9E00';
+  switch(id) {
+
+    case 'classic-stack': return `
+      <div style="display:flex;flex-direction:column;align-items:center;text-align:center">
+        <div style="display:flex;flex-direction:column;gap:3.5px;opacity:.13;margin-bottom:14px;width:88px">
+          ${[0,1,2,3,4].map(()=>`<div style="height:1px;background:${tc}"></div>`).join('')}
         </div>
-    </div>
+        <span style="font-size:7px;font-weight:900;letter-spacing:.55em;text-transform:uppercase;opacity:.45;color:${tc};margin-bottom:4px">Coral</span>
+        <div style="font-size:44px;font-weight:900;line-height:1;letter-spacing:-2px;color:${tc};font-family:Inter">
+          V<span class="clef" style="font-size:.84em">𝄞</span>zes
+        </div>
+        <div style="width:40px;height:2px;background:${am};opacity:.75;border-radius:99px;margin:8px auto 6px"></div>
+        <div style="font-size:17px;font-weight:400;font-style:italic;opacity:.7;color:${tc};font-family:Inter">de Mãos Dadas</div>
+      </div>`;
 
-    <div class="mt-20 flex gap-4">
-        <button class="px-6 py-2 bg-[#153065] text-white rounded-full font-bold text-sm shadow-lg hover:scale-105 transition-transform">Baixar PDF (Mock)</button>
-        <button class="px-6 py-2 bg-white text-[#153065] border border-[#153065] rounded-full font-bold text-sm shadow-lg hover:scale-105 transition-transform">Mudar Cor (Navy)</button>
-    </div>
+    case 'modern-bold': return `
+      <div style="display:flex;flex-direction:column;align-items:center;width:100%">
+        <div style="width:100%;height:2px;background:${am};opacity:.65;border-radius:99px;margin-bottom:10px"></div>
+        <div style="font-size:50px;font-weight:900;text-transform:uppercase;line-height:1;letter-spacing:-3px;color:${tc};font-family:Inter">
+          V<span class="clef" style="font-size:.8em">𝄞</span>ZES
+        </div>
+        <div style="width:100%;height:5px;background:${am};opacity:.9;border-radius:99px;margin:10px 0 10px"></div>
+        <div style="font-size:9px;font-weight:900;letter-spacing:.4em;text-transform:uppercase;opacity:.55;color:${tc}">De Mãos Dadas · Coral</div>
+      </div>`;
 
+    case 'minimalist-clean': return `
+      <div style="display:flex;flex-direction:column;align-items:flex-start;width:100%;gap:8px;padding:0 4px">
+        <div style="display:flex;align-items:center;gap:8px;width:100%">
+          <span style="font-size:7px;font-weight:900;letter-spacing:.6em;text-transform:uppercase;opacity:.4;color:${tc}">
+            C<span class="clef" style="font-size:1em">𝄞</span>RAL
+          </span>
+          <div style="flex:1;height:1px;opacity:.15;background:${tc}"></div>
+        </div>
+        <div style="font-size:40px;font-weight:900;line-height:1;letter-spacing:-2px;color:${tc};font-family:Inter">
+          V<span class="clef" style="font-size:.82em">𝄞</span>zes
+        </div>
+        <div style="font-size:19px;font-weight:300;font-style:italic;opacity:.55;color:${tc};font-family:Inter">de Mãos Dadas</div>
+        <div style="display:flex;align-items:center;gap:8px;width:100%;margin-top:2px">
+          <div style="flex:1;height:1px;opacity:.15;background:${tc}"></div>
+          <span style="font-size:7px;font-weight:700;letter-spacing:.4em;opacity:.25;color:${tc}">JK</span>
+        </div>
+      </div>`;
+
+    case 'artistic-serif': return `
+      <div style="display:flex;flex-direction:column;align-items:center;text-align:center">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+          <div style="width:20px;height:1px;background:${am};opacity:.4"></div>
+          <span style="font-size:7px;font-weight:900;letter-spacing:.45em;text-transform:uppercase;opacity:.4;color:${tc}">
+            Coral V<span class="clef" style="font-size:1em">𝄞</span>zes
+          </span>
+          <div style="width:20px;height:1px;background:${am};opacity:.4"></div>
+        </div>
+        <div style="font-size:36px;font-weight:700;font-style:italic;line-height:1.05;color:${tc};font-family:Georgia,serif">
+          de Mãos<br>Dadas
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <div style="width:6px;height:6px;border-radius:99px;opacity:.5;background:${tc}"></div>
+          <div style="width:6px;height:6px;border-radius:99px;background:${am}"></div>
+          <div style="width:6px;height:6px;border-radius:99px;opacity:.5;background:${tc}"></div>
+        </div>
+      </div>`;
+
+    case 'badge-circle': return `
+      <svg width="154" height="154" viewBox="0 0 158 158" style="overflow:visible">
+        <defs>
+          <path id="rp${uid}" d="M79,79 m-57,0 a57,57 0 1,1 114,0 a57,57 0 1,1 -114,0"/>
+        </defs>
+        <circle cx="79" cy="79" r="62" fill="none" stroke="${tc}" stroke-width="1" opacity=".25"/>
+        <circle cx="79" cy="79" r="54" fill="none" stroke="${am}" stroke-width=".5" opacity=".2"/>
+        <text font-size="7.2" font-weight="800" letter-spacing="4.8" fill="${tc}" font-family="Inter" opacity=".6">
+          <textPath href="#rp${uid}" startOffset="3%">CORAL · DE MÃOS DADAS · RES. JK ·</textPath>
+        </text>
+        <text x="79" y="69" text-anchor="middle" font-size="10" font-weight="800" fill="${tc}" font-family="Inter" opacity=".45" letter-spacing="2.5">VOZES</text>
+        <text x="79" y="96" text-anchor="middle" font-size="30" font-weight="900" font-family="Inter" letter-spacing="-1">
+          <tspan fill="${tc}">V</tspan><tspan fill="${am}" font-family="Georgia,serif">𝄞</tspan><tspan fill="${tc}">ZES</tspan>
+        </text>
+        <text x="79" y="109" text-anchor="middle" font-size="6.5" font-weight="700" fill="${tc}" opacity=".3" letter-spacing="2.8" font-family="Inter">GOIÂNIA · BRASIL</text>
+      </svg>`;
+
+    case 'vertical-modern': return `
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="height:32px;width:1px;opacity:.2;background:${tc}"></div>
+          <span class="vertical-rl" style="font-size:7px;font-weight:900;letter-spacing:.5em;text-transform:uppercase;opacity:.4;color:${tc}">Coral</span>
+          <div style="height:32px;width:1px;opacity:.2;background:${tc}"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;font-size:46px;font-weight:900;text-transform:uppercase;line-height:.85;letter-spacing:-1px;color:${tc};font-family:Inter">
+          <span>V</span>
+          <span class="clef" style="font-size:.82em;color:${am}">𝄞</span>
+          <span>Z</span><span>E</span><span>S</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:4px">
+          <div style="height:1px;width:52px;background:${am};opacity:.5;margin-bottom:4px"></div>
+          <span style="font-size:9px;font-weight:900;text-transform:uppercase;line-height:1.4;letter-spacing:.04em;opacity:.65;color:${tc};font-family:Inter">de<br>Mãos<br>Dadas</span>
+        </div>
+      </div>`;
+
+    case 'oversized-impact': return `
+      <div style="display:flex;flex-direction:column;align-items:flex-start;width:100%;padding:0 4px">
+        <div style="font-size:62px;font-weight:900;line-height:.85;letter-spacing:-4px;color:${tc};font-family:Inter">
+          V<span class="clef" style="font-size:.78em">𝄞</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-top:-4px">
+          <span style="font-size:36px;font-weight:900;line-height:1;letter-spacing:-1px;color:${tc};font-family:Inter">ZES</span>
+          <span style="font-size:8px;font-weight:900;letter-spacing:.35em;text-transform:uppercase;opacity:.45;color:${tc};padding-bottom:4px">Coral</span>
+        </div>
+        <div style="width:100%;height:1px;background:${am};opacity:.5;margin-top:8px"></div>
+        <div style="font-size:11px;font-weight:400;font-style:italic;opacity:.55;color:${tc};font-family:Inter;margin-top:6px">de Mãos Dadas</div>
+      </div>`;
+
+    case 'boxed-lockup': return `
+      <div style="display:flex;align-items:stretch">
+        <div style="width:4px;border-radius:2px;background:${am}"></div>
+        <div style="display:flex;flex-direction:column;justify-content:space-between;padding:8px 16px;border:1.5px solid ${tc};border-left:none;border-radius:0 4px 4px 0">
+          <span style="font-size:8px;font-weight:900;letter-spacing:.55em;text-transform:uppercase;opacity:.45;color:${tc}">Coral</span>
+          <div style="font-size:38px;font-weight:900;line-height:1;letter-spacing:-1.5px;color:${tc};font-family:Inter;padding:4px 0">
+            V<span class="clef" style="font-size:.82em">𝄞</span>ZES
+          </div>
+          <div style="font-size:10px;font-weight:400;font-style:italic;opacity:.6;color:${tc};font-family:Inter">de Mãos Dadas</div>
+        </div>
+      </div>`;
+
+    case 'script-signature': return `
+      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+          <span class="clef" style="font-size:13px;opacity:.7;color:${am}">♬</span>
+          <span style="font-size:7px;font-weight:900;letter-spacing:.45em;text-transform:uppercase;opacity:.35;color:${tc}">Est. Residencial JK</span>
+          <span class="clef" style="font-size:13px;opacity:.7;color:${am}">♬</span>
+        </div>
+        <div style="font-size:40px;font-weight:700;font-style:italic;line-height:1;color:${tc};font-family:Georgia,serif">Coral</div>
+        <div style="font-size:22px;font-weight:700;font-style:italic;line-height:1.1;margin-top:-4px;color:${tc};font-family:Georgia,serif">
+          V<span class="clef" style="font-size:1em">𝄞</span>zes
+        </div>
+        <div style="width:72px;height:1.5px;background:${am};opacity:.7;border-radius:99px;margin-top:8px"></div>
+        <div style="font-size:8px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;opacity:.4;color:${tc};margin-top:6px">de Mãos Dadas</div>
+      </div>`;
+
+    default: return `<div style="color:${tc}">—</div>`;
+  }
+}
+
+function backPrint(tc) {
+  const am = '#FF9E00';
+  return `
+    <div class="relative z-10 flex flex-col items-center pointer-events-none" style="margin-top:88px;padding:0 32px">
+      <svg viewBox="0 0 100 100" width="68" height="68" style="margin-bottom:16px">
+        <circle cx="50" cy="50" r="38" fill="none" stroke="${tc}" stroke-width="2.5" opacity=".25"/>
+        <path d="M30 50 Q50 22 70 50" stroke="${tc}" stroke-width="2" fill="none" opacity=".4"/>
+        <circle cx="50" cy="62" r="9" fill="${tc}" opacity=".12"/>
+        <circle cx="50" cy="50" r="5.5" fill="${tc}" opacity=".45"/>
+      </svg>
+      <p style="font-size:13px;font-weight:500;font-style:italic;text-align:center;max-width:160px;line-height:1.45;color:${tc};font-family:Inter;margin-bottom:12px">
+        "Vozes que tocam corações"
+      </p>
+      <div style="height:1px;width:28px;background:${tc};opacity:.3;margin-bottom:12px"></div>
+      <p style="font-size:10px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:${tc}">Residencial JK</p>
+      <p style="font-size:8px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;opacity:.55;color:${tc};margin-top:4px">Goiânia · Brasil</p>
+    </div>
+    <div class="absolute z-10" style="bottom:48px">
+      <p style="font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;opacity:.4;color:${tc}">Coral</p>
+    </div>`;
+}
+
+function buildShirt(model, color) {
+  const uid = ++shirtCount;
+  const { bg, text } = getColors(color);
+  return `
+  <div class="flex flex-col items-center gap-3">
+    <div class="relative w-80 h-[28rem] perspective cursor-pointer"
+         onclick="this.querySelector('.shirt-card').classList.toggle('flipped')">
+      <div class="relative w-full h-full preserve-3d shirt-card">
+
+        <!-- FRONT -->
+        <div class="absolute inset-0 backface-hidden flex flex-col items-center">
+          <div class="absolute inset-x-4 top-0 h-full rounded-[4rem] rounded-t-[2.5rem] shadow-2xl" style="background:${bg}">
+            <div class="absolute -left-10 top-8 w-24 h-40 rounded-3xl -rotate-12 shadow-lg" style="background:${bg}"></div>
+            <div class="absolute -right-10 top-8 w-24 h-40 rounded-3xl rotate-12 shadow-lg" style="background:${bg}"></div>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-10 bg-black/10 rounded-b-full"></div>
+            <div class="absolute inset-0 opacity-20 rounded-[4rem]"
+                 style="background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.2),transparent 70%)"></div>
+            <div class="absolute bottom-0 inset-x-0 h-1/2 rounded-b-[4rem]"
+                 style="background:linear-gradient(to top,rgba(0,0,0,.2),transparent)"></div>
+            ${notes(text)}
+          </div>
+          <div class="relative z-10 pointer-events-none flex items-center justify-center"
+               style="margin-top:128px;height:160px;width:100%;padding:0 32px;box-sizing:border-box">
+            ${frontPrint(model.id, text, uid)}
+          </div>
+          <div class="absolute z-10 flex flex-col items-center gap-1" style="bottom:48px">
+            <div style="width:4px;height:4px;border-radius:99px;background:${text};opacity:.2"></div>
+            <p style="font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;opacity:.3;color:${text}">Studio Edition 26</p>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="absolute inset-0 backface-hidden rotate-y-180 flex flex-col items-center">
+          <div class="absolute inset-x-4 top-0 h-full rounded-[4rem] rounded-t-[2.5rem] shadow-2xl" style="background:${bg}">
+            <div class="absolute -left-10 top-8 w-24 h-40 rounded-3xl -rotate-12" style="background:${bg}"></div>
+            <div class="absolute -right-10 top-8 w-24 h-40 rounded-3xl rotate-12" style="background:${bg}"></div>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-black/5 rounded-b-full"></div>
+            <div class="absolute inset-0 opacity-10"
+                 style="background:linear-gradient(to bottom,rgba(0,0,0,.2),transparent)"></div>
+          </div>
+          ${backPrint(text)}
+        </div>
+
+      </div>
+    </div>
+    <p style="font-size:10px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:#9ca3af">${model.name}</p>
+  </div>`;
+}
+
+function setColor(c) {
+  currentColor = c;
+  shirtCount = 0;
+  document.getElementById('grid').innerHTML = MODELS.map(m => buildShirt(m, c)).join('');
+  ['navy','purple','white'].forEach(x => {
+    const b = document.getElementById('btn-'+x);
+    b.style.outline = x===c ? '3px solid #153065' : 'none';
+    b.style.outlineOffset = '2px';
+  });
+}
+
+// Init
+setColor('navy');
+</script>
 </body>
 </html>
