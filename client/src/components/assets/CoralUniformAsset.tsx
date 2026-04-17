@@ -93,17 +93,23 @@ export function CoralUniformAsset({
             {/* Print Area - BACK */}
             <div className="relative z-10 mt-24 px-8 flex flex-col items-center pointer-events-none">
               <LogoAsset 
-                type="vertical" 
-                size={140} 
+                type="symbol" 
+                size={80} 
                 primaryColor={color === 'white' ? primaryColor : '#FFFFFF'} 
                 secondaryColor={color === 'white' ? secondaryColor : 'rgba(255,255,255,0.7)'}
                 showTagline={false}
               />
-              <div className="mt-8 flex flex-col items-center gap-1">
-                <p className="text-[12px] font-black tracking-[0.2em] uppercase" style={{ color: textColor }}>
+              <div className="mt-6 flex flex-col items-center gap-3">
+                <p 
+                  className="text-[14px] font-medium italic text-center max-w-[180px] leading-tight"
+                  style={{ color: textColor, fontFamily: 'Inter' }}
+                >
+                  "Vozes que conectam corações"
+                </p>
+                <div className="h-[1px] w-8 bg-current opacity-30 mt-2" style={{ color: textColor }} />
+                <p className="text-[10px] font-black tracking-[0.2em] uppercase mt-2" style={{ color: textColor }}>
                   Residencial JK
                 </p>
-                <div className="w-12 h-0.5 opacity-30" style={{ backgroundColor: textColor }} />
                 <p className="text-[8px] font-bold tracking-widest uppercase opacity-60" style={{ color: textColor }}>
                   Goiânia · Brasil
                 </p>
