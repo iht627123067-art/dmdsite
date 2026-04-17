@@ -47,47 +47,53 @@ export function CoralUniformAsset({
         );
       case 'minimalist-clean':
         return (
-          <div className="flex flex-col items-center">
-            <span className="text-lg font-bold tracking-[0.4em] uppercase opacity-60 mb-1" style={{ color: textColor, fontFamily: 'Inter' }}>
-                Coral
-            </span>
-            <h2 className="text-5xl font-black uppercase tracking-tight leading-none mb-3" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
-              Vozes <span style={{ color: '#FF9E00' }}>JK</span>
-            </h2>
-            <span className="text-xl font-medium tracking-tight opacity-70 italic" style={{ color: textColor, fontFamily: 'Inter' }}>
-              de Mãos Dadas
-            </span>
+          <div className="flex flex-col items-center text-center">
+             <span className="text-[10px] font-black tracking-[0.8em] uppercase opacity-40 mb-4" style={{ color: textColor }}>CORAL</span>
+             <h2 className="text-5xl font-light uppercase tracking-[0.2em] leading-none mb-4" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
+               VOZES
+             </h2>
+             <div className="w-8 h-[2px] bg-[#FF9E00] mb-6" />
+             <span className="text-xl font-medium tracking-tight italic opacity-80" style={{ color: textColor, fontFamily: 'Inter' }}>
+               de Mãos Dadas
+             </span>
           </div>
         );
       case 'artistic-serif':
         return (
           <div className="flex flex-col items-center">
-            <div className="relative">
-              <span className="text-6xl font-serif italic" style={{ color: textColor }}>
+             <span className="text-2xl font-black uppercase tracking-widest opacity-40 mb-2" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
                 Vozes
-              </span>
-              <div className="absolute -top-4 -right-2 w-3 h-3 rounded-full" style={{ backgroundColor: '#FF9E00' }} />
-            </div>
-            <div className="mt-6 flex flex-col items-center">
-              <div className="w-24 h-[1px] bg-current opacity-20" style={{ color: textColor }} />
-              <span className="text-lg font-medium tracking-tight opacity-70 italic mt-2" style={{ color: textColor, fontFamily: 'Inter' }}>
-                de Mãos Dadas
-              </span>
-            </div>
+             </span>
+             <div className="relative flex flex-col items-center">
+                <h2 className="text-6xl font-serif italic leading-none" style={{ color: textColor }}>
+                  Mãos Dadas
+                </h2>
+                <div className="w-24 h-[1px] bg-[#FF9E00] mt-4" />
+                <span className="text-[10px] font-bold tracking-[0.5em] uppercase mt-2 opacity-50" style={{ color: textColor }}>Identidade Coral</span>
+             </div>
           </div>
         );
       case 'badge-circle':
         return (
-          <div className="flex flex-col items-center relative">
-            <div className="w-32 h-32 rounded-full border-2 border-dashed opacity-20 absolute -top-4" style={{ borderColor: textColor }} />
-            <span className="text-[10px] font-black tracking-[0.6em] uppercase opacity-60 mb-4" style={{ color: textColor }}>CORAL</span>
-            <h2 className="text-4xl font-black uppercase tracking-widest text-center" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
-              VOZES<br />
-              <span style={{ color: '#FF9E00' }}>JK</span>
-            </h2>
-            <div className="mt-4 px-4 py-1 bg-white/10 rounded-full">
-               <span className="text-[9px] font-bold tracking-widest" style={{ color: textColor }}>DE MÃOS DADAS</span>
-            </div>
+          <div className="flex flex-col items-center">
+             <div className="flex items-end gap-1 mb-4 h-16">
+                <span className="text-4xl font-black uppercase tracking-tighter" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>V</span>
+                <span className="text-6xl font-black uppercase tracking-tighter pb-2" style={{ color: '#FF9E00', fontFamily: 'Space Grotesk' }}>O</span>
+                <span className="text-4xl font-black uppercase tracking-tighter pb-4" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>Z</span>
+                <span className="text-5xl font-black uppercase tracking-tighter pb-1" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>E</span>
+                <span className="text-4xl font-black uppercase tracking-tighter" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>S</span>
+             </div>
+             <div className="relative flex flex-col items-center">
+                <div className="absolute -top-2 w-full h-[1px] bg-current opacity-10" style={{ color: textColor }} />
+                <span className="text-xl font-medium italic opacity-80" style={{ color: textColor, fontFamily: 'Inter' }}>
+                   de Mãos Dadas
+                </span>
+                <div className="mt-4 flex gap-1">
+                   <div className="w-1 h-1 rounded-full bg-[#FF9E00]" />
+                   <div className="w-1 h-1 rounded-full bg-[#FF9E00] opacity-40" />
+                   <div className="w-1 h-1 rounded-full bg-[#FF9E00] opacity-20" />
+                </div>
+             </div>
           </div>
         );
       case 'vertical-modern':
@@ -98,34 +104,38 @@ export function CoralUniformAsset({
               <span>V</span><span>O</span><span style={{ color: '#FF9E00' }}>Z</span><span>E</span><span>S</span>
             </h2>
             <div className="flex flex-col items-start gap-1">
-               <span className="text-[10px] font-bold tracking-widest uppercase opacity-40">Coral</span>
                <span className="text-sm font-medium italic opacity-70">de Mãos Dadas</span>
+               <div className="w-8 h-[2px] bg-[#FF9E00] mt-1" />
             </div>
           </div>
         );
       case 'oversized-impact':
         return (
-          <div className="flex flex-col items-center text-center">
-            <h2 className="text-8xl font-black uppercase tracking-tighter leading-none mb-4 opacity-90" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
-              VOZES
+          <div className="flex items-center gap-8">
+            <h2 className="text-7xl font-black uppercase leading-[0.75] tracking-tighter flex flex-col opacity-90" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
+              <span>V</span><span>O</span><span style={{ color: '#FF9E00' }}>Z</span><span>E</span><span>S</span>
             </h2>
-            <div className="flex items-center gap-4">
-               <span className="text-[11px] font-black tracking-[0.5em] uppercase" style={{ color: '#FF9E00' }}>Coral</span>
-               <div className="w-12 h-[1px] bg-current opacity-20" style={{ color: textColor }} />
-               <span className="text-[11px] font-black tracking-[0.5em] uppercase opacity-60" style={{ color: textColor }}>Mãos Dadas</span>
+            <div className="flex flex-col items-start">
+               <div className="w-1 h-12 bg-current opacity-20 mb-4" style={{ color: textColor }} />
+               <span className="text-2xl font-medium italic leading-tight" style={{ color: textColor, fontFamily: 'Inter' }}>
+                  de Mãos<br />Dadas
+               </span>
             </div>
           </div>
         );
       case 'boxed-lockup':
         return (
-          <div className="flex flex-col items-center">
-            <div className="border-[4px] px-6 py-4 flex flex-col items-center" style={{ borderColor: textColor }}>
-               <span className="text-[10px] font-black tracking-[0.8em] uppercase mb-2 opacity-50" style={{ color: textColor }}>VOZES CORAL</span>
-               <h2 className="text-4xl font-black uppercase tracking-tighter" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>Mãos Dadas</h2>
-            </div>
-            <div className="mt-4 flex items-center gap-2">
-               <span className="text-[9px] font-bold tracking-widest opacity-40 uppercase" style={{ color: textColor }}>Goiânia • Brasil • 2026</span>
-            </div>
+          <div className="flex items-center gap-4">
+             <div className="border-[3px] px-2 py-4 flex flex-col items-center" style={{ borderColor: textColor }}>
+                <h2 className="text-4xl font-black uppercase leading-none flex flex-col" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
+                  <span>V</span><span>O</span><span style={{ color: '#FF9E00' }}>Z</span><span>E</span><span>S</span>
+                </h2>
+             </div>
+             <div className="flex flex-col items-start gap-2">
+                <span className="text-xl font-medium italic opacity-80" style={{ color: textColor, fontFamily: 'Inter' }}>de Mãos Dadas</span>
+                <div className="w-full h-[1px] bg-[#FF9E00]" />
+                <span className="text-[9px] font-bold tracking-widest uppercase opacity-40">Edição Especial</span>
+             </div>
           </div>
         );
       case 'script-signature':
