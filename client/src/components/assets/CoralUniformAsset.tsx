@@ -30,143 +30,126 @@ export function CoralUniformAsset({
   const bgColor = color === 'navy' ? '#153065' : color === 'purple' ? '#7F4CA9' : '#FFFFFF';
   const textColor = (color === 'navy' || color === 'purple') ? '#FFFFFF' : '#153065';
 
+  const VozesWithClef = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <span className={className} style={style}>
+      V<span style={{ color: '#FF9E00', fontFamily: 'serif', letterSpacing: 0 }}>𝄞</span>zes
+    </span>
+  );
+
   const renderFront = () => {
     switch (layout) {
       case 'modern-bold':
         return (
           <div className="flex flex-col items-center">
-            <h2 className="text-6xl font-black uppercase leading-[0.75] tracking-tighter" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
-              Vozes<br />
+            <h2 className="text-6xl font-black uppercase leading-[0.75] tracking-tighter" style={{ color: textColor, fontFamily: 'Inter' }}>
+              <VozesWithClef style={{ color: textColor, fontFamily: 'Inter' }} /><br />
               <span style={{ color: '#FF9E00' }}>JK</span>
             </h2>
-            <div className="w-12 h-1 bg-current opacity-20 my-5" style={{ color: textColor }} />
-            <span className="text-lg font-medium tracking-tight opacity-70 italic" style={{ color: textColor, fontFamily: 'Inter' }}>
-              de Mãos Dadas
-            </span>
+            <div className="mt-4 flex flex-col items-center leading-tight">
+              <span className="text-2xl font-medium tracking-tight italic opacity-70" style={{ color: textColor, fontFamily: 'Inter' }}>
+                de Mãos Dadas
+              </span>
+            </div>
           </div>
         );
       case 'minimalist-clean':
         return (
           <div className="flex flex-col items-center text-center">
-             <span className="text-[10px] font-black tracking-[0.8em] uppercase opacity-40 mb-4" style={{ color: textColor }}>CORAL</span>
-             <h2 className="text-5xl font-light uppercase tracking-[0.2em] leading-none mb-4" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
-               VOZES
-             </h2>
-             <div className="w-8 h-[2px] bg-[#FF9E00] mb-6" />
-             <span className="text-xl font-medium tracking-tight italic opacity-80" style={{ color: textColor, fontFamily: 'Inter' }}>
-               de Mãos Dadas
-             </span>
+            <span className="text-[10px] font-black tracking-[0.8em] uppercase opacity-40 mb-2" style={{ color: textColor }}>CORAL</span>
+            <div className="flex flex-col items-center leading-tight">
+              <VozesWithClef className="text-2xl font-medium tracking-tight" style={{ color: textColor, fontFamily: 'Inter' }} />
+              <span className="text-2xl font-medium tracking-tight italic opacity-80" style={{ color: textColor, fontFamily: 'Inter' }}>
+                de Mãos Dadas
+              </span>
+            </div>
           </div>
         );
       case 'artistic-serif':
         return (
           <div className="flex flex-col items-center">
-             <span className="text-2xl font-black uppercase tracking-widest opacity-40 mb-2" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
-                Vozes
-             </span>
-             <div className="relative flex flex-col items-center">
-                <h2 className="text-6xl font-serif italic leading-none" style={{ color: textColor }}>
-                  Mãos Dadas
-                </h2>
-                <div className="w-24 h-[1px] bg-[#FF9E00] mt-4" />
-                <span className="text-[10px] font-bold tracking-[0.5em] uppercase mt-2 opacity-50" style={{ color: textColor }}>Identidade Coral</span>
-             </div>
+            <VozesWithClef className="text-2xl font-black uppercase tracking-widest opacity-40 mb-2" style={{ color: textColor, fontFamily: 'Inter' }} />
+            <div className="relative flex flex-col items-center leading-tight">
+              <h2 className="text-5xl font-medium italic" style={{ color: textColor, fontFamily: 'Inter' }}>
+                Mãos Dadas
+              </h2>
+              <div className="w-1.5 h-1.5 rounded-full bg-[#FF9E00] mt-4" />
+            </div>
           </div>
         );
       case 'badge-circle':
         return (
           <div className="flex flex-col items-center">
-             <div className="flex items-end gap-1 mb-4 h-16">
-                <span className="text-4xl font-black uppercase tracking-tighter" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>V</span>
-                <span className="text-6xl font-black uppercase tracking-tighter pb-2" style={{ color: '#FF9E00', fontFamily: 'Space Grotesk' }}>O</span>
-                <span className="text-4xl font-black uppercase tracking-tighter pb-4" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>Z</span>
-                <span className="text-5xl font-black uppercase tracking-tighter pb-1" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>E</span>
-                <span className="text-4xl font-black uppercase tracking-tighter" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>S</span>
-             </div>
-             <div className="relative flex flex-col items-center">
-                <div className="absolute -top-2 w-full h-[1px] bg-current opacity-10" style={{ color: textColor }} />
-                <span className="text-xl font-medium italic opacity-80" style={{ color: textColor, fontFamily: 'Inter' }}>
-                   de Mãos Dadas
-                </span>
-                <div className="mt-4 flex gap-1">
-                   <div className="w-1 h-1 rounded-full bg-[#FF9E00]" />
-                   <div className="w-1 h-1 rounded-full bg-[#FF9E00] opacity-40" />
-                   <div className="w-1 h-1 rounded-full bg-[#FF9E00] opacity-20" />
-                </div>
-             </div>
+            <div className="flex items-end gap-1 mb-4 h-16">
+              <span className="text-4xl font-black uppercase tracking-tighter" style={{ color: textColor, fontFamily: 'Inter' }}>V</span>
+              <span className="text-5xl font-black tracking-tighter pb-2" style={{ color: '#FF9E00', fontFamily: 'serif' }}>𝄞</span>
+              <span className="text-4xl font-black uppercase tracking-tighter pb-4" style={{ color: textColor, fontFamily: 'Inter' }}>Z</span>
+              <span className="text-5xl font-black uppercase tracking-tighter pb-1" style={{ color: textColor, fontFamily: 'Inter' }}>E</span>
+              <span className="text-4xl font-black uppercase tracking-tighter" style={{ color: textColor, fontFamily: 'Inter' }}>S</span>
+            </div>
+            <div className="relative flex flex-col items-center leading-tight">
+              <span className="text-2xl font-medium italic opacity-80" style={{ color: textColor, fontFamily: 'Inter' }}>
+                de Mãos Dadas
+              </span>
+            </div>
           </div>
         );
       case 'vertical-modern':
         return (
           <div className="flex items-center gap-6">
-            <div className="h-32 w-[1px] bg-current opacity-20" style={{ color: textColor }} />
-            <h2 className="text-5xl font-black uppercase leading-none tracking-tighter flex flex-col" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
-              <span>V</span><span>O</span><span style={{ color: '#FF9E00' }}>Z</span><span>E</span><span>S</span>
+            <h2 className="text-5xl font-black uppercase leading-none tracking-tighter flex flex-col" style={{ color: textColor, fontFamily: 'Inter' }}>
+              <span>V</span><span style={{ fontFamily: 'serif', color: '#FF9E00' }}>𝄞</span><span style={{ color: '#FF9E00' }}>Z</span><span>E</span><span>S</span>
             </h2>
-            <div className="flex flex-col items-start gap-1">
-               <span className="text-sm font-medium italic opacity-70">de Mãos Dadas</span>
-               <div className="w-8 h-[2px] bg-[#FF9E00] mt-1" />
+            <div className="flex flex-col items-start leading-tight">
+              <VozesWithClef className="text-2xl font-medium" style={{ color: textColor, fontFamily: 'Inter' }} />
+              <span className="text-2xl font-medium italic opacity-70" style={{ color: textColor, fontFamily: 'Inter' }}>de Mãos Dadas</span>
             </div>
           </div>
         );
       case 'oversized-impact':
         return (
           <div className="flex items-center gap-8">
-            <h2 className="text-7xl font-black uppercase leading-[0.75] tracking-tighter flex flex-col opacity-90" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
-              <span>V</span><span>O</span><span style={{ color: '#FF9E00' }}>Z</span><span>E</span><span>S</span>
+            <h2 className="text-6xl font-black uppercase leading-[0.75] tracking-tighter flex flex-col opacity-90" style={{ color: textColor, fontFamily: 'Inter' }}>
+              <span>V</span><span style={{ fontFamily: 'serif', color: '#FF9E00' }}>𝄞</span><span style={{ color: '#FF9E00' }}>Z</span><span>E</span><span>S</span>
             </h2>
-            <div className="flex flex-col items-start">
-               <div className="w-1 h-12 bg-current opacity-20 mb-4" style={{ color: textColor }} />
-               <span className="text-2xl font-medium italic leading-tight" style={{ color: textColor, fontFamily: 'Inter' }}>
-                  de Mãos<br />Dadas
-               </span>
+            <div className="flex flex-col items-start leading-tight">
+              <span className="text-3xl font-black uppercase" style={{ color: textColor, fontFamily: 'Inter' }}>Mãos</span>
+              <span className="text-3xl font-black uppercase" style={{ color: textColor, fontFamily: 'Inter' }}>Dadas</span>
             </div>
           </div>
         );
       case 'boxed-lockup':
         return (
           <div className="flex items-center gap-4">
-             <div className="border-[3px] px-2 py-4 flex flex-col items-center" style={{ borderColor: textColor }}>
-                <h2 className="text-4xl font-black uppercase leading-none flex flex-col" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
-                  <span>V</span><span>O</span><span style={{ color: '#FF9E00' }}>Z</span><span>E</span><span>S</span>
-                </h2>
-             </div>
-             <div className="flex flex-col items-start gap-2">
-                <span className="text-xl font-medium italic opacity-80" style={{ color: textColor, fontFamily: 'Inter' }}>de Mãos Dadas</span>
-                <div className="w-full h-[1px] bg-[#FF9E00]" />
-                <span className="text-[9px] font-bold tracking-widest uppercase opacity-40">Edição Especial</span>
-             </div>
+            <div className="border-[3px] px-2 py-4 flex flex-col items-center" style={{ borderColor: textColor }}>
+              <h2 className="text-4xl font-black uppercase leading-none flex flex-col" style={{ color: textColor, fontFamily: 'Inter' }}>
+                <span>V</span><span style={{ fontFamily: 'serif', color: '#FF9E00' }}>𝄞</span><span style={{ color: '#FF9E00' }}>Z</span><span>E</span><span>S</span>
+              </h2>
+            </div>
+            <div className="flex flex-col items-start leading-tight">
+              <span className="text-2xl font-medium italic opacity-80" style={{ color: textColor, fontFamily: 'Inter' }}>de Mãos Dadas</span>
+              <div className="w-full h-1 bg-[#FF9E00] mt-2" />
+            </div>
           </div>
         );
       case 'script-signature':
         return (
-          <div className="flex flex-col items-center">
-             <span className="text-xl font-medium tracking-[0.3em] uppercase opacity-40 mb-2" style={{ color: textColor }}>Coral</span>
-             <h2 className="text-5xl font-serif italic tracking-tight" style={{ color: textColor }}>Vozes JK</h2>
-             <div className="mt-4 flex flex-col items-center">
-                <div className="w-1 h-1 rounded-full bg-[#FF9E00] mb-2" />
-                <span className="text-[10px] font-black tracking-[0.5em] uppercase opacity-60" style={{ color: textColor }}>DE MÃOS DADAS</span>
-             </div>
+          <div className="flex flex-col items-center leading-tight">
+            <h2 className="text-4xl font-bold tracking-tight mb-2" style={{ color: textColor, fontFamily: 'Inter' }}>
+              <VozesWithClef style={{ color: textColor, fontFamily: 'Inter' }} /> JK
+            </h2>
+            <span className="text-2xl font-medium italic opacity-70" style={{ color: textColor, fontFamily: 'Inter' }}>de Mãos Dadas</span>
           </div>
         );
       case 'classic-stack':
       default:
         return (
-          <div className="flex flex-col items-center text-center">
-            <span className="text-xl font-bold tracking-[0.3em] uppercase opacity-60 mb-2" style={{ color: textColor, fontFamily: 'Inter' }}>
-                Coral
-            </span>
-            <h2 className="text-5xl font-black uppercase tracking-tighter leading-none mb-4" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
-              Vozes
+          <div className="flex flex-col items-center text-center leading-tight">
+            <h2 className="text-4xl font-bold tracking-tighter mb-1" style={{ color: textColor, fontFamily: 'Inter' }}>
+              <VozesWithClef style={{ color: textColor, fontFamily: 'Inter' }} />
             </h2>
-            <span className="text-2xl font-medium tracking-tight opacity-80 italic mb-6" style={{ color: textColor, fontFamily: 'Inter' }}>
+            <span className="text-3xl font-medium italic tracking-tight opacity-80" style={{ color: textColor, fontFamily: 'Inter' }}>
               de Mãos Dadas
             </span>
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-[2px] bg-current opacity-20" style={{ color: textColor }} />
-              <div className="w-2.5 h-2.5 rotate-45 border-2 border-[#FF9E00]" />
-              <div className="w-12 h-[2px] bg-current opacity-20" style={{ color: textColor }} />
-            </div>
           </div>
         );
     }
@@ -201,6 +184,11 @@ export function CoralUniformAsset({
 
             {/* Print Area - FRONT */}
             <div className="relative z-10 mt-32 px-8 text-center pointer-events-none h-40 flex items-center justify-center">
+              {/* Musical accent elements */}
+              <span className="absolute -top-2 left-6 text-[11px] opacity-25 select-none" style={{ color: '#FF9E00', fontFamily: 'serif' }}>♩</span>
+              <span className="absolute top-1 right-4 text-[9px] opacity-20 select-none" style={{ color: textColor, fontFamily: 'serif' }}>♫</span>
+              <span className="absolute bottom-0 left-4 text-[9px] opacity-15 select-none" style={{ color: '#FF9E00', fontFamily: 'serif' }}>♪</span>
+              <span className="absolute -bottom-1 right-6 text-[10px] opacity-15 select-none" style={{ color: textColor, fontFamily: 'serif' }}>♬</span>
               {renderFront()}
             </div>
 
@@ -243,7 +231,7 @@ export function CoralUniformAsset({
                   className="text-[14px] font-medium italic text-center max-w-[180px] leading-tight"
                   style={{ color: textColor, fontFamily: 'Inter' }}
                 >
-                  "Vozes que tocam corações"
+                  "V<span style={{ color: '#FF9E00', fontFamily: 'serif' }}>𝄞</span>zes que tocam corações"
                 </p>
                 <div className="h-[1px] w-8 bg-current opacity-30 mt-2" style={{ color: textColor }} />
                 <p className="text-[10px] font-black tracking-[0.2em] uppercase mt-2" style={{ color: textColor }}>
