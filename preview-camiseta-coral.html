@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Uniforme - Coral Vozes JK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --color-navy: #153065;
+            --color-amber: #FF9E00;
+            --color-purple: #7F4CA9;
+        }
+        body {
+            background-color: #f4f7f9;
+            font-family: 'Inter', sans-serif;
+        }
+        .perspective-1000 { perspective: 1000px; }
+        .preserve-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+        
+        .tshirt-card {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tshirt-card.flip {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-10">
+
+    <div class="mb-10 text-center">
+        <h1 class="text-2xl font-bold text-[#153065]">Preview do Uniforme</h1>
+        <p class="text-gray-500">Clique na camiseta para alternar entre Frente e Verso</p>
+    </div>
+
+    <!-- T-Shirt Container -->
+    <div class="relative w-80 h-[32rem] perspective-1000 cursor-pointer" onclick="document.getElementById('card').classList.toggle('flip')">
+        <div id="card" class="relative w-full h-full preserve-3d tshirt-card">
+            
+            <!-- FRONT SIDE -->
+            <div class="absolute inset-0 backface-hidden flex flex-col items-center">
+                <!-- Shape -->
+                <div class="absolute inset-x-4 top-0 h-[28rem] bg-[#153065] rounded-[4rem] rounded-t-[2.5rem] shadow-2xl">
+                    <div class="absolute -left-10 top-8 w-24 h-40 bg-[#153065] rounded-3xl -rotate-12 shadow-lg"></div>
+                    <div class="absolute -right-10 top-8 w-24 h-40 bg-[#153065] rounded-3xl rotate-12 shadow-lg"></div>
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-10 bg-black/10 rounded-b-full"></div>
+                    <div class="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-black/20 to-transparent rounded-b-[4rem]"></div>
+                </div>
+
+                <!-- Print -->
+                <div class="relative z-10 mt-32 px-4 text-center">
+                    <h2 class="text-5xl font-black text-white uppercase tracking-tighter leading-none mb-4" style="font-family: 'Space Grotesk';">
+                        Vozes
+                    </h2>
+                    <p class="text-xl font-medium italic text-white/80" style="font-family: 'Inter';">
+                        de Mãos Dadas
+                    </p>
+                    <div class="mt-8 flex items-center justify-center gap-4">
+                        <div class="w-12 h-[2px] bg-white/20"></div>
+                        <div class="w-2.5 h-2.5 rotate-45 border-2 border-[#FF9E00]"></div>
+                        <div class="w-12 h-[2px] bg-white/20"></div>
+                    </div>
+                </div>
+                
+                <p class="absolute bottom-20 text-[10px] font-bold tracking-[0.3em] uppercase text-white/30">ESTAMPA FRONTAL</p>
+            </div>
+
+            <!-- BACK SIDE -->
+            <div class="absolute inset-0 backface-hidden rotate-y-180 flex flex-col items-center">
+                <!-- Shape -->
+                <div class="absolute inset-x-4 top-0 h-[28rem] bg-[#153065] rounded-[4rem] rounded-t-[2.5rem] shadow-2xl">
+                    <div class="absolute -left-10 top-8 w-24 h-40 bg-[#153065] rounded-3xl -rotate-12 shadow-lg"></div>
+                    <div class="absolute -right-10 top-8 w-24 h-40 bg-[#153065] rounded-3xl rotate-12 shadow-lg"></div>
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-black/10 rounded-b-full"></div>
+                </div>
+
+                <!-- Print -->
+                <div class="relative z-10 mt-20 px-4 text-center flex flex-col items-center">
+                    <!-- Placeholder Logo Symbol -->
+                    <div class="w-20 h-20 mb-8 flex items-center justify-center">
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#FF9E00" stroke-width="2" />
+                            <path d="M30 50 Q 50 20, 70 50 T 30 50" fill="#FF9E00" opacity="0.8" />
+                            <circle cx="50" cy="50" r="10" fill="white" />
+                        </svg>
+                    </div>
+                    
+                    <p class="text-[14px] font-medium italic text-white mb-6" style="font-family: 'Inter';">
+                        "Vozes que tocam corações"
+                    </p>
+                    
+                    <div class="h-[1px] w-8 bg-white/30 mb-4"></div>
+                    
+                    <p class="text-[12px] font-black tracking-[0.2em] text-white uppercase">Residencial JK</p>
+                    <p class="text-[8px] font-bold tracking-widest text-white/60 uppercase mt-1">Goiânia · Brasil</p>
+                </div>
+
+                <p class="absolute bottom-20 text-[10px] font-bold tracking-[0.3em] uppercase text-white/30">ESTAMPA TRASEIRA</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mt-20 flex gap-4">
+        <button class="px-6 py-2 bg-[#153065] text-white rounded-full font-bold text-sm shadow-lg hover:scale-105 transition-transform">Baixar PDF (Mock)</button>
+        <button class="px-6 py-2 bg-white text-[#153065] border border-[#153065] rounded-full font-bold text-sm shadow-lg hover:scale-105 transition-transform">Mudar Cor (Navy)</button>
+    </div>
+
+</body>
+</html>

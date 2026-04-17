@@ -427,6 +427,11 @@ export const assetCategories: AssetCategory[] = [
       { id: 'tshirt-modern-front', name: '02 · Impacto Moderno', config: { color: 'navy', view: 'front', layout: 'modern-bold' } },
       { id: 'tshirt-minimal-front', name: '03 · Minimalismo Clean', config: { color: 'white', view: 'front', layout: 'minimalist-clean' } },
       { id: 'tshirt-artistic-front', name: '04 · Estética Artística', config: { color: 'purple', view: 'front', layout: 'artistic-serif' } },
+      { id: 'tshirt-badge-front', name: '06 · Emblema Circular', config: { color: 'navy', view: 'front', layout: 'badge-circle' } },
+      { id: 'tshirt-vertical-front', name: '07 · Tipografia Vertical', config: { color: 'navy', view: 'front', layout: 'vertical-modern' } },
+      { id: 'tshirt-oversized-front', name: '08 · Foco em VOZES (Oversized)', config: { color: 'white', view: 'front', layout: 'oversized-impact' } },
+      { id: 'tshirt-boxed-front', name: '09 · Bloco Tipográfico (Boxed)', config: { color: 'navy', view: 'front', layout: 'boxed-lockup' } },
+      { id: 'tshirt-script-front', name: '10 · Estilo Assinatura', config: { color: 'purple', view: 'front', layout: 'script-signature' } },
       { id: 'tshirt-base-back', name: '05 · Identidade (Costas)', config: { color: 'navy', view: 'back' } },
     ]
   }
