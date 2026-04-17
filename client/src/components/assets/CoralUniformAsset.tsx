@@ -48,24 +48,37 @@ export function CoralUniformAsset({
             </div>
 
             {/* Print Area - FRONT */}
-            <div className="relative z-10 mt-32 px-12 text-center pointer-events-none">
-              <h2 
-                className="text-3xl font-black uppercase tracking-tighter leading-[0.85] italic mb-2"
-                style={{ color: textColor, fontFamily }}
-              >
-                Coral<br />
-                Vozes<br />
-                <span className="text-sm font-bold tracking-[0.2em] not-italic block mt-2 opacity-80">
-                  DE MÃOS DADAS
+            <div className="relative z-10 mt-32 px-8 text-center pointer-events-none">
+              <div className="flex flex-col items-center">
+                <span 
+                  className="text-lg font-medium tracking-[0.4em] uppercase opacity-70 mb-1"
+                  style={{ color: textColor, fontFamily: 'Inter' }}
+                >
+                  Coral
                 </span>
-              </h2>
-              <div className="w-8 h-1 mx-auto mt-4 rounded-full" style={{ background: color === 'white' ? primaryColor : '#FF9E00' }} />
+                <h2 
+                  className="text-5xl font-black uppercase tracking-tighter leading-[0.8] mb-4"
+                  style={{ color: textColor, fontFamily: 'Space Grotesk' }}
+                >
+                  Vozes JK
+                </h2>
+                <div className="flex items-center gap-3 w-full justify-center">
+                  <div className="h-[1px] flex-1 bg-current opacity-30" style={{ color: textColor }} />
+                  <span className="text-[9px] font-black tracking-[0.3em] uppercase whitespace-nowrap opacity-90" style={{ color: textColor }}>
+                    DE MÃOS DADAS
+                  </span>
+                  <div className="h-[1px] flex-1 bg-current opacity-30" style={{ color: textColor }} />
+                </div>
+              </div>
             </div>
             
             <div className="absolute bottom-12 z-10">
-              <p className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-40" style={{ color: textColor }}>
-                Estampa Frontal
-              </p>
+              <div className="flex flex-col items-center gap-1">
+                <div className="w-1 h-1 rounded-full" style={{ background: textColor, opacity: 0.2 }} />
+                <p className="text-[9px] font-bold tracking-[0.3em] uppercase opacity-30" style={{ color: textColor }}>
+                  Identidade Coral
+                </p>
+              </div>
             </div>
           </div>
 
@@ -94,8 +107,8 @@ export function CoralUniformAsset({
                 showTagline={false}
               />
               <div className="mt-8 flex flex-col items-center gap-1">
-                <p className="text-[10px] font-black tracking-widest uppercase" style={{ color: textColor }}>
-                  CANTANDO ESPERANÇA
+                <p className="text-[12px] font-black tracking-[0.2em] uppercase" style={{ color: textColor }}>
+                  Residencial JK
                 </p>
                 <div className="w-12 h-0.5 opacity-30" style={{ backgroundColor: textColor }} />
                 <p className="text-[8px] font-bold tracking-widest uppercase opacity-60" style={{ color: textColor }}>
