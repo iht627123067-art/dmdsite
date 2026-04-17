@@ -43,15 +43,11 @@ export function CoralUniformAsset({
       default:
         return (
           <div className="flex flex-col items-center text-center gap-0">
-            <div className="flex flex-col gap-[3.5px] mb-3 w-24 opacity-[0.13]">
-              {[0, 1, 2, 3, 4].map(i => <div key={i} className="h-px w-full" style={{ background: textColor }} />)}
-            </div>
             <span className="text-[8px] font-black tracking-[0.55em] uppercase mb-1" style={{ color: textColor, opacity: 0.4 }}>Coral</span>
             <h2 className="text-[48px] font-black leading-none tracking-tight" style={{ color: textColor, fontFamily: 'Inter' }}>
               V<Clef size="0.85em" />zes
             </h2>
-            <div className="w-10 h-[2px] my-2 rounded-full" style={{ background: amber, opacity: 0.75 }} />
-            <span className="text-[22px] font-medium italic" style={{ color: textColor, opacity: 0.75, fontFamily: 'Inter' }}>de Mãos Dadas</span>
+            <span className="text-[22px] font-medium italic mt-2" style={{ color: textColor, opacity: 0.75, fontFamily: 'Inter' }}>de Mãos Dadas</span>
           </div>
         );
 
@@ -61,13 +57,11 @@ export function CoralUniformAsset({
           <div className="flex flex-col items-center w-full gap-0">
             <div className="flex items-center justify-between w-full mb-2">
               <span className="text-[7px] font-black tracking-[0.55em] uppercase" style={{ color: textColor, opacity: 0.35 }}>Coral</span>
-              <div className="flex-1 h-[1.5px] mx-3 rounded-full" style={{ background: amber, opacity: 0.5 }} />
-              <span className="text-[7px] font-black tracking-[0.4em] uppercase" style={{ color: textColor, opacity: 0.35 }}>♩ ♫</span>
+              <span className="text-[7px] font-black tracking-[0.4em]" style={{ color: amber, opacity: 0.65 }}>♩ ♫</span>
             </div>
             <h2 className="text-[52px] font-black uppercase leading-none tracking-[-3px]" style={{ color: textColor, fontFamily: 'Inter' }}>
               V<Clef size="0.8em" />ZES
             </h2>
-            <div className="w-full h-[5px] mt-2 rounded-full" style={{ background: amber, opacity: 0.9 }} />
             <span className="text-[20px] font-medium italic mt-2" style={{ color: textColor, opacity: 0.7, fontFamily: 'Inter' }}>
               de Mãos Dadas
             </span>
@@ -78,20 +72,13 @@ export function CoralUniformAsset({
       case 'minimalist-clean':
         return (
           <div className="flex flex-col items-start w-full gap-1.5 px-1">
-            <div className="flex items-center gap-2 w-full">
-              <span className="text-[7px] font-black tracking-[0.6em] uppercase" style={{ color: textColor, opacity: 0.4 }}>
-                C<span style={{ color: amber, fontFamily: 'serif' }}>𝄞</span>RAL
-              </span>
-              <div className="flex-1 h-px" style={{ background: textColor, opacity: 0.15 }} />
-            </div>
+            <span className="text-[7px] font-black tracking-[0.6em] uppercase" style={{ color: textColor, opacity: 0.4 }}>
+              C<span style={{ color: amber, fontFamily: 'serif' }}>𝄞</span>RAL
+            </span>
             <h2 className="text-[44px] font-black leading-none tracking-[-2px]" style={{ color: textColor, fontFamily: 'Inter' }}>
               V<Clef size="0.82em" />zes
             </h2>
             <span className="text-[22px] font-light italic" style={{ color: textColor, opacity: 0.65, fontFamily: 'Inter' }}>de Mãos Dadas</span>
-            <div className="flex items-center gap-2 w-full mt-0.5">
-              <div className="flex-1 h-px" style={{ background: textColor, opacity: 0.15 }} />
-              <span className="text-[7px] font-bold tracking-[0.4em]" style={{ color: textColor, opacity: 0.25 }}>JK</span>
-            </div>
           </div>
         );
 
@@ -99,20 +86,11 @@ export function CoralUniformAsset({
       case 'artistic-serif':
         return (
           <div className="flex flex-col items-center text-center">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-4 h-px" style={{ background: amber, opacity: 0.4 }} />
-              <span className="text-[7px] font-black tracking-[0.45em] uppercase" style={{ color: textColor, opacity: 0.38 }}>Coral</span>
-              <div className="w-4 h-px" style={{ background: amber, opacity: 0.4 }} />
-            </div>
+            <span className="text-[7px] font-black tracking-[0.45em] uppercase mb-2" style={{ color: textColor, opacity: 0.38 }}>Coral</span>
             <h2 className="text-[44px] font-bold italic leading-none" style={{ color: textColor, fontFamily: 'Georgia, serif' }}>
               V<Clef size="0.88em" />zes
             </h2>
-            <div className="flex gap-1.5 my-2">
-              <div className="w-1 h-1 rounded-full" style={{ background: textColor, opacity: 0.4 }} />
-              <div className="w-1 h-1 rounded-full" style={{ background: amber }} />
-              <div className="w-1 h-1 rounded-full" style={{ background: textColor, opacity: 0.4 }} />
-            </div>
-            <span className="text-[22px] font-medium italic" style={{ color: textColor, opacity: 0.7, fontFamily: 'Georgia, serif' }}>
+            <span className="text-[22px] font-medium italic mt-2" style={{ color: textColor, opacity: 0.7, fontFamily: 'Georgia, serif' }}>
               de Mãos Dadas
             </span>
           </div>
@@ -122,14 +100,6 @@ export function CoralUniformAsset({
       case 'badge-circle':
         return (
           <svg width="158" height="158" viewBox="0 0 158 158" style={{ overflow: 'visible' }}>
-            <defs>
-              <path id="ringPath" d="M 79,79 m -57,0 a 57,57 0 1,1 114,0 a 57,57 0 1,1 -114,0" />
-            </defs>
-            <circle cx="79" cy="79" r="62" fill="none" stroke={textColor} strokeWidth="1" opacity="0.25" />
-            <circle cx="79" cy="79" r="55" fill="none" stroke={amber} strokeWidth="0.5" opacity="0.2" />
-            <text fontSize="7" fontWeight="900" letterSpacing="4.5" fill={textColor} fontFamily="Inter" opacity="0.55">
-              <textPath href="#ringPath" startOffset="3%">CORAL · DE MÃOS DADAS · RES. JK ·</textPath>
-            </text>
             <text x="79" y="63" textAnchor="middle" fontSize="8" fontWeight="800" fill={textColor} fontFamily="Inter" opacity="0.35" letterSpacing="2">coral</text>
             <text x="79" y="91" textAnchor="middle" fontSize="32" fontWeight="900" fontFamily="Inter" letterSpacing="-1">
               <tspan fill={textColor}>V</tspan>
@@ -144,30 +114,23 @@ export function CoralUniformAsset({
       case 'vertical-modern':
         return (
           <div className="flex items-center gap-3">
-            <div className="flex flex-col items-center gap-2">
-              <div className="h-8 w-px opacity-20" style={{ background: textColor }} />
-              <span
-                className="text-[7px] font-black tracking-[0.5em] uppercase"
-                style={{ color: textColor, opacity: 0.38, writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
-              >
-                Coral
-              </span>
-              <div className="h-8 w-px opacity-20" style={{ background: textColor }} />
-            </div>
+            <span
+              className="text-[7px] font-black tracking-[0.5em] uppercase"
+              style={{ color: textColor, opacity: 0.38, writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+            >
+              Coral
+            </span>
             <h2 className="text-[48px] font-black uppercase leading-[0.82] tracking-[-1px] flex flex-col" style={{ color: textColor, fontFamily: 'Inter' }}>
               <span>V</span>
               <span style={{ color: amber, fontFamily: 'serif', fontSize: '0.85em' }}>𝄞</span>
               <span>Z</span><span>E</span><span>S</span>
             </h2>
-            <div className="flex flex-col items-start gap-1.5">
-              <div className="h-px w-14 mb-0.5" style={{ background: amber, opacity: 0.5 }} />
-              <span
-                className="text-[14px] font-semibold italic leading-snug"
-                style={{ color: textColor, opacity: 0.7, fontFamily: 'Inter' }}
-              >
-                de<br />Mãos<br />Dadas
-              </span>
-            </div>
+            <span
+              className="text-[14px] font-semibold italic leading-snug"
+              style={{ color: textColor, opacity: 0.7, fontFamily: 'Inter' }}
+            >
+              de<br />Mãos<br />Dadas
+            </span>
           </div>
         );
 
@@ -180,8 +143,7 @@ export function CoralUniformAsset({
               V<Clef size="0.78em" />
             </h2>
             <span className="text-[38px] font-black leading-none tracking-[-1px] -mt-1" style={{ color: textColor, fontFamily: 'Inter' }}>ZES</span>
-            <div className="w-full h-px mt-2" style={{ background: amber, opacity: 0.5 }} />
-            <span className="text-[19px] font-medium italic mt-1.5" style={{ color: textColor, opacity: 0.65, fontFamily: 'Inter' }}>
+            <span className="text-[19px] font-medium italic mt-2" style={{ color: textColor, opacity: 0.65, fontFamily: 'Inter' }}>
               de Mãos Dadas
             </span>
           </div>
@@ -190,38 +152,28 @@ export function CoralUniformAsset({
       /* ── 8. BOXED LOCKUP ── */
       case 'boxed-lockup':
         return (
-          <div className="flex items-stretch">
-            <div className="w-[4px] rounded-sm" style={{ background: amber }} />
-            <div
-              className="flex flex-col justify-between px-4 py-2"
-              style={{ border: `1.5px solid ${textColor}`, borderLeft: 'none', borderRadius: '0 4px 4px 0' }}
-            >
-              <span className="text-[8px] font-black tracking-[0.55em] uppercase" style={{ color: textColor, opacity: 0.4 }}>Coral</span>
-              <h2 className="text-[38px] font-black leading-none tracking-[-1.5px] py-1" style={{ color: textColor, fontFamily: 'Inter' }}>
-                V<Clef size="0.82em" />ZES
-              </h2>
-              <span className="text-[18px] font-medium italic" style={{ color: textColor, opacity: 0.65, fontFamily: 'Inter' }}>de Mãos Dadas</span>
-            </div>
+          <div className="flex flex-col items-start gap-1 px-1">
+            <span className="text-[8px] font-black tracking-[0.55em] uppercase" style={{ color: textColor, opacity: 0.4 }}>Coral</span>
+            <h2 className="text-[38px] font-black leading-none tracking-[-1.5px]" style={{ color: textColor, fontFamily: 'Inter' }}>
+              V<Clef size="0.82em" />ZES
+            </h2>
+            <span className="text-[18px] font-medium italic" style={{ color: textColor, opacity: 0.65, fontFamily: 'Inter' }}>de Mãos Dadas</span>
           </div>
         );
 
-      /* ── 9. SCRIPT SIGNATURE — assinatura com notas musicais ── */
+      /* ── 9. SCRIPT SIGNATURE ── */
       case 'script-signature':
         return (
-          <div className="flex flex-col items-center text-center gap-0.5">
-            <div className="flex items-center gap-2 mb-1">
-              <span style={{ color: amber, fontFamily: 'serif', fontSize: 13, opacity: 0.7 }}>♬</span>
-              <span className="text-[7px] font-black tracking-[0.45em] uppercase" style={{ color: textColor, opacity: 0.35 }}>Est. Residencial JK</span>
-              <span style={{ color: amber, fontFamily: 'serif', fontSize: 13, opacity: 0.7 }}>♬</span>
-            </div>
-            <span className="text-[18px] font-bold italic leading-tight" style={{ color: textColor, opacity: 0.6, fontFamily: 'Georgia, serif' }}>
+          <div className="flex flex-col items-center text-center" style={{ gap: 2 }}>
+            <span style={{ color: amber, fontFamily: 'serif', fontSize: 13, opacity: 0.65, marginBottom: 2 }}>🎵</span>
+            <span className="text-[15px] font-semibold italic" style={{ color: textColor, opacity: 0.5, fontFamily: 'Georgia, serif', letterSpacing: '0.08em' }}>
               Coral
             </span>
-            <h2 className="text-[44px] font-bold italic leading-[1.0] -mt-1" style={{ color: textColor, fontFamily: 'Georgia, serif' }}>
-              V<Clef size="1em" style={{ fontFamily: 'serif' }} />zes
+            <h2 className="text-[46px] font-bold italic leading-[0.95]" style={{ color: textColor, fontFamily: 'Georgia, serif', marginTop: -2 }}>
+              V<Clef size="0.92em" style={{ fontFamily: 'serif' }} />zes
             </h2>
-            <div className="w-20 h-[1.5px] mt-1 rounded-full" style={{ background: amber, opacity: 0.7 }} />
-            <span className="text-[22px] font-medium italic mt-1" style={{ color: textColor, opacity: 0.7, fontFamily: 'Georgia, serif' }}>
+            <span style={{ color: amber, fontFamily: 'serif', fontSize: 10, opacity: 0.5, margin: '4px 0' }}>♩</span>
+            <span className="text-[23px] font-medium italic" style={{ color: textColor, opacity: 0.72, fontFamily: 'Georgia, serif' }}>
               de Mãos Dadas
             </span>
           </div>
@@ -256,11 +208,11 @@ export function CoralUniformAsset({
               <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-black/20 to-transparent rounded-b-[4rem]" />
 
               {/* Decorative musical notes — front fabric only */}
-              <span className="absolute pointer-events-none select-none" style={{ top: '9%',  left: '10%',  fontSize: 15, opacity: 0.18, color: amber }}>🎵</span>
-              <span className="absolute pointer-events-none select-none" style={{ top: '7%',  right: '11%', fontSize: 12, opacity: 0.14, color: textColor, fontFamily: 'serif' }}>♫</span>
-              <span className="absolute pointer-events-none select-none" style={{ top: '18%', left: '5%',  fontSize: 11, opacity: 0.13, color: amber, fontFamily: 'serif' }}>𝄞</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '9%', left: '10%', fontSize: 15, opacity: 0.18, color: amber }}>🎵</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '7%', right: '11%', fontSize: 12, opacity: 0.14, color: textColor, fontFamily: 'serif' }}>♫</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '18%', left: '5%', fontSize: 11, opacity: 0.13, color: amber, fontFamily: 'serif' }}>𝄞</span>
               <span className="absolute pointer-events-none select-none" style={{ top: '20%', right: '7%', fontSize: 14, opacity: 0.16, color: amber }}>🎶</span>
-              <span className="absolute pointer-events-none select-none" style={{ top: '30%', left: '8%',  fontSize: 10, opacity: 0.11, color: textColor, fontFamily: 'serif' }}>♪</span>
+              <span className="absolute pointer-events-none select-none" style={{ top: '30%', left: '8%', fontSize: 10, opacity: 0.11, color: textColor, fontFamily: 'serif' }}>♪</span>
               <span className="absolute pointer-events-none select-none" style={{ top: '26%', right: '9%', fontSize: 11, opacity: 0.12, color: textColor, fontFamily: 'serif' }}>♩</span>
               <span className="absolute pointer-events-none select-none" style={{ top: '65%', left: '12%', fontSize: 13, opacity: 0.14, color: amber }}>🎵</span>
               <span className="absolute pointer-events-none select-none" style={{ top: '70%', right: '9%', fontSize: 10, opacity: 0.12, color: textColor, fontFamily: 'serif' }}>♬</span>
@@ -273,14 +225,6 @@ export function CoralUniformAsset({
               {renderFront()}
             </div>
 
-            <div className="absolute bottom-12 z-10">
-              <div className="flex flex-col items-center gap-1">
-                <div className="w-1 h-1 rounded-full" style={{ background: textColor, opacity: 0.2 }} />
-                <p className="text-[9px] font-bold tracking-[0.3em] uppercase opacity-30" style={{ color: textColor }}>
-                  Studio Edition 26
-                </p>
-              </div>
-            </div>
           </div>
 
           {/* BACK */}
