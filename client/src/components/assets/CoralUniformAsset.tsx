@@ -26,45 +26,45 @@ export function CoralUniformAsset({
       case 'modern-bold':
         return (
           <div className="flex flex-col items-center">
-            <h2 className="text-5xl font-black uppercase leading-[0.75] tracking-tighter" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
+            <h2 className="text-6xl font-black uppercase leading-[0.75] tracking-tighter" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
               Vozes<br />
               <span style={{ color: '#FF9E00' }}>JK</span>
             </h2>
-            <div className="w-12 h-1 bg-current opacity-20 my-4" style={{ color: textColor }} />
-            <span className="text-[10px] font-black tracking-[0.5em] uppercase" style={{ color: textColor }}>
-              Coral de Mãos Dadas
+            <div className="w-12 h-1 bg-current opacity-20 my-5" style={{ color: textColor }} />
+            <span className="text-lg font-medium tracking-tight opacity-70 italic" style={{ color: textColor, fontFamily: 'Inter' }}>
+              de Mãos Dadas
             </span>
           </div>
         );
       case 'minimalist-clean':
         return (
           <div className="flex flex-col items-center">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-8 h-[1px]" style={{ background: textColor, opacity: 0.3 }} />
-              <span className="text-[10px] font-bold tracking-[0.4em] uppercase" style={{ color: textColor }}>EST. 2026</span>
-              <div className="w-8 h-[1px]" style={{ background: textColor, opacity: 0.3 }} />
-            </div>
-            <h2 className="text-4xl font-black uppercase tracking-tight leading-none mb-2" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
-              Coral <span style={{ color: '#FF9E00' }}>Vozes</span>
+            <h2 className="text-5xl font-black uppercase tracking-tight leading-none mb-3" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
+              VOZES <span style={{ color: '#FF9E00' }}>JK</span>
             </h2>
-            <span className="text-lg font-medium tracking-tight opacity-70 italic" style={{ color: textColor, fontFamily: 'Inter' }}>
+            <span className="text-xl font-medium tracking-tight opacity-70 italic" style={{ color: textColor, fontFamily: 'Inter' }}>
               de Mãos Dadas
             </span>
+            <div className="mt-6 flex items-center gap-2">
+               <div className="w-1.5 h-1.5 rounded-full bg-[#FF9E00]" />
+               <span className="text-[10px] font-black tracking-[0.4em] uppercase opacity-40" style={{ color: textColor }}>EST. 2026</span>
+            </div>
           </div>
         );
       case 'artistic-serif':
         return (
           <div className="flex flex-col items-center">
             <div className="relative">
-              <span className="text-5xl font-serif italic" style={{ color: textColor }}>
+              <span className="text-6xl font-serif italic" style={{ color: textColor }}>
                 Vozes
               </span>
               <div className="absolute -top-4 -right-2 w-3 h-3 rounded-full" style={{ backgroundColor: '#FF9E00' }} />
             </div>
-            <div className="mt-4 flex flex-col items-center">
-               <span className="text-[9px] font-black tracking-[0.6em] uppercase opacity-60 mb-1" style={{ color: textColor }}>CORAL</span>
+            <div className="mt-6 flex flex-col items-center">
                <div className="w-24 h-[1px] bg-current opacity-20" style={{ color: textColor }} />
-               <span className="text-[11px] font-bold mt-1" style={{ color: textColor }}>DE MÃOS DADAS</span>
+               <span className="text-lg font-medium tracking-tight opacity-70 italic mt-2" style={{ color: textColor, fontFamily: 'Inter' }}>
+                  de Mãos Dadas
+               </span>
             </div>
           </div>
         );
@@ -72,16 +72,16 @@ export function CoralUniformAsset({
       default:
         return (
           <div className="flex flex-col items-center">
-            <span className="text-lg font-bold tracking-[0.4em] uppercase opacity-60 mb-1" style={{ color: textColor, fontFamily: 'Inter' }}>
-               Coral
-            </span>
-            <h2 className="text-4xl font-black uppercase tracking-tighter leading-[0.8] mb-4" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
-               Vozes <span style={{ color: '#FF9E00' }}>de Mãos Dadas</span>
+            <h2 className="text-5xl font-black uppercase tracking-tighter leading-none mb-4" style={{ color: textColor, fontFamily: 'Space Grotesk' }}>
+              Vozes
             </h2>
+            <span className="text-xl font-medium tracking-tight opacity-80 italic mb-6" style={{ color: textColor, fontFamily: 'Inter' }}>
+              de Mãos Dadas
+            </span>
             <div className="flex items-center gap-4">
-               <div className="w-8 h-[2px] bg-current opacity-20" style={{ color: textColor }} />
-               <div className="w-2 h-2 rotate-45 border-2" style={{ borderColor: '#FF9E00' }} />
-               <div className="w-8 h-[2px] bg-current opacity-20" style={{ color: textColor }} />
+               <div className="w-12 h-[2px] bg-current opacity-20" style={{ color: textColor }} />
+               <div className="w-2.5 h-2.5 rotate-45 border-2 border-[#FF9E00]" />
+               <div className="w-12 h-[2px] bg-current opacity-20" style={{ color: textColor }} />
             </div>
           </div>
         );
