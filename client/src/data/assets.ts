@@ -51,9 +51,15 @@ export const assetCategories: AssetCategory[] = [
     type: 'mug',
     models: [
       { id: 'mug-ring', name: '01 · Pilares de Impacto', config: { layout: 'dimensional-ring' } as MugProps },
+      { id: 'mug-duo-slice', name: '02 · Dois Tons — Símbolo + URL', config: { layout: 'duo-tone-slice' } as MugProps },
+      { id: 'mug-duo-inv', name: '03 · Dois Tons Invertido', config: { layout: 'duo-tone-inverted' } as MugProps },
+      { id: 'mug-solar', name: '04 · Âmbar Institucional', config: { layout: 'classic-solar' } as MugProps },
+      { id: 'mug-exec', name: '05 · Navy Executivo', config: { layout: 'executive-blue' } as MugProps },
+      { id: 'mug-manifesto', name: '06 · Manifesto — Comunidade', config: { layout: 'manifesto-bold' } as MugProps },
       { id: 'mug-tech', name: '07 · Matter Tech', config: { layout: 'matter-tech' } as MugProps },
       { id: 'mug-grid', name: '08 · Pattern Grid', config: { layout: 'pattern-grid' } as MugProps },
       { id: 'mug-rim', name: '09 · Color Rim', config: { layout: 'color-rim' } as MugProps },
+      { id: 'mug-crest', name: '10 · Solar Crest', config: { layout: 'solar-crest' } as MugProps },
       { id: 'mug-contrast', name: '11 · Alça Âmbar · Impacto Social', config: { layout: 'contrast-handle' } as MugProps },
     ]
   },
